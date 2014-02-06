@@ -3,6 +3,7 @@
 
 \counterwithout{section}{chapter}
 
+%\usepackage{cleveref}
 \usepackage[utf8x]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage[english]{babel}
@@ -19,14 +20,17 @@
 \setlist[itemize]{noitemsep}
 \setlist[enumerate]{noitemsep}
 
-\usepackage{cleveref}
 \usepackage{minted}
 \usepackage{hyperref}
 \usepackage[nodayofweek]{datetime}
 
+\setlength{\parindent}{0pt}
+\nonzeroparskip{}
+
 \title{Database Systems\\Mini Project}
 %\date{\protect\formatdate{6}{2}{2014} to \protect\formatdate{6}{2}{2014}}
-\date{\formatdate{6}{2}{2014}}
+\date{\texttt{\href{mailto:d601f14@cs.aau.dk}{d601f14}, 1.1.01
+} \\ \protect\formatdate{6}{2}{2014}}
 \author{
   Obeid, Elias\\
   \href{mailto:eobeid11@student.aau.dk}{\texttt{eobeid11@student.aau.dk}}
@@ -47,16 +51,7 @@
 
 \mainmatter
 
-\section{Self Study 1: Preliminary Database Modeling}
-As stated in the assignment, we have decided to look at different possible attributes and models by looking at the structure of movie pages on IMDB\@. Initially, we think it would require many join tables, as we've identified a few many-to-many relationships among structures we've discussed. These structures are: \emph{actors}, \emph{directors}, \emph{writers}, \emph{movies}, \emph{awards}, \emph{ratings}, and \emph{users}.
-
-\begin{figure}[H]
-  \centering
-  \includegraphics[width=\linewidth]{1-06.02.14/selfStudy1db.pdf}
-  \caption{Enhanced entity-relationship (EER) model diagram of a simplified movie database.}\label{fig:model}
-\end{figure}
-
-The SQL for creating this structure, see \Cref{sec:sqlPre}.
+\input{1-06.02.14/root}
 
 \appendix
 
