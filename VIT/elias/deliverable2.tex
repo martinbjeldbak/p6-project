@@ -1,0 +1,22 @@
+\section{Deliverable 2}
+
+This deliverable was about rewriting the 5th semester project's title and
+abstract.
+
+\subsection{Automated Number Plate Identification}
+\begin{description}
+  \item [Group:] Elias Khazen Obeid, Simon Buus Jensen, Niels Sonnich
+		Poulsen, Kent Munthe Caspersen, Sebastian Wahl
+\end{description}
+
+We describe an automated system to identify the number plates of Danish
+vehicles in images. Haar Features are weak classifiers used to capture characteristics of
+number plates. The best weak classifiers are boosted into a single strong classifier by
+the AdaBoost algorithm. The strong classifier is used \-for detecting the position of the number plate. We train a neural network to recognize the symbols of the number plate.
+
+Overall the system needs improvement. As individual systems the subsystems
+mostly function satisfyingly. The results of the systems are as following:
+numberplate detectino gave a 16 \% detection rate and 0.07 \% false negatives.
+Corner detection found the right corners 80 \% of the time. The segmentation
+system segmented 75 \% of the images correct. Character recognition identified
+95.83 \% characters correct.
