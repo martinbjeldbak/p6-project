@@ -16,7 +16,7 @@ namespace GANNAI {
     //Constructs a random DNA string of a given length
     public DNA(int length) {
       bitstring = new bool[length];
-      Random random = new Random();
+      Utility random = new Utility();
       for (int i = 0; i < length; i++)
         bitstring[i] = random.Next(0, 2) == 1 ? true : false;
       hashcode = GetHashCode();
