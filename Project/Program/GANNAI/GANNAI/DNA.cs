@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using GANNAI;
 
 namespace GANNAI {
   public class DNA {
     private bool[] bitstring;
     private int hashcode;
-    static Random random = new Random();
 
     //Constructs a random DNA string matching the length of the neural network architecthure we need
     public DNA() : this(100){
@@ -17,9 +17,8 @@ namespace GANNAI {
     //Constructs a random DNA string of a given length
     public DNA(int length) {
       bitstring = new bool[length];
-      Utility random = new Utility();
-      for (int i = 0; i < length; i++)
-        bitstring[i] = random.Next(0, 2) == 1 ? true : false;
+      for(int i = 0; i < length; i++)
+        bitstring[i] = Utility.randomBool();
       hashcode = GetHashCode();
     }
 
@@ -33,9 +32,9 @@ namespace GANNAI {
         throw new Exception("The two bitstrings to be crossed must have the same length.");
 
       bool[] result = new bool[bitstring.Length];
-      int crossPoint = random.Next(1, bitstring.Length-1);
+      int crossPoint = Utility.randomInt(1, bitstring.Length-1);
       bool[] left, right;
-      if (random.Next(0, 2) == 0) {
+      if (Utility.randomBool()) {
         left = bitstring;
         right = other.bitstring;
       }
@@ -54,10 +53,10 @@ namespace GANNAI {
       if (bitstring.Length != other.bitstring.Length)
         throw new Exception("The two bitstrings must have same length to be crossed");
       bool[] result = new bool[bitstring.Length];
-      int crossPoint1 = random.Next(1, bitstring.Length - 2);
-      int crossPoint2 = random.Next(crossPoint1+1, bitstring.Length - 1);
+      int crossPoint1 = Utility.randomInt(1, bitstring.Length - 2);
+      int crossPoint2 = Utility.randomInt(crossPoint1+1, bitstring.Length - 1);
       bool[] left, right;
-      if (random.Next(0, 2) == 0) {
+      if (Utility.randomBool()) {
         left = bitstring;
         right = other.bitstring;
       }
@@ -78,7 +77,7 @@ namespace GANNAI {
         throw new Exception("The two bitstrings must have same length to be crossed");
       bool[] result = new bool[bitstring.Length];
       for (int i = 0; i < bitstring.Length; i++)
-        result[i] = random.Next(0, 2) == 0 ? bitstring[i] : other.bitstring[i];
+        result[i] = Utility.randomBool() ? bitstring[i] : other.bitstring[i];
       return new DNA(result);
     }
 

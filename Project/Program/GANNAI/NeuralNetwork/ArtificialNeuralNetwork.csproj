@@ -34,11 +34,17 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Neuron.cs" />
     <Compile Include="InputNeuron.cs" />
     <Compile Include="Connection.cs" />
+    <Compile Include="NeuralNetwork.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <ProjectReference Include="..\GANNAI\GANNAI.csproj">
+      <Project>{A3D560DB-F51C-475D-B81F-D5F08FDD3C3E}</Project>
+      <Name>GANNAI</Name>
+    </ProjectReference>
+  </ItemGroup>
 </Project>
