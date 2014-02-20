@@ -50,11 +50,11 @@ namespace GANNAI {
 
     //Returns a list of new individuals bred from the current population
     public List<AIPlayer> BreedIndividuals() {
-      return null;
+      throw new Exception("Not implemented yet");
     }
 
     private void SortPopulation() {
-
+      individuals.OrderBy(a => a.GetFitness(game));
     }
 
     public List<AIPlayer> MakeRandomPopulation(int count) {
