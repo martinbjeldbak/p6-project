@@ -27,7 +27,7 @@ Global
 		{C5536FB1-A95E-4A8F-B400-781ABCC7EE70}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = GANNAI\GANNAI.csproj
+		StartupItem = WebBrowser\WebBrowser.csproj
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
