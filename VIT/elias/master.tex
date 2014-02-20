@@ -1,0 +1,34 @@
+\documentclass[a4paper, 12pt, twoside, article]{memoir}
+\usepackage[utf8x]{inputenc}
+\usepackage[english]{babel}
+% Smaller spacing between lists
+\usepackage{enumitem}
+\setlist[itemize]{noitemsep}
+\setlist[enumerate]{noitemsep}
+%for links and such
+\usepackage{hyperref}
+\usepackage[nodayofweek]{datetime}
+%use the ubuntu font
+\fontfamily{Ubuntu}
+
+\setlength{\parindent}{0pt}
+\nonzeroparskip{}
+\counterwithout{section}{chapter}
+%\synctex=1
+
+\title{VIT Deliverables 1-6}
+
+\author{Elias Obeid, 1.1.01\\ \href{mailto:eobeid11@student.aau.dk}{\texttt{eobeid11@student.aau.dk}}}
+
+\begin{document}
+
+\frontmatter
+\maketitle
+\pagebreak
+\mainmatter
+
+\input{deliverable1}
+\newpage
+\input{deliverable2}
+
+\end{document}
