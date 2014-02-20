@@ -50,6 +50,10 @@ namespace GANNAI {
 
     //Returns a list of new individuals bred from the current population
     public List<AIPlayer> BreedIndividuals() {
+      return null;
+    }
+
+    private void SortPopulation() {
 
     }
 
