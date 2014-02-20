@@ -1,0 +1,5 @@
+/Users/martin/Dropbox/Datalogi/p6-project/Project/Program/GANNAI/WebBrowser/obj/x86/Debug/.NETFramework,Version=v4.0.AssemblyAttribute.cs
+/Users/martin/Dropbox/Datalogi/p6-project/Project/Program/GANNAI/WebBrowser/bin/Debug/WebBrowser.exe.mdb
+/Users/martin/Dropbox/Datalogi/p6-project/Project/Program/GANNAI/WebBrowser/bin/Debug/WebBrowser.exe
+/Users/martin/Dropbox/Datalogi/p6-project/Project/Program/GANNAI/WebBrowser/obj/x86/Debug/WebBrowser.exe
+/Users/martin/Dropbox/Datalogi/p6-project/Project/Program/GANNAI/WebBrowser/obj/x86/Debug/WebBrowser.exe.mdb
