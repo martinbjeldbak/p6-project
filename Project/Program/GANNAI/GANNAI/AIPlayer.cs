@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 
 namespace GANNAI {
-  //TAn individual represent an AI player
+
   public class AIPlayer {
     private DNA dna;
     private double fitness;
@@ -23,6 +23,12 @@ namespace GANNAI {
         lastEvaluatedDNA = dna.Clone();
         return fitness;
       }
+    }
+
+    //Gets the output of the AIPlayer given a number of inputs
+    public object[] GetOutputs(object[] inputs) {
+      //
+      throw new Exception("Not implemented yet");
     }
   }
 }
