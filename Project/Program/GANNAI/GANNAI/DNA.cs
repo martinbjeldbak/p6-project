@@ -12,5 +12,15 @@ namespace GANNAI {
       for (int i = 0; i < length; i++)
         bitstring[i] = random.Next(0, 2) == 1 ? true : false;
     }
+
+    public DNA SinglePointCrossover(DNA other) {
+      return null;
+    }
+    public DNA TwoPointCrossover(DNA other) {
+      return null;
+    }
+    public DNA UniformCrossover(DNA other) {
+      return null;
+    }
   }
 }
