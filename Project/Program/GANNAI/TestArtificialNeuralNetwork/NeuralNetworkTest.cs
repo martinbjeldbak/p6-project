@@ -44,16 +44,19 @@ namespace GANNAINTests {
         for(int j = 0; j < nn.HiddenNeurons.Count; j++)
           nn.OutputNeurons[i].AddInputConnection(nn.HiddenNeurons[j], 1.0);
       //first hidden values then output values
-      double result = 1 / (1 + Math.Exp(-(0.2 * 1.0 + 0.2 * 1.0)));
-      result = 1 / (1 + Math.Exp(-(result * 1.0 + result * 1.0 + result * 1.0)));
+      double resultHidden = 1 / (1 + Math.Exp(-(0.2 * 1.0 + 0.2 * 1.0)));
+      double resultOutput = 1 / (1 + Math.Exp(-(resultHidden * 1.0 + resultHidden * 1.0 + resultHidden * 1.0)));
 
       nn.GetOutput();
 
       for(int i = 0; i < nn.InputNeurons.Count; i++)
         Assert.AreEqual(v[i], nn.InputNeurons[i].Value, 0.0);
 
+      for(int i = 0; i < nn.HiddenNeurons.Count; i++)
+        Assert.AreEqual(resultHidden, nn.HiddenNeurons[i].Value, 0.0);
+
       for(int i = 0; i < nn.OutputNeurons.Count; i++)
-        Assert.AreEqual(result, nn.OutputNeurons[i].Value, 0.0);
+        Assert.AreEqual(resultOutput, nn.OutputNeurons[i].Value, 0.0);
 
       /*
       nn.setInputVector(0.1, 0.4);
