@@ -4,3 +4,10 @@ DBS/*.pdf
 /Project/Program/GANNAI/WebBrowser/obj/x86/Debug/*.cache
 /Project/Program/GANNAI/NeuralNetwork/obj/x86/Debug/*.cache
 *.cache
+*.exe
+*.pdb
+*.dll
+*.txt
+*.config
+*.resources
+*.manifest
