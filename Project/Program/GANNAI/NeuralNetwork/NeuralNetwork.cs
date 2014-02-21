@@ -20,21 +20,38 @@ namespace ArtificialNeuralNetwork {
     }
 
     //add input neuron
-    public void addInput(InputNeuron neuron){
+    public void addInput(InputNeuron neuron) {
       inputNeurons.Add(neuron);
     }
     //add hidden neuron
-    public void addHidden(Neuron neuron){
+    public void addHidden(Neuron neuron) {
       hiddenNeurons.Add(neuron);
     }
     //add output neuron
-    public void addOutput(Neuron neuron){
+    public void addOutput(Neuron neuron) {
       outputNeurons.Add(neuron);
     }
 
-    /////////////////////////
-    /// SET INPUT VECTOR? ///
-    /////////////////////////
+    //set input
+    public void setInput(double[] vals) {
+      if (inputNeurons.Count != vals.Length)
+        throw new Exception("Size of input doesn't match number of input neurons");
+      for (int i = 0; i < vals.Length; i++)
+        inputNeurons[i].SetValue(vals[i]);
+    }
+
+    //calc output
+    public double[] GetOutput() {
+      //calc value of hidden neurons
+      for (int i = 0; i < hiddenNeurons.Count; i++)
+        hiddenNeurons[i].Calculate();
+
+      //calc value of output neurons
+      double[] output = new double[outputNeurons.Count];
+      for (int i = 0; i < OutputNeurons.Count; i++)
+        output[i] = outputNeurons[i].NeuronValue;
+      return output;
+    }
 
   }
 }
