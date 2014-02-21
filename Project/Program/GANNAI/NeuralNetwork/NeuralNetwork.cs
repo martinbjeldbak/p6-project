@@ -5,21 +5,15 @@ using System.Collections.Generic;
 namespace ArtificialNeuralNetwork {
   public class NeuralNetwork {
     //list of neurons in network
-    private List<InputNeuron> inputNeurons = new List<InputNeuron>();
-    private List<Neuron> hiddenNeurons = new List<Neuron>();
-    private List<Neuron> outputNeurons = new List<Neuron>();
-    // getters
-    public List<InputNeuron> InputNeurons {
-      get { return inputNeurons; }
-    }
-    public List<Neuron> HiddenNeurons {
-      get { return hiddenNeurons; }
-    }
-    public List<Neuron> OutputNeurons {
-      get { return outputNeurons; }
-    }
+    private List<InputNeuron> inputNeurons;
+    private List<ChildNeuron> hiddenNeurons;
+    private List<ChildNeuron> outputNeurons;
 
     public NeuralNetwork(int inp, int hdn, int oup, int l = 1){
+      inputNeurons = new List<InputNeuron>();
+      hiddenNeurons = new List<ChildNeuron>();
+      outputNeurons = new List<ChildNeuron>();
+
       //validation
       if(inp < 0)
         throw new Exception("Must have at least one input neuron!" 
@@ -42,19 +36,19 @@ namespace ArtificialNeuralNetwork {
       //take layers (l) into account
       if(l == 1) {
         for(int i = 0; i < hdn; i++)
-          AddHidden(new Neuron());
+          AddHidden(new ChildNeuron());
       }
       else {
         //TODO: How to we handle multiple layers?
         for(int j = 0; j < l; j++) {
           for(int i = 0; i < hdn; i++)
-            AddOutput(new Neuron());
+            AddOutput(new ChildNeuron());
         }
       }
 
       //add output neurons to network
       for(int i = 0; i < oup; i++)
-          AddOutput(new Neuron());
+          AddOutput(new ChildNeuron());
     }
 
     //add input neuron
@@ -62,11 +56,11 @@ namespace ArtificialNeuralNetwork {
       inputNeurons.Add(neuron);
     }
     //add hidden neuron
-    public void AddHidden(Neuron neuron) {
+    public void AddHidden(ChildNeuron neuron) {
       hiddenNeurons.Add(neuron);
     }
     //add output neuron
-    public void AddOutput(Neuron neuron) {
+    public void AddOutput(ChildNeuron neuron) {
       outputNeurons.Add(neuron);
     }
 
@@ -86,7 +80,7 @@ namespace ArtificialNeuralNetwork {
 
       //calculate value of output neurons
       double[] output = new double[outputNeurons.Count];
-      for(int i = 0; i < OutputNeurons.Count; i++) {
+      for(int i = 0; i < outputNeurons.Count; i++) {
         outputNeurons[i].Calculate();
         output[i] = outputNeurons[i].Value;
       }

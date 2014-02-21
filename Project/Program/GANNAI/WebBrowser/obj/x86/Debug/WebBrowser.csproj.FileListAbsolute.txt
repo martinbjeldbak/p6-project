@@ -1,1 +1,5 @@
+C:\Users\Kent\Desktop\p6-project\Project\Program\GANNAI\WebBrowser\bin\Debug\WebBrowser.exe
+C:\Users\Kent\Desktop\p6-project\Project\Program\GANNAI\WebBrowser\bin\Debug\WebBrowser.pdb
 C:\Users\Kent\Desktop\p6-project\Project\Program\GANNAI\WebBrowser\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\Kent\Desktop\p6-project\Project\Program\GANNAI\WebBrowser\obj\x86\Debug\WebBrowser.exe
+C:\Users\Kent\Desktop\p6-project\Project\Program\GANNAI\WebBrowser\obj\x86\Debug\WebBrowser.pdb
