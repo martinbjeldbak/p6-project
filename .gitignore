@@ -1,1 +1,3 @@
 DBS/*.pdf
+obj/
+bin/
