@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using GANNAI;
 
 namespace Genetics {
   public class DNA {
@@ -140,7 +141,7 @@ namespace Genetics {
     public DNA GetMutated() {
       DNA result = Clone();
       for (int i = 0; i < bitstring.Length; i++)
-        if (Utility.randomDouble() < mutationRate)
+        if (Utility.RandomDouble() < mutationRate)
           bitstring[i] = !bitstring[i];
       return result;
     }

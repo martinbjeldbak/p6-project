@@ -58,7 +58,7 @@ namespace Genetics {
       int right = list.Count+1;
       while (left + 1 != right){
         int newIndex = (left + right) / 2;
-        if (individual.GetFitness(game) > list[newIndex].GetFitness(game)) {
+        if (individual.GetFitness() > list[newIndex].GetFitness()) {
           right = newIndex;
         }
         else {

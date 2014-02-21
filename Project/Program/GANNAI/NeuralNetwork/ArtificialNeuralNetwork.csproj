@@ -6,9 +6,9 @@
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{C5536FB1-A95E-4A8F-B400-781ABCC7EE70}</ProjectGuid>
-    <OutputType>Exe</OutputType>
-    <RootNamespace>NeuralNetwork</RootNamespace>
-    <AssemblyName>NeuralNetwork</AssemblyName>
+    <OutputType>Library</OutputType>
+    <RootNamespace>ArtificialNeuralNetwork</RootNamespace>
+    <AssemblyName>ArtificialNeuralNetwork</AssemblyName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <DebugSymbols>true</DebugSymbols>
@@ -30,10 +30,14 @@
     <Externalconsole>true</Externalconsole>
     <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ChildNeuron.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Neuron.cs" />
     <Compile Include="InputNeuron.cs" />
@@ -41,11 +45,11 @@
     <Compile Include="NeuralNetwork.cs" />
     <Compile Include="Program.cs" />
   </ItemGroup>
-  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
-    <ProjectReference Include="..\GANNAI-UI\GANNAI-UI.csproj">
-      <Project>{A3D560DB-F51C-475D-B81F-D5F08FDD3C3E}</Project>
-      <Name>GANNAI-UI</Name>
+    <ProjectReference Include="..\GANNAI\GANNAI.csproj">
+      <Project>{F9322C92-DEF6-4101-A324-AEBF6D83FD0F}</Project>
+      <Name>GANNAI</Name>
     </ProjectReference>
   </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using GANNAI;
 
 namespace Genetics {
   public class Population {
@@ -51,13 +52,13 @@ namespace Genetics {
       for (int i = 0; i < crossovers; i++) {
         AIPlayer individual1 = SelectIndividualRankBased();
         AIPlayer individual2 = SelectIndividualRankBased();
-        AIPlayer toAdd = individual1.GetCrossovered(individual2);
+        AIPlayer toAdd = individual1.GetSinglePointCrossover(individual2);
         newlyBreeded.Add(toAdd);
       }
       for (int i = 0; i < crossoverMutations; i++) {
         AIPlayer individual1 = SelectIndividualRankBased();
         AIPlayer individual2 = SelectIndividualRankBased();
-        AIPlayer crossovered = individual1.GetCrossovered(individual2);
+        AIPlayer crossovered = individual1.GetSinglePointCrossover(individual2);
         AIPlayer toAdd = crossovered.GetMutated();
         newlyBreeded.Add(toAdd);
       }
@@ -71,7 +72,7 @@ namespace Genetics {
 
       //Summing 1+2+...+n = n(n+1)/2
       int sum = individuals.Count * (individuals.Count + 1) / 2;
-      int ran = Utility.randomInt(1, sum);
+      int ran = Utility.RandomInt(1, sum);
       int index = 0;
       for (int i = 0; i < individuals.Count; i++) {
         ran -= (i + 1);
@@ -93,7 +94,7 @@ namespace Genetics {
       for (int i = 0; i < individuals.Count; i++)
         sum += individuals.Get(i).GetFitness();
 
-      double ran = Utility.randomDouble() * sum;
+      double ran = Utility.RandomDouble() * sum;
       int index = 0;
       for (int i = 0; i < individuals.Count; i++) {
         ran -= individuals.Get(i).GetFitness();
