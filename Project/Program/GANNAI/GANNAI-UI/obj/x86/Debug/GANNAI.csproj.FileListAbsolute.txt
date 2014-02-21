@@ -1,5 +1,0 @@
-C:\Users\Kent\Desktop\p6-project\Project\Program\GANNAI\GANNAI\obj\x86\Debug\ResolveAssemblyReference.cache
-C:\Users\Kent\Desktop\p6-project\Project\Program\GANNAI\GANNAI\obj\x86\Debug\GANNAI.Form1.resources
-C:\Users\Kent\Desktop\p6-project\Project\Program\GANNAI\GANNAI\obj\x86\Debug\GANNAI.Properties.Resources.resources
-C:\Users\Kent\Desktop\p6-project\Project\Program\GANNAI\GANNAI\obj\x86\Debug\GenerateResource.read.1.tlog
-C:\Users\Kent\Desktop\p6-project\Project\Program\GANNAI\GANNAI\obj\x86\Debug\GenerateResource.write.1.tlog
