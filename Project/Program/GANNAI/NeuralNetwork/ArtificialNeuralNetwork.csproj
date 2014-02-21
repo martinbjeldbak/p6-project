@@ -39,6 +39,7 @@
     <Compile Include="InputNeuron.cs" />
     <Compile Include="Connection.cs" />
     <Compile Include="NeuralNetwork.cs" />
+    <Compile Include="Program.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

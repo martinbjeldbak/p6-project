@@ -8,9 +8,10 @@ namespace ArtificialNeuralNetwork {
     //to uniquely identify neurons
     private static int count = 0;
     private int id = count++;
+    public int Id { get { return id; } }
 
     //neuron value
-    public double NeuronValue { get; private set; }
+    public double Value { get; private set; }
 
     //list of connections from this neuron
     private List<Connection> outputs = new List<Connection>();
@@ -28,7 +29,7 @@ namespace ArtificialNeuralNetwork {
 
     //add an incoming connection without specifying weight
     public void AddInputConnection(Neuron from) {
-      double weight = Utility.randomDouble() - 0.5;
+      double weight = Utility.RandomDouble() - 0.5;
       AddInputConnection(from, weight);
     }
     //overloaded
@@ -47,9 +48,9 @@ namespace ArtificialNeuralNetwork {
     public void Calculate() {
       double result = 0.0;
       foreach (Connection c in inputs) {
-        result += c.from.NeuronValue * c.weight;
+        result += c.from.Value * c.weight;
       }
-      NeuronValue = ActivationFunction(result);
+      Value = ActivationFunction(result);
     }
   }
 }

@@ -20,7 +20,7 @@ namespace Genetics {
     public DNA(int length) {
       bitstring = new bool[length];
       for(int i = 0; i < length; i++)
-        bitstring[i] = Utility.randomBool();
+        bitstring[i] = Utility.RandomBool();
       hashcode = GetHashCode();
     }
 
@@ -42,9 +42,9 @@ namespace Genetics {
         throw new Exception("The two bitstrings to be crossed must have the same length.");
 
       bool[] result = new bool[bitstring.Length];
-      int crossPoint = Utility.randomInt(1, bitstring.Length-1);
+      int crossPoint = Utility.RandomInt(1, bitstring.Length-1);
       bool[] left, right;
-      if (Utility.randomBool()) {
+      if (Utility.RandomBool()) {
         left = bitstring;
         right = other.bitstring;
       }
@@ -69,10 +69,10 @@ namespace Genetics {
       if (bitstring.Length != other.bitstring.Length)
         throw new Exception("The two bitstrings must have same length to be crossed");
       bool[] result = new bool[bitstring.Length];
-      int crossPoint1 = Utility.randomInt(1, bitstring.Length - 2);
-      int crossPoint2 = Utility.randomInt(crossPoint1+1, bitstring.Length - 1);
+      int crossPoint1 = Utility.RandomInt(1, bitstring.Length - 2);
+      int crossPoint2 = Utility.RandomInt(crossPoint1+1, bitstring.Length - 1);
       bool[] left, right;
-      if (Utility.randomBool()) {
+      if (Utility.RandomBool()) {
         left = bitstring;
         right = other.bitstring;
       }
@@ -99,7 +99,7 @@ namespace Genetics {
         throw new Exception("The two bitstrings must have same length to be crossed");
       bool[] result = new bool[bitstring.Length];
       for (int i = 0; i < bitstring.Length; i++)
-        result[i] = Utility.randomBool() ? bitstring[i] : other.bitstring[i];
+        result[i] = Utility.RandomBool() ? bitstring[i] : other.bitstring[i];
       return new DNA(result);
     }
 
