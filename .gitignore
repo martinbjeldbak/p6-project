@@ -1,3 +1,7 @@
 DBS/*.pdf
 obj/
 bin/
+debug*/
+release*/
+# Monodevelop / Xamarin
+*.userprefs
