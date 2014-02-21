@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -42,9 +42,9 @@
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
-    <ProjectReference Include="..\GANNAI\GANNAI.csproj">
+    <ProjectReference Include="..\GANNAI-UI\GANNAI-UI.csproj">
       <Project>{A3D560DB-F51C-475D-B81F-D5F08FDD3C3E}</Project>
-      <Name>GANNAI</Name>
+      <Name>GANNAI-UI</Name>
     </ProjectReference>
   </ItemGroup>
 </Project>
