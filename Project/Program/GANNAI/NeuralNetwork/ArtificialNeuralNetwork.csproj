@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -34,11 +34,18 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Neuron.cs" />
     <Compile Include="InputNeuron.cs" />
     <Compile Include="Connection.cs" />
+    <Compile Include="NeuralNetwork.cs" />
+    <Compile Include="Program.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <ProjectReference Include="..\GANNAI-UI\GANNAI-UI.csproj">
+      <Project>{A3D560DB-F51C-475D-B81F-D5F08FDD3C3E}</Project>
+      <Name>GANNAI-UI</Name>
+    </ProjectReference>
+  </ItemGroup>
 </Project>
