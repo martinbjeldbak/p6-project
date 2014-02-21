@@ -20,20 +20,20 @@ namespace ArtificialNeuralNetwork {
     }
 
     //add input neuron
-    public void addInput(InputNeuron neuron) {
+    public void AddInput(InputNeuron neuron) {
       inputNeurons.Add(neuron);
     }
     //add hidden neuron
-    public void addHidden(Neuron neuron) {
+    public void AddHidden(Neuron neuron) {
       hiddenNeurons.Add(neuron);
     }
     //add output neuron
-    public void addOutput(Neuron neuron) {
+    public void AddOutput(Neuron neuron) {
       outputNeurons.Add(neuron);
     }
 
     //set input
-    public void setInput(double[] vals) {
+    public void SetInput(double[] vals) {
       if (inputNeurons.Count != vals.Length)
         throw new Exception("Size of input doesn't match number of input neurons");
       for (int i = 0; i < vals.Length; i++)

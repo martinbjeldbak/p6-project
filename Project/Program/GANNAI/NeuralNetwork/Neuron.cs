@@ -28,7 +28,7 @@ namespace ArtificialNeuralNetwork {
 
     //add an incoming connection without specifying weight
     public void AddInputConnection(Neuron from) {
-      double weight = Utility.randomDouble() - 0.5;
+      double weight = Utility.RandomDouble() - 0.5;
       AddInputConnection(from, weight);
     }
     //overloaded
