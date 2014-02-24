@@ -10,6 +10,11 @@ namespace Genetics {
     private bool[] bitstring;
     private int hashcode;
 
+    /// <summary>
+    /// Returns the length of the DNA string
+    /// </summary>
+    public int Length { get { return bitstring.Length; } }
+
     //Constructs a random DNA string matching the length of the neural network architecthure we need
     public DNA() : this(100){
     }
@@ -30,6 +35,15 @@ namespace Genetics {
     /// </summary>
     public DNA(bool[] bitstring) {
       this.bitstring = bitstring;
+    }
+
+
+    /// <summary>
+    /// Returns the value of a particular position on the DNA string
+    /// </summary>
+    /// <param name="index">the position on the DNA string</param>
+    public bool GetValue(int index) { 
+      return bitstring[index]; 
     }
 
 
