@@ -4,3 +4,4 @@ C:\Users\Kent\Desktop\p6-project\Project\Program\GANNAI\NeuralNetwork\bin\Debug\
 C:\Users\Kent\Desktop\p6-project\Project\Program\GANNAI\NeuralNetwork\bin\Debug\GANNAI.pdb
 C:\Users\Kent\Desktop\p6-project\Project\Program\GANNAI\NeuralNetwork\obj\x86\Debug\ArtificialNeuralNetwork.dll
 C:\Users\Kent\Desktop\p6-project\Project\Program\GANNAI\NeuralNetwork\obj\x86\Debug\ArtificialNeuralNetwork.pdb
+C:\Users\Kent\Desktop\p6-project\Project\Program\GANNAI\NeuralNetwork\obj\x86\Debug\ArtificialNeuralNetwork.csprojResolveAssemblyReference.cache
