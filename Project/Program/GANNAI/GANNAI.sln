@@ -7,13 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArtificialNeuralNetwork", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebBrowser", "WebBrowser\WebBrowser.csproj", "{66FA0159-4E8D-4788-8730-3AED6AD3203F}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{98974E46-0D87-4D15-A4EA-13A771FFF36A}"
-	ProjectSection(SolutionItems) = preProject
-		GANNAI.vsmdi = GANNAI.vsmdi
-		Local.testsettings = Local.testsettings
-		TraceAndTestImpact.testsettings = TraceAndTestImpact.testsettings
-	EndProjectSection
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Genetics", "Genetics\Genetics.csproj", "{3025EBE0-C362-4F31-8B1A-E3B0CF3ABACB}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GANNAI", "GANNAI\GANNAI.csproj", "{F9322C92-DEF6-4101-A324-AEBF6D83FD0F}"
@@ -300,5 +293,11 @@ Global
 		$34.MessageStyle = $35
 		$35.LineAlign = 0
 		$34.inheritsSet = Mono
+	EndGlobalSection
+	GlobalSection(TestCaseManagementSettings) = postSolution
+		CategoryFile = GANNAI.vsmdi
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
 	EndGlobalSection
 EndGlobal
