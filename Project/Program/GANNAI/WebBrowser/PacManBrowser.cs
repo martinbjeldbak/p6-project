@@ -17,7 +17,6 @@ namespace WebBrowser {
     public PacManBrowser() : base() {
       string pacUrl = Directory.GetCurrentDirectory() + dirSep() + "pacman" + dirSep() + "index.htm";
 
-
       driver.Navigate().GoToUrl(pacUrl);
 
       // Wait for javascript to load
