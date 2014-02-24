@@ -75,12 +75,12 @@ namespace GANNAITests {
         + inputVector[1] * weights[k++])));
           
       double[] hdn_oup_result = new double[2];
-      for(int i = 0, k = 0; i < hdn_oup_result; i++)
+      for(int i = 0, k = 0; i < hdn_oup_result.Length; i++)
         hdn_oup_result[i] = 1 / (1 + Math.Exp(-(inp_hdn_result[0] * weights[k++]
         + inp_hdn_result[1] * weights[k++] + inp_hdn_result[2] * weights[k++])));
 
       outputVector = nn3.GetOutput();
-      for(int i = 0; i < 2; i++)
+      for(int i = 0; i < hdn_oup_result.Length; i++)
         Assert.AreEqual(hdn_oup_result[i], outputVector[i], 0.0);
 
     }
