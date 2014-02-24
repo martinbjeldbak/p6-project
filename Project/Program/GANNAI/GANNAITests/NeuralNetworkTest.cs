@@ -17,7 +17,8 @@ namespace GANNAINTests {
       double[] inputVector = {0.2, 0.2};
       nn.SetInput(inputVector);
       
-      //first hidden values then output valuessing NUnit.Frameworkult = 1 / (1 + Math.Exp(-(0.2 * 1.0 + 0.2 * 1.0)));
+      //first hidden values then output value
+      double result = 1 / (1 + Math.Exp(-(0.2 * 1.0 + 0.2 * 1.0)));
       result = 1 / (1 + Math.Exp(-(result * 1.0 + result * 1.0 + result * 1.0)));
 
       double[] outputVector = nn.GetOutput();
