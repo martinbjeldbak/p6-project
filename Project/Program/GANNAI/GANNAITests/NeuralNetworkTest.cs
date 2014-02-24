@@ -62,20 +62,14 @@ namespace GANNAITests {
       inputVector[1] = 0.6;
       nn3.SetInput(inputVector);
 
-      result = 1 / (1 + Math.Exp(-(0.3 * 0.0 + 0.6 * 0.0)));
-      result = 1 / (1 + Math.Exp(-(result * 0.0 + result * 0.0 + result * 0.0)));
-
-      outputVector = nn3.GetOutput();
-      for(int i = 0; i < 2; i++)
-        Assert.AreEqual(result, outputVector[i], 0.0);
-
+      int k = 0;
       double[] inp_hdn_result = new double[3];
-      for(int i = 0, k = 0; i < inp_hdn_result.Length; i++)
+      for(int i = 0; i < inp_hdn_result.Length; i++)
         inp_hdn_result[i] = 1 / (1 + Math.Exp(-(inputVector[0] * weights[k++]
         + inputVector[1] * weights[k++])));
           
       double[] hdn_oup_result = new double[2];
-      for(int i = 0, k = 0; i < hdn_oup_result.Length; i++)
+      for(int i = 0; i < hdn_oup_result.Length; i++)
         hdn_oup_result[i] = 1 / (1 + Math.Exp(-(inp_hdn_result[0] * weights[k++]
         + inp_hdn_result[1] * weights[k++] + inp_hdn_result[2] * weights[k++])));
 
