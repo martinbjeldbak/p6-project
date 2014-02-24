@@ -1,0 +1,3 @@
+[submodule "Project/Program/GANNAI/WebBrowser/pacman"]
+	path = Project/Program/GANNAI/WebBrowser/pacman
+	url = http://pacman.shaunew.com/pacman.git
