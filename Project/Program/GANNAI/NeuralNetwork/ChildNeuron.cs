@@ -33,7 +33,6 @@ namespace ArtificialNeuralNetwork {
       get { return inputs; }
     }
 
-    //add an incoming connection without specifying weight
     /// <summary>
     /// Adds an incoming connection. Weight is [-0.5, 0.5].
     /// </summary>
@@ -43,7 +42,6 @@ namespace ArtificialNeuralNetwork {
       AddInputConnection(from, weight);
     }
 
-    //add an incoming connection without specifying weight
     /// <summary>
     /// Adds an incoming connection.
     /// </summary>
