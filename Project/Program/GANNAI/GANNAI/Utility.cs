@@ -2,6 +2,7 @@
 using System.Text;
 using System.Collections.Generic;
 
+
 namespace GANNAI {
   public static class Utility {
     //random operator

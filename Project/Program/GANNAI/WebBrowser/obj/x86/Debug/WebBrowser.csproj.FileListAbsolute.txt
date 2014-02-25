@@ -1,12 +1,12 @@
-C:\Users\Kent\Desktop\p6-project\Project\Program\GANNAI\WebBrowser\bin\Debug\WebBrowser.pdb
-C:\Users\Kent\Desktop\p6-project\Project\Program\GANNAI\WebBrowser\obj\x86\Debug\WebBrowser.pdb
-C:\Users\Kent\Desktop\p6-project\Project\Program\GANNAI\WebBrowser\obj\x86\Debug\WebBrowser.csprojResolveAssemblyReference.cache
 C:\Users\Kent\Desktop\p6-project\Project\Program\GANNAI\WebBrowser\bin\Debug\PacManBrowser.cs
 C:\Users\Kent\Desktop\p6-project\Project\Program\GANNAI\WebBrowser\bin\Debug\lib\pacman\index.htm
 C:\Users\Kent\Desktop\p6-project\Project\Program\GANNAI\WebBrowser\bin\Debug\lib\pacman\pacman.js
 C:\Users\Kent\Desktop\p6-project\Project\Program\GANNAI\WebBrowser\bin\Debug\WebBrowser.dll
+C:\Users\Kent\Desktop\p6-project\Project\Program\GANNAI\WebBrowser\bin\Debug\WebBrowser.pdb
 C:\Users\Kent\Desktop\p6-project\Project\Program\GANNAI\WebBrowser\bin\Debug\WebDriver.dll
 C:\Users\Kent\Desktop\p6-project\Project\Program\GANNAI\WebBrowser\bin\Debug\WebDriver.Support.dll
 C:\Users\Kent\Desktop\p6-project\Project\Program\GANNAI\WebBrowser\bin\Debug\WebDriver.xml
 C:\Users\Kent\Desktop\p6-project\Project\Program\GANNAI\WebBrowser\bin\Debug\WebDriver.Support.xml
+C:\Users\Kent\Desktop\p6-project\Project\Program\GANNAI\WebBrowser\obj\x86\Debug\WebBrowser.csprojResolveAssemblyReference.cache
 C:\Users\Kent\Desktop\p6-project\Project\Program\GANNAI\WebBrowser\obj\x86\Debug\WebBrowser.dll
+C:\Users\Kent\Desktop\p6-project\Project\Program\GANNAI\WebBrowser\obj\x86\Debug\WebBrowser.pdb

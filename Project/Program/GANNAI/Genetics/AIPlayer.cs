@@ -20,7 +20,7 @@ namespace Genetics {
     //Makes a new individual with a predefined DNA cloned from the given DNA
     public AIPlayer(DNA dna, AITrainableGame game) {
       this.game = game;
-      dna = new DNA();
+      this.dna = dna.Clone();
     }
 
     public double GetFitness() {
@@ -67,7 +67,7 @@ namespace Genetics {
     }
 
     //Gets the output of the AIPlayer given a number of inputs
-    public object[] GetOutputs(object[] inputs) {
+    public bool[] GetOutputs(int[] inputs) {
       //
       throw new Exception("Not implemented yet");
     }
