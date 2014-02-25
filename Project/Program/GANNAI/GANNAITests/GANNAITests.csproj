@@ -36,6 +36,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DNATests.cs" />
     <Compile Include="GeneticsTests.cs" />
     <Compile Include="NeuralNetworkTest.cs" />
     <Compile Include="NeuronTest.cs" />

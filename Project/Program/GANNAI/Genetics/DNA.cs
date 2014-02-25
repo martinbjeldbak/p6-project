@@ -16,7 +16,7 @@ namespace Genetics {
     public int Length { get { return bitstring.Length; } }
 
     //Constructs a random DNA string matching the length of the neural network architecthure we need
-    public DNA() : this(100){
+    public DNA() : this(120){
     }
 
     /// <summary>
@@ -165,6 +165,23 @@ namespace Genetics {
       for (int i = 0; i < bitstring.Length; i++)
         hash += 314189 * i * (bitstring[i] ? 1 : 0);
       return hash;
+    }
+
+    /// <summary>
+    /// Calculates a signed integer from a sequence of bits on the DNA string .
+    /// The index of the starting point must have a value less than the index of the ending point
+    /// </summary>
+    /// <param name="from">the index of the starting point</param>
+    /// <param name="to">the index of the ending point</param>
+    /// <returns></returns>
+    public int CalcInt(int from, int to) {
+      int factor = bitstring[from] ? -1 : 1;
+      int result = 0;
+      for (int i = 0; i < to - from; i++) {
+        if (bitstring[to - i])
+          result += 1 << i;
+      }
+      return factor * result;
     }
   }
 }
