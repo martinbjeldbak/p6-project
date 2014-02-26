@@ -2,6 +2,8 @@
 // Entry Point
 
 window.addEventListener("load", function() {
+    gameState = Object.create(GANNAIstate.prototype);
+
     loadHighScores();
     initRenderer();
     atlas.create();
@@ -23,4 +25,5 @@ window.addEventListener("load", function() {
 		switchState(homeState);
 	}
     executive.init();
+
 });
