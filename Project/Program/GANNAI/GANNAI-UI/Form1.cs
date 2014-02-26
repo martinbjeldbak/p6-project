@@ -36,7 +36,7 @@ namespace GANNAIUI {
         MessageBox.Show("Number of iterations must be a positive integer");
         return;
       }
-      if (iterations <= 0) {
+      if (iterations < 0) {
         MessageBox.Show("Number of iterations must be a positive integer");
         return;
       }
@@ -61,21 +61,26 @@ namespace GANNAIUI {
     }
 
     private void FallingStarsRadioButton_CheckedChanged(object sender, EventArgs e) {
+      goButton.Enabled = true;
       continueButton.Enabled = false;
       visualizeButton.Enabled = false;
       Configuration.Game = new FallingStarsGame();
+      Configuration.NeuralNetworkMaker = new SimpleNNMaker(8, 9);
     }
 
     private void BombermanRadioButton_CheckedChanged(object sender, EventArgs e) {
+      goButton.Enabled = true;
       continueButton.Enabled = false;
       visualizeButton.Enabled = false;
       Configuration.Game = null;
     }
 
     private void SnakeRadioButton_CheckedChanged(object sender, EventArgs e) {
+      goButton.Enabled = true;
       continueButton.Enabled = false;
       visualizeButton.Enabled = false;
-      Configuration.Game = null;
+      Configuration.Game = new SnakeGame();
+      Configuration.NeuralNetworkMaker = new SimpleNNMaker(30, 13);
     }
 
     private void continueButton_Click(object sender, EventArgs e) {

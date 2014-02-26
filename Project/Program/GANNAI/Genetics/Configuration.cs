@@ -7,7 +7,7 @@ namespace Genetics {
   public static class Configuration {
 
     public static AITrainableGame Game { get; set; }
-    public static NNMaker NeuralNetworkMaker = new SimpleNNMaker(8, 9);
+    public static NNMaker NeuralNetworkMaker;
 
   }
 }

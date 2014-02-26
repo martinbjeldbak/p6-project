@@ -30,7 +30,6 @@
       this.SnakeRadioButton.Name = "SnakeRadioButton";
       this.SnakeRadioButton.Size = new System.Drawing.Size(56, 17);
       this.SnakeRadioButton.TabIndex = 0;
-      this.SnakeRadioButton.TabStop = true;
       this.SnakeRadioButton.Text = "Snake";
       this.SnakeRadioButton.UseVisualStyleBackColor = true;
       this.SnakeRadioButton.CheckedChanged += new System.EventHandler(this.SnakeRadioButton_CheckedChanged);
@@ -42,7 +41,6 @@
       this.FallingStarsRadioButton.Name = "FallingStarsRadioButton";
       this.FallingStarsRadioButton.Size = new System.Drawing.Size(82, 17);
       this.FallingStarsRadioButton.TabIndex = 1;
-      this.FallingStarsRadioButton.TabStop = true;
       this.FallingStarsRadioButton.Text = "Falling Stars";
       this.FallingStarsRadioButton.UseVisualStyleBackColor = true;
       this.FallingStarsRadioButton.CheckedChanged += new System.EventHandler(this.FallingStarsRadioButton_CheckedChanged);
@@ -54,13 +52,13 @@
       this.BombermanRadioButton.Name = "BombermanRadioButton";
       this.BombermanRadioButton.Size = new System.Drawing.Size(81, 17);
       this.BombermanRadioButton.TabIndex = 2;
-      this.BombermanRadioButton.TabStop = true;
       this.BombermanRadioButton.Text = "Bomberman";
       this.BombermanRadioButton.UseVisualStyleBackColor = true;
       this.BombermanRadioButton.CheckedChanged += new System.EventHandler(this.BombermanRadioButton_CheckedChanged);
       // 
       // goButton
       // 
+      this.goButton.Enabled = false;
       this.goButton.Location = new System.Drawing.Point(165, 197);
       this.goButton.Name = "goButton";
       this.goButton.Size = new System.Drawing.Size(75, 23);
