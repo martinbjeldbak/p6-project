@@ -1,0 +1,34 @@
+\documentclass[a4paper, 12pt, twoside, article]{memoir}
+\usepackage[utf8x]{inputenc}
+\usepackage[english]{babel}
+% Smaller spacing between lists
+\usepackage{enumitem}
+\setlist[itemize]{noitemsep}
+\setlist[enumerate]{noitemsep}
+%for links and such
+\usepackage{hyperref}
+\usepackage[nodayofweek]{datetime}
+%use the ubuntu font
+%\fontfamily{Ubuntu}
+
+\setlength{\parindent}{0pt}
+\nonzeroparskip{}
+\counterwithout{section}{chapter}
+%\synctex=1
+
+\title{MAIN TITLE \\ SUBTITLE }
+
+\author{Elias Obeid, Kent Caspersen, and Martin Madsen \\ \textbf{Group and room:} d601f14, 1.1.01\\ \href{mailto:d601f14@cs.aau.dk}{\texttt{d601f14@cs.aau.dk}}}
+
+\date{February 2014 - May 2014}
+
+\begin{document}
+
+\frontmatter
+\maketitle
+\pagebreak
+\mainmatter
+
+\input{content/preliminaries}
+
+\end{document}
