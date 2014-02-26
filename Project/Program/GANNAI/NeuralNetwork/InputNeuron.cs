@@ -3,8 +3,14 @@ using System.Text;
 using System.Collections.Generic;
 
 namespace ArtificialNeuralNetwork {
+  /// <summary>
+  /// Input neuron.
+  /// </summary>
   public class InputNeuron : Neuron{
-    //set the input value
+    /// <summary>
+    /// Sets the input value.
+    /// </summary>
+    /// <param name="value">The input value.</param>
     public void SetValue(double value) {
       this.Value = value;
     }
