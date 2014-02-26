@@ -6,7 +6,7 @@ using GANNAI;
 
 namespace Genetics {
   public class DNA {
-    private static double mutationRate = 0.01;
+    private static double mutationRate = 0.1;
     private bool[] bitstring;
     private int hashcode;
 
@@ -15,15 +15,13 @@ namespace Genetics {
     /// </summary>
     public int Length { get { return bitstring.Length; } }
 
-    //Constructs a random DNA string matching the length of the neural network architecthure we need
-    public DNA() : this(120){
-    }
-
     /// <summary>
     /// Constructs a random DNA string of a given length
     /// </summary>
 
     public DNA(int length) {
+      if (length == 0)
+        return;
       bitstring = new bool[length];
       for(int i = 0; i < length; i++)
         bitstring[i] = Utility.RandomBool();

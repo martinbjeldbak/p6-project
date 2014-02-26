@@ -11,6 +11,9 @@ using FallingStars;
 
 namespace GANNAIUI {
   public partial class Form1 : Form {
+
+    AITrainer aiTrainer;
+
     public Form1() {
       InitializeComponent();
     }
@@ -19,12 +22,17 @@ namespace GANNAIUI {
 
     }
 
-    private void button1_Click(object sender, EventArgs e) {
+    private void StartTraining() {
+      if (Configuration.Game == null) {
+        MessageBox.Show("No game selected");
+        return;
+      }
+
       int iterations;
       try {
         iterations = Int32.Parse(num_iterations.Text);
       }
-      catch (FormatException){
+      catch (FormatException) {
         MessageBox.Show("Number of iterations must be a positive integer");
         return;
       }
@@ -33,11 +41,51 @@ namespace GANNAIUI {
         return;
       }
 
-      AITrainableGame game = new FallingStarsGame();
-      AITrainer aiTrainer = new AITrainer();
-      AIPlayer aiplayer = aiTrainer.TrainAIPlayer(game, iterations);
+      aiTrainer.Train(iterations);
+
+      //print fitness values
+      listBox1.Items.Clear();
+      double[] fitnessValues = aiTrainer.GetFitnessValues();
+      for (int i = 0; i < fitnessValues.Length; i++)
+        listBox1.Items.Add(fitnessValues[i]);
+
+      continueButton.Enabled = true;
+      visualizeButton.Enabled = true;
+    }
+
+    private void goButton_Click(object sender, EventArgs e) {
+     
+      aiTrainer = new AITrainer();
+
+      StartTraining();
+    }
+
+    private void FallingStarsRadioButton_CheckedChanged(object sender, EventArgs e) {
+      continueButton.Enabled = false;
+      visualizeButton.Enabled = false;
+      Configuration.Game = new FallingStarsGame();
+    }
+
+    private void BombermanRadioButton_CheckedChanged(object sender, EventArgs e) {
+      continueButton.Enabled = false;
+      visualizeButton.Enabled = false;
+      Configuration.Game = null;
+    }
+
+    private void SnakeRadioButton_CheckedChanged(object sender, EventArgs e) {
+      continueButton.Enabled = false;
+      visualizeButton.Enabled = false;
+      Configuration.Game = null;
+    }
+
+    private void continueButton_Click(object sender, EventArgs e) {
+      StartTraining();
+    }
+
+    private void visualizeButton_Click(object sender, EventArgs e) {
       Form form = new Form();
-      game.Visualize(aiplayer, new Form());
+      form.Show();
+      Configuration.Game.Visualize(aiTrainer.GetBest(), form);
     }
   }
 }
