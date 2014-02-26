@@ -46,7 +46,8 @@ namespace Genetics {
 
 
     /// <summary>
-    /// Performs single point crossover between itself and another DNA string
+    /// Returns a new DNA string made using single point crossover between itself and another DNA string. 
+    /// Both of the used DNA strings remain unchanged
     /// </summary>
     /// <param name="other">Other DNA string</param>
     /// <returns>A new DNA string</returns>
@@ -74,7 +75,8 @@ namespace Genetics {
 
 
     /// <summary>
-    /// Performs two point crossover between itself and another DNA string
+    /// Returns a new DNA string made using two point crossover between itself and another DNA string. 
+    /// Both of the used DNA strings remain unchanged
     /// </summary>
     /// <param name="other">Other DNA string</param>
     /// <returns>A new DNA string</returns>
@@ -103,7 +105,8 @@ namespace Genetics {
     }
 
     /// <summary>
-    /// Performs uniform crossover between itself and another DNA string
+    /// Returns a new DNA string made using uniform crossover between itself and another DNA string. 
+    /// Both of the used DNA strings remain unchanged
     /// </summary>
     /// <param name="other">Other DNA string</param>
     /// <returns>A new DNA string</returns>
@@ -143,18 +146,17 @@ namespace Genetics {
       bool[] clonedBitstring = new bool[bitstring.Length];
       for (int i = 0; i < bitstring.Length; i++)
         clonedBitstring[i] = bitstring[i];
-      DNA clone = new DNA(clonedBitstring);
-      return clone;
+      return new DNA(clonedBitstring);;
     }
 
     /// <summary>
-    /// Returns a mutated copy of 
+    /// Returns a mutated copy of itself
     /// </summary>
     public DNA GetMutated() {
       DNA result = Clone();
       for (int i = 0; i < bitstring.Length; i++)
         if (Utility.RandomDouble() < mutationRate)
-          bitstring[i] = !bitstring[i];
+          result.bitstring[i] = !result.bitstring[i];
       return result;
     }
 

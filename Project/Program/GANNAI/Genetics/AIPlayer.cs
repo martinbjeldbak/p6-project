@@ -11,12 +11,13 @@ namespace Genetics {
     private DNA dna;
     private double fitness;
 
+
     /// <summary>
-    /// Makes a new individual
+    /// Makes a new individual with a random DNA
     /// </summary>
     /// <param name="random">true if DNA string should be random, false if no DNA string should be made</param>
-    public AIPlayer(bool makeRandomDNA) {
-      dna = new DNA(makeRandomDNA ? Configuration.NeuralNetworkMaker.DNALength() : 0);
+    public AIPlayer() {
+      dna = new DNA(Configuration.NeuralNetworkMaker.DNALength());
       fitness = -1;
     }
 
@@ -73,14 +74,20 @@ namespace Genetics {
     }
 
     //Gets the output of the AIPlayer given a number of inputs
-    public bool[] GetOutputs(double[] inputs) {
+    public int GetOutput(double[] inputs) {
       neuralNetwork.SetInput(inputs);
       
       double[] outputs = neuralNetwork.GetOutput();
       bool[] result = new bool[outputs.Length];
-      for (int i = 0; i < result.Length; i++)
-        result[i] = outputs[i] > 0.5;
-      return result;
+      double maxVal = Double.NegativeInfinity;
+      int bestIndex = 0;
+      for (int i = 0; i < result.Length; i++) {
+        if (outputs[i] > maxVal) {
+          maxVal = outputs[i];
+          bestIndex = i;
+        }
+      }
+      return bestIndex;
     }
 
     /// <summary>

@@ -51,19 +51,21 @@ namespace FallingStars {
       int in3 = map[playerX, mapHeight - 2] ? 1 : 0; //is there a star above?
       int in4 = playerX;
 
-      bool[] outputs = aiplayer.GetOutputs(new double[]{in1, in2, in3, in4});
 
-      if (outputs[0]) { //move left
+      int action = aiplayer.GetOutput(new double[] { in1, in2, in3, in4 });
+      //bool[] outputs = aiplayer.GetOutputs(new double[]{in1, in2, in3, in4});
+
+      if (action == 0) { //move left
         if (playerX != 0 && !map[playerX-1, mapHeight - 1]){
           playerX--;
         }
       }
-      else if (outputs[1]) { //move right
+      else if (action == 2) { //move right
         if (playerX != mapWidth - 1 && !map[playerX + 1, mapHeight - 1]) {
           playerX++;
         }
       }
-      //else if outputs[2],  dont move
+      //else if acction == 1,  dont move
 
       //update map
       map = newMap;

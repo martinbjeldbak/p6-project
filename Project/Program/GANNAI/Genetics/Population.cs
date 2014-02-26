@@ -25,18 +25,17 @@ namespace Genetics {
 
     //Performs an iteration, where new individuals are born by crossover, mutation and crossover-mutation.
     //A new individual replaces an old individual only if it has a greater fitness.
+
     public void Iterate() {
       this.iteration++;
       int size = individuals.Count;
 
-
       SortList<AIPlayer> newIndividuals = BreedIndividuals();
 
-      //merge sort old and new population
+      //merge old and new population
       SortList<AIPlayer> resultingPopulation = new SortList<AIPlayer>(individuals, newIndividuals, individuals.Count);
-
-
       individuals = resultingPopulation;
+
     }
 
     //Returns a list of new individuals bred from the current population
@@ -110,7 +109,7 @@ namespace Genetics {
       individuals.Clear();
       List<AIPlayer> result = new List<AIPlayer>();
       for (int i = 0; i < count; i++)
-        individuals.Add(new AIPlayer(true));
+        individuals.Add(new AIPlayer());
     }
 
     /// <summary>

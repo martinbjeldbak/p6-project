@@ -52,9 +52,21 @@ namespace GANNAI {
       }
     }
 
-    //Removes all individuals
+    /// <summary>
+    /// Removes all individuals
+    /// </summary>
     public void Clear() {
       list.Clear();
+    }
+
+    /// <summary>
+    /// Adds an item if its value is higher than any other item already contained. The lowest valued item is removed if the item is added.
+    /// </summary>
+    public void AddIfSuperior(T item) {
+      if (item.CompareTo(list[0]) == 1) {
+        list.Insert(0, item);
+        list.RemoveAt(list.Count - 1);
+      }
     }
 
     //Inserts an individual in a list such that it remains sorted according to fitness values
