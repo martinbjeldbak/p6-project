@@ -1077,7 +1077,6 @@ var mapgen = (function(){
 
     var genRandom = function() {
 
-		// Gathers all the non-filled cells of the left-most column not completely filled.
         var getLeftMostEmptyCells = function() {
             var x;
             var leftCells = [];
@@ -1095,12 +1094,6 @@ var mapgen = (function(){
             }
             return leftCells;
         };
-
-		// determines if the given cell can grow in the given direction.
-		// cell: the source cell object
-		// i: the growth direction
-		// prevDir: last growth direction
-		// size: number of cells currently in this group
         var isOpenCell = function(cell,i,prevDir,size) {
 
             // prevent wall from going through starting position
@@ -1127,8 +1120,6 @@ var mapgen = (function(){
 
             return false;
         };
-
-		// get the cells that can be the given cell can be grown toward
         var getOpenCells = function(cell,prevDir,size) {
             var openCells = [];
             var numOpenCells = 0;
@@ -1140,8 +1131,6 @@ var mapgen = (function(){
             }
             return { openCells: openCells, numOpenCells: numOpenCells };
         };
-
-		// grow a cell in the given direction
         var connectCell = function(cell,dir) {
             cell.connect[dir] = true;
             cell.next[dir].connect[rotateAboutFace(dir)] = true;
@@ -8030,6 +8019,12 @@ Player.prototype.getAnimFrame = function(frame) {
 
 Player.prototype.setInputDir = function(dirEnum) {
     this.inputDirEnum = dirEnum;
+    
+    gameState.setDirection(this.getInputDir());
+};
+
+Player.prototype.getInputDir = function() {
+  return this.inputDirEnum;
 };
 
 Player.prototype.clearInputDir = function(dirEnum) {
@@ -13377,6 +13372,8 @@ var vcr = (function() {
 // Entry Point
 
 window.addEventListener("load", function() {
+    gameState = Object.create(GANNAIstate.prototype);
+
     loadHighScores();
     initRenderer();
     atlas.create();
@@ -13398,5 +13395,6 @@ window.addEventListener("load", function() {
 		switchState(homeState);
 	}
     executive.init();
+
 });
 })();

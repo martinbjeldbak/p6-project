@@ -1,18 +1,9 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="../../../../../../../../Library/Frameworks/Mono.framework/Versions/3.2.6/lib/mono/4.0/Microsoft.Common.targets">
+  <MonoDevelop.Ide.Workbench ActiveDocument="WebBrowser/PacManBrowser.cs">
     <Files>
-      <File FileName="GANNAITests/NeuralNetworkTest.cs" Line="104" Column="4" />
-      <File FileName="GANNAITests/NeuronTest.cs" Line="1" Column="1" />
-      <File FileName="GANNAITests/PacManBrowserTest.cs" Line="15" Column="1" />
-      <File FileName="NeuralNetwork/Program.cs" Line="1" Column="1" />
-      <File FileName="../../../../../../../../Library/Frameworks/Mono.framework/Versions/3.2.6/lib/mono/4.0/Microsoft.Common.targets" Line="1" Column="1" />
+      <File FileName="WebBrowser/PacManBrowser.cs" Line="1" Column="1" />
     </Files>
-    <Pads>
-      <Pad Id="MonoDevelop.NUnit.TestPad">
-        <State expanded="True" selected="True" />
-      </Pad>
-    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
