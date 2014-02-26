@@ -54,8 +54,14 @@ namespace Genetics {
 
     //Inserts an individual in a list such that it remains sorted according to fitness values
     public void Add(AIPlayer individual){
+      if (list.Count == 0) {
+        list.Add(individual);
+        return;
+      }
+      
       int left = 0;
       int right = list.Count+1;
+      
       while (left + 1 != right){
         int newIndex = (left + right) / 2;
         if (individual.GetFitness() > list[newIndex].GetFitness()) {

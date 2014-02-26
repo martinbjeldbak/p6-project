@@ -42,27 +42,27 @@ namespace Genetics {
     }
 
     //Returns a list of new individuals bred from the current population
-    public IndividualList BreedIndividuals() {
-      IndividualList newlyBreeded = new IndividualList(game);
+    private IndividualList BreedIndividuals() {
+      IndividualList newlyBred = new IndividualList(game);
       for (int i = 0; i < mutations; i++) {
         AIPlayer individual1 = SelectIndividualRankBased();
         AIPlayer toAdd = individual1.GetMutated();
-        newlyBreeded.Add(toAdd);
+        newlyBred.Add(toAdd);
       }
       for (int i = 0; i < crossovers; i++) {
         AIPlayer individual1 = SelectIndividualRankBased();
         AIPlayer individual2 = SelectIndividualRankBased();
         AIPlayer toAdd = individual1.GetSinglePointCrossover(individual2);
-        newlyBreeded.Add(toAdd);
+        newlyBred.Add(toAdd);
       }
       for (int i = 0; i < crossoverMutations; i++) {
         AIPlayer individual1 = SelectIndividualRankBased();
         AIPlayer individual2 = SelectIndividualRankBased();
         AIPlayer crossovered = individual1.GetSinglePointCrossover(individual2);
         AIPlayer toAdd = crossovered.GetMutated();
-        newlyBreeded.Add(toAdd);
+        newlyBred.Add(toAdd);
       }
-        return newlyBreeded;
+        return newlyBred;
     }
 
     //A weighted random selection of an individual based on the rank of each individual (least fitness has rank 1, greatest fitness has rank n)
@@ -113,6 +113,14 @@ namespace Genetics {
       List<AIPlayer> result = new List<AIPlayer>();
       for (int i = 0; i < count; i++)
         individuals.Add(new AIPlayer(game));
+    }
+
+    /// <summary>
+    /// Returns the most fit individual in the population
+    /// </summary>
+    /// <returns></returns>
+    public AIPlayer GetBest() {
+      return individuals.Get(0);
     }
   }
 }

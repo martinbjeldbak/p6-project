@@ -1,7 +1,7 @@
 ﻿using NUnit.Framework;
 using System;
 
-namespace GANNAINTests {
+namespace GANNAITests {
   [TestFixture()]
   public class NeuronTest {
     [Test()]
