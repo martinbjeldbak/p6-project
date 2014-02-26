@@ -6,22 +6,20 @@ using GANNAI;
 
 namespace Genetics {
   public class Population {
-    private AITrainableGame game;
-    private IndividualList individuals;
+    private SortList<AIPlayer> individuals;
     private int iteration;
     private int crossovers; //how many individuals of a new population must be born from crossover
     private int mutations; //how many individuals of a new population must be born from mutation
     private int crossoverMutations; //how many individuals of a new population must be born from both mutation and crossover
 
-    public Population(AITrainableGame game, int size, int crossovers, int mutations, int crossoverMutations) {
+    public Population(int size, int crossovers, int mutations, int crossoverMutations) {
       if (crossovers + mutations + crossoverMutations > size)
         throw new Exception("The number of crossovers and mutations sum to a value larger than the population size.");
       iteration = 0;
-      this.game = game;
       this.crossovers = crossovers;
       this.mutations = mutations;
       this.crossoverMutations = crossoverMutations;
-      individuals = new IndividualList(game);
+      individuals = new SortList<AIPlayer>();
       InitializeRandomPopulation(size);
     }
 
@@ -31,19 +29,19 @@ namespace Genetics {
       this.iteration++;
       int size = individuals.Count;
 
-      
-      IndividualList newIndividuals = BreedIndividuals();
+
+      SortList<AIPlayer> newIndividuals = BreedIndividuals();
 
       //merge sort old and new population
-      IndividualList resultingPopulation = new IndividualList(individuals, newIndividuals, game);
+      SortList<AIPlayer> resultingPopulation = new SortList<AIPlayer>(individuals, newIndividuals, individuals.Count);
 
 
       individuals = resultingPopulation;
     }
 
     //Returns a list of new individuals bred from the current population
-    private IndividualList BreedIndividuals() {
-      IndividualList newlyBred = new IndividualList(game);
+    private SortList<AIPlayer> BreedIndividuals() {
+      SortList<AIPlayer> newlyBred = new SortList<AIPlayer>();
       for (int i = 0; i < mutations; i++) {
         AIPlayer individual1 = SelectIndividualRankBased();
         AIPlayer toAdd = individual1.GetMutated();
@@ -108,11 +106,11 @@ namespace Genetics {
 
     public void InitializeRandomPopulation(int count) {
       if (individuals == null)
-        individuals = new IndividualList(game);
+        individuals = new SortList<AIPlayer>();
       individuals.Clear();
       List<AIPlayer> result = new List<AIPlayer>();
       for (int i = 0; i < count; i++)
-        individuals.Add(new AIPlayer(game));
+        individuals.Add(new AIPlayer(true));
     }
 
     /// <summary>
@@ -121,6 +119,17 @@ namespace Genetics {
     /// <returns></returns>
     public AIPlayer GetBest() {
       return individuals.Get(0);
+    }
+
+    /// <summary>
+    /// Returns the fitness values of all individuals in descending order
+    /// </summary>
+    /// <returns></returns>
+    public double[] GetFitnessValues() {
+      double[] result = new double[individuals.Count];
+      for (int i = 0; i < individuals.Count; i++)
+        result[i] = individuals.Get(i).GetFitness();
+      return result;
     }
   }
 }

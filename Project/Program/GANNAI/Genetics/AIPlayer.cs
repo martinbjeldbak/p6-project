@@ -2,34 +2,40 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using ArtificialNeuralNetwork;
 
 namespace Genetics {
 
-  public class AIPlayer {
-    AITrainableGame game;
+  public class AIPlayer : IComparable {
+    private NeuralNetwork neuralNetwork;
     private DNA dna;
     private double fitness;
-    private DNA lastEvaluatedDNA;
 
-    //Makes a new individual with a random DNA
-    public AIPlayer(AITrainableGame game) {
-      this.game = game;
-      dna = new DNA();
+    /// <summary>
+    /// Makes a new individual
+    /// </summary>
+    /// <param name="random">true if DNA string should be random, false if no DNA string should be made</param>
+    public AIPlayer(bool makeRandomDNA) {
+      dna = new DNA(makeRandomDNA ? Configuration.NeuralNetworkMaker.DNALength() : 0);
+      fitness = -1;
     }
 
-    //Makes a new individual with a predefined DNA cloned from the given DNA
-    public AIPlayer(DNA dna, AITrainableGame game) {
-      this.game = game;
-      this.dna = dna.Clone();
+    /// <summary>
+    /// Sets a predefined DNA for the AIPlayer
+    /// </summary>
+    /// <param name="dna"></param>
+    public AIPlayer(DNA dna) {
+      this.dna = dna;
+      fitness = -1;
     }
 
     public double GetFitness() {
-      if (lastEvaluatedDNA != null && dna.Equals(lastEvaluatedDNA)) {
+      if (fitness != -1) {
         return fitness;
       }
       else {
-        fitness = game.CalcFitness(this);
-        lastEvaluatedDNA = dna.Clone();
+        neuralNetwork = Configuration.NeuralNetworkMaker.MakeNeuralNetwork(dna);
+        fitness = Configuration.Game.CalcFitness(this);
         return fitness;
       }
     }
@@ -39,7 +45,7 @@ namespace Genetics {
     /// </summary>
     /// <returns></returns>
     public AIPlayer GetMutated() {
-      return new AIPlayer(dna.GetMutated(), game);
+      return new AIPlayer(dna.GetMutated());
     }
 
     /// <summary>
@@ -47,7 +53,7 @@ namespace Genetics {
     /// </summary>
     /// <returns></returns>
     public AIPlayer GetSinglePointCrossover(AIPlayer other) {
-      return new AIPlayer(dna.GetSinglePointCrossover(other.dna), game);
+      return new AIPlayer(dna.GetSinglePointCrossover(other.dna));
     }
 
     /// <summary>
@@ -55,7 +61,7 @@ namespace Genetics {
     /// </summary>
     /// <returns></returns>
     public AIPlayer GetTwoPointCrossover(AIPlayer other) {
-      return new AIPlayer(dna.GetTwoPointCrossover(other.dna), game);
+      return new AIPlayer(dna.GetTwoPointCrossover(other.dna));
     }
 
     /// <summary>
@@ -63,13 +69,27 @@ namespace Genetics {
     /// </summary>
     /// <returns></returns>
     public AIPlayer GetUniformCrossover(AIPlayer other) {
-      return new AIPlayer(dna.GetUniformCrossover(other.dna), game);
+      return new AIPlayer(dna.GetUniformCrossover(other.dna));
     }
 
     //Gets the output of the AIPlayer given a number of inputs
-    public bool[] GetOutputs(int[] inputs) {
-      //
-      throw new Exception("Not implemented yet");
+    public bool[] GetOutputs(double[] inputs) {
+      neuralNetwork.SetInput(inputs);
+      
+      double[] outputs = neuralNetwork.GetOutput();
+      bool[] result = new bool[outputs.Length];
+      for (int i = 0; i < result.Length; i++)
+        result[i] = outputs[i] > 0.5;
+      return result;
+    }
+
+    /// <summary>
+    /// Compares the fitness of itself to the fitness of another AIPlayer, based on the current game
+    /// </summary>
+    /// <param name="obj"></param>
+    /// <returns></returns>
+    public int CompareTo(object obj) {
+      return GetFitness().CompareTo(((AIPlayer)obj).GetFitness());
     }
   }
 }
