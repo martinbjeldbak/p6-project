@@ -36,6 +36,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="SortListTest.cs" />
     <Compile Include="DNATests.cs" />
     <Compile Include="GeneticsTests.cs" />
     <Compile Include="NeuralNetworkTest.cs" />
@@ -44,6 +45,10 @@
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
+    <ProjectReference Include="..\GANNAI\GANNAI.csproj">
+      <Project>{F9322C92-DEF6-4101-A324-AEBF6D83FD0F}</Project>
+      <Name>GANNAI</Name>
+    </ProjectReference>
     <ProjectReference Include="..\WebBrowser\WebBrowser.csproj">
       <Project>{66FA0159-4E8D-4788-8730-3AED6AD3203F}</Project>
       <Name>WebBrowser</Name>

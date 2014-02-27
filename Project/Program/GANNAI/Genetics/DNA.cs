@@ -6,7 +6,7 @@ using GANNAI;
 
 namespace Genetics {
   public class DNA {
-    private static double mutationRate = 0.01;
+    private static double mutationRate = 0.1;
     private bool[] bitstring;
     private int hashcode;
 
@@ -15,15 +15,13 @@ namespace Genetics {
     /// </summary>
     public int Length { get { return bitstring.Length; } }
 
-    //Constructs a random DNA string matching the length of the neural network architecthure we need
-    public DNA() : this(120){
-    }
-
     /// <summary>
     /// Constructs a random DNA string of a given length
     /// </summary>
 
     public DNA(int length) {
+      if (length == 0)
+        return;
       bitstring = new bool[length];
       for(int i = 0; i < length; i++)
         bitstring[i] = Utility.RandomBool();
@@ -48,7 +46,8 @@ namespace Genetics {
 
 
     /// <summary>
-    /// Performs single point crossover between itself and another DNA string
+    /// Returns a new DNA string made using single point crossover between itself and another DNA string. 
+    /// Both of the used DNA strings remain unchanged
     /// </summary>
     /// <param name="other">Other DNA string</param>
     /// <returns>A new DNA string</returns>
@@ -76,7 +75,8 @@ namespace Genetics {
 
 
     /// <summary>
-    /// Performs two point crossover between itself and another DNA string
+    /// Returns a new DNA string made using two point crossover between itself and another DNA string. 
+    /// Both of the used DNA strings remain unchanged
     /// </summary>
     /// <param name="other">Other DNA string</param>
     /// <returns>A new DNA string</returns>
@@ -105,7 +105,8 @@ namespace Genetics {
     }
 
     /// <summary>
-    /// Performs uniform crossover between itself and another DNA string
+    /// Returns a new DNA string made using uniform crossover between itself and another DNA string. 
+    /// Both of the used DNA strings remain unchanged
     /// </summary>
     /// <param name="other">Other DNA string</param>
     /// <returns>A new DNA string</returns>
@@ -145,18 +146,17 @@ namespace Genetics {
       bool[] clonedBitstring = new bool[bitstring.Length];
       for (int i = 0; i < bitstring.Length; i++)
         clonedBitstring[i] = bitstring[i];
-      DNA clone = new DNA(clonedBitstring);
-      return clone;
+      return new DNA(clonedBitstring);;
     }
 
     /// <summary>
-    /// Returns a mutated copy of 
+    /// Returns a mutated copy of itself
     /// </summary>
     public DNA GetMutated() {
       DNA result = Clone();
       for (int i = 0; i < bitstring.Length; i++)
         if (Utility.RandomDouble() < mutationRate)
-          bitstring[i] = !bitstring[i];
+          result.bitstring[i] = !result.bitstring[i];
       return result;
     }
 

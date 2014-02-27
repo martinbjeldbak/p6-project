@@ -7,8 +7,8 @@ using System.Windows.Forms;
 namespace Genetics {
   public interface AITrainableGame {
     double CalcFitness(AIPlayer aiplayer);
-    double NumInputs();
-    double NumOutputs();
+    int NumInputs();
+    int NumOutputs();
 
     /// <summary>
     /// Visualized the game played using the given AIPlayer

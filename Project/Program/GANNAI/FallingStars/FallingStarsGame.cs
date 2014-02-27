@@ -11,15 +11,23 @@ using GANNAI;
 namespace FallingStars {
   public class FallingStarsGame : AITrainableGame {
 
+    Random random;
     bool alive;
     AIPlayer aiplayer;
     int playerX;
     bool[,] map;
-    int mapWidth = 7;
-    int mapHeight = 10;
+    int mapWidth;
+    int mapHeight;
     int ticks;
 
+    public FallingStarsGame() {
+      mapWidth = 7;
+      mapHeight = 10;
+      RestartGame();
+    }
+
     private void RestartGame() {
+      random = new Random(242); //use the same seed to play the same map over and over
       ticks = 0;
       alive = true;
       map = new bool[mapWidth, mapHeight];
@@ -33,35 +41,39 @@ namespace FallingStars {
       for (int i = 0; i < mapWidth; i++)
         for (int p = 1; p < mapHeight; p++)
           newMap[i, p] = map[i, p-1];
-      int newStarPosX = Utility.RandomInt(0, mapWidth);
+      int newStarPosX = random.Next(0, mapWidth);
       newMap[newStarPosX, 0] = true;
 
 
       //calculate the inputs
-      int in1 = playerX;
-      int in2 = map[playerX, mapHeight - 2] ? 1 : 0;
+      int in1 = playerX == 0 ? 1 : (map[playerX - 1, mapHeight - 1] ? 1 : 0);
+      int in2 = playerX == mapWidth - 1 ? 1 : (map[playerX + 1, mapHeight - 1] ? 1 : 0);
+      int in3 = map[playerX, mapHeight - 2] ? 1 : 0; //is there a star above?
+      int in4 = playerX;
 
-      bool[] outputs = aiplayer.GetOutputs(new int[]{in1, in2});
 
-      if (outputs[0]) { //move left
-        playerX--;
-        if (playerX < 0)
-          playerX = 0;
+      int action = aiplayer.GetOutput(new double[] { in1, in2, in3, in4 });
+      //bool[] outputs = aiplayer.GetOutputs(new double[]{in1, in2, in3, in4});
+
+      if (action == 0) { //move left
+        if (playerX != 0 && !map[playerX-1, mapHeight - 1]){
+          playerX--;
+        }
       }
-      else if (outputs[1]) { //move right
-        playerX++;
-        if (playerX > mapWidth - 1)
-          playerX = mapWidth - 1;
+      else if (action == 2) { //move right
+        if (playerX != mapWidth - 1 && !map[playerX + 1, mapHeight - 1]) {
+          playerX++;
+        }
       }
-      //else if outputs[2],  dont move
-
-      CheckIfDead();
+      //else if acction == 1,  dont move
 
       //update map
       map = newMap;
+
+      DieIfHit();
     }
 
-    public void CheckIfDead() {
+    public void DieIfHit() {
       if (map[playerX, mapHeight - 1])
         alive = false;
     }
@@ -69,17 +81,17 @@ namespace FallingStars {
     public double CalcFitness(AIPlayer aiplayer) {
       this.aiplayer = aiplayer;
       RestartGame();
-      while (alive) {
+      while (alive && ticks < 4000) {
         Tick();
       }
       return ticks;
     }
 
-    public double NumInputs() {
-      return 2;
+    public int NumInputs() {
+      return 4;
     }
 
-    public double NumOutputs() {
+    public int NumOutputs() {
       return 3;
     }
 
@@ -96,26 +108,34 @@ namespace FallingStars {
       while (alive) {
         Tick();
         DrawMapToForm(form);
-        Thread.Sleep(500);
+        Thread.Sleep(200);
       }
     }
 
     void DrawMapToForm(Form form) {
-      int size = 10;
+      int size = 30;
 
-      Pen pen;
+      SolidBrush redBrush = new SolidBrush(Color.Red);
+      SolidBrush blueBrush = new SolidBrush(Color.Blue);
+      SolidBrush blackBrush = new SolidBrush(Color.Black);
+
+      Brush brush;
 
       Graphics g = form.CreateGraphics();
+      g.Clear(Color.White);
       for (int x = 0; x < mapWidth; x++) {
         for (int y = 0; y < mapHeight; y++) {
-          pen = map[x, y] ? new Pen(Color.Black, 5) : null;
+          brush = map[x, y] ? blueBrush : null;
           if (y == mapHeight - 1 && x == playerX) {
-            pen = map[x, y] ? new Pen(Color.Red, 5) : new Pen(Color.Green, 5);
+            brush = map[x, y] ? redBrush : blackBrush;
           }
-          if (pen != null)
-            g.DrawRectangle(pen, new Rectangle(x*size, y*size, size, size));
+          if (brush != null)
+            g.FillRectangle(brush, new Rectangle(x*size, y*size, size, size));
         }
       }
+
+      g.DrawString(ticks.ToString(), new Font("Arial", 20), new SolidBrush(Color.Black), new PointF(300, 15));
+
     }
 
     void DrawMapToConsole() {
