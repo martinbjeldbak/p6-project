@@ -95,7 +95,7 @@ Player.prototype.getAnimFrame = function(frame) {
 Player.prototype.setInputDir = function(dirEnum) {
     this.inputDirEnum = dirEnum;
     
-    gameState.setDirection(this.getInputDir());
+    GAME_STATE.setDirection(this.getInputDir());
 };
 
 Player.prototype.getInputDir = function() {

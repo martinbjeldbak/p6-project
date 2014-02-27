@@ -1,5 +1,4 @@
 var executive = (function(){
-
     var framePeriod = 1000/60; // length of each frame at 60Hz (updates per second)
     var gameTime; // virtual time of the last game update
 
