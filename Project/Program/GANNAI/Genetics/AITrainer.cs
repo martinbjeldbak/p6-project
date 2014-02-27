@@ -7,15 +7,18 @@ namespace Genetics {
   public class AITrainer {
 
     Population population;
+    int generation;
 
     public AITrainer() {
-      population = new Population(100, 33, 33, 3);
+      generation = 0;
+      population = new Population(33, 33, 3);
     }
 
     public void Train(int iterations) {
       for (int i = 0; i < iterations; i++) {
         population.Iterate();
       }
+      generation += iterations;
     }
 
     public double[] GetFitnessValues() {
@@ -24,6 +27,14 @@ namespace Genetics {
 
     public AIPlayer GetBest() {
       return population.GetBest();
+    }
+
+    /// <summary>
+    /// Gets the number of generations created
+    /// </summary>
+    /// <returns></returns>
+    public int GenerationNum() {
+      return generation;
     }
   }
 }

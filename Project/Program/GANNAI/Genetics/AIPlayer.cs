@@ -10,8 +10,6 @@ namespace Genetics {
     private NeuralNetwork neuralNetwork;
     private DNA dna;
     private double fitness;
-    private int hash;
-
 
     /// <summary>
     /// Makes a new individual with a random DNA
@@ -31,13 +29,12 @@ namespace Genetics {
       fitness = -1;
     }
 
-    public void CalcFitness(){
-      if(fitness == -1) {
-        neuralNetwork = Configuration.NeuralNetworkMaker.MakeNeuralNetwork(dna);
-        fitness = Configuration.Game.CalcFitness(this);
-      }
-    }
-
+    /// <summary>
+    /// Calculates the fitness of the AIPlayer. 
+    /// If the fitness has been calculated before, the value is cached and will
+    /// not need to be calculated again ever.
+    /// </summary>
+    /// <returns></returns>
     public double GetFitness() {
       if (fitness == -1) {
         neuralNetwork = Configuration.NeuralNetworkMaker.MakeNeuralNetwork(dna);
@@ -45,7 +42,6 @@ namespace Genetics {
         return fitness;
       }
       else {
-        CalcFitness();
         return fitness;
       }
     }

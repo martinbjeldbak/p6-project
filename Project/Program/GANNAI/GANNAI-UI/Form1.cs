@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.Diagnostics;
 using Genetics;
 using FallingStars;
 
@@ -13,6 +14,7 @@ namespace GANNAIUI {
   public partial class Form1 : Form {
 
     AITrainer aiTrainer;
+    int generation;
 
     public Form1() {
       InitializeComponent();
@@ -47,6 +49,7 @@ namespace GANNAIUI {
 
       continueButton.Enabled = true;
       visualizeButton.Enabled = true;
+      generationCountLabel.Text = "Generation No: " + aiTrainer.GenerationNum().ToString();
     }
 
     private void PrintFitnessValues() {
@@ -58,9 +61,7 @@ namespace GANNAIUI {
     }
 
     private void goButton_Click(object sender, EventArgs e) {
-     
       aiTrainer = new AITrainer();
-
       StartTraining();
     }
 
@@ -95,10 +96,6 @@ namespace GANNAIUI {
       Form form = new Form();
       form.Show();
       Configuration.Game.Visualize(aiTrainer.GetBest(), form);
-    }
-
-    private void tempCalcButton_Click(object sender, EventArgs e) {
-      PrintFitnessValues();
     }
   }
 }

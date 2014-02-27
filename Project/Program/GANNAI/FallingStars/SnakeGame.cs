@@ -23,8 +23,8 @@ namespace FallingStars {
     int lastDir;
 
     public SnakeGame() {
-      mapWidth = 9;
-      mapHeight = 9;
+      mapWidth = 10;
+      mapHeight = 10;
       RestartGame();
     }
 
@@ -37,15 +37,6 @@ namespace FallingStars {
       ticks = 0;
       alive = true;
       map = new int[mapWidth, mapHeight];
-
-      /*
-      //obstacles
-      for (int i = 1; i < mapWidth - 1; i++ )
-        map[i, mapHeight / 2] = 10000;
-      for (int i = 1; i < mapHeight - 1; i++)
-        map[mapWidth / 2, i] = 10000;
-      */
-
   
       snakeX = 0;
       snakeY = 0;
@@ -116,7 +107,7 @@ namespace FallingStars {
       int foodHorizontal = foodX == snakeX ? 0 : (foodX > snakeX ? 1 : -1);
 
 
-      return aiplayer.GetOutput(new double[] { foodVertical, foodHorizontal, right, left, top, bottom });
+      return aiplayer.GetOutput( new double[]{right, left, top, bottom, foodHorizontal, foodVertical});
     }
 
     private void PickUpFood() {
@@ -208,7 +199,7 @@ namespace FallingStars {
     public double CalcFitness(AIPlayer aiplayer) {
       this.aiplayer = aiplayer;
       RestartGame();
-      while (alive && ticks < 400) {
+      while (alive && ticks < 1000) {
         Tick();
       }
       return score + ticks / 1000.0;
@@ -225,7 +216,7 @@ namespace FallingStars {
       form.Height = 400;
       this.aiplayer = aiplayer;
       RestartGame();
-      while (alive && ticks < 300) {
+      while (alive && ticks < 1000) {
         Tick();
         DrawMapToForm(form);
         Thread.Sleep(40);
@@ -236,7 +227,7 @@ namespace FallingStars {
       int size = 20;
 
       SolidBrush redBrush = new SolidBrush(Color.Red);
-      SolidBrush blueBrush = new SolidBrush(Color.Blue);
+      SolidBrush blueBrush = new SolidBrush(Color.Aqua);
       SolidBrush blackBrush = new SolidBrush(Color.Black);
       SolidBrush grayBrush = new SolidBrush(Color.Gray);
 
