@@ -1,33 +1,34 @@
 function GANNAIstate() {
   this.direction = null;
-  //this.identifier = this.sendPOST('pacman/new', {});
-  this.identifier = "7";
+  this.identifier = 0;
 }
 
 GANNAIstate.prototype = {
   setDirection: function(dir) {
-    this.sendPATCH('pacman/' + this.identifier + '/direction', { direction: dir });
+    this.sendPATCH('pacman/' + this.identifier + '/direction',
+        { direction: dir });
   },
-  sendPOST: function(sub, data, type) {
-    $.post("http://127.0.0.1:4567/pacman/new");
-    //return this.sendAjax(sub, data, "POST", type);
-  },
-  sendAjax: function(sub, data, method, type) {
+  sendAjax: function(sub, data, method, callback) {
     data.identifier = this.identifier;
 
     var response;
 
     $.ajax({
       type: method,
-      url: 'http://127.0.0.1:4567/' + sub,
+      url: 'http://127.0.0.1:9292/' + sub,
       data: data,
-      dataType: type
+      dataType: "JSON"
     }).success(function(data) {
-      response = data;
+      if(callback) {
+        callback(data);
+      }
     });
     return response;
   },
-  sendPATCH: function(sub, data) {
-    return this.sendAjax(sub, data, "PATCH", "JSON");
+  sendPOST: function(sub, data, callback) {
+    this.sendAjax(sub, data, "POST", callback);
+  },
+  sendPATCH: function(sub, data, callback) {
+    this.sendAjax(sub, data, "PATCH", callback);
   }
 }
