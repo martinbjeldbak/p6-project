@@ -1,70 +1,50 @@
-require 'sinatra'
+require 'sinatra/base'
 #require 'sinatra/respond_with'
 #require 'sinatra/json'
 require 'json'
+require './game_state'
 
-class GameState
-  attr_accessor :direction
+class PacmanReader < Sinatra::Base
 
-  def initialize
+  disable :protection
+
+  post '/pacman/new' do
+    response['Access-Control-Allow-Origin'] = '*'
+
+    puts params.inspect
+
+    gs = GameState.new
+
+    puts gs.getID
+
+    content_type :json
+
+    { id: gs.getID }.to_json
   end
 
-  def getID
-    object_id
+  get '/pacman/:id/direction.json' do
+    response['Access-Control-Allow-Origin'] = '*'
+
+    @gs = GameState.find(params[:id])
+
+    content_type :json
+    {direction: @gs.direction}.to_json
   end
 
-  def getDirection 
-    dirTo_s(@direction)
+  get '/pacman/:id/direction' do
+    @gs = GameState.find(params[:id])
+
+    body direction
+
   end
-  
-  private
 
-  def dirTo_s(dir)
-    if dir == "0"
-      "up"
-    elsif dir == "1"
-      "left"
-    elsif dir == "2"
-      "down"
-    elsif dir == "3"
-      "right"
-    else
-      "none"
-    end
+  patch '/pacman/:id/direction' do
+    puts params
+    # Circumvent same-origin policy 
+    response['Access-Control-Allow-Origin'] = '*'
+
+    @gs = GameState.find(params[:id])
+    puts @gs.inspect
+    @gs.direction = params[:direction]
   end
-end
-
-post '/pacman/new' do
-  puts params.inspect
-  
-  gs = GameState.new
-
-  content_type :json
-
-  { id: gs.object_id }.to_json
-end
-
-get '/pacman/:id/direction.json' do
-  @gs = GameState.find(params[:id])
-
-  content_type :json
-  {direction: @gs.direction}.to_json
-end
-
-get '/pacman/:id/direction' do
-  @gs = GameState.find(params[:id])
-
-  body direction
-
-end
-
-post '/pacman/:id/direction' do
-  puts params
-  # Circumvent same-origin policy 
-  response['Access-Control-Allow-Origin'] = '*'
-
-  @gs = GameState.find(params[:id])
-  @gs.direction = params[:direction]
-
-  body "It works!"
 end

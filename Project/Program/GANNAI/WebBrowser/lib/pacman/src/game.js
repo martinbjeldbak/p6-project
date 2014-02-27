@@ -6,6 +6,7 @@ var GAME_PACMAN = 0;
 var GAME_MSPACMAN = 1;
 var GAME_COOKIE = 2;
 var GAME_OTTO = 3;
+//var GAME_STATE = Object.create(GANNAIstate.prototype);
 
 var practiceMode = false;
 var turboMode = false;
