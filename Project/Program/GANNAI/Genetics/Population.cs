@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading;
+using System.Threading.Tasks;
+using System.ComponentModel;
+using System.Diagnostics;
 using GANNAI;
 
 namespace Genetics {
@@ -13,15 +16,15 @@ namespace Genetics {
     private int mutations; //how many individuals of a new population must be born from mutation
     private int crossoverMutations; //how many individuals of a new population must be born from both mutation and crossover
 
-    public Population(int size, int crossovers, int mutations, int crossoverMutations) {
-      if (crossovers + mutations + crossoverMutations > size)
+    public Population(int crossovers, int mutations, int crossoverMutations) {
+      if (crossovers + mutations + crossoverMutations > Configuration.PopulationSize)
         throw new Exception("The number of crossovers and mutations sum to a value larger than the population size.");
       iteration = 0;
       this.crossovers = crossovers;
       this.mutations = mutations;
       this.crossoverMutations = crossoverMutations;
       individuals = new SortList<AIPlayer>();
-      InitializeRandomPopulation(size);
+      InitializeRandomPopulation();
     }
 
     //Performs an iteration, where new individuals are born by crossover, mutation and crossover-mutation.
@@ -36,7 +39,6 @@ namespace Genetics {
       //merge old and new population
       SortList<AIPlayer> resultingPopulation = new SortList<AIPlayer>(individuals, newIndividuals, individuals.Count);
       individuals = resultingPopulation;
-
     }
 
     //Returns a list of new individuals bred from the current population
@@ -104,12 +106,12 @@ namespace Genetics {
       throw new Exception("Something went wrong and no individual was selected based on fitness");
     }
 
-    public void InitializeRandomPopulation(int count) {
+    public void InitializeRandomPopulation() {
       if (individuals == null)
         individuals = new SortList<AIPlayer>();
       individuals.Clear();
       List<AIPlayer> result = new List<AIPlayer>();
-      for (int i = 0; i < count; i++)
+      for (int i = 0; i < Configuration.PopulationSize; i++)
         individuals.Add(new AIPlayer());
     }
 
@@ -127,15 +129,7 @@ namespace Genetics {
     /// <returns></returns>
     public double[] GetFitnessValues() {
       double[] result = new double[individuals.Count];
-      Thread[] individualsThread = new Thread[individuals.Count];
-
-      for(int i = 0; i < individuals.Count; i++)
-        individualsThread[i] = new Thread(() => this.individuals.Get(i).CalcFitness()); 
-      for(int i = 0; i < individuals.Count; i++)
-        individualsThread[i].Start();
-      for(int i = 0; i < individuals.Count; i++)
-        individualsThread[i].Join();
-
+      Parallel.For(0, individuals.Count, i => individuals.Get(i).GetFitness());    
       for(int i = 0; i < individuals.Count; i++)
         result[i] = individuals.Get(i).GetFitness();
       return result;
