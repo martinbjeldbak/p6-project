@@ -10,6 +10,7 @@ namespace Genetics {
     private NeuralNetwork neuralNetwork;
     private DNA dna;
     private double fitness;
+    private int hash;
 
 
     /// <summary>
@@ -31,12 +32,12 @@ namespace Genetics {
     }
 
     public double GetFitness() {
-      if (fitness != -1) {
+      if (fitness == -1) {
+        neuralNetwork = Configuration.NeuralNetworkMaker.MakeNeuralNetwork(dna);
+        fitness = Configuration.Game.CalcFitness(this);
         return fitness;
       }
       else {
-        neuralNetwork = Configuration.NeuralNetworkMaker.MakeNeuralNetwork(dna);
-        fitness = Configuration.Game.CalcFitness(this);
         return fitness;
       }
     }
