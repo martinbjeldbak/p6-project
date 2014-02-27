@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using GANNAI;
 
 namespace Genetics {
@@ -126,7 +127,16 @@ namespace Genetics {
     /// <returns></returns>
     public double[] GetFitnessValues() {
       double[] result = new double[individuals.Count];
-      for (int i = 0; i < individuals.Count; i++)
+      Thread[] individualsThread = new Thread[individuals.Count];
+
+      for(int i = 0; i < individuals.Count; i++)
+        individualsThread[i] = new Thread(() => this.individuals.Get(i).CalcFitness()); 
+      for(int i = 0; i < individuals.Count; i++)
+        individualsThread[i].Start();
+      for(int i = 0; i < individuals.Count; i++)
+        individualsThread[i].Join();
+
+      for(int i = 0; i < individuals.Count; i++)
         result[i] = individuals.Get(i).GetFitness();
       return result;
     }

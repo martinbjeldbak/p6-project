@@ -30,13 +30,19 @@ namespace Genetics {
       fitness = -1;
     }
 
+    public void CalcFitness(){
+      if(fitness == -1) {
+        neuralNetwork = Configuration.NeuralNetworkMaker.MakeNeuralNetwork(dna);
+        fitness = Configuration.Game.CalcFitness(this);
+      }
+    }
+
     public double GetFitness() {
       if (fitness != -1) {
         return fitness;
       }
       else {
-        neuralNetwork = Configuration.NeuralNetworkMaker.MakeNeuralNetwork(dna);
-        fitness = Configuration.Game.CalcFitness(this);
+        CalcFitness();
         return fitness;
       }
     }
