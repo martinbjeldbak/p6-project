@@ -79,6 +79,7 @@ var GAME_PACMAN = 0;
 var GAME_MSPACMAN = 1;
 var GAME_COOKIE = 2;
 var GAME_OTTO = 3;
+//var GAME_STATE = Object.create(GANNAIstate.prototype);
 
 var practiceMode = false;
 var turboMode = false;
@@ -8020,7 +8021,7 @@ Player.prototype.getAnimFrame = function(frame) {
 Player.prototype.setInputDir = function(dirEnum) {
     this.inputDirEnum = dirEnum;
     
-    gameState.setDirection(this.getInputDir());
+    GAME_STATE.setDirection(this.getInputDir());
 };
 
 Player.prototype.getInputDir = function() {
@@ -9232,7 +9233,6 @@ var setFruitFromGameMode = (function() {
 })();
 //@line 1 "src/executive.js"
 var executive = (function(){
-
     var framePeriod = 1000/60; // length of each frame at 60Hz (updates per second)
     var gameTime; // virtual time of the last game update
 
@@ -13370,31 +13370,33 @@ var vcr = (function() {
 //@line 1 "src/main.js"
 //////////////////////////////////////////////////////////////////////////////////////
 // Entry Point
+var GAME_STATE = Object.create(GANNAIstate.prototype);
+GAME_STATE.sendPOST("pacman/new", {}, function(data) {
+  GAME_STATE.identifier = data.id;
+});
 
 window.addEventListener("load", function() {
-    gameState = Object.create(GANNAIstate.prototype);
-
-    loadHighScores();
-    initRenderer();
-    atlas.create();
-    initSwipe();
-	var anchor = window.location.hash.substring(1);
-	if (anchor == "learn") {
-		switchState(learnState);
-	}
-	else if (anchor == "cheat_pac" || anchor == "cheat_mspac") {
-		gameMode = (anchor == "cheat_pac") ? GAME_PACMAN : GAME_MSPACMAN;
-		practiceMode = true;
-        switchState(newGameState);
-		for (var i=0; i<4; i++) {
-			ghosts[i].isDrawTarget = true;
-			ghosts[i].isDrawPath = true;
-		}
-	}
-	else {
-		switchState(homeState);
-	}
-    executive.init();
+  loadHighScores();
+  initRenderer();
+  atlas.create();
+  initSwipe();
+  var anchor = window.location.hash.substring(1);
+  if (anchor == "learn") {
+    switchState(learnState);
+  }
+  else if (anchor == "cheat_pac" || anchor == "cheat_mspac") {
+    gameMode = (anchor == "cheat_pac") ? GAME_PACMAN : GAME_MSPACMAN;
+    practiceMode = true;
+    switchState(newGameState);
+    for (var i=0; i<4; i++) {
+      ghosts[i].isDrawTarget = true;
+      ghosts[i].isDrawPath = true;
+    }
+  }
+  else {
+    switchState(homeState);
+  }
+  executive.init();
 
 });
 })();
