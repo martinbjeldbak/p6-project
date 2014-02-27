@@ -11,6 +11,12 @@ namespace Genetics {
     int NumOutputs();
 
     /// <summary>
+    /// Returns a new game instance, that can be run in another thread simultaniously
+    /// </summary>
+    /// <returns></returns>
+    AITrainableGame GetNewGameInstance();
+
+    /// <summary>
     /// Visualized the game played using the given AIPlayer
     /// </summary>
     /// <param name="aiplayer"></param>

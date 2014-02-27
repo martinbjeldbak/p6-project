@@ -20,12 +20,16 @@ namespace FallingStars {
     int[,] map;
     int mapWidth, mapHeight;
     int ticks;
-    int lastDir = 0;
+    int lastDir;
 
     public SnakeGame() {
-      mapWidth = 10;
-      mapHeight = 10;
+      mapWidth = 9;
+      mapHeight = 9;
       RestartGame();
+    }
+
+    public AITrainableGame GetNewGameInstance() {
+      return new SnakeGame();
     }
 
     private void RestartGame() {
@@ -33,11 +37,22 @@ namespace FallingStars {
       ticks = 0;
       alive = true;
       map = new int[mapWidth, mapHeight];
-      snakeX = map.GetLength(0) / 2;
-      snakeY = map.GetLength(1) / 2;
+
+      /*
+      //obstacles
+      for (int i = 1; i < mapWidth - 1; i++ )
+        map[i, mapHeight / 2] = 10000;
+      for (int i = 1; i < mapHeight - 1; i++)
+        map[mapWidth / 2, i] = 10000;
+      */
+
+  
+      snakeX = 0;
+      snakeY = 0;
       foodX = 2;
-      foodY = 2;
+      foodY = 6;
       score = 0;
+      lastDir = 0;
     }
 
     void Tick() {
@@ -52,15 +67,56 @@ namespace FallingStars {
 
     private int GetAIPlayerOutput() {
       //calc inputs
-      int rightOk = snakeX == mapWidth - 1 ? 0 : (map[snakeX + 1, snakeY] == 0 ? 1 : 0);
-      int leftOk = snakeX == 0 ? 0 : (map[snakeX - 1, snakeY] == 0 ? 1 : 0);
-      int bottomOk = snakeY == mapHeight - 1 ? 0 : (map[snakeX, snakeY + 1] == 0 ? 1 : 0);
-      int topOk = snakeY == 0 ? 0 : (map[snakeX, snakeY - 1] == 0 ? 1 : 0);
+
+      /*
+      int i, dis;
+      int right, left, top, bottom;
+
+      
+
+      i = snakeX + 1;
+      dis = 0;
+      while (i < mapWidth && map[i, snakeY] == 0) {
+        dis++;
+        i++;
+      }
+      right = dis;
+
+      i = snakeX - 1;
+      dis = 0;
+      while (i > 0 && map[i, snakeY] == 0) {
+        dis++;
+        i--;
+      }
+      left = dis;
+
+      i = snakeY + 1;
+      dis = 0;
+      while (i < mapHeight && map[snakeX, i] == 0) {
+        dis++;
+        i++;
+      }
+      bottom = dis;
+
+      i = snakeY - 1;
+      dis = 0;
+      while (i > 0 && map[snakeX, i] == 0) {
+        dis++;
+        i--;
+      }
+      top = dis;
+      */
+      
+      int right = snakeX == mapWidth - 1 ? -1 : (map[snakeX + 1, snakeY] == 0 ? 1 : -1);
+      int left = snakeX == 0 ? -1 : (map[snakeX - 1, snakeY] == 0 ? 1 : -1);
+      int bottom = snakeY == mapHeight - 1 ? -1 : (map[snakeX, snakeY + 1] == 0 ? 1 : -1);
+      int top = snakeY == 0 ? -1 : (map[snakeX, snakeY - 1] == 0 ? 1 : -1);
+      
       int foodVertical = foodY == snakeY ? 0 : (foodY > snakeY ? 1 : -1);
       int foodHorizontal = foodX == snakeX ? 0 : (foodX > snakeX ? 1 : -1);
 
 
-      return aiplayer.GetOutput(new double[] { foodVertical, foodHorizontal, rightOk, leftOk, topOk, bottomOk });
+      return aiplayer.GetOutput(new double[] { foodVertical, foodHorizontal, right, left, top, bottom });
     }
 
     private void PickUpFood() {
@@ -82,29 +138,29 @@ namespace FallingStars {
 
     private void MoveSnake(int action) {
 
-      if (action == 0) { //turn left
-        switch (lastDir) {
-          case 0: MoveUp(); break;
-          case 1: MoveLeft(); break;
-          case 2: MoveDown(); break;
-          case 3: MoveRight(); break;
-        }
+      if (action == 0) { //move right
+        if (lastDir != 2)
+          MoveRight();
+        else
+          MoveLeft();
       }
-      else if (action == 1) { //keep same direction
-        switch (lastDir) {
-          case 0: MoveRight(); break;
-          case 1: MoveUp(); break;
-          case 2: MoveLeft(); break;
-          case 3: MoveDown(); break;
-        }
+      else if (action == 1) { //move up
+        if (lastDir != 3)
+          MoveUp();
+        else
+          MoveDown();
       }
-      else if (action == 2) { //turn right
-        switch (lastDir) {
-          case 0: MoveDown(); break;
-          case 1: MoveRight(); break;
-          case 2: MoveUp(); break;
-          case 3: MoveLeft(); break;
-        }
+      else if (action == 2) { //move left
+        if (lastDir != 0)
+          MoveLeft();
+        else
+          MoveRight();
+      }
+      else if (action == 3) { //move down
+        if (lastDir != 1)
+          MoveDown();
+        else
+          MoveUp();
       }
     }
 
@@ -158,13 +214,6 @@ namespace FallingStars {
       return score + ticks / 1000.0;
     }
 
-    public int NumInputs() {
-      return 6;
-    }
-
-    public int NumOutputs() {
-      return 3;
-    }
 
     /// <summary>
     /// Visualizes the game being played by the given AIPlayer, drawn on the given Form
@@ -213,6 +262,15 @@ namespace FallingStars {
       g.DrawString(ticks.ToString(), new Font("Arial", 20), new SolidBrush(Color.Black), new PointF(300, 15));
       g.DrawString(score.ToString(), new Font("Arial", 20), new SolidBrush(Color.Black), new PointF(300, 45));
 
+    }
+
+
+    public int NumInputs() {
+      return 6;
+    }
+
+    public int NumOutputs() {
+      return 4;
     }
   }
 }

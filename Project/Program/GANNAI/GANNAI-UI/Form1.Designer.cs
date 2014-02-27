@@ -19,6 +19,7 @@
       this.listBox1 = new System.Windows.Forms.ListBox();
       this.continueButton = new System.Windows.Forms.Button();
       this.visualizeButton = new System.Windows.Forms.Button();
+      this.tempCalcButton = new System.Windows.Forms.Button();
       this.groupBox1.SuspendLayout();
       this.groupBox2.SuspendLayout();
       this.SuspendLayout();
@@ -136,11 +137,22 @@
       this.visualizeButton.UseVisualStyleBackColor = true;
       this.visualizeButton.Click += new System.EventHandler(this.visualizeButton_Click);
       // 
+      // tempCalcButton
+      // 
+      this.tempCalcButton.Location = new System.Drawing.Point(12, 197);
+      this.tempCalcButton.Name = "tempCalcButton";
+      this.tempCalcButton.Size = new System.Drawing.Size(75, 23);
+      this.tempCalcButton.TabIndex = 10;
+      this.tempCalcButton.Text = "Calc";
+      this.tempCalcButton.UseVisualStyleBackColor = true;
+      this.tempCalcButton.Click += new System.EventHandler(this.tempCalcButton_Click);
+      // 
       // Form1
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.ClientSize = new System.Drawing.Size(741, 236);
+      this.Controls.Add(this.tempCalcButton);
       this.Controls.Add(this.visualizeButton);
       this.Controls.Add(this.continueButton);
       this.Controls.Add(this.listBox1);
@@ -171,6 +183,7 @@
     private System.Windows.Forms.ListBox listBox1;
     private System.Windows.Forms.Button continueButton;
     private System.Windows.Forms.Button visualizeButton;
+    private System.Windows.Forms.Button tempCalcButton;
   }
 }
 
