@@ -8,11 +8,21 @@ namespace Genetics {
 
     Population population;
 
-    public AIPlayer TrainAIPlayer(AITrainableGame game, int iterations) {
-      population = new Population(game, 100, 33, 33, 3);
+    public AITrainer() {
+      population = new Population(100, 33, 33, 3);
+    }
+
+    public void Train(int iterations) {
       for (int i = 0; i < iterations; i++) {
         population.Iterate();
       }
+    }
+
+    public double[] GetFitnessValues() {
+      return population.GetFitnessValues();
+    }
+
+    public AIPlayer GetBest() {
       return population.GetBest();
     }
   }
