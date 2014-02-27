@@ -43,14 +43,18 @@ namespace GANNAIUI {
 
       aiTrainer.Train(iterations);
 
+      PrintFitnessValues();
+
+      continueButton.Enabled = true;
+      visualizeButton.Enabled = true;
+    }
+
+    private void PrintFitnessValues() {
       //print fitness values
       listBox1.Items.Clear();
       double[] fitnessValues = aiTrainer.GetFitnessValues();
       for (int i = 0; i < fitnessValues.Length; i++)
         listBox1.Items.Add(fitnessValues[i]);
-
-      continueButton.Enabled = true;
-      visualizeButton.Enabled = true;
     }
 
     private void goButton_Click(object sender, EventArgs e) {
@@ -80,7 +84,7 @@ namespace GANNAIUI {
       continueButton.Enabled = false;
       visualizeButton.Enabled = false;
       Configuration.Game = new SnakeGame();
-      Configuration.NeuralNetworkMaker = new SimpleNNMaker(30, 13);
+      Configuration.NeuralNetworkMaker = new SimpleNNMaker(8, 9);
     }
 
     private void continueButton_Click(object sender, EventArgs e) {
@@ -91,6 +95,10 @@ namespace GANNAIUI {
       Form form = new Form();
       form.Show();
       Configuration.Game.Visualize(aiTrainer.GetBest(), form);
+    }
+
+    private void tempCalcButton_Click(object sender, EventArgs e) {
+      PrintFitnessValues();
     }
   }
 }
