@@ -151,5 +151,10 @@ namespace FallingStars {
         }
       }
     }
+
+
+    public AITrainableGame GetNewGameInstance() {
+      return new FallingStarsGame();
+    }
   }
 }
