@@ -21,7 +21,13 @@ namespace GANNAIUI {
     }
 
     private void Form1_Load(object sender, EventArgs e) {
-
+      Configuration.PopulationSize = 100;
+      Configuration.MutationRate = 0.05;
+      Configuration.CrossoverBredAmount = 0.5;
+      Configuration.MutateAfterCrossoverAmount = 0.1;
+      Configuration.AllowSinglePointCrossover = true;
+      Configuration.AllowTwoPointCrossover = true;
+      Configuration.AllowUniformCrossover = true;
     }
 
     private void StartTraining() {
@@ -96,6 +102,10 @@ namespace GANNAIUI {
       Form form = new Form();
       form.Show();
       Configuration.Game.Visualize(aiTrainer.GetBest(), form);
+    }
+
+    private void measurePerformanceButton_Click(object sender, EventArgs e) {
+
     }
   }
 }

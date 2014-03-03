@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using ArtificialNeuralNetwork;
+using GANNAI;
 
 namespace Genetics {
 
@@ -10,13 +11,15 @@ namespace Genetics {
     private NeuralNetwork neuralNetwork;
     private DNA dna;
     private double fitness;
+    private Population population;
 
     /// <summary>
     /// Makes a new individual with a random DNA
     /// </summary>
     /// <param name="random">true if DNA string should be random, false if no DNA string should be made</param>
-    public AIPlayer() {
-      dna = new DNA(Configuration.NeuralNetworkMaker.DNALength());
+    public AIPlayer(Population population, int dnaLength) {
+      dna = new DNA(dnaLength);
+      this.population = population;
       fitness = -1;
     }
 
@@ -24,7 +27,8 @@ namespace Genetics {
     /// Sets a predefined DNA for the AIPlayer
     /// </summary>
     /// <param name="dna"></param>
-    public AIPlayer(DNA dna) {
+    public AIPlayer(Population population, DNA dna) {
+      this.population = population;
       this.dna = dna;
       fitness = -1;
     }
@@ -37,8 +41,8 @@ namespace Genetics {
     /// <returns></returns>
     public double GetFitness() {
       if (fitness == -1) {
-        neuralNetwork = Configuration.NeuralNetworkMaker.MakeNeuralNetwork(dna);
-        fitness = Configuration.Game.CalcFitness(this);
+        neuralNetwork = population.Simulation.NeuralNetworkMaker.MakeNeuralNetwork(dna);
+        fitness = population.Simulation.Game.CalcFitness(this);
         return fitness;
       }
       else {
@@ -51,31 +55,41 @@ namespace Genetics {
     /// </summary>
     /// <returns></returns>
     public AIPlayer GetMutated() {
-      return new AIPlayer(dna.GetMutated());
+      return new AIPlayer(population, dna.GetMutated());
     }
 
     /// <summary>
-    /// Returns a new AIPlayer which DNA is the result of a single point crossover with another AIPlayer's DNA
+    /// Crosses the AIPlayer with another, using a random crossover method allowed Configuration
     /// </summary>
+    /// <param name="other">AIPlayer to be crossed with</param>
     /// <returns></returns>
-    public AIPlayer GetSinglePointCrossover(AIPlayer other) {
-      return new AIPlayer(dna.GetSinglePointCrossover(other.dna));
+    public static AIPlayer GetCrossover(AIPlayer aiplayer1, AIPlayer aiplayer2) {
+      int randomFuncIndex = Utility.RandomInt(0, aiplayer1.population.Simulation.AllowedCrossoverMethods.Count);
+       return aiplayer1.population.Simulation.AllowedCrossoverMethods[randomFuncIndex](aiplayer1, aiplayer2);
     }
 
     /// <summary>
-    /// Returns a new AIPlayer which DNA is the result of a two point crossover with another AIPlayer's DNA
+    /// Returns a new AIPlayer which DNA is the result of a single point crossover between two AIPlayer's DNA
     /// </summary>
     /// <returns></returns>
-    public AIPlayer GetTwoPointCrossover(AIPlayer other) {
-      return new AIPlayer(dna.GetTwoPointCrossover(other.dna));
+    public static AIPlayer GetSinglePointCrossover(AIPlayer aiplayer1, AIPlayer aiplayer2) {
+      return new AIPlayer(aiplayer1.population, aiplayer1.dna.GetSinglePointCrossover(aiplayer2.dna));
     }
 
     /// <summary>
-    /// Returns a new AIPlayer which DNA is the result of a uniform crossover with another AIPlayer's DNA
+    /// Returns a new AIPlayer which DNA is the result of a two point crossover between two AIPlayer's DNA
     /// </summary>
     /// <returns></returns>
-    public AIPlayer GetUniformCrossover(AIPlayer other) {
-      return new AIPlayer(dna.GetUniformCrossover(other.dna));
+    public static AIPlayer GetTwoPointCrossover(AIPlayer aiplayer1, AIPlayer aiplayer2) {
+      return new AIPlayer(aiplayer1.population, aiplayer1.dna.GetTwoPointCrossover(aiplayer2.dna));
+    }
+
+    /// <summary>
+    /// Returns a new AIPlayer which DNA is the result of a uniform crossover between two AIPlayer's DNA
+    /// </summary>
+    /// <returns></returns>
+    public static AIPlayer GetUniformCrossover(AIPlayer aiplayer1, AIPlayer aiplayer2) {
+      return new AIPlayer(aiplayer1.population, aiplayer1.dna.GetUniformCrossover(aiplayer2.dna));
     }
 
     //Gets the output of the AIPlayer given a number of inputs
