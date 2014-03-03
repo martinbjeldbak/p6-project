@@ -11,7 +11,7 @@ namespace Genetics {
 
     public AITrainer() {
       generation = 0;
-      population = new Population(33, 33, 3);
+      population = new Population();
     }
 
     public void Train(int iterations) {

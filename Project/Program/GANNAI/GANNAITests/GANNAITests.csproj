@@ -37,6 +37,7 @@
     <Reference Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ConfigurationTests.cs" />
     <Compile Include="SortListTest.cs" />
     <Compile Include="DNATests.cs" />
     <Compile Include="GeneticsTests.cs" />

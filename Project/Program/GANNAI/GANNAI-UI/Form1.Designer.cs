@@ -20,6 +20,7 @@
       this.continueButton = new System.Windows.Forms.Button();
       this.visualizeButton = new System.Windows.Forms.Button();
       this.generationCountLabel = new System.Windows.Forms.Label();
+      this.measurePerformanceButton = new System.Windows.Forms.Button();
       this.groupBox1.SuspendLayout();
       this.groupBox2.SuspendLayout();
       this.SuspendLayout();
@@ -60,7 +61,7 @@
       // goButton
       // 
       this.goButton.Enabled = false;
-      this.goButton.Location = new System.Drawing.Point(120, 197);
+      this.goButton.Location = new System.Drawing.Point(220, 197);
       this.goButton.Name = "goButton";
       this.goButton.Size = new System.Drawing.Size(75, 23);
       this.goButton.TabIndex = 4;
@@ -118,7 +119,7 @@
       // continueButton
       // 
       this.continueButton.Enabled = false;
-      this.continueButton.Location = new System.Drawing.Point(201, 197);
+      this.continueButton.Location = new System.Drawing.Point(301, 197);
       this.continueButton.Name = "continueButton";
       this.continueButton.Size = new System.Drawing.Size(75, 23);
       this.continueButton.TabIndex = 8;
@@ -129,7 +130,7 @@
       // visualizeButton
       // 
       this.visualizeButton.Enabled = false;
-      this.visualizeButton.Location = new System.Drawing.Point(282, 197);
+      this.visualizeButton.Location = new System.Drawing.Point(382, 197);
       this.visualizeButton.Name = "visualizeButton";
       this.visualizeButton.Size = new System.Drawing.Size(75, 23);
       this.visualizeButton.TabIndex = 9;
@@ -146,11 +147,22 @@
       this.generationCountLabel.TabIndex = 10;
       this.generationCountLabel.Text = "Generation 0";
       // 
+      // measurePerformanceButton
+      // 
+      this.measurePerformanceButton.Location = new System.Drawing.Point(47, 197);
+      this.measurePerformanceButton.Name = "measurePerformanceButton";
+      this.measurePerformanceButton.Size = new System.Drawing.Size(131, 23);
+      this.measurePerformanceButton.TabIndex = 11;
+      this.measurePerformanceButton.Text = "Mesaure Performance";
+      this.measurePerformanceButton.UseVisualStyleBackColor = true;
+      this.measurePerformanceButton.Click += new System.EventHandler(this.measurePerformanceButton_Click);
+      // 
       // Form1
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.ClientSize = new System.Drawing.Size(741, 236);
+      this.Controls.Add(this.measurePerformanceButton);
       this.Controls.Add(this.generationCountLabel);
       this.Controls.Add(this.visualizeButton);
       this.Controls.Add(this.continueButton);
@@ -184,6 +196,7 @@
     private System.Windows.Forms.Button continueButton;
     private System.Windows.Forms.Button visualizeButton;
     private System.Windows.Forms.Label generationCountLabel;
+    private System.Windows.Forms.Button measurePerformanceButton;
   }
 }
 

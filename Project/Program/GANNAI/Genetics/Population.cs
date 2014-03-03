@@ -11,18 +11,8 @@ using GANNAI;
 namespace Genetics {
   public class Population {
     private SortList<AIPlayer> individuals;
-    private int iteration;
-    private int crossovers; //how many individuals of a new population must be born from crossover
-    private int mutations; //how many individuals of a new population must be born from mutation
-    private int crossoverMutations; //how many individuals of a new population must be born from both mutation and crossover
-
-    public Population(int crossovers, int mutations, int crossoverMutations) {
-      if (crossovers + mutations + crossoverMutations > Configuration.PopulationSize)
-        throw new Exception("The number of crossovers and mutations sum to a value larger than the population size.");
-      iteration = 0;
-      this.crossovers = crossovers;
-      this.mutations = mutations;
-      this.crossoverMutations = crossoverMutations;
+    public Simulation Simulation;
+    public Population(Simulation simulation) {
       individuals = new SortList<AIPlayer>();
       InitializeRandomPopulation();
     }
@@ -31,9 +21,6 @@ namespace Genetics {
     //A new individual replaces an old individual only if it has a greater fitness.
 
     public void Iterate() {
-      this.iteration++;
-      int size = individuals.Count;
-
       SortList<AIPlayer> newIndividuals = BreedIndividuals();
 
       //merge old and new population
@@ -43,6 +30,12 @@ namespace Genetics {
 
     //Returns a list of new individuals bred from the current population
     private SortList<AIPlayer> BreedIndividuals() {
+
+      int crossovers = (int)(Simulation.PopulationSize * Simulation.CrossoverBredAmount);
+      int mutations = Simulation.PopulationSize - crossovers;
+      int crossoverMutations = (int)(Simulation.MutateAfterCrossoverAmount * Simulation.MutateAfterCrossoverAmount);
+      crossovers -= crossoverMutations;
+
       SortList<AIPlayer> newlyBred = new SortList<AIPlayer>();
       for (int i = 0; i < mutations; i++) {
         AIPlayer individual1 = SelectIndividualRankBased();
@@ -52,13 +45,13 @@ namespace Genetics {
       for (int i = 0; i < crossovers; i++) {
         AIPlayer individual1 = SelectIndividualRankBased();
         AIPlayer individual2 = SelectIndividualRankBased();
-        AIPlayer toAdd = individual1.GetSinglePointCrossover(individual2);
+        AIPlayer toAdd = AIPlayer.GetCrossover(individual1, individual2);
         newlyBred.Add(toAdd);
       }
       for (int i = 0; i < crossoverMutations; i++) {
         AIPlayer individual1 = SelectIndividualRankBased();
         AIPlayer individual2 = SelectIndividualRankBased();
-        AIPlayer crossovered = individual1.GetSinglePointCrossover(individual2);
+        AIPlayer crossovered = AIPlayer.GetCrossover(individual1, individual2);
         AIPlayer toAdd = crossovered.GetMutated();
         newlyBred.Add(toAdd);
       }
@@ -111,8 +104,8 @@ namespace Genetics {
         individuals = new SortList<AIPlayer>();
       individuals.Clear();
       List<AIPlayer> result = new List<AIPlayer>();
-      for (int i = 0; i < Configuration.PopulationSize; i++)
-        individuals.Add(new AIPlayer());
+      for (int i = 0; i < Simulation.PopulationSize; i++)
+        individuals.Add(new AIPlayer(this, Simulation.NeuralNetworkMaker.DNALength()));
     }
 
     /// <summary>
