@@ -42,17 +42,13 @@
     <Compile Include="GeneticsTests.cs" />
     <Compile Include="NeuralNetworkTest.cs" />
     <Compile Include="NeuronTest.cs" />
-    <Compile Include="PacManBrowserTest.cs" />
+    <Compile Include="DatabaseTest.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <ProjectReference Include="..\GANNAI\GANNAI.csproj">
       <Project>{F9322C92-DEF6-4101-A324-AEBF6D83FD0F}</Project>
       <Name>GANNAI</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\WebBrowser\WebBrowser.csproj">
-      <Project>{66FA0159-4E8D-4788-8730-3AED6AD3203F}</Project>
-      <Name>WebBrowser</Name>
     </ProjectReference>
     <ProjectReference Include="..\Genetics\Genetics.csproj">
       <Project>{3025EBE0-C362-4F31-8B1A-E3B0CF3ABACB}</Project>
