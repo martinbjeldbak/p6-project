@@ -12,3 +12,12 @@ C:\Users\Kent\Desktop\p6-project\Project\Program\GANNAI\NeuralNetwork\bin\Debug\
 C:\Users\Kent\Desktop\p6-project\Project\Program\GANNAI\NeuralNetwork\obj\x86\Debug\ArtificialNeuralNetwork.csprojResolveAssemblyReference.cache
 C:\Users\Kent\Desktop\p6-project\Project\Program\GANNAI\NeuralNetwork\obj\x86\Debug\ArtificialNeuralNetwork.dll
 C:\Users\Kent\Desktop\p6-project\Project\Program\GANNAI\NeuralNetwork\obj\x86\Debug\ArtificialNeuralNetwork.pdb
+C:\Users\Kent\Desktop\p6-project\Project\Program\GANNAI\NeuralNetwork\bin\Debug\Npgsql.dll
+C:\Users\Kent\Desktop\p6-project\Project\Program\GANNAI\NeuralNetwork\bin\Debug\Mono.Security.dll
+C:\Users\Kent\Desktop\p6-project\Project\Program\GANNAI\NeuralNetwork\bin\Debug\Npgsql.xml
+C:\Users\Kent\Desktop\p6-project\Project\Program\GANNAI\NeuralNetwork\bin\Debug\de\Npgsql.resources.dll
+C:\Users\Kent\Desktop\p6-project\Project\Program\GANNAI\NeuralNetwork\bin\Debug\es\Npgsql.resources.dll
+C:\Users\Kent\Desktop\p6-project\Project\Program\GANNAI\NeuralNetwork\bin\Debug\fi\Npgsql.resources.dll
+C:\Users\Kent\Desktop\p6-project\Project\Program\GANNAI\NeuralNetwork\bin\Debug\fr\Npgsql.resources.dll
+C:\Users\Kent\Desktop\p6-project\Project\Program\GANNAI\NeuralNetwork\bin\Debug\ja\Npgsql.resources.dll
+C:\Users\Kent\Desktop\p6-project\Project\Program\GANNAI\NeuralNetwork\bin\Debug\zh-CN\Npgsql.resources.dll

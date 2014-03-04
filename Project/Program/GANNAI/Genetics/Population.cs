@@ -24,24 +24,25 @@ namespace Genetics {
     //A new individual replaces an old individual only if it has a greater fitness.
 
     public void Evolve() {
-      SortList<AIPlayer> newIndividuals = BreedIndividuals();
-      CalcFitnessValues(newIndividuals);
+      List<AIPlayer> newlyBred = BreedIndividuals();
+      newlyBred.ForEach(p => p.CalcFitness(Simulation.Game));
 
-      //merge old and new population
-      SortList<AIPlayer> resultingPopulation = new SortList<AIPlayer>(individuals, newIndividuals, individuals.Count);
-      individuals = resultingPopulation;
+      SortList<AIPlayer> newIndividuals = new SortList<AIPlayer>();
+      newlyBred.ForEach(p => newIndividuals.Add(p));
+
+      individuals = new SortList<AIPlayer>(individuals, newIndividuals, individuals.Count);
       Generation++;
     }
 
     //Returns a list of new individuals bred from the current population
-    private SortList<AIPlayer> BreedIndividuals() {
+    private List<AIPlayer> BreedIndividuals() {
 
       int crossovers = (int)(Simulation.PopulationSize * Simulation.CrossoverBredAmount);
       int mutations = Simulation.PopulationSize - crossovers;
       int crossoverMutations = (int)(Simulation.MutateAfterCrossoverAmount * Simulation.MutateAfterCrossoverAmount);
       crossovers -= crossoverMutations;
 
-      SortList<AIPlayer> newlyBred = new SortList<AIPlayer>();
+      List<AIPlayer> newlyBred = new List<AIPlayer>();
       for (int i = 0; i < mutations; i++) {
         AIPlayer individual1 = SelectIndividualRankBased();
         AIPlayer toAdd = new AIPlayer(individual1.DNA.GetMutated(Simulation.MutationRate), Simulation.NeuralNetworkMaker);
