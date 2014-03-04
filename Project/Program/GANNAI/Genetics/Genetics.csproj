@@ -54,9 +54,12 @@
   <ItemGroup>
     <Compile Include="AIPlayer.cs" />
     <Compile Include="AITrainableGame.cs" />
-    <Compile Include="AITrainer.cs" />
+    <Compile Include="Crossover methods\SinglePointCrossover.cs" />
+    <Compile Include="Crossover methods\TwoPointCrossover.cs" />
+    <Compile Include="Crossover methods\UniformCrossover.cs" />
+    <Compile Include="CrossoverMethod.cs" />
     <Compile Include="Simulation.cs" />
-    <Compile Include="SimpleNNMaker.cs" />
+    <Compile Include="Neural network makers\SimpleNNMaker.cs" />
     <Compile Include="DNA.cs" />
     <Compile Include="NNMaker.cs" />
     <Compile Include="Population.cs" />
@@ -72,9 +75,7 @@
       <Name>ArtificialNeuralNetwork</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="NNMakers\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

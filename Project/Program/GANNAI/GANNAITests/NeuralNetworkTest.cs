@@ -11,9 +11,9 @@ namespace GANNAITests {
 
     [Test()]
     public void TestOutputOnDNA() {
-      Configuration.Game = new GameWith7Inputs8Outputs();
+      AITrainableGame game = new GameWith7Inputs8Outputs();
 
-      NNMaker nnMaker = new SimpleNNMaker(10, 10);
+      NNMaker nnMaker = new SimpleNNMaker(game);
       DNA dna = new DNA(nnMaker.DNALength());
       NeuralNetwork neuralNetwork = nnMaker.MakeNeuralNetwork(dna);
 
