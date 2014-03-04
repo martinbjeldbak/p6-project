@@ -6,13 +6,13 @@ using GANNAI;
 
 namespace Genetics {
   public class DNA {
-    private bool[] bitstring;
+    public bool[] Bitstring { get; private set; }
     private int hashcode;
 
     /// <summary>
     /// Returns the length of the DNA string
     /// </summary>
-    public int Length { get { return bitstring.Length; } }
+    public int Length { get { return Bitstring.Length; } }
 
     /// <summary>
     /// Constructs a random DNA string of a given length
@@ -21,9 +21,9 @@ namespace Genetics {
     public DNA(int length) {
       if (length == 0)
         return;
-      bitstring = new bool[length];
+      Bitstring = new bool[length];
       for(int i = 0; i < length; i++)
-        bitstring[i] = Utility.RandomBool();
+        Bitstring[i] = Utility.RandomBool();
       hashcode = GetHashCode();
     }
 
@@ -31,7 +31,7 @@ namespace Genetics {
     /// Construct a DNA string with the given bitstring
     /// </summary>
     public DNA(bool[] bitstring) {
-      this.bitstring = bitstring;
+      this.Bitstring = bitstring;
     }
 
 
@@ -40,82 +40,7 @@ namespace Genetics {
     /// </summary>
     /// <param name="index">the position on the DNA string</param>
     public bool GetValue(int index) { 
-      return bitstring[index]; 
-    }
-
-
-    /// <summary>
-    /// Returns a new DNA string made using single point crossover between itself and another DNA string. 
-    /// Both of the used DNA strings remain unchanged
-    /// </summary>
-    /// <param name="other">Other DNA string</param>
-    /// <returns>A new DNA string</returns>
-    public DNA GetSinglePointCrossover(DNA other) {
-      if (bitstring.Length != other.bitstring.Length)
-        throw new Exception("The two bitstrings to be crossed must have the same length.");
-
-      bool[] result = new bool[bitstring.Length];
-      int crossPoint = Utility.RandomInt(1, bitstring.Length-1);
-      bool[] left, right;
-      if (Utility.RandomBool()) {
-        left = bitstring;
-        right = other.bitstring;
-      }
-      else {
-        left = other.bitstring;
-        right = bitstring;
-      }
-      for (int i = 0; i < crossPoint; i++)
-        result[i] = left[i];
-      for (int i = crossPoint; i < bitstring.Length; i++)
-        result[i] = right[i];
-      return new DNA(result);
-    }
-
-
-    /// <summary>
-    /// Returns a new DNA string made using two point crossover between itself and another DNA string. 
-    /// Both of the used DNA strings remain unchanged
-    /// </summary>
-    /// <param name="other">Other DNA string</param>
-    /// <returns>A new DNA string</returns>
-    public DNA GetTwoPointCrossover(DNA other) {
-      if (bitstring.Length != other.bitstring.Length)
-        throw new Exception("The two bitstrings must have same length to be crossed");
-      bool[] result = new bool[bitstring.Length];
-      int crossPoint1 = Utility.RandomInt(1, bitstring.Length - 2);
-      int crossPoint2 = Utility.RandomInt(crossPoint1+1, bitstring.Length - 1);
-      bool[] left, right;
-      if (Utility.RandomBool()) {
-        left = bitstring;
-        right = other.bitstring;
-      }
-      else {
-        left = other.bitstring;
-        right = bitstring;
-      }
-      for (int i = 0; i < crossPoint1; i++)
-        result[i] = left[i];
-      for (int i = crossPoint1 + 1; i < crossPoint2; i++)
-        result[i] = right[i];
-      for (int i = crossPoint2; i < bitstring.Length; i++)
-        result[i] = left[i];
-      return new DNA(result);
-    }
-
-    /// <summary>
-    /// Returns a new DNA string made using uniform crossover between itself and another DNA string. 
-    /// Both of the used DNA strings remain unchanged
-    /// </summary>
-    /// <param name="other">Other DNA string</param>
-    /// <returns>A new DNA string</returns>
-    public DNA GetUniformCrossover(DNA other) {
-      if (bitstring.Length != other.bitstring.Length)
-        throw new Exception("The two bitstrings must have same length to be crossed");
-      bool[] result = new bool[bitstring.Length];
-      for (int i = 0; i < bitstring.Length; i++)
-        result[i] = Utility.RandomBool() ? bitstring[i] : other.bitstring[i];
-      return new DNA(result);
+      return Bitstring[index]; 
     }
 
     public override bool Equals(object other) {
@@ -123,16 +48,16 @@ namespace Genetics {
         return true;
       if (other.GetType() != typeof(DNA))
         return false;
-      if ((other as DNA).bitstring == bitstring)
+      if ((other as DNA).Bitstring == Bitstring)
         return true;
       if ((other as DNA).hashcode != hashcode)
         return false;
       
       //real equality check here
-      if (bitstring.Length != (other as DNA).bitstring.Length)
+      if (Bitstring.Length != (other as DNA).Bitstring.Length)
         return false;
-      for (int i = 0; i < bitstring.Length; i++) {
-        if (bitstring[i] != (other as DNA).bitstring[i])
+      for (int i = 0; i < Bitstring.Length; i++) {
+        if (Bitstring[i] != (other as DNA).Bitstring[i])
           return false;
       }
       return true;
@@ -142,27 +67,27 @@ namespace Genetics {
     /// Returns a clone of itself
     /// </summary>
     public DNA Clone() {
-      bool[] clonedBitstring = new bool[bitstring.Length];
-      for (int i = 0; i < bitstring.Length; i++)
-        clonedBitstring[i] = bitstring[i];
+      bool[] clonedBitstring = new bool[Bitstring.Length];
+      for (int i = 0; i < Bitstring.Length; i++)
+        clonedBitstring[i] = Bitstring[i];
       return new DNA(clonedBitstring);;
     }
 
     /// <summary>
-    /// Returns a mutated copy of itself
+    /// Gets a mutated deep clone of itself
     /// </summary>
-    public DNA GetMutated() {
-      DNA result = Clone();
-      for (int i = 0; i < bitstring.Length; i++)
-        if (Utility.RandomDouble() < Configuration.MutationRate)
-          result.bitstring[i] = !result.bitstring[i];
-      return result;
+    public DNA GetMutated(double mutationRate) {
+      bool[] bitstring = new bool[Bitstring.Length];
+      for (int i = 0; i < Bitstring.Length; i++)
+        if (Utility.RandomDouble() < mutationRate)
+          bitstring[i] = !Bitstring[i];
+      return new DNA(bitstring);
     }
 
     public override int GetHashCode() {
       int hash = 0;
-      for (int i = 0; i < bitstring.Length; i++)
-        hash += 314189 * i * (bitstring[i] ? 1 : 0);
+      for (int i = 0; i < Bitstring.Length; i++)
+        hash += 314189 * i * (Bitstring[i] ? 1 : 0);
       return hash;
     }
 
@@ -174,10 +99,10 @@ namespace Genetics {
     /// <param name="to">the index of the ending point</param>
     /// <returns></returns>
     public int CalcInt(int from, int to) {
-      int factor = bitstring[from] ? -1 : 1;
+      int factor = Bitstring[from] ? -1 : 1;
       int result = 0;
       for (int i = 0; i < to - from; i++) {
-        if (bitstring[to - i])
+        if (Bitstring[to - i])
           result += 1 << i;
       }
       return factor * result;

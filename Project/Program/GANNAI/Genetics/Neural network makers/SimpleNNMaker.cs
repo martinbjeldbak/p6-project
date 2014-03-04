@@ -6,19 +6,21 @@ using ArtificialNeuralNetwork;
 
 namespace Genetics {
   public class SimpleNNMaker : NNMaker {
-    
-  private int bitsPerWeight;
-  private int hiddenNeurons;
 
-    public SimpleNNMaker(int hiddenNeurons, int bitsPerWeight){
-      this.hiddenNeurons = hiddenNeurons;
-      this.bitsPerWeight = bitsPerWeight;
+    private int dnalength;
+    private int bitsPerWeight = 9;
+    private int hiddenNeurons;
+    private int inputs;
+    private int outputs;
+
+    public SimpleNNMaker(AITrainableGame game){
+      hiddenNeurons = (int)Math.Ceiling((game.NumInputs() + game.NumOutputs()) / 2.0);
+      dnalength = (game.NumInputs() * hiddenNeurons + hiddenNeurons * game.NumOutputs()) * bitsPerWeight;
+      inputs = game.NumInputs();
+      outputs = game.NumOutputs();
     }
 
     public NeuralNetwork MakeNeuralNetwork(DNA dna) {
-
-      int inputs = Configuration.Game.NumInputs();
-      int outputs = Configuration.Game.NumOutputs();
 
       double[] weights = new double[inputs * hiddenNeurons + hiddenNeurons * outputs];
 
@@ -35,7 +37,7 @@ namespace Genetics {
     }
 
     public int DNALength() {
-      return (Configuration.Game.NumInputs() * hiddenNeurons + hiddenNeurons * Configuration.Game.NumOutputs()) * bitsPerWeight;
+      return dnalength;
     }
   }
 }

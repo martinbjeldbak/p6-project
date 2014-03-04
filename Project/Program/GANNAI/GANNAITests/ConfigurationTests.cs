@@ -7,6 +7,11 @@ namespace GANNAITests {
   public class ConfigurationTests {
     [Test()]
     public void TestAllowedCrossoverMethods() {
+
+      //These tests must be rewritten - gl&hf :)
+      Assert.AreEqual(true, false);
+
+      /*
       Configuration.AllowSinglePointCrossover = true;
       Assert.AreEqual(Configuration.AllowSinglePointCrossover, true);
       Assert.AreEqual(AIPlayer.IsCrossoverMethodAllowed(AIPlayer.GetSinglePointCrossover), true);
@@ -46,7 +51,7 @@ namespace GANNAITests {
       Configuration.AllowUniformCrossover = false;
       Assert.AreEqual(Configuration.AllowUniformCrossover, false);
       Assert.AreEqual(AIPlayer.IsCrossoverMethodAllowed(AIPlayer.GetUniformCrossover), false);
-
+      */
     }
   }
 }

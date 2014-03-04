@@ -11,8 +11,11 @@ using GANNAI;
 namespace Genetics {
   public class Population {
     private SortList<AIPlayer> individuals;
+    public int Generation { get; private set; }
     public Simulation Simulation;
-    public Population(Simulation simulation) {
+    public Population(Simulation simulation, int generation) {
+      Simulation = simulation;
+      Generation = generation;
       individuals = new SortList<AIPlayer>();
       InitializeRandomPopulation();
     }
@@ -20,12 +23,14 @@ namespace Genetics {
     //Performs an iteration, where new individuals are born by crossover, mutation and crossover-mutation.
     //A new individual replaces an old individual only if it has a greater fitness.
 
-    public void Iterate() {
+    public void Evolve() {
       SortList<AIPlayer> newIndividuals = BreedIndividuals();
+      CalcFitnessValues(newIndividuals);
 
       //merge old and new population
       SortList<AIPlayer> resultingPopulation = new SortList<AIPlayer>(individuals, newIndividuals, individuals.Count);
       individuals = resultingPopulation;
+      Generation++;
     }
 
     //Returns a list of new individuals bred from the current population
@@ -39,20 +44,23 @@ namespace Genetics {
       SortList<AIPlayer> newlyBred = new SortList<AIPlayer>();
       for (int i = 0; i < mutations; i++) {
         AIPlayer individual1 = SelectIndividualRankBased();
-        AIPlayer toAdd = individual1.GetMutated();
+        AIPlayer toAdd = new AIPlayer(individual1.DNA.GetMutated(Simulation.MutationRate), Simulation.NeuralNetworkMaker);
         newlyBred.Add(toAdd);
       }
       for (int i = 0; i < crossovers; i++) {
         AIPlayer individual1 = SelectIndividualRankBased();
         AIPlayer individual2 = SelectIndividualRankBased();
-        AIPlayer toAdd = AIPlayer.GetCrossover(individual1, individual2);
+        CrossoverMethod crossoverMethod = Simulation.RandomCrossoverMethod();
+        AIPlayer toAdd = new AIPlayer(crossoverMethod.Cross(individual1.DNA, individual2.DNA), Simulation.NeuralNetworkMaker);
         newlyBred.Add(toAdd);
       }
       for (int i = 0; i < crossoverMutations; i++) {
         AIPlayer individual1 = SelectIndividualRankBased();
         AIPlayer individual2 = SelectIndividualRankBased();
-        AIPlayer crossovered = AIPlayer.GetCrossover(individual1, individual2);
-        AIPlayer toAdd = crossovered.GetMutated();
+        CrossoverMethod crossoverMethod = Simulation.RandomCrossoverMethod();
+        DNA crossedDNA = crossoverMethod.Cross(individual1.DNA, individual2.DNA);
+        DNA crossedAndMutatedDNA = crossedDNA.GetMutated(Simulation.MutationRate);
+        AIPlayer toAdd = new AIPlayer(crossedAndMutatedDNA, Simulation.NeuralNetworkMaker);
         newlyBred.Add(toAdd);
       }
         return newlyBred;
@@ -105,7 +113,7 @@ namespace Genetics {
       individuals.Clear();
       List<AIPlayer> result = new List<AIPlayer>();
       for (int i = 0; i < Simulation.PopulationSize; i++)
-        individuals.Add(new AIPlayer(this, Simulation.NeuralNetworkMaker.DNALength()));
+        individuals.Add(new AIPlayer(Simulation.NeuralNetworkMaker));
     }
 
     /// <summary>
@@ -122,10 +130,20 @@ namespace Genetics {
     /// <returns></returns>
     public double[] GetFitnessValues() {
       double[] result = new double[individuals.Count];
-      Parallel.For(0, individuals.Count, i => individuals.Get(i).GetFitness());    
       for(int i = 0; i < individuals.Count; i++)
         result[i] = individuals.Get(i).GetFitness();
       return result;
+    }
+
+
+    /// <summary>
+    /// Calculates the fitness of all AIPlayers in the population by
+    /// simulating a game being played with each AIPlayer. 
+    /// The fitness values can be retrieved by balling GetFitnessValues()
+    /// This method will 
+    /// </summary>
+    public void CalcFitnessValues(SortList<AIPlayer> list) {
+      Parallel.For(0, list.Count, i => list.Get(i).CalcFitness(Simulation.Game));
     }
   }
 }
