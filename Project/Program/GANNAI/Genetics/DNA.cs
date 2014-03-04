@@ -6,7 +6,6 @@ using GANNAI;
 
 namespace Genetics {
   public class DNA {
-    private static double mutationRate = 0.1;
     private bool[] bitstring;
     private int hashcode;
 
@@ -155,7 +154,7 @@ namespace Genetics {
     public DNA GetMutated() {
       DNA result = Clone();
       for (int i = 0; i < bitstring.Length; i++)
-        if (Utility.RandomDouble() < mutationRate)
+        if (Utility.RandomDouble() < Configuration.MutationRate)
           result.bitstring[i] = !result.bitstring[i];
       return result;
     }

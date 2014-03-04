@@ -55,7 +55,7 @@
     <Compile Include="AIPlayer.cs" />
     <Compile Include="AITrainableGame.cs" />
     <Compile Include="AITrainer.cs" />
-    <Compile Include="Configuration.cs" />
+    <Compile Include="Simulation.cs" />
     <Compile Include="SimpleNNMaker.cs" />
     <Compile Include="DNA.cs" />
     <Compile Include="NNMaker.cs" />
