@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using GANNAI;
+using Utility;
 
 namespace Genetics {
   public class TwoPointCrossover : CrossoverMethod {
@@ -10,10 +10,10 @@ namespace Genetics {
       if (dna1.Bitstring.Length != dna2.Bitstring.Length)
         throw new Exception("The two bitstrings must have same length to be crossed");
       bool[] result = new bool[dna1.Bitstring.Length];
-      int crossPoint1 = Utility.RandomInt(1, dna1.Bitstring.Length - 2);
-      int crossPoint2 = Utility.RandomInt(crossPoint1 + 1, dna1.Bitstring.Length - 1);
+      int crossPoint1 = RandomNum.RandomInt(1, dna1.Bitstring.Length - 2);
+      int crossPoint2 = RandomNum.RandomInt(crossPoint1 + 1, dna1.Bitstring.Length - 1);
       bool[] left, right;
-      if (Utility.RandomBool()) {
+      if (RandomNum.RandomBool()) {
         left = dna1.Bitstring;
         right = dna2.Bitstring;
       }

@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace GANNAI {
-  
+namespace Utility {
   //Individuals in this list are guaranteed to be sorted according to fitness, such that the most fit individual is at index 0
   public class SortList<T> where T : IComparable {
     List<T> list;

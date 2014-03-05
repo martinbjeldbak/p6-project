@@ -51,9 +51,9 @@
     <Compile Include="Program.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\GANNAI\GANNAI.csproj">
-      <Project>{F9322C92-DEF6-4101-A324-AEBF6D83FD0F}</Project>
-      <Name>GANNAI</Name>
+    <ProjectReference Include="..\Utility\Utility.csproj">
+      <Project>{94E3B305-BCA1-4A47-B766-A456DEA24560}</Project>
+      <Name>Utility</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

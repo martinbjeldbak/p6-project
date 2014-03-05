@@ -1,14 +1,14 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>8.0.30703</ProductVersion>
+    <ProductVersion>10.0.0</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{BD04E721-7CD2-408D-9409-357943FBD57D}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <RootNamespace>GANNAITests</RootNamespace>
-    <AssemblyName>GANNAITests</AssemblyName>
+    <ProjectGuid>{E3616AD0-7589-4AD1-9DCF-7FFE4DDA7A28}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>DBTesting</RootNamespace>
+    <AssemblyName>DBTesting</AssemblyName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -18,8 +18,7 @@
     <DefineConstants>DEBUG;</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <ConsolePause>false</ConsolePause>
-    <PlatformTarget>x86</PlatformTarget>
+    <Externalconsole>true</Externalconsole>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>full</DebugType>
@@ -27,31 +26,31 @@
     <OutputPath>bin\Release</OutputPath>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <ConsolePause>false</ConsolePause>
+    <Externalconsole>true</Externalconsole>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="nunit.framework">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files (x86)\NUnit 2.6.3\bin\framework\nunit.framework.dll</HintPath>
+    <Reference Include="Simple.Data.PostgreSql">
+      <HintPath>..\packages\Simple.Data.PostgreSql.0.17.0.0\lib\net40\Simple.Data.PostgreSql.dll</HintPath>
     </Reference>
-    <Reference Include="System.Windows.Forms" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Mono.Security">
+      <HintPath>..\packages\Npgsql.2.0.14.3\lib\net40\Mono.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Simple.Data">
+      <HintPath>..\packages\Simple.Data.Core.0.19.0.0\lib\net40\Simple.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Simple.Data.Ado">
+      <HintPath>..\packages\Simple.Data.Ado.0.19.0.0\lib\net40\Simple.Data.Ado.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DatabaseTest.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
-    <ProjectReference Include="..\GANNAI\GANNAI.csproj">
-      <Project>{F9322C92-DEF6-4101-A324-AEBF6D83FD0F}</Project>
-      <Name>GANNAI</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="DNATests.cs" />
-    <None Include="SortListTest.cs" />
-    <None Include="GeneticsTests.cs" />
-    <None Include="NeuralNetworkTest.cs" />
-    <None Include="NeuronTest.cs" />
-    <None Include="ConfigurationTests.cs" />
+    <None Include="packages.config" />
+    <None Include="app.config" />
   </ItemGroup>
 </Project>
