@@ -6,7 +6,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.ComponentModel;
 using System.Diagnostics;
-using GANNAI;
+using Utility;
 
 namespace Genetics {
   public class Population {
@@ -18,6 +18,11 @@ namespace Genetics {
       Generation = generation;
       individuals = new SortList<AIPlayer>();
       InitializeRandomPopulation();
+    }
+
+    public int TotalIndividuals() {
+      return 0;
+      // Return the total amount of total individual, which this generation * population size
     }
 
     //Performs an iteration, where new individuals are born by crossover, mutation and crossover-mutation.
@@ -74,7 +79,7 @@ namespace Genetics {
 
       //Summing 1+2+...+n = n(n+1)/2
       int sum = individuals.Count * (individuals.Count + 1) / 2;
-      int ran = Utility.RandomInt(1, sum);
+      int ran = RandomNum.RandomInt(1, sum);
       int index = 0;
       for (int i = 0; i < individuals.Count; i++) {
         ran -= (i + 1);
@@ -96,7 +101,7 @@ namespace Genetics {
       for (int i = 0; i < individuals.Count; i++)
         sum += individuals.Get(i).GetFitness();
 
-      double ran = Utility.RandomDouble() * sum;
+      double ran = RandomNum.RandomDouble() * sum;
       int index = 0;
       for (int i = 0; i < individuals.Count; i++) {
         ran -= individuals.Get(i).GetFitness();
