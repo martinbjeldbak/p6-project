@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using GANNAI;
+using Utility;
 
 namespace Genetics {
   public class Simulation {
@@ -127,8 +127,14 @@ namespace Genetics {
     /// </summary>
     /// <returns></returns>
     public CrossoverMethod RandomCrossoverMethod() {
-      int randomFuncIndex = Utility.RandomInt(0, allowedCrossoverMethods.Count);
+      int randomFuncIndex = RandomNum.RandomInt(0, allowedCrossoverMethods.Count);
       return allowedCrossoverMethods[randomFuncIndex];
+    }
+
+    /// <summary>
+    /// Saves information about simulation state to the database
+    /// </summary>
+    public void SaveSimulation() {
     }
   }
   public enum OffspringUseCondition {
