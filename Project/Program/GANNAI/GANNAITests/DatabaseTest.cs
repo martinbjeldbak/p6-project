@@ -7,7 +7,7 @@ namespace GANNAITests {
   public class DatabaseTest {
     [Test()]
     public void TestCase() {
-      ChildNeuronDB cnd = new ChildNeuronDB();
+   
     }
   }
 }

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using GANNAI;
+using Utility;
 
 namespace Genetics {
   public class DNA {
@@ -23,7 +23,7 @@ namespace Genetics {
         return;
       Bitstring = new bool[length];
       for(int i = 0; i < length; i++)
-        Bitstring[i] = Utility.RandomBool();
+        Bitstring[i] = RandomNum.RandomBool();
       hashcode = GetHashCode();
     }
 
@@ -79,7 +79,7 @@ namespace Genetics {
     public DNA GetMutated(double mutationRate) {
       bool[] bitstring = new bool[Bitstring.Length];
       for (int i = 0; i < Bitstring.Length; i++)
-        if (Utility.RandomDouble() < mutationRate)
+        if (RandomNum.RandomDouble() < mutationRate)
           bitstring[i] = !Bitstring[i];
       return new DNA(bitstring);
     }

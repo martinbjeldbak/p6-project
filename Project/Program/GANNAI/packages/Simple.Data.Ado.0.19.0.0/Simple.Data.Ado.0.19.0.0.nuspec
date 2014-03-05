@@ -1,17 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
-    <id>Simple.Data.Core</id>
-    <version>0.12.2.2</version>
-    <title>Simple.Data.Core</title>
+    <id>Simple.Data.Ado</id>
+    <version>0.19.0.0</version>
     <authors>Mark Rendle</authors>
     <owners>Mark Rendle</owners>
     <licenseUrl>http://www.opensource.org/licenses/mit-license.php</licenseUrl>
     <projectUrl>http://github.com/markrendle/Simple.Data</projectUrl>
     <iconUrl>http://simplefx.org/images/simpledata100x100.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>A Simple, Dynamic data access library.</description>
-    <summary>A Simple, Dynamic data access library.</summary>
-    <tags>sql database data ado .net40</tags>
+    <description>ADO Adapter for the Simple.Data data access library.</description>
+    <language>en-us</language>
+    <tags>sqlserver database data ado .net40</tags>
+    <dependencies>
+      <dependency id="Simple.Data.Core" version="0.19.0.0" />
+    </dependencies>
   </metadata>
 </package>

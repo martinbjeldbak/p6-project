@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using GANNAI;
+using Utility;
 
 namespace Genetics {
   public class UniformCrossover : CrossoverMethod{
@@ -11,7 +11,7 @@ namespace Genetics {
         throw new Exception("The two bitstrings must have same length to be crossed");
       bool[] result = new bool[dna1.Bitstring.Length];
       for (int i = 0; i < dna1.Bitstring.Length; i++)
-        result[i] = Utility.RandomBool() ? dna1.Bitstring[i] : dna2.Bitstring[i];
+        result[i] = RandomNum.RandomBool() ? dna1.Bitstring[i] : dna2.Bitstring[i];
       return new DNA(result);
     }
   }

@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using GANNAI;
+using Utility;
+
 
 namespace ArtificialNeuralNetwork {
   /// <summary>
@@ -38,7 +39,7 @@ namespace ArtificialNeuralNetwork {
     /// </summary>
     /// <param name="from">The neuron which the connections is coming from.</param>
     public void AddInputConnection(Neuron from) {
-      double weight = Utility.RandomDouble() - 0.5;
+      double weight = RandomNum.RandomDouble() - 0.5;
       AddInputConnection(from, weight);
     }
 
