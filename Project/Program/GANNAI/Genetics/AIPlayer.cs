@@ -8,6 +8,12 @@ using GANNAI;
 namespace Genetics {
 
   public class AIPlayer : IComparable {
+
+    /// <summary>
+    /// Indicates which parents the AIPlayer originates from. Null if it has no ancestors 
+    /// </summary>
+    public readonly AIPlayer Parent1, Parent2;
+    
     private NeuralNetwork neuralNetwork;
     public DNA DNA { get; private set; }
     private double fitness;
@@ -16,9 +22,11 @@ namespace Genetics {
     /// Makes a new individual with a random DNA
     /// </summary>
     /// <param name="random">true if DNA string should be random, false if no DNA string should be made</param>
-    public AIPlayer(NNMaker neuralNetworkMaker) {
+    public AIPlayer(AIPlayer parent1, AIPlayer parent2, NNMaker neuralNetworkMaker) {
       DNA = new DNA(neuralNetworkMaker.DNALength());
       neuralNetwork = neuralNetworkMaker.MakeNeuralNetwork(DNA);
+      Parent1 = parent1;
+      Parent2 = parent2;
       fitness = -1;
     }
 
@@ -26,9 +34,11 @@ namespace Genetics {
     /// Sets a predefined DNA for the AIPlayer
     /// </summary>
     /// <param name="dna"></param>
-    public AIPlayer(DNA dna, NNMaker neuralNetorkMaker) {
-      this.DNA = dna;
-      neuralNetwork = neuralNetorkMaker.MakeNeuralNetwork(dna);
+    public AIPlayer(AIPlayer parent1, AIPlayer parent2, DNA dna, NNMaker neuralNetworkMaker) {
+      neuralNetwork = neuralNetworkMaker.MakeNeuralNetwork(dna);
+      DNA = dna;
+      Parent1 = parent1;
+      Parent2 = parent2;
       fitness = -1;
     }
 
