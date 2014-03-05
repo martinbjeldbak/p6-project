@@ -21,5 +21,7 @@ namespace Genetics {
     /// </summary>
     /// <param name="aiplayer"></param>
     void Visualize(AIPlayer aiplayer, Form form);
+
+    string Name();
   }
 }

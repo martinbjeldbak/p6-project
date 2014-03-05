@@ -263,5 +263,12 @@ namespace FallingStars {
     public int NumOutputs() {
       return 4;
     }
+
+    /// <summary>
+    /// Returns the name of the game as a string.
+    /// </summary>
+    public string Name(){
+      return "Snake";
+    }
   }
 }
