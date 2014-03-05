@@ -29,6 +29,10 @@ namespace Genetics {
     /// </summary>
     public readonly double MutateAfterCrossoverAmount;
 
+    public readonly OffspringUseCondition OffspringUseCondition;
+
+    public readonly OffspringReplaceMethod OffspringReplaceMethod;
+
     public readonly bool AllowUniformCrossover;
 
     public readonly bool AllowTwoPointCrossover;
@@ -71,7 +75,9 @@ namespace Genetics {
     public NNMaker NeuralNetworkMaker { get; private set; }
 
     public Simulation(AITrainableGame game, int populationSize = 100, double crossOverBredAmount = 0.5, double mutateAfterCrossoverAmount = 0.1, 
-      double mutationRate = 0.05, bool allowSinglePointCrossover = true, bool allowTwoPointCrossover = true, bool allowUniformCrossover = true) {
+      double mutationRate = 0.05, bool allowSinglePointCrossover = true, bool allowTwoPointCrossover = true, bool allowUniformCrossover = true,
+      OffspringUseCondition offspringUseCondition = OffspringUseCondition.IfBetterThanAny,
+      OffspringReplaceMethod offspringReplaceMethod = OffspringReplaceMethod.ReplaceWorst) {
       PopulationSize = populationSize;
       CrossoverBredAmount = crossOverBredAmount;
       MutateAfterCrossoverAmount = mutateAfterCrossoverAmount;
@@ -79,6 +85,8 @@ namespace Genetics {
       AllowSinglePointCrossover = allowSinglePointCrossover;
       AllowTwoPointCrossover = allowTwoPointCrossover;
       AllowUniformCrossover = allowUniformCrossover;
+      OffspringUseCondition = offspringUseCondition;
+      OffspringReplaceMethod = offspringReplaceMethod;
 
       allowedCrossoverMethods = new List<CrossoverMethod>();
       if (AllowSinglePointCrossover)
@@ -122,5 +130,17 @@ namespace Genetics {
       int randomFuncIndex = Utility.RandomInt(0, allowedCrossoverMethods.Count);
       return allowedCrossoverMethods[randomFuncIndex];
     }
+  }
+  public enum OffspringUseCondition {
+    IfBetterThanAny,
+    IfBetterThanAll,
+    IfBetterThanOneParent,
+    IfBetterThanBothParents
+  }
+  public enum OffspringReplaceMethod {
+    ReplaceWorst,
+    ReplaceWorstParent,
+    ReplaceBestParent,
+    ReplaceRandomParent,
   }
 }
