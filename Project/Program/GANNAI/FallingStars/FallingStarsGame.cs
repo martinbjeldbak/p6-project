@@ -156,5 +156,12 @@ namespace FallingStars {
     public AITrainableGame GetNewGameInstance() {
       return new FallingStarsGame();
     }
+
+    /// <summary>
+    /// Returns the name of the game as a string.
+    /// </summary>
+    public string Name(){
+      return "Falling Stars";
+    }
   }
 }

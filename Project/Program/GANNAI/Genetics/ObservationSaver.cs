@@ -1,7 +1,7 @@
 ﻿using System;
 using Simple.Data;
 
-namespace GANNAI {
+namespace Genetics {
   public class ObservationSaver {
     private Database db;
 
@@ -19,7 +19,26 @@ namespace GANNAI {
       db = Database.OpenConnection(connString);
     }
 
-    public void SaveSimulation(Simulation) {
+    public void SaveSimulation(Simulation si) {
+      // Simulation information to be saved
+      int ps = si.PopulationSize;
+      int mr = si.MutationRate;
+      int cba = si.CrossoverBredAmount;
+      int maca = si.MutateAfterCrossoverAmount;
+      bool uniform = si.AllowUniformCrossover;
+      bool singlepoint = si.AllowSinglePointCrossover;
+      bool twopoint = si.AllowTwoPointCrossover;
+
+      // Population information to be saved
+      Population p = si.Population;
+      int g = p.Generation;
+      int minFit = p.GetWorst().GetFitness();
+      int meanFit = p.GetMean().GetFitness();
+      int maxFit = p.GetBest().GetFitness();
+      double avgFit = p.GetAverage();
+
+      // Game information to be saved
+      string name = si.Game.Name();
     }
   }
 }
