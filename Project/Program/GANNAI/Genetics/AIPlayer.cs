@@ -109,6 +109,8 @@ namespace Genetics {
     }
 
     public double CalcSimilarity(AIPlayer a) {
+      
+      /*
       double similarity = 0;
 
      
@@ -125,6 +127,14 @@ namespace Genetics {
           similarity += Math.Min(AncestorLink.Parent2Amount, a.AncestorLink.Parent2Amount);
     
       return similarity;
+       * */
+      double sameBits = 0;
+      for (int i = 0; i < DNA.Bitstring.Length; i++) {
+        sameBits += DNA.Bitstring[i] == a.DNA.Bitstring[i] ? 1 : 0;
+      }
+      return (sameBits / DNA.Bitstring.Length);
+
+
     }
   }
 }
