@@ -10,6 +10,13 @@ namespace Genetics {
     public Population Population { get; private set; }
 
     /// <summary>
+    /// If set, an individual x can only be added to the population if it is better than
+    /// the most similar individual y already contained in the population. 
+    /// If x is added, y is removed.
+    /// </summary>
+    public readonly bool ForceDiversity;
+
+    /// <summary>
     /// The number of individuals in a population
     /// </summary>
     public readonly int PopulationSize;
@@ -28,10 +35,6 @@ namespace Genetics {
     /// The fraction of newly breeded individuals from crossover, that should also be mutated
     /// </summary>
     public readonly double MutateAfterCrossoverAmount;
-
-    public readonly OffspringUseCondition OffspringUseCondition;
-
-    public readonly OffspringReplaceMethod OffspringReplaceMethod;
 
     public readonly bool AllowUniformCrossover;
 
@@ -76,8 +79,7 @@ namespace Genetics {
 
     public Simulation(AITrainableGame game, int populationSize = 100, double crossOverBredAmount = 0.5, double mutateAfterCrossoverAmount = 0.1, 
       double mutationRate = 0.05, bool allowSinglePointCrossover = true, bool allowTwoPointCrossover = true, bool allowUniformCrossover = true,
-      OffspringUseCondition offspringUseCondition = OffspringUseCondition.IfBetterThanAny,
-      OffspringReplaceMethod offspringReplaceMethod = OffspringReplaceMethod.ReplaceWorst) {
+      bool forceDiversity = true) {
       PopulationSize = populationSize;
       CrossoverBredAmount = crossOverBredAmount;
       MutateAfterCrossoverAmount = mutateAfterCrossoverAmount;
@@ -85,8 +87,7 @@ namespace Genetics {
       AllowSinglePointCrossover = allowSinglePointCrossover;
       AllowTwoPointCrossover = allowTwoPointCrossover;
       AllowUniformCrossover = allowUniformCrossover;
-      OffspringUseCondition = offspringUseCondition;
-      OffspringReplaceMethod = offspringReplaceMethod;
+      ForceDiversity = forceDiversity;
 
       allowedCrossoverMethods = new List<CrossoverMethod>();
       if (AllowSinglePointCrossover)
@@ -136,17 +137,5 @@ namespace Genetics {
     /// </summary>
     public void SaveSimulation() {
     }
-  }
-  public enum OffspringUseCondition {
-    IfBetterThanAny,
-    IfBetterThanAll,
-    IfBetterThanOneParent,
-    IfBetterThanBothParents
-  }
-  public enum OffspringReplaceMethod {
-    ReplaceWorst,
-    ReplaceWorstParent,
-    ReplaceBestParent,
-    ReplaceRandomParent,
   }
 }

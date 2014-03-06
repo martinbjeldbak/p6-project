@@ -6,7 +6,8 @@ using Utility;
 
 namespace Genetics {
   public class SinglePointCrossover : CrossoverMethod {
-    public DNA Cross(DNA dna1, DNA dna2) {
+
+    public override DNA Cross(DNA dna1, DNA dna2) {
       if (dna1.Bitstring.Length != dna2.Bitstring.Length)
         throw new Exception("The two bitstrings to be crossed must have the same length.");
 
@@ -25,6 +26,14 @@ namespace Genetics {
         result[i] = left[i];
       for (int i = crossPoint; i < dna1.Bitstring.Length; i++)
         result[i] = right[i];
+
+      //calc how much is derived from each ancestor
+      double ancestor1amount = (double)crossPoint / dna1.Bitstring.Length;
+      if (left == dna2.Bitstring)
+        ancestor1amount = 1.0 - ancestor1amount;
+      LastCrossAncestorLink = new AncestorLink(dna1, dna2, ancestor1amount, 1.0 - ancestor1amount);
+
+      //return new DNA
       return new DNA(result);
     }
   }

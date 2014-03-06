@@ -23,7 +23,7 @@ namespace GANNAITests {
       double[] lastOutput = new double[0];
 
       for (int p = 0; p < 7; p++) {
-        input[p] = Utility.RandomDouble() * 100.0 - 50.0;
+        input[p] = Utility.RandomNum.RandomDouble() * 100.0 - 50.0;
         lastInput[p] = input[p];
       }
       for (int i = 0; i < 10; i++) {
