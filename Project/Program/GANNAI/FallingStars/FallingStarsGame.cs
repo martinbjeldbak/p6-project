@@ -6,7 +6,6 @@ using System.Threading;
 using System.Windows.Forms;
 using System.Drawing;
 using Genetics;
-using GANNAI;
 
 namespace FallingStars {
   public class FallingStarsGame : AITrainableGame {
