@@ -4,6 +4,7 @@ using System.Linq;
 using System.Windows.Forms;
 using Utility;
 
+
 namespace GANNAIUI {
   static class Program {
     /// <summary>
@@ -12,6 +13,9 @@ namespace GANNAIUI {
     [STAThread]
     static void Main() {
       Log.Info("Starting GANNAI-UI");
+
+      double d = 0.5;
+      Log.Info(d.ToString(System.Globalization.CultureInfo.InvariantCulture));
       Application.EnableVisualStyles();
       Application.SetCompatibleTextRenderingDefault(false);
       Application.Run(new Form1());
