@@ -36,7 +36,7 @@ namespace Genetics {
       if (Simulation.ForceDiversity) {
         foreach (AIPlayer o in offspring) {
           AIPlayer mostSimilar = o.MostSimilar(individuals);
-          if (o.CalcSimilarity(mostSimilar) > 0.5) {
+          if (o.CalcSimilarity(mostSimilar) > 0.9) {
             if (o.GetFitness() > mostSimilar.GetFitness()) {
               individuals.Remove(mostSimilar);
               individuals.Add(o);

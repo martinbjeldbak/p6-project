@@ -12,15 +12,15 @@ namespace Genetics {
   public class LinearRankMethod : RankMethod {
     public int GetRandomIndex(int num) {
       int sum = num * (num + 1) / 2;
-      int ran = RandomNum.RandomInt(1, sum);
-      int index = 0;
+      int ran = RandomNum.RandomInt(0, sum);
+      int subtract = num;
       for (int i = 0; i < num; i++) {
-        ran -= (i + 1);
-        if (ran <= 0)
-          return index;
-        index++;
+        ran -= subtract;
+        if (ran < 0)
+          return i;
+        subtract--;
       }
-      return index;
+      throw new Exception("Some index should have been selected before reaching this point");
     }
   }
 }
