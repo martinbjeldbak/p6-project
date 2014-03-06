@@ -112,6 +112,8 @@ namespace Genetics {
         , gameId, ps, mr, cba, maca, uniform, singlepoint, twopoint, saved_at);
       cmd = new MySqlCommand(query, connection);
       cmd.ExecuteNonQuery();
+
+      InsertPopulationInDB();
     }
 
     /// <summary>
