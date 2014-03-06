@@ -11,7 +11,7 @@ namespace GANNAIUI {
     /// </summary>
     [STAThread]
     static void Main() {
-      Logger.Log("Starting GANNAI-UI");
+      Log.Info("Starting GANNAI-UI");
       Application.EnableVisualStyles();
       Application.SetCompatibleTextRenderingDefault(false);
       Application.Run(new Form1());
