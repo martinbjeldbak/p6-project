@@ -93,6 +93,10 @@
       <Project>{3025EBE0-C362-4F31-8B1A-E3B0CF3ABACB}</Project>
       <Name>Genetics</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Utility\Utility.csproj">
+      <Project>{94E3B305-BCA1-4A47-B766-A456DEA24560}</Project>
+      <Name>Utility</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
