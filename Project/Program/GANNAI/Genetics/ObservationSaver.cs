@@ -52,6 +52,8 @@ namespace Genetics {
     /// </summary>
     /// <param name="si">The simulation.</param>
     public void SaveSimulation(Simulation si) {
+      Console.WriteLine("Opening DB connection...");
+      this.OpenDBConnection();
       Console.WriteLine("Finding corresponding game...");
       int gameId = FindGameInDB(si.Game.Name());
       Console.WriteLine("Game id retrieved!");
@@ -84,13 +86,14 @@ namespace Genetics {
       bool uniform = si.AllowUniformCrossover;
       bool singlepoint = si.AllowSinglePointCrossover;
       bool twopoint = si.AllowTwoPointCrossover;
+      DateTime saved_at = DateTime.Now;
 
       query = String.Format("INSERT INTO simulation (game_id, population_size,"
         + " mutation_rate, crossover_breed_amount, mutate_after_crossover_amount,"
-        + " uniform_crossover, single_point_crossover, two_point_crossover)"
-        + " VALUES('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}')"
+        + " uniform_crossover, single_point_crossover, two_point_crossover, simulated_at)"
+        + " VALUES('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}')"
         + " IN observations"
-        , gameId, ps, mr, cba, maca, uniform, singlepoint, twopoint);
+        , gameId, ps, mr, cba, maca, uniform, singlepoint, twopoint, saved_at);
       cmd = new MySqlCommand(query, connection);
       cmd.ExecuteNonQuery();
     }
@@ -127,7 +130,6 @@ namespace Genetics {
       query = "SELECT COUNT(*) FROM game WHERE name = " 
         + name + " IN observations";
       int dbGameCount = 0;
-      this.OpenDBConnection();
       cmd = new MySqlCommand(query, connection);
       //ExecuteScalar will return one value
       dbGameCount = int.Parse(cmd.ExecuteScalar() + "");

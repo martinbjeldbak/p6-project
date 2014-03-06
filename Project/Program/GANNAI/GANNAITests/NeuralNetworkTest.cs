@@ -169,6 +169,10 @@ namespace GANNAITests {
     public AITrainableGame GetNewGameInstance() {
       throw new NotImplementedException();
     }
+
+    public string Name(){
+      return "GameWith7Inputs80Outputs";
+    }
   }
 
 }
