@@ -84,7 +84,7 @@ namespace Genetics {
       this.OpenDBConnection();
 
       Console.WriteLine("Inserting new population data...");
-      InsertPopulationInDB(si.Population);
+      InsertPopulationInDB();
       Console.WriteLine("Population data inserted!");
 
       Console.WriteLine("Closing DB connection...");
@@ -121,14 +121,15 @@ namespace Genetics {
     /// </summary>
     /// <param name="simId">Simulation id.</param>
     /// <param name="p">Population.</param>
-    private void InsertPopulationInDB(Population p){
+    private void InsertPopulationInDB(){
+      Population p = si.Population;
       int g = p.Generation;
       double minFit = p.GetWorst().GetFitness();
       double meanFit = p.GetMean().GetFitness();
       double maxFit = p.GetBest().GetFitness();
       double avgFit = p.GetAverage();
 
-      query = String.Format("INSERT INTO simulation (simulation_id,"
+      query = String.Format("INSERT INTO population (simulation_id,"
         + " generation, min_fitness, max_fitness, avg_fitness, mean_fitness)"
         + " VALUES('{0}', '{1}', '{2}', '{3}', '{4}', '{5}')"
         + " IN observations"
