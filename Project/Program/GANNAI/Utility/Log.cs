@@ -2,8 +2,8 @@
 using System.IO;
 
 namespace Utility {
-  public static class Logger {
-    public static void Log(string msg) {
+  public static class Log {
+    public static void Info(string msg) {
       LogMessage(msg, "info");
     }
 
