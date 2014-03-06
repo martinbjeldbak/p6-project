@@ -13,14 +13,13 @@ namespace Genetics {
 
     public ObservationSaver(Simulation si) {
       string server = "p6project.cfahefdbp8px.us-west-2.rds.amazonaws.com";
-      string port = "3306";
-      string dbName = "observation";
+      string dbName = "observations";
       string user = "d601f14";
       string pass = "p6d601f14";
 
       string connectionString = String.Format("Server={0};" +
         "User={1};Password={2};Database={3};",
-        server, port, user, pass, dbName);
+        server, user, pass, dbName);
       connection = new MySqlConnection(connectionString);
 
       this.si = si;
@@ -151,7 +150,7 @@ namespace Genetics {
       int dbGameCount = 0;
       cmd = new MySqlCommand(query, connection);
       //ExecuteScalar will return one value
-      dbGameCount = int.Parse(cmd.ExecuteScalar() + "");
+      dbGameCount = int.Parse(cmd.ExecuteScalar());
 
       if(dbGameCount == 1){ //row exists
         Console.WriteLine("Game found. Retrieving id...");
