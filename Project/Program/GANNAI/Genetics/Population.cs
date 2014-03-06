@@ -146,15 +146,15 @@ namespace Genetics {
     /// </summary>
     /// <returns>The individual in the middle of the list of individuals.</returns>
     public AIPlayer GetMean(){
-      return individuals.Get(Math.Floor(individuals.Count / 2));
+      return individuals.Get((int)(individuals.Count / 2.0));
     }
 
     /// <summary>
     /// Gets the average fitness of the entire population.
     /// </summary>
     /// <returns>The average fitness of the population.</returns>
-    public AIPlayer GetAverage(){
-      int total = 0;
+    public double GetAverage(){
+      double total = 0.0;
       for(int i = 0; i < individuals.Count; i++)
         total += individuals.Get(i).GetFitness();
       return total / individuals.Count;

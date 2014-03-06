@@ -59,6 +59,9 @@
     <Reference Include="Simple.Data.Mysql">
       <HintPath>..\packages\Simple.Data.Mysql.0.18.3.3\lib\net40\Simple.Data.Mysql.dll</HintPath>
     </Reference>
+    <Reference Include="MySql.Data">
+      <HintPath>..\packages\MySql.Data.6.8.3\lib\net40\MySql.Data.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AIPlayer.cs" />
