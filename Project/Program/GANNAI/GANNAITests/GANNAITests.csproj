@@ -49,6 +49,5 @@
     <None Include="GeneticsTests.cs" />
     <None Include="NeuralNetworkTest.cs" />
     <None Include="NeuronTest.cs" />
-    <None Include="ConfigurationTests.cs" />
   </ItemGroup>
 </Project>
