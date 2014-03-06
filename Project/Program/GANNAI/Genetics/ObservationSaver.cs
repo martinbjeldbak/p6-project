@@ -6,9 +6,12 @@ namespace Genetics {
     private MySqlConnection connection;
     private MySqlCommand cmd;
     private string query;
+    private long simId;
+    private int gameId;
     private MySqlDataReader dataReader;
+    private Simulation si;
 
-    public ObservationSaver() {
+    public ObservationSaver(Simulation si) {
       string server = "p6project.cfahefdbp8px.us-west-2.rds.amazonaws.com";
       string port = "3306";
       string dbName = "observation";
@@ -19,6 +22,32 @@ namespace Genetics {
         "User={1};Password={2};Database={3};",
         server, port, user, pass, dbName);
       connection = new MySqlConnection(connectionString);
+
+      this.si = si;
+
+      Initialize();
+    }
+
+    /// <summary>
+    /// Initialize the simulation instance in the Database.
+    /// </summary>
+    private void Initialize(){
+      Console.WriteLine("Opening DB connection...");
+      this.OpenDBConnection();
+
+      Console.WriteLine("Finding corresponding game...");
+      gameId = FindGameInDB(si.Game.Name());
+      Console.WriteLine("Game id retrieved!");
+
+      Console.WriteLine("Inserting new simulation data...");
+      InsertSimulationInDB(gameId, si);
+      Console.WriteLine("Simulation data inserted!");
+
+      Console.WriteLine("Retrieving population id...");
+      simId = cmd.LastInsertedId;
+
+      Console.WriteLine("Closing DB connection...");
+      this.CloseDBConnection();
     }
 
     private void OpenDBConnection(){
@@ -48,25 +77,14 @@ namespace Genetics {
     }
 
     /// <summary>
-    /// Saves the data of the entire simulation.
+    /// Saves the data of the Population.
     /// </summary>
-    /// <param name="si">The simulation.</param>
-    public void SaveSimulation(Simulation si) {
+    public void SavePopulation() {
       Console.WriteLine("Opening DB connection...");
       this.OpenDBConnection();
-      Console.WriteLine("Finding corresponding game...");
-      int gameId = FindGameInDB(si.Game.Name());
-      Console.WriteLine("Game id retrieved!");
-
-      Console.WriteLine("Inserting new simulation data...");
-      InsertSimulationInDB(gameId, si);
-      Console.WriteLine("Simulation data inserted!");
-
-      Console.WriteLine("Retrieving population id...");
-      long simId = cmd.LastInsertedId;
 
       Console.WriteLine("Inserting new population data...");
-      InsertPopulationInDB(simId, si.Population);
+      InsertPopulationInDB(si.Population);
       Console.WriteLine("Population data inserted!");
 
       Console.WriteLine("Closing DB connection...");
@@ -103,7 +121,7 @@ namespace Genetics {
     /// </summary>
     /// <param name="simId">Simulation id.</param>
     /// <param name="p">Population.</param>
-    private void InsertPopulationInDB(long simId, Population p){
+    private void InsertPopulationInDB(Population p){
       int g = p.Generation;
       double minFit = p.GetWorst().GetFitness();
       double meanFit = p.GetMean().GetFitness();
