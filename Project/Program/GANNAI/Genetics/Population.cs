@@ -143,6 +143,33 @@ namespace Genetics {
     }
 
     /// <summary>
+    /// Gets the least fit individual.
+    /// </summary>
+    /// <returns>The least fit individual in the population.</returns>
+    public AIPlayer GetWorst() {
+      return individuals.Get(individuals.Count - 1);
+     }
+
+    /// <summary>
+    /// Gets the mean individual.
+    /// </summary>
+    /// <returns>The individual in the middle of the list of individuals.</returns>
+    public AIPlayer GetMean(){
+      return individuals.Get((int)(individuals.Count / 2.0));
+    }
+
+    /// <summary>
+    /// Gets the average fitness of the entire population.
+    /// </summary>
+    /// <returns>The average fitness of the population.</returns>
+    public double GetAverage(){
+      double total = 0.0;
+      for(int i = 0; i < individuals.Count; i++)
+        total += individuals.Get(i).GetFitness();
+      return total / individuals.Count;
+    }
+
+    /// <summary>
     /// Returns the fitness values of all individuals in descending order
     /// </summary>
     /// <returns></returns>
