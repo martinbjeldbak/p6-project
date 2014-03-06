@@ -1,7 +1,5 @@
 ﻿using NUnit.Framework;
 using System;
-using GANNAI;
-
 namespace GANNAITests {
   [TestFixture()]
   public class DatabaseTest {
