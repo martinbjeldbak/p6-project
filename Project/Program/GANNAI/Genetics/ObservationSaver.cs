@@ -1,5 +1,4 @@
 ﻿using System;
-using Simple.Data;
 
 namespace GANNAI {
   public class ObservationSaver {

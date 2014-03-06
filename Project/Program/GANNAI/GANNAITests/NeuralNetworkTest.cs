@@ -3,7 +3,6 @@ using System;
 using ArtificialNeuralNetwork;
 using Genetics;
 using System.Windows.Forms;
-using GANNAI;
 
 namespace GANNAITests {
   [TestFixture()]
