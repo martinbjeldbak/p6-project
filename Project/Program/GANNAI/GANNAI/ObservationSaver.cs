@@ -18,9 +18,6 @@ namespace GANNAI {
 
       db = Database.OpenConnection(connString);
     }
-
-    public void SaveSimulation(Simulation) {
-    }
   }
 }
 

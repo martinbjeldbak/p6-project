@@ -17,7 +17,6 @@ namespace Genetics {
     /// <summary>
     /// Constructs a random DNA string of a given length
     /// </summary>
-
     public DNA(int length) {
       if (length == 0)
         return;
@@ -34,6 +33,12 @@ namespace Genetics {
       this.Bitstring = bitstring;
     }
 
+    /// <summary>
+    /// Construct a DNA string with a given bitstring an origin
+    /// </summary>
+    public DNA(bool[] bitstring, double[] origin) {
+      this.Bitstring = bitstring;
+    }
 
     /// <summary>
     /// Returns the value of a particular position on the DNA string

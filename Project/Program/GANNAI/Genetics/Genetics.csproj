@@ -54,10 +54,14 @@
   <ItemGroup>
     <Compile Include="AIPlayer.cs" />
     <Compile Include="AITrainableGame.cs" />
+    <Compile Include="AncestorLink.cs" />
     <Compile Include="Crossover methods\SinglePointCrossover.cs" />
     <Compile Include="Crossover methods\TwoPointCrossover.cs" />
     <Compile Include="Crossover methods\UniformCrossover.cs" />
     <Compile Include="CrossoverMethod.cs" />
+    <Compile Include="Rank methods\HalvingRankMethod.cs" />
+    <Compile Include="Rank methods\LinearRankMethod.cs" />
+    <Compile Include="RankMethod.cs" />
     <Compile Include="Simulation.cs" />
     <Compile Include="Neural network makers\SimpleNNMaker.cs" />
     <Compile Include="DNA.cs" />

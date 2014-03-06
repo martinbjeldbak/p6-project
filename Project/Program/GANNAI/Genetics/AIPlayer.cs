@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using ArtificialNeuralNetwork;
+using Utility;
 
 
 namespace Genetics {
@@ -10,9 +11,14 @@ namespace Genetics {
   public class AIPlayer : IComparable {
 
     /// <summary>
-    /// Indicates which parents the AIPlayer originates from. Null if it has no ancestors 
+    /// Indicates which parents it originates from and how much it looks like each parent. Null if it has no ancestors.
     /// </summary>
-    public readonly AIPlayer Parent1, Parent2;
+    public readonly AncestorLink AncestorLink;
+
+    /// <summary>
+    /// The amount of DNA inherited from a parent
+    /// </summary>
+    public readonly double Parent1origin, Parent2origin;
     
     private NeuralNetwork neuralNetwork;
     public DNA DNA { get; private set; }
@@ -22,11 +28,9 @@ namespace Genetics {
     /// Makes a new individual with a random DNA
     /// </summary>
     /// <param name="random">true if DNA string should be random, false if no DNA string should be made</param>
-    public AIPlayer(AIPlayer parent1, AIPlayer parent2, NNMaker neuralNetworkMaker) {
+    public AIPlayer(NNMaker neuralNetworkMaker) {
       DNA = new DNA(neuralNetworkMaker.DNALength());
       neuralNetwork = neuralNetworkMaker.MakeNeuralNetwork(DNA);
-      Parent1 = parent1;
-      Parent2 = parent2;
       fitness = -1;
     }
 
@@ -34,11 +38,10 @@ namespace Genetics {
     /// Sets a predefined DNA for the AIPlayer
     /// </summary>
     /// <param name="dna"></param>
-    public AIPlayer(AIPlayer parent1, AIPlayer parent2, DNA dna, NNMaker neuralNetworkMaker) {
+    public AIPlayer(AncestorLink ancestorLink, DNA dna, NNMaker neuralNetworkMaker) {
       neuralNetwork = neuralNetworkMaker.MakeNeuralNetwork(dna);
       DNA = dna;
-      Parent1 = parent1;
-      Parent2 = parent2;
+      this.AncestorLink = ancestorLink;
       fitness = -1;
     }
 
@@ -84,6 +87,44 @@ namespace Genetics {
     /// <returns></returns>
     public int CompareTo(object obj) {
       return fitness.CompareTo(((AIPlayer)obj).fitness);
+    }
+
+
+    /// <summary>
+    /// Returns the most similar AIPlayer from the list given, based on a comparison of the DNA origins 
+    /// </summary>
+    /// <param name="list">The list to search in</param>
+    /// <returns>The most similar AIPlayer</returns>
+    public AIPlayer MostSimilar(SortList<AIPlayer> list) {
+      double max = Double.NegativeInfinity;
+      AIPlayer best = null;
+      foreach (AIPlayer a in list){
+        double similarity = CalcSimilarity(a);
+        if (similarity > max) {
+          best = a;
+          max = similarity;
+        }
+      }
+      return best;
+    }
+
+    public double CalcSimilarity(AIPlayer a) {
+      double similarity = 0;
+
+     
+        if (a.AncestorLink == null)
+          return 0;
+
+        if (AncestorLink.Parent1 == a.AncestorLink.Parent1)
+          similarity += Math.Min(AncestorLink.Parent1Amount, a.AncestorLink.Parent1Amount);
+        else if (AncestorLink.Parent1 == a.AncestorLink.Parent2)
+          similarity += Math.Min(AncestorLink.Parent1Amount, a.AncestorLink.Parent2Amount);
+        if (AncestorLink.Parent2 == a.AncestorLink.Parent1)
+          similarity += Math.Min(AncestorLink.Parent2Amount, a.AncestorLink.Parent1Amount);
+        else if (AncestorLink.Parent2 == a.AncestorLink.Parent2)
+          similarity += Math.Min(AncestorLink.Parent2Amount, a.AncestorLink.Parent2Amount);
+    
+      return similarity;
     }
   }
 }
