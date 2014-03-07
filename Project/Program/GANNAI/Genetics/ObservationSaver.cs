@@ -97,19 +97,18 @@ namespace Genetics {
     /// <param name="si">Simulation.</param>
     private void InsertSimulationInDB(int gameId, Simulation si){
       int ps = si.PopulationSize;
-      double mr = si.MutationRate;
-      double cba = si.CrossoverBredAmount;
-      double maca = si.MutateAfterCrossoverAmount;
+      string mr = si.MutationRate.ToString(System.Globalization.CultureInfo.InvariantCulture);
+      string cba = si.CrossoverBredAmount.ToString(System.Globalization.CultureInfo.InvariantCulture);
+      string maca = si.MutateAfterCrossoverAmount.ToString(System.Globalization.CultureInfo.InvariantCulture);
       bool uniform = si.AllowUniformCrossover;
       bool singlepoint = si.AllowSinglePointCrossover;
       bool twopoint = si.AllowTwoPointCrossover;
-      DateTime saved_at = DateTime.Now;
+      string saved_at = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
 
-      query = String.Format("INSERT INTO simulation (game_id, population_size,"
+      query = String.Format("INSERT INTO observations.simulation (game_id, population_size,"
         + " mutation_rate, crossover_breed_amount, mutate_after_crossover_amount,"
         + " uniform_crossover, single_point_crossover, two_point_crossover, simulated_at)"
         + " VALUES('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}')"
-        + " IN observations"
         , gameId, ps, mr, cba, maca, uniform, singlepoint, twopoint, saved_at);
       cmd = new MySqlCommand(query, connection);
       cmd.ExecuteNonQuery();
@@ -123,16 +122,15 @@ namespace Genetics {
     private void InsertPopulationInDB(){
       Population p = si.Population;
       int g = p.Generation;
-      double minFit = p.GetWorst().GetFitness();
-      double meanFit = p.GetMean().GetFitness();
-      double maxFit = p.GetBest().GetFitness();
-      double avgFit = p.GetAverage();
+      string minFit = p.GetWorst().GetFitness().ToString(System.Globalization.CultureInfo.InvariantCulture);
+      string meanFit = p.GetMean().GetFitness().ToString(System.Globalization.CultureInfo.InvariantCulture);
+      string maxFit = p.GetBest().GetFitness().ToString(System.Globalization.CultureInfo.InvariantCulture);
+      string avgFit = p.GetAverage().ToString(System.Globalization.CultureInfo.InvariantCulture);
 
-      query = String.Format("INSERT INTO population (simulation_id,"
+      query = String.Format("INSERT INTO observations.population (simulation_id,"
         + " generation, min_fitness, max_fitness, avg_fitness, mean_fitness)"
-        + " VALUES('{0}', '{1}', '{2}', '{3}', '{4}', '{5}')"
-        + " IN observations"
-        , simId, g, minFit, maxFit, avgFit, meanFit);
+        + " VALUES('{0}', '{1}', '{2}', '{3}', '{4}', '{5}')",
+        simId, g, minFit, maxFit, avgFit, meanFit);
       cmd = new MySqlCommand(query, connection);
       cmd.ExecuteNonQuery();
     }
@@ -145,17 +143,21 @@ namespace Genetics {
     /// <param name="name">Name of the game.</param>
     private int FindGameInDB(string name){
       int gameId;
-      query = "SELECT COUNT(*) FROM game WHERE name = " 
-        + name + " IN observations";
+
+      query = "SELECT COUNT(*) FROM observations.game WHERE name = '"
+        + name + "'";
       int dbGameCount = 0;
       cmd = new MySqlCommand(query, connection);
       //ExecuteScalar will return one value
-      dbGameCount = int.Parse(cmd.ExecuteScalar());
+
+      dbGameCount = int.Parse(cmd.ExecuteScalar() + "");
+
 
       if(dbGameCount == 1){ //row exists
         Console.WriteLine("Game found. Retrieving id...");
-        query = "SELECT id FROM game WHERE name = " 
-          + name + " IN observations";
+        query = "SELECT id FROM observations.game WHERE name = '" 
+          + name + "'";
+
         cmd = new MySqlCommand(query, connection);
         dataReader = cmd.ExecuteReader();
         dataReader.Read();
@@ -166,13 +168,13 @@ namespace Genetics {
         throw new Exception("There is more than one entry of the game in the table!");
       else { //insert new row
         Console.WriteLine("Inserting new game...");
-        query = "INSERT INTO game (name) VALUES('" + name + "') IN observations";
+        query = "INSERT INTO observations.game (name) VALUES('" + name + "')";
         cmd = new MySqlCommand(query, connection);
         cmd.ExecuteNonQuery();
         //get the new id
         Console.WriteLine("New row inserted. Retrieving new id...");
-        query = "SELECT id FROM game WHERE name = " 
-          + name + " IN observations";
+        query = "SELECT id FROM observations.game WHERE name = '" 
+          + name + "'";
         cmd = new MySqlCommand(query, connection);
         dataReader = cmd.ExecuteReader();
         dataReader.Read();
