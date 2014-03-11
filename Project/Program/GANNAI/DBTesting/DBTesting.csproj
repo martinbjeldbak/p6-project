@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>10.0.0</ProductVersion>
+    <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{E3616AD0-7589-4AD1-9DCF-7FFE4DDA7A28}</ProjectGuid>
     <OutputType>Exe</OutputType>
@@ -52,5 +52,15 @@
   <ItemGroup>
     <None Include="packages.config" />
     <None Include="app.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Genetics\Genetics.csproj">
+      <Project>{3025EBE0-C362-4F31-8B1A-E3B0CF3ABACB}</Project>
+      <Name>Genetics</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FallingStars\FallingStars.csproj">
+      <Project>{0343135E-EECA-4D19-99FC-7CC2DA7C859B}</Project>
+      <Name>FallingStars</Name>
+    </ProjectReference>
   </ItemGroup>
 </Project>
