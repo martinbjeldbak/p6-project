@@ -11,8 +11,11 @@ using Utility;
 namespace Genetics {
   public class Population {
     private SortList<AIPlayer> individuals;
+
     public int Generation { get; private set; }
+
     public Simulation Simulation;
+
     public Population(Simulation simulation, int generation) {
       Simulation = simulation;
       Generation = generation;
@@ -36,7 +39,6 @@ namespace Genetics {
       individuals.Crop(Simulation.PopulationSize);
       Generation++;
     }
-
     //Returns a list of new individuals bred from the current population
     private List<AIPlayer> BreedIndividuals() {
 
@@ -74,13 +76,11 @@ namespace Genetics {
 
       return newlyBred;
     }
-
     //A weighted random selection of an individual based on the rank of each individual (least fitness has rank 1, greatest fitness has rank n)
     private AIPlayer SelectIndividualRankBased() {
       RankMethod rankMethod = new LinearRankMethod();
       return individuals.Get(rankMethod.GetRandomIndex(individuals.Count));
     }
-
     public void InitializeRandomPopulation() {
       if (individuals == null)
         individuals = new SortList<AIPlayer>();
@@ -137,6 +137,37 @@ namespace Genetics {
       for(int i = 0; i < individuals.Count; i++)
         result[i] = individuals.Get(i).GetFitness();
       return result;
+    }
+
+    /// <summary>
+    /// Calculates the fitness of all AIPlayers in the population by
+    /// simulating a game being played with each AIPlayer. 
+    /// The fitness values can be retrieved by balling GetFitnessValues()
+    /// This method will 
+    /// </summary>
+    public void CalcFitnessValues(SortList<AIPlayer> list) {
+      Parallel.For(0, list.Count, i => list.Get(i).CalcFitness(Simulation.Game));
+  }
+
+    /// <summary>
+    /// Measures the diversity of a population.
+    /// The higher the value, the more diverse is the population.
+    /// </summary>
+    /// <returns>The diversity.</returns>
+    public double MeasureDiversity() {
+      int outputSize = individuals.Get(0).neuralNetwork.GetNumberOfOutputs();
+      int outputCount = new int[outputSize];
+
+      foreach(AIPlayer i in individuals)
+        outputCount[i.GetOutput()]++;
+      
+      double numerator = 0.0;
+      for (int i = 0; i < outputSize; i++)
+        numerator += outputCount[i] * ( outputCount[i] - 1 );
+
+      int s = individuals.Count;
+      double demoninator = s * (s - 1); 
+      return 1.0 - numerator / demoninator;
     }
   }
 }

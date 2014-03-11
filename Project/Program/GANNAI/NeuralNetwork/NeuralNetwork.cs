@@ -57,13 +57,13 @@ namespace ArtificialNeuralNetwork {
 
       if(inp < 0)
         throw new Exception("Must have at least one input neuron!"
-        + inp + " input neurons where given.");
+        + inp + " input neurons were given.");
       if(hdn < 0)
         throw new Exception("Must have at least one hidden neuron!"
-        + hdn + " hidden neurons where given.");
+        + hdn + " hidden neurons were given.");
       if(oup < 0)
         throw new Exception("Must have at least one output neuron!"
-        + oup + " output neurons where given.");
+        + oup + " output neurons were given.");
 
       for(int i = 0; i < inp; i++)
         AddInput(new InputNeuron());
@@ -161,6 +161,10 @@ namespace ArtificialNeuralNetwork {
         output[i] = outputNeurons[i].Value;
       }
       return output;
+    }
+
+    public int GetNumberOfOutputs(){
+      return outputNeurons.Count;
     }
   }
 }

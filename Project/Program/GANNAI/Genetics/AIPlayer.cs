@@ -10,7 +10,7 @@ namespace Genetics {
 
   public class AIPlayer : IComparable {
     
-    private NeuralNetwork neuralNetwork;
+    public NeuralNetwork neuralNetwork { get; private set; }
     public readonly AIPlayer Parent1, Parent2;
     public DNA DNA { get; private set; }
     private double fitness;

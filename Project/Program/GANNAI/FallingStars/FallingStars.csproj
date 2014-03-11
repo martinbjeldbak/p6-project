@@ -6,7 +6,7 @@
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{0343135E-EECA-4D19-99FC-7CC2DA7C859B}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>FallingStars</RootNamespace>
     <AssemblyName>FallingStars</AssemblyName>
@@ -53,7 +53,6 @@
   <ItemGroup>
     <Compile Include="SnakeGame.cs" />
     <Compile Include="FallingStarsGame.cs" />
-    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
