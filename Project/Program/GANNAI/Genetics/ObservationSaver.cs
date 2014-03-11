@@ -1,5 +1,6 @@
 ﻿using System;
 using MySql.Data.MySqlClient;
+using Utility;
 
 namespace Genetics {
   public class ObservationSaver {
@@ -31,21 +32,18 @@ namespace Genetics {
     /// Initialize the simulation instance in the Database.
     /// </summary>
     private void Initialize(){
-      Console.WriteLine("Opening DB connection...");
+      Log.Info("Opening DB connection...");
       this.OpenDBConnection();
 
-      Console.WriteLine("Finding corresponding game...");
+      Log.Info("Finding corresponding game...");
       gameId = FindGameInDB(si.Game.Name());
-      Console.WriteLine("Game id retrieved!");
+      Log.Info("Game id retrieved!");
 
-      Console.WriteLine("Inserting new simulation data...");
+      Log.Info("Inserting new simulation data...");
       InsertSimulationInDB(gameId, si);
-      Console.WriteLine("Simulation data inserted!");
+      Log.Info("Simulation data inserted!");
 
-      Console.WriteLine("Retrieving population id...");
-      simId = cmd.LastInsertedId;
-
-      Console.WriteLine("Closing DB connection...");
+      Log.Info("Closing DB connection...");
       this.CloseDBConnection();
     }
 
@@ -56,10 +54,13 @@ namespace Genetics {
       catch (MySqlException e){
         switch (e.Number) {
         case 0: // Cannot connect to server.
+          Log.Error(e.Message);
           throw new Exception(e.Message);
         case 1045:// Invalid username/password.
+          Log.Error(e.Message);
           throw new Exception(e.Message);
         default:
+          Log.Error("Something unexpected went wrong while connecting to DB.");
           throw new Exception("Something unexpected went wrong" +
             " while connecting to DB.");
         }
@@ -71,6 +72,7 @@ namespace Genetics {
         connection.Close();
       }
       catch(MySqlException e){
+        Log.Error(e.Message);
         throw new Exception(e.Message);
       }
     }
@@ -79,14 +81,14 @@ namespace Genetics {
     /// Saves the data of the Population.
     /// </summary>
     public void SavePopulation() {
-      Console.WriteLine("Opening DB connection...");
+      Log.Info("Opening DB connection...");
       this.OpenDBConnection();
 
-      Console.WriteLine("Inserting new population data...");
+      Log.Info("Inserting new population data...");
       InsertPopulationInDB();
-      Console.WriteLine("Population data inserted!");
+      Log.Info("Population data inserted!");
 
-      Console.WriteLine("Closing DB connection...");
+      Log.Info("Closing DB connection...");
       this.CloseDBConnection();
     }
 
@@ -105,15 +107,53 @@ namespace Genetics {
       bool twopoint = si.AllowTwoPointCrossover;
       string saved_at = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
 
-      query = String.Format("INSERT INTO observations.simulation (game_id, population_size,"
+      // check if simulation is already in database
+      query = String.Format("SELECT COUNT(*) FROM observations.game WHERE game_id = '{0}' " 
+        + "AND population_size = '{1}' AND mutation_rate = '{2}' AND crossover_breed_amount = '{3}' " 
+        + "AND mutate_after_crossover_amount = '{4}' AND uniform_crossover = '{5}' "
+        + "AND single_point_crossover = '{6}' AND two_point_crossover = '{7}'"
+        , gameId, ps, mr, cba, maca, uniform, singlepoint, twopoint);
+
+      int dbSimCount = 0;
+      cmd = new MySqlCommand(query, connection);
+      dbSimCount = int.Parse(cmd.ExecuteScalar() + "");
+
+      if(dbSimCount == 1) {
+        Log.Info("Simulation already in database..");
+        Log.Info("Reusing simulation id..");
+        query = String.Format("SELECT id FROM observatinos.simulation WHERE game_id = '{0}' "
+        + "AND population_size = '{1}' AND mutation_rate = '{2}' AND crossover_breed_amount = '{3}' "
+        + "AND mutate_after_crossover_amount = '{4}' AND uniform_crossover = '{5}' "
+        + "AND single_point_crossover = '{6}' AND two_point_crossover = '{7}'"
+        , gameId, ps, mr, cba, maca, uniform, singlepoint, twopoint);
+
+        cmd = new MySqlCommand(query, connection);
+        dataReader = cmd.ExecuteReader();
+        dataReader.Read();
+        simId = int.Parse(dataReader["id"] + "");
+        Log.Info("Simulation id found: " + simId);
+        dataReader.Close();
+
+        InsertPopulationInDB();
+      }
+      else if(dbSimCount > 1){ //more than one row with same name
+        Log.Info("There is more than one simulation entry of a in the table!");
+        throw new Exception("There is more than one simulation entry of a in the table!");
+      }
+      else {
+        query = String.Format("INSERT INTO observations.simulation (game_id, population_size,"
         + " mutation_rate, crossover_breed_amount, mutate_after_crossover_amount,"
         + " uniform_crossover, single_point_crossover, two_point_crossover, simulated_at)"
         + " VALUES('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}')"
         , gameId, ps, mr, cba, maca, uniform, singlepoint, twopoint, saved_at);
-      cmd = new MySqlCommand(query, connection);
-      cmd.ExecuteNonQuery();
+        cmd = new MySqlCommand(query, connection);
+        cmd.ExecuteNonQuery();
 
-      InsertPopulationInDB();
+        Log.Info("Retrieving simulation id...");
+        simId = cmd.LastInsertedId;
+
+        InsertPopulationInDB();
+      }
     }
 
     /// <summary>
@@ -155,10 +195,10 @@ namespace Genetics {
       dbGameCount = int.Parse(cmd.ExecuteScalar() + "");
 
 
-      if(dbGameCount == 1){ //row exists
-        Console.WriteLine("Game found. Retrieving id...");
-        query = "SELECT id FROM observations.game WHERE name = '" 
-          + name + "'";
+      if(dbGameCount == 1) { //row exists
+        Log.Info("Game found. Retrieving id...");
+        query = "SELECT id FROM observations.game WHERE name = '"
+        + name + "'";
 
         cmd = new MySqlCommand(query, connection);
         dataReader = cmd.ExecuteReader();
@@ -166,15 +206,17 @@ namespace Genetics {
         gameId = int.Parse(dataReader["id"] + "");
         dataReader.Close();
       }
-      else if(dbGameCount > 1) //more than one row with same name
+      else if(dbGameCount > 1) { //more than one row with same name
+        Log.Info("There is more than one entry of the game in the table!");
         throw new Exception("There is more than one entry of the game in the table!");
+      }
       else { //insert new row
-        Console.WriteLine("Inserting new game...");
+        Log.Info("Inserting new game...");
         query = "INSERT INTO observations.game (name) VALUES('" + name + "')";
         cmd = new MySqlCommand(query, connection);
         cmd.ExecuteNonQuery();
         //get the new id
-        Console.WriteLine("New row inserted. Retrieving new id...");
+        Log.Info("New row inserted. Retrieving new id...");
         query = "SELECT id FROM observations.game WHERE name = '" 
           + name + "'";
         cmd = new MySqlCommand(query, connection);
