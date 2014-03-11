@@ -14,7 +14,6 @@ namespace GANNAIUI {
   public partial class Form1 : Form {
 
     Simulation simulation;
-    ObservationSaver observationSaver;
 
     public Form1() {
       InitializeComponent();
@@ -39,12 +38,7 @@ namespace GANNAIUI {
         return;
       }
 
-
-      for (int i = 0; i < iterations; i++) {
-        simulation.Simulate(1);
-        observationSaver.SavePopulation();
-      }
-
+      simulation.Simulate(iterations);
       PrintFitnessValues();
 
       continueButton.Enabled = true;
@@ -62,9 +56,7 @@ namespace GANNAIUI {
 
     private void goButton_Click(object sender, EventArgs e) {
       simulation.Restart();
-      observationSaver = new ObservationSaver(simulation);
       StartTraining();
-      
     }
 
     private void FallingStarsRadioButton_CheckedChanged(object sender, EventArgs e) {

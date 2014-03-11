@@ -20,7 +20,7 @@
       this.continueButton = new System.Windows.Forms.Button();
       this.visualizeButton = new System.Windows.Forms.Button();
       this.generationCountLabel = new System.Windows.Forms.Label();
-      this.measurePerformanceButton = new System.Windows.Forms.Button();
+      this.saveToDBButton = new System.Windows.Forms.CheckBox();
       this.groupBox1.SuspendLayout();
       this.groupBox2.SuspendLayout();
       this.SuspendLayout();
@@ -147,22 +147,22 @@
       this.generationCountLabel.TabIndex = 10;
       this.generationCountLabel.Text = "Generation 0";
       // 
-      // measurePerformanceButton
+      // saveToDBButton
       // 
-      this.measurePerformanceButton.Location = new System.Drawing.Point(47, 197);
-      this.measurePerformanceButton.Name = "measurePerformanceButton";
-      this.measurePerformanceButton.Size = new System.Drawing.Size(131, 23);
-      this.measurePerformanceButton.TabIndex = 11;
-      this.measurePerformanceButton.Text = "Mesaure Performance";
-      this.measurePerformanceButton.UseVisualStyleBackColor = true;
-      this.measurePerformanceButton.Click += new System.EventHandler(this.measurePerformanceButton_Click);
+      this.saveToDBButton.AutoSize = true;
+      this.saveToDBButton.Location = new System.Drawing.Point(47, 197);
+      this.saveToDBButton.Name = "saveToDBButton";
+      this.saveToDBButton.Size = new System.Drawing.Size(85, 17);
+      this.saveToDBButton.TabIndex = 11;
+      this.saveToDBButton.Text = "Save To DB";
+      this.saveToDBButton.UseVisualStyleBackColor = true;
       // 
       // Form1
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.ClientSize = new System.Drawing.Size(741, 236);
-      this.Controls.Add(this.measurePerformanceButton);
+      this.Controls.Add(this.saveToDBButton);
       this.Controls.Add(this.generationCountLabel);
       this.Controls.Add(this.visualizeButton);
       this.Controls.Add(this.continueButton);
@@ -195,7 +195,7 @@
     private System.Windows.Forms.Button continueButton;
     private System.Windows.Forms.Button visualizeButton;
     private System.Windows.Forms.Label generationCountLabel;
-    private System.Windows.Forms.Button measurePerformanceButton;
+    private System.Windows.Forms.CheckBox saveToDBButton;
   }
 }
 

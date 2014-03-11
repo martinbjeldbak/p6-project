@@ -66,11 +66,13 @@
   <ItemGroup>
     <Compile Include="AIPlayer.cs" />
     <Compile Include="AITrainableGame.cs" />
-    <Compile Include="AncestorLink.cs" />
     <Compile Include="Crossover methods\SinglePointCrossover.cs" />
     <Compile Include="Crossover methods\TwoPointCrossover.cs" />
     <Compile Include="Crossover methods\UniformCrossover.cs" />
     <Compile Include="CrossoverMethod.cs" />
+    <Compile Include="OffspringMerger.cs" />
+    <Compile Include="OffspringMerger\KillParentOffspringMerger.cs" />
+    <Compile Include="OffspringMerger\SimpleOffspringMerger.cs" />
     <Compile Include="Rank methods\HalvingRankMethod.cs" />
     <Compile Include="Rank methods\LinearRankMethod.cs" />
     <Compile Include="RankMethod.cs" />

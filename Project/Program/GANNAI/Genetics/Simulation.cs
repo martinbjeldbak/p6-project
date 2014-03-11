@@ -9,6 +9,8 @@ namespace Genetics {
 
     public Population Population { get; private set; }
 
+    public readonly OffspringMerger offspringMerger;
+
     /// <summary>
     /// If set, an individual x can only be added to the population if it is better than
     /// the most similar individual y already contained in the population. 
@@ -79,7 +81,7 @@ namespace Genetics {
 
     public Simulation(AITrainableGame game, int populationSize = 100, double crossOverBredAmount = 0.5, double mutateAfterCrossoverAmount = 0.1, 
       double mutationRate = 0.05, bool allowSinglePointCrossover = true, bool allowTwoPointCrossover = true, bool allowUniformCrossover = true,
-      bool forceDiversity = false) {
+      int offspringMergeType = 0) {
       PopulationSize = populationSize;
       CrossoverBredAmount = crossOverBredAmount;
       MutateAfterCrossoverAmount = mutateAfterCrossoverAmount;
@@ -87,7 +89,6 @@ namespace Genetics {
       AllowSinglePointCrossover = allowSinglePointCrossover;
       AllowTwoPointCrossover = allowTwoPointCrossover;
       AllowUniformCrossover = allowUniformCrossover;
-      ForceDiversity = forceDiversity;
 
       allowedCrossoverMethods = new List<CrossoverMethod>();
       if (AllowSinglePointCrossover)
@@ -96,6 +97,13 @@ namespace Genetics {
         allowedCrossoverMethods.Add(new TwoPointCrossover());
       if (AllowUniformCrossover)
         allowedCrossoverMethods.Add(new UniformCrossover());
+
+      switch (offspringMergeType) {
+        case 0: offspringMerger = new SimpleOffspringMerger(); break;
+        case 1: offspringMerger = new KillParentOffspringMerger(); break;
+        default: throw new Exception("Wrong offspring merge type: " + offspringMergeType);
+      }
+
       Game = game;
       NeuralNetworkMaker = new SimpleNNMaker(game);
       Population = new Population(this, 1);
@@ -111,7 +119,7 @@ namespace Genetics {
     /// <param name="generations">The number of generations to evolve</param>
     public void Simulate(int generations) {
       for (int i = 0; i < generations; i++) {
-        Population.Evolve();
+        Population.Iterate();
       }
     }
 

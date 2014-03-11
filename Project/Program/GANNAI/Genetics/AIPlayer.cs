@@ -9,18 +9,9 @@ using Utility;
 namespace Genetics {
 
   public class AIPlayer : IComparable {
-
-    /// <summary>
-    /// Indicates which parents it originates from and how much it looks like each parent. Null if it has no ancestors.
-    /// </summary>
-    public readonly AncestorLink AncestorLink;
-
-    /// <summary>
-    /// The amount of DNA inherited from a parent
-    /// </summary>
-    public readonly double Parent1origin, Parent2origin;
     
     private NeuralNetwork neuralNetwork;
+    public readonly AIPlayer Parent1, Parent2;
     public DNA DNA { get; private set; }
     private double fitness;
 
@@ -38,10 +29,21 @@ namespace Genetics {
     /// Sets a predefined DNA for the AIPlayer
     /// </summary>
     /// <param name="dna"></param>
-    public AIPlayer(AncestorLink ancestorLink, DNA dna, NNMaker neuralNetworkMaker) {
+    public AIPlayer(DNA dna, NNMaker neuralNetworkMaker) {
       neuralNetwork = neuralNetworkMaker.MakeNeuralNetwork(dna);
       DNA = dna;
-      this.AncestorLink = ancestorLink;
+      fitness = -1;
+    }
+
+    /// <summary>
+    /// Sets a predefined DNA for the AIPlayer
+    /// </summary>
+    /// <param name="dna"></param>
+    public AIPlayer(DNA dna, AIPlayer parent1, AIPlayer parent2, NNMaker neuralNetworkMaker) {
+      Parent1 = parent1;
+      Parent2 = parent2;
+      neuralNetwork = neuralNetworkMaker.MakeNeuralNetwork(dna);
+      DNA = dna;
       fitness = -1;
     }
 
