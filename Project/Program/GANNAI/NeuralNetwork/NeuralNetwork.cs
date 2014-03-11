@@ -162,6 +162,10 @@ namespace ArtificialNeuralNetwork {
       }
       return output;
     }
+
+    public int GetNumberOfOutputs(){
+      return outputNeurons.Count;
+    }
   }
 }
 
