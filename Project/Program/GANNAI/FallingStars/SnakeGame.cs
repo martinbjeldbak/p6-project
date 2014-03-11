@@ -58,45 +58,6 @@ namespace FallingStars {
     private int GetAIPlayerOutput() {
       //calc inputs
 
-      /*
-      int i, dis;
-      int right, left, top, bottom;
-
-      
-
-      i = snakeX + 1;
-      dis = 0;
-      while (i < mapWidth && map[i, snakeY] == 0) {
-        dis++;
-        i++;
-      }
-      right = dis;
-
-      i = snakeX - 1;
-      dis = 0;
-      while (i > 0 && map[i, snakeY] == 0) {
-        dis++;
-        i--;
-      }
-      left = dis;
-
-      i = snakeY + 1;
-      dis = 0;
-      while (i < mapHeight && map[snakeX, i] == 0) {
-        dis++;
-        i++;
-      }
-      bottom = dis;
-
-      i = snakeY - 1;
-      dis = 0;
-      while (i > 0 && map[snakeX, i] == 0) {
-        dis++;
-        i--;
-      }
-      top = dis;
-      */
-      
       int right = snakeX == mapWidth - 1 ? -1 : (map[snakeX + 1, snakeY] == 0 ? 1 : -1);
       int left = snakeX == 0 ? -1 : (map[snakeX - 1, snakeY] == 0 ? 1 : -1);
       int bottom = snakeY == mapHeight - 1 ? -1 : (map[snakeX, snakeY + 1] == 0 ? 1 : -1);
@@ -201,7 +162,7 @@ namespace FallingStars {
       while (alive && ticks < 1000) {
         Tick();
       }
-      return score + ticks / 1000.0;
+      return score;
     }
 
 

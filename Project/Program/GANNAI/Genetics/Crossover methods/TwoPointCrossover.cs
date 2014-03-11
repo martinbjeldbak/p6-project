@@ -33,10 +33,8 @@ namespace Genetics {
       if (left == dna2.Bitstring)
         ancestor1amount = 1.0 - ancestor1amount;
 
-      LastCrossAncestorLink = new AncestorLink(dna1, dna2, ancestor1amount, 1.0 - ancestor1amount);
-
       //return new dna
-      return new DNA(result);
+      return new DNA(result, dna1, dna2, ancestor1amount, 1.0 - ancestor1amount);
     }
   }
 }

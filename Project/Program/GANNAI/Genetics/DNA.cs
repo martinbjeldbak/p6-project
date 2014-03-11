@@ -7,6 +7,8 @@ using Utility;
 namespace Genetics {
   public class DNA {
     public bool[] Bitstring { get; private set; }
+    public readonly DNA Parent1, Parent2;
+    public readonly double Parent1Amount, Parent2Amount;
     private int hashcode;
 
     /// <summary>
@@ -34,10 +36,15 @@ namespace Genetics {
     }
 
     /// <summary>
-    /// Construct a DNA string with a given bitstring an origin
+    /// Construct a DNA string with a given bitstring and a reference to its parents
+    /// as well as the amount of bits inherited from each
     /// </summary>
-    public DNA(bool[] bitstring, double[] origin) {
+    public DNA(bool[] bitstring, DNA parent1, DNA parent2, double parent1Amount, double parent2Amount) {
       this.Bitstring = bitstring;
+      Parent1 = parent1;
+      Parent2 = parent2;
+      Parent1Amount = parent1Amount;
+      Parent2Amount = parent2Amount;
     }
 
     /// <summary>
@@ -75,7 +82,7 @@ namespace Genetics {
       bool[] clonedBitstring = new bool[Bitstring.Length];
       for (int i = 0; i < Bitstring.Length; i++)
         clonedBitstring[i] = Bitstring[i];
-      return new DNA(clonedBitstring);;
+      return new DNA(clonedBitstring);
     }
 
     /// <summary>
@@ -86,7 +93,7 @@ namespace Genetics {
       for (int i = 0; i < Bitstring.Length; i++)
         if (RandomNum.RandomDouble() < mutationRate)
           bitstring[i] = !Bitstring[i];
-      return new DNA(bitstring);
+      return new DNA(bitstring, this, null, 1.0, 0.0);
     }
 
     public override int GetHashCode() {

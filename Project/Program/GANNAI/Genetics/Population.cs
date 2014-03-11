@@ -29,29 +29,10 @@ namespace Genetics {
     ///Performs an iteration, where new individuals are born by crossover, mutation and crossover-mutation.
     ///A new individual replaces an old individual only if it has a greater fitness.
     /// </summary>
-    public void Evolve() {
+    public void Iterate() {
       List<AIPlayer> offspring = BreedIndividuals();
       offspring.ForEach(p => p.CalcFitness(Simulation.Game));
-
-      if (Simulation.ForceDiversity) {
-        foreach (AIPlayer o in offspring) {
-          AIPlayer mostSimilar = o.MostSimilar(individuals);
-          if (o.CalcSimilarity(mostSimilar) > 0.9) {
-            if (o.GetFitness() > mostSimilar.GetFitness()) {
-              individuals.Remove(mostSimilar);
-              individuals.Add(o);
-            }
-          }
-          else {
-            individuals.Add(o);
-          }
-        }
-      }
-      else {
-        offspring.ForEach(p => individuals.Add(p));
-      }
-
-
+      Simulation.offspringMerger.Merge(individuals, offspring, Simulation);
       individuals.Crop(Simulation.PopulationSize);
       Generation++;
     }
@@ -68,8 +49,7 @@ namespace Genetics {
       for (int i = 0; i < mutations; i++) {
         AIPlayer parent = SelectIndividualRankBased();
         DNA newDNA = parent.DNA.GetMutated(Simulation.MutationRate);
-        AncestorLink ancestorLink = new AncestorLink(parent.DNA, null, 1.0, 0.0);
-        AIPlayer toAdd = new AIPlayer(ancestorLink, newDNA, Simulation.NeuralNetworkMaker);
+        AIPlayer toAdd = new AIPlayer(newDNA, parent, null, Simulation.NeuralNetworkMaker);
         newlyBred.Add(toAdd);
       }
       for (int i = 0; i < crossovers; i++) {
@@ -77,8 +57,7 @@ namespace Genetics {
         AIPlayer parent2 = SelectIndividualRankBased();
         CrossoverMethod crossoverMethod = Simulation.RandomCrossoverMethod();
         DNA crossedDNA = crossoverMethod.Cross(parent1.DNA, parent2.DNA);
-        AncestorLink ancestorLink = crossoverMethod.LastCrossAncestorLink;
-        AIPlayer toAdd = new AIPlayer(ancestorLink, crossedDNA, Simulation.NeuralNetworkMaker);
+        AIPlayer toAdd = new AIPlayer(crossedDNA, parent1, parent2, Simulation.NeuralNetworkMaker);
         newlyBred.Add(toAdd);
       }
       for (int i = 0; i < crossoverMutations; i++) {
@@ -86,40 +65,20 @@ namespace Genetics {
         AIPlayer parent2 = SelectIndividualRankBased();
         CrossoverMethod crossoverMethod = Simulation.RandomCrossoverMethod();
         DNA crossedDNA = crossoverMethod.Cross(parent1.DNA, parent2.DNA);
-        AncestorLink ancestorLink = crossoverMethod.LastCrossAncestorLink;
         DNA crossedAndMutatedDNA = crossedDNA.GetMutated(Simulation.MutationRate);
-        AIPlayer toAdd = new AIPlayer(ancestorLink, crossedAndMutatedDNA, Simulation.NeuralNetworkMaker);
+        AIPlayer toAdd = new AIPlayer(crossedAndMutatedDNA, parent1, parent2, Simulation.NeuralNetworkMaker);
         newlyBred.Add(toAdd);
       }
-        return newlyBred;
+
+      Parallel.For(0, newlyBred.Count, i => newlyBred[i].CalcFitness(Simulation.Game));
+
+      return newlyBred;
     }
 
     //A weighted random selection of an individual based on the rank of each individual (least fitness has rank 1, greatest fitness has rank n)
     private AIPlayer SelectIndividualRankBased() {
       RankMethod rankMethod = new LinearRankMethod();
       return individuals.Get(rankMethod.GetRandomIndex(individuals.Count));
-    }
-
-    //A weighted random selection of an individual based on the fitness of each individual
-    private AIPlayer SelectIndividualFitnessBased() {
-      if (individuals.Count == 0)
-        throw new Exception("Individual list is empty");
-
-      //Sum all fitness values
-      double sum = 0;
-      for (int i = 0; i < individuals.Count; i++)
-        sum += individuals.Get(i).GetFitness();
-
-      double ran = RandomNum.RandomDouble() * sum;
-      int index = 0;
-      for (int i = 0; i < individuals.Count; i++) {
-        ran -= individuals.Get(i).GetFitness();
-        if (ran <= 0)
-          return individuals.Get(index);
-        index++;
-      }
-
-      throw new Exception("Something went wrong and no individual was selected based on fitness");
     }
 
     public void InitializeRandomPopulation() {
@@ -179,18 +138,5 @@ namespace Genetics {
         result[i] = individuals.Get(i).GetFitness();
       return result;
     }
-
-
-    /// <summary>
-    /// Calculates the fitness of all AIPlayers in the population by
-    /// simulating a game being played with each AIPlayer. 
-    /// The fitness values can be retrieved by balling GetFitnessValues()
-    /// This method will 
-    /// </summary>
-    public void CalcFitnessValues(SortList<AIPlayer> list) {
-      Parallel.For(0, list.Count, i => list.Get(i).CalcFitness(Simulation.Game));
-    }
   }
-
-
 }

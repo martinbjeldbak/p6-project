@@ -31,10 +31,9 @@ namespace Genetics {
       double ancestor1amount = (double)crossPoint / dna1.Bitstring.Length;
       if (left == dna2.Bitstring)
         ancestor1amount = 1.0 - ancestor1amount;
-      LastCrossAncestorLink = new AncestorLink(dna1, dna2, ancestor1amount, 1.0 - ancestor1amount);
 
       //return new DNA
-      return new DNA(result);
+      return new DNA(result, dna1, dna2, ancestor1amount, 1.0 - ancestor1amount);
     }
   }
 }
