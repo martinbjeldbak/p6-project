@@ -1,10 +1,4 @@
-%\documentclass{ecai2014}
-% 12pt: Used for IEEE Computer Society papers
-% draftcls: puts IEEETran in draft mode without affecting other packages
-% conference: set margins and headings for conference papers
-% compsoc: subtle changes for IEEE computer society articles
-% a4paper: europe uses A4 paper
-\documentclass[10pt, conference, compsoc, a4paper]{IEEEtran}
+\documentclass[a4paper]{IEEEconf}
 \synctex=1
 
 \usepackage[utf8x]{inputenc}
@@ -32,50 +26,17 @@
 \title{Procreation in Genetic Artificial Neural Networks}
 
 %\author{%
-%  \IEEEauthorblockN{Elias Obeid}
-%  \IEEEauthorblockA{Department of Computer Science\\
-%    Aalborg University\\
-%    9220 Aalborg\\
-%    Email: \mail{eobeid11@student.aau.dk}}
-%  \and
-%  \IEEEauthorblockN{Kent Caspersen}
-%  \IEEEauthorblockA{Department of Computer Science\\
-%    Aalborg University\\
-%    9220 Aalborg\\
-%    Email: \mail{kcaspe11@student.aau.dk}}
-%  \and
-%  \IEEEauthorblockN{Martin Madsen}
-%  \IEEEauthorblockA{Department of Computer Science\\
-%    Aalborg University\\
-%    9220 Aalborg\\
-%    Email: \mail{mbma11@student.aau.dk}}%
-%}
+  %Kent Munthe Caspersen
+  %\and
+  %Elias Khazen Obeid
+  %\and
+  %Martin Bjeldbak Madsen
 
-%\author{%
-%  \IEEEauthorblockN{Elias Khazen Obeid\IEEEauthorrefmark{1},\IEEEauthorrefmark{2} Kent Munthe Caspersen\IEEEauthorrefmark{1}\IEEEauthorrefmark{3}, Martin Bjeldbak Madsen\IEEEauthorrefmark{1}\IEEEauthorrefmark{4}}
-%  \IEEEauthorblockA{%
-%    \IEEEauthorrefmark{1}Department of Computer Science\\
-%    Aalborg University\\
-%  9220 Aalborg Øst, Denmark}
-%  \IEEEauthorblockA{\IEEEauthorrefmark{2}Email: \mail{eobeid11@student.aau.dk}}
-%  \IEEEauthorblockA{\IEEEauthorrefmark{3}Email: \mail{kcaspe11@student.aau.dk}}
-%  \IEEEauthorblockA{\IEEEauthorrefmark{4}Email: \mail{mbma11@student.aau.dk}}
-%}
-
-%\author{%
-%  \IEEEauthorblockN{Elias Khazen Obeid\IEEEauthorrefmark{1}, Kent Munthe Caspersen\IEEEauthorrefmark{1}, Martin Bjeldbak Madsen\IEEEauthorrefmark{1}}
-%  \IEEEauthorblockA{%
-%    \IEEEauthorrefmark{1}Department of Computer Science\\
-%    Aalborg University\\
-%  9220 Aalborg Øst, Denmark}
-%}
-
-% This is my favorite -- Martin
-%\author{%
-%  \IEEEauthorblockN{Elias Khazen Obeid, Kent Munthe Caspersen, Martin Bjeldbak Madsen}
-%  \IEEEauthorblockA{Department of Computer Science\\
-%    Aalborg University\\
-%  9220 Aalborg Øst}
+  %\begin{affiliation}
+  %  Department of Computer Science\\
+  %  Aalborg University\\
+  %  9220 Aalborg
+  %\end{affiliation}
 %}
 
 
@@ -86,10 +47,8 @@
 
 \input{content/introduction}
 
-\input{content/preliminaries}
-
-\bibliographystyle{IEEEtran}
-\bibliography{IEEabrv,bibliography}
+\bibliographystyle{abbrv}
+\bibliography{bibliography}
 
 
 % Appendices can be added with \appendix[Proof of Khazens's equation]
