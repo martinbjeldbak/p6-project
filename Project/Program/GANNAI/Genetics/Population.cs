@@ -11,8 +11,11 @@ using Utility;
 namespace Genetics {
   public class Population {
     private SortList<AIPlayer> individuals;
+
     public int Generation { get; private set; }
+
     public Simulation Simulation;
+
     public Population(Simulation simulation, int generation) {
       Simulation = simulation;
       Generation = generation;
@@ -33,11 +36,11 @@ namespace Genetics {
       List<AIPlayer> offspring = BreedIndividuals();
       offspring.ForEach(p => p.CalcFitness(Simulation.Game));
 
-      if (Simulation.ForceDiversity) {
-        foreach (AIPlayer o in offspring) {
+      if(Simulation.ForceDiversity) {
+        foreach(AIPlayer o in offspring) {
           AIPlayer mostSimilar = o.MostSimilar(individuals);
-          if (o.CalcSimilarity(mostSimilar) > 0.9) {
-            if (o.GetFitness() > mostSimilar.GetFitness()) {
+          if(o.CalcSimilarity(mostSimilar) > 0.9) {
+            if(o.GetFitness() > mostSimilar.GetFitness()) {
               individuals.Remove(mostSimilar);
               individuals.Add(o);
             }
@@ -55,7 +58,6 @@ namespace Genetics {
       individuals.Crop(Simulation.PopulationSize);
       Generation++;
     }
-
     //Returns a list of new individuals bred from the current population
     private List<AIPlayer> BreedIndividuals() {
 
@@ -65,14 +67,14 @@ namespace Genetics {
       crossovers -= crossoverMutations;
 
       List<AIPlayer> newlyBred = new List<AIPlayer>();
-      for (int i = 0; i < mutations; i++) {
+      for(int i = 0; i < mutations; i++) {
         AIPlayer parent = SelectIndividualRankBased();
         DNA newDNA = parent.DNA.GetMutated(Simulation.MutationRate);
         AncestorLink ancestorLink = new AncestorLink(parent.DNA, null, 1.0, 0.0);
         AIPlayer toAdd = new AIPlayer(ancestorLink, newDNA, Simulation.NeuralNetworkMaker);
         newlyBred.Add(toAdd);
       }
-      for (int i = 0; i < crossovers; i++) {
+      for(int i = 0; i < crossovers; i++) {
         AIPlayer parent1 = SelectIndividualRankBased();
         AIPlayer parent2 = SelectIndividualRankBased();
         CrossoverMethod crossoverMethod = Simulation.RandomCrossoverMethod();
@@ -81,7 +83,7 @@ namespace Genetics {
         AIPlayer toAdd = new AIPlayer(ancestorLink, crossedDNA, Simulation.NeuralNetworkMaker);
         newlyBred.Add(toAdd);
       }
-      for (int i = 0; i < crossoverMutations; i++) {
+      for(int i = 0; i < crossoverMutations; i++) {
         AIPlayer parent1 = SelectIndividualRankBased();
         AIPlayer parent2 = SelectIndividualRankBased();
         CrossoverMethod crossoverMethod = Simulation.RandomCrossoverMethod();
@@ -91,30 +93,28 @@ namespace Genetics {
         AIPlayer toAdd = new AIPlayer(ancestorLink, crossedAndMutatedDNA, Simulation.NeuralNetworkMaker);
         newlyBred.Add(toAdd);
       }
-        return newlyBred;
+      return newlyBred;
     }
-
     //A weighted random selection of an individual based on the rank of each individual (least fitness has rank 1, greatest fitness has rank n)
     private AIPlayer SelectIndividualRankBased() {
       RankMethod rankMethod = new LinearRankMethod();
       return individuals.Get(rankMethod.GetRandomIndex(individuals.Count));
     }
-
     //A weighted random selection of an individual based on the fitness of each individual
     private AIPlayer SelectIndividualFitnessBased() {
-      if (individuals.Count == 0)
+      if(individuals.Count == 0)
         throw new Exception("Individual list is empty");
 
       //Sum all fitness values
       double sum = 0;
-      for (int i = 0; i < individuals.Count; i++)
+      for(int i = 0; i < individuals.Count; i++)
         sum += individuals.Get(i).GetFitness();
 
       double ran = RandomNum.RandomDouble() * sum;
       int index = 0;
-      for (int i = 0; i < individuals.Count; i++) {
+      for(int i = 0; i < individuals.Count; i++) {
         ran -= individuals.Get(i).GetFitness();
-        if (ran <= 0)
+        if(ran <= 0)
           return individuals.Get(index);
         index++;
       }
@@ -123,11 +123,11 @@ namespace Genetics {
     }
 
     public void InitializeRandomPopulation() {
-      if (individuals == null)
+      if(individuals == null)
         individuals = new SortList<AIPlayer>();
       individuals.Clear();
       List<AIPlayer> result = new List<AIPlayer>();
-      for (int i = 0; i < Simulation.PopulationSize; i++) {
+      for(int i = 0; i < Simulation.PopulationSize; i++) {
         AIPlayer randomIndividual = new AIPlayer(Simulation.NeuralNetworkMaker);
         randomIndividual.CalcFitness(Simulation.Game);
         individuals.Add(randomIndividual);
@@ -148,13 +148,13 @@ namespace Genetics {
     /// <returns>The least fit individual in the population.</returns>
     public AIPlayer GetWorst() {
       return individuals.Get(individuals.Count - 1);
-     }
+    }
 
     /// <summary>
     /// Gets the mean individual.
     /// </summary>
     /// <returns>The individual in the middle of the list of individuals.</returns>
-    public AIPlayer GetMean(){
+    public AIPlayer GetMean() {
       return individuals.Get((int)(individuals.Count / 2.0));
     }
 
@@ -162,7 +162,7 @@ namespace Genetics {
     /// Gets the average fitness of the entire population.
     /// </summary>
     /// <returns>The average fitness of the population.</returns>
-    public double GetAverage(){
+    public double GetAverage() {
       double total = 0.0;
       for(int i = 0; i < individuals.Count; i++)
         total += individuals.Get(i).GetFitness();
@@ -180,7 +180,6 @@ namespace Genetics {
       return result;
     }
 
-
     /// <summary>
     /// Calculates the fitness of all AIPlayers in the population by
     /// simulating a game being played with each AIPlayer. 
@@ -190,7 +189,26 @@ namespace Genetics {
     public void CalcFitnessValues(SortList<AIPlayer> list) {
       Parallel.For(0, list.Count, i => list.Get(i).CalcFitness(Simulation.Game));
     }
+
+    /// <summary>
+    /// Measures the diversity of a population.
+    /// The higher the value, the more diverse is the population.
+    /// </summary>
+    /// <returns>The diversity.</returns>
+    public double MeasureDiversity() {
+      int outputSize = individuals.Get(0).neuralNetwork.GetNumberOfOutputs();
+      int outputCount = new int[outputSize];
+
+      foreach(AIPlayer i in individuals)
+        outputCount[i.GetOutput()]++;
+      
+      double numerator = 0.0;
+      for (int i = 0; i < outputSize; i++)
+        numerator += outputCount[i] * ( outputCount[i] - 1 );
+
+      int s = individuals.Count;
+      double demoninator = s * (s - 1); 
+      return 1.0 - numerator / demoninator;
+    }
   }
-
-
 }

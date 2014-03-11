@@ -20,7 +20,7 @@ namespace Genetics {
     /// </summary>
     public readonly double Parent1origin, Parent2origin;
     
-    private NeuralNetwork neuralNetwork;
+    public NeuralNetwork neuralNetwork { get; private set; }
     public DNA DNA { get; private set; }
     private double fitness;
 
