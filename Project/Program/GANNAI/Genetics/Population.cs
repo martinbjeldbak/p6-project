@@ -85,7 +85,6 @@ namespace Genetics {
       if (individuals == null)
         individuals = new SortList<AIPlayer>();
       individuals.Clear();
-      List<AIPlayer> result = new List<AIPlayer>();
       for (int i = 0; i < Simulation.PopulationSize; i++) {
         AIPlayer randomIndividual = new AIPlayer(Simulation.NeuralNetworkMaker);
         randomIndividual.CalcFitness(Simulation.Game);
@@ -150,16 +149,22 @@ namespace Genetics {
   }
 
     /// <summary>
-    /// Measures the diversity of a population.
-    /// The higher the value, the more diverse is the population.
+    /// Measures the diversity.
     /// </summary>
     /// <returns>The diversity.</returns>
-    public double MeasureDiversity() {
+    /// <param name="runs">Number of runs. Default is 1.</param>
+    public double MeasureDiversity(int runs = 1) {
       int outputSize = individuals.Get(0).neuralNetwork.GetNumberOfOutputs();
-      int outputCount = new int[outputSize];
+      int[] outputCount = new int[outputSize];
+      double[] diversities = new double[runs];
+
+      for(int j = 0; j < runs; j++) {
+        double[] randInputs = new double[individuals.Get(0).neuralNetwork.GetNumberOfInputs()];
+        for(int i = 0; i < randInputs.Length; i++)
+          randInputs[i] = RandomNum.RandomDouble();
 
       foreach(AIPlayer i in individuals)
-        outputCount[i.GetOutput()]++;
+          outputCount[i.GetOutput(randInputs)]++;
       
       double numerator = 0.0;
       for (int i = 0; i < outputSize; i++)
@@ -167,7 +172,13 @@ namespace Genetics {
 
       int s = individuals.Count;
       double demoninator = s * (s - 1); 
-      return 1.0 - numerator / demoninator;
+        diversities[j] = 1.0 - numerator / demoninator;
     }
+      double diversity = 0;
+      for(int i = 0; i < runs; i++)
+        diversity += diversities[i];
+
+      return diversity / (double)(runs);
   }
+}
 }
