@@ -3,7 +3,7 @@
 
 As stated in the assignment, we have decided to look at different possible attributes and models by looking at the structure of movie pages on IMDB\@. Initially, we think it would require many join tables, as we've identified a few many-to-many relationships among structures we've discussed. These structures are: \emph{actors}, \emph{directors}, \emph{writers}, \emph{movies}, \emph{awards}, \emph{ratings}, and \emph{users}.
 
-\begin{figure}[H]
+\begin{figure}[h]
   \centering
   \includegraphics[width=\linewidth]{1-06.02.14/selfStudy1db.pdf}
   \caption{Enhanced entity-relationship (EER) model diagram of a simplified movie database.}\label{fig:model}
@@ -26,6 +26,4 @@ relationship is non-identifying.
 For example one \emph{Director} has many \emph{Awards}. The relationship is
 also non-identifying because the tables can exist indenpendently of each other.
 
-The SQL for creating this structure is presented in see section \ref{sec:sqlPre}.
-
-
+%The SQL for creating this structure is presented in see section \ref{sec:sqlPre}.
