@@ -1,0 +1,18 @@
+\subsection{Comparison of the previous and current solution}
+
+In our first attempt to construct a diagram for the movie database, we used the Enhanced Entity-Relationship (EER) model to construct the relevant information for the database.
+In this version of our database, we use the Entity-Relationship (ER) model as described in the course.
+
+In this version we include Chen notation and min-max notation to emphasize to type of relations. 
+This is also visualised in form of arrows or no arrows on each connection between relations.
+Another clear difference is that we include total participation for some of the relations.
+Actually, total and partial participation is expressed as identifying and non-identifying relations in the EER model. This is not covered in the course.
+We could also have included weak entities, but we did not find any which should be marked as weak. 
+
+We have removed redundancy, because an actor can also be a director in movies.
+We have introduced a relation called Role in which it is clear which role a person has in a given movie.
+We also considered an ISA relation between the roles in a movie.
+We chose not to use it, because there is nothing different between an actor and a director.
+
+We have only included the necessary primary keys. 
+If there was no need for a unique id, we have not included one.
