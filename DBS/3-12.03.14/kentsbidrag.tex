@@ -1,0 +1,63 @@
+\section{Self Study 3: Exam Preparation 1}
+
+\subsection{Excercise 4}
+
+\subsubsection*{1}
+ $\pi_{\texttt{sname}}(\texttt{Suppliers} \bowtie (\texttt{Catalog} \bowtie \sigma_{\texttt{color} = \texttt{red}}(\texttt{Parts})))$
+ 
+\hspace{20px}
+ 
+ $\{s.\texttt{sname} \; | \; s \in \texttt{Suppliers} \; \wedge \; \exists c \in \texttt{Catalog}(s.\mathtt{sid} = c.\mathtt{sid} \wedge \exists p \in \texttt{Parts}(c.\mathtt{pid} = p.\mathtt{pid} \; \wedge \; p.\mathtt{color} = \mathtt{red}))\}$
+
+\hspace{20px}
+ 
+ $\{\langle b \rangle  \; | \; \exists a, c (\langle a, b, c \rangle   \in \mathtt{Suppliers} \wedge 
+ \exists i,j(\langle b,i,j \rangle  \in \mathtt{Catalog} \; \wedge \;
+ \exists y, z(\langle i, y, z \rangle  \in \mathtt{Parts} \; \wedge \; z = \mathtt{red})
+ ))$
+ 
+ \subsubsection*{2}
+$\pi_{\mathtt{sid}}(\mathtt{Catalog} \bowtie 
+\sigma_{\mathtt{color} = \mathtt{red} \; \vee \; \mathtt{color} = \mathtt{green} }(\mathtt{Parts}))$
+ 
+\hspace{20px}
+
+ $\{c.\mathtt{sid} \; | \; c \in \mathtt{Catalog} \; \wedge \; \exists p \in \mathtt{Parts}
+ (c.\mathtt{pid} = p.\mathtt{pid} \; \wedge \; p.\mathtt{color} = \mathtt{red} \; \vee \; p.\mathtt{color} = \mathtt{green}))\}$
+ 
+\hspace{20px}
+ 
+ $\{\langle b \rangle  \; | \exists i,j
+ (\langle b,i,j \rangle  \in \mathtt{Catalog} \; \wedge \; \exists y, z
+ (\langle i, y, z \rangle  \in \mathtt{Parts} \; \wedge \; (z = \mathtt{red} \vee z = \mathtt{green}))
+ )$
+
+\subsubsection*{3}
+
+$\pi_{\mathtt{sid}}(\texttt{Catalog} \bowtie \sigma_{\texttt{color} = \texttt{red}}(\texttt{Parts})) 
+\bowtie_{} 
+\pi_{\mathtt{sid}}(\texttt{Catalog} \bowtie \sigma_{\texttt{color} = \texttt{green}}(\texttt{Parts}))$
+
+\hspace{20px}
+
+$\{c_1.\mathtt{sid} \; | \; c_1 \in \mathtt{Catalog} \; \wedge \; \exists c_2 \in \mathtt{Catalog}(c_1.\mathtt{sid} = c_2.\mathtt{sid} \; \wedge \; \exists p_1,p_2 \in \mathtt{Parts}(c_1.\mathtt{pid} = p_1.\mathtt{pid} \; \wedge \; c_2.\mathtt{pid} = p_2.\mathtt{pid} \; \wedge \; p_1.\mathtt{color} = \mathtt{red} \; \wedge \; p_2.\mathtt{color} = \mathtt{green}))\}$
+ 
+\hspace{20px}
+
+$\{\langle b \rangle  \; | \; \exists i,j,k,l(\langle b,i,k \rangle  \in \mathtt{Catalog} \; \wedge \; 
+\langle b,j,l \rangle  \in \mathtt{Catalog} \; \wedge \;
+\exists u, v, x, y(\langle i, u, v \rangle  \in \mathtt{Parts} \; \wedge \; \langle i, x, y \rangle  \in \mathtt{Parts} \; \wedge \; 
+v = \mathtt{red} \wedge y = \mathtt{green}))
+))$ 
+
+\subsubsection*{4}
+
+$\{s_1.\mathtt{sid}, s_2.\mathtt{sid} \; | \; \exists c_1, c_2 \in \mathtt{Catalog}
+(
+  c_1.\mathtt{sid} = s_1.\mathtt{sid} \; \wedge \; c_2.\mathtt{sid} = s_2.\mathtt{sid} \; \wedge \; \exists p_1, p_2 \in \mathtt{Parts}
+  (
+    c_1.\mathtt{pid} = p_1.\mathtt{pid} \; \wedge \; c_2.\mathtt{pid} = p_2.\mathtt{pid} \; \wedge \; p_1.\mathtt{cost} > p_2.\mathtt{cost}
+  )
+)\}$
+ 
+\end{document}
