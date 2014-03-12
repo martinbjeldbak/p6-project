@@ -1,3 +1,24 @@
+Relational Algebra:
+
+\begin{align*}
+  \pi_{\text{ c1.sid, c2.sid }}((\rho_{\text{ c1 }}(\mathtt{Catalog}) \times \rho_{\text{ c2 }}(\mathtt{Catalog})) &\bowtie_{\text{ c1.pid } = \text{ p1.pid }} \wedge \\ 
+  \text{ c2.pid } = \text{ p2.pid }(\rho_{\text{ p1 }}(\mathtt{Parts}) &\bowtie_{\text{ p1.cost } > \text{ p2.cost }} \rho_{\text{ p2 }}(\mathtt{Parts})))
+\end{align*}
+
+
+
+Domain Relational Calculus:
+
+\begin{align*}
+  \{\langle \text{ sid, sid' } \rangle 
+    \mid \exists \text{ pid, cost} (\langle \text{ sid, pid, cost } \rangle 
+      &\in \mathtt{Catalog} \; \wedge \\
+    \exists \text{ pid, cost } (\lag \text{ sid', pid, cost' } \rag
+      &\in \mathtt{Catalog} \; \wedge \\
+  (\text{ cost } > \text{ cost' }) &\wedge (\text{ sid } \neq \text{ sid' })))\}
+\end{align*}
+
+
 
 \subsubsection{5}
 
@@ -5,26 +26,27 @@ Find the pids of parts supplied by at least two different suppliers:
 
 Relational Algebra:
 
+\begin{align*}
+  \pi_{\var{c1.pid}}(\sigma_{\var{c1.sid}=\var{c2.sid}}(\rho_{\var{c2}}(\mathtt{Catalog}) \bowtie_{\var{c1.pid} = \var{c2.pid}} \rho_{\var{c1}}(\mathtt{Catalog})))
+\end{align*}
 
 Tuple Relational Calculus:
 
 \begin{align*}
   \setof{\var{c1.pid}}{\var{c1} \in \mathtt{Catalog} &\wedge \var{c2} \in \mathtt{Catalog} (\\
-  \var{c1.pid} &= \var{c2.pid} \\
-  \wedge \var{c1.sid} &\neq \var{c2.sid})}
+(\var{c1.pid} = \var{c2.pid}) &\wedge (\var{c1.sid} \neq \var{c2.sid}))}
 \end{align*}
 
-Domian Relational Calculus:
+Domain Relational Calculus:
 
 \begin{align*}
   \{\langle \text{ pid } \rangle 
     \mid \exists \text{ sid}, \text{ cost } 
     (\langle \text{ sid}, \text{ pid}, \text{ cost} \rangle 
-      &\in \mathtt{Catalog} \\
-      \wedge \exists \text{ sid'}, \text{ cost' } (
+      &\in \mathtt{Catalog} \; \wedge \\
+       \exists \text{ sid'}, \text{ cost' } (
         \langle \text{ sid'}, \text{ pid}, \text{ cost' } \rangle 
-    &\in \mathtt{Catalog} \\
-  &\wedge \text{sid } \neq \text{ sid'}))\}
+    &\in \mathtt{Catalog} \; \wedge \text{sid } \neq \text{ sid'}))\}
 \end{align*}
 
 
