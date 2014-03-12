@@ -20,7 +20,7 @@ Finally, we divide the two tables and end up with:
 We start by renaming the \texttt{animals} table to two tables called \texttt{T1} and \texttt{T2}.
 We then do a theta-join on the two new tables, with $\mathtt{T1.zooId} = \mathtt{T2.zooId}$ as a constraint.
 Now we have a large table with \texttt{T1} and \texttt{T2} side by side, where the constraint is maintained.
-We now do a selection from the joined table with $\mathtt{T1.animalId} = \mathtt{R2.father} \cup \mathtt{T1.animalId} = \mathtt{T2.mother}$.
+We now do a selection from the joined table with $\mathtt{T1.animalId} = \mathtt{T2.father} \vee \mathtt{T1.animalId} = \mathtt{T2.mother}$.
 This results in a table with rows where the child and at least one of the parents are in the same zoo.
 Finally, we do a projection of the nickname of \texttt{T1}, and get the following result:
 
