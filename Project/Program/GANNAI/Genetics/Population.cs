@@ -48,13 +48,13 @@ namespace Genetics {
       crossovers -= crossoverMutations;
 
       List<AIPlayer> newlyBred = new List<AIPlayer>();
-      for (int i = 0; i < mutations; i++) {
+      for(int i = 0; i < mutations; i++) {
         AIPlayer parent = SelectIndividualRankBased();
         DNA newDNA = parent.DNA.GetMutated(Simulation.MutationRate);
         AIPlayer toAdd = new AIPlayer(newDNA, parent, null, Simulation.NeuralNetworkMaker);
         newlyBred.Add(toAdd);
       }
-      for (int i = 0; i < crossovers; i++) {
+      for(int i = 0; i < crossovers; i++) {
         AIPlayer parent1 = SelectIndividualRankBased();
         AIPlayer parent2 = SelectIndividualRankBased();
         CrossoverMethod crossoverMethod = Simulation.RandomCrossoverMethod();
@@ -62,7 +62,7 @@ namespace Genetics {
         AIPlayer toAdd = new AIPlayer(crossedDNA, parent1, parent2, Simulation.NeuralNetworkMaker);
         newlyBred.Add(toAdd);
       }
-      for (int i = 0; i < crossoverMutations; i++) {
+      for(int i = 0; i < crossoverMutations; i++) {
         AIPlayer parent1 = SelectIndividualRankBased();
         AIPlayer parent2 = SelectIndividualRankBased();
         CrossoverMethod crossoverMethod = Simulation.RandomCrossoverMethod();
@@ -81,11 +81,12 @@ namespace Genetics {
       RankMethod rankMethod = new LinearRankMethod();
       return individuals.Get(rankMethod.GetRandomIndex(individuals.Count));
     }
+
     public void InitializeRandomPopulation() {
-      if (individuals == null)
+      if(individuals == null)
         individuals = new SortList<AIPlayer>();
       individuals.Clear();
-      for (int i = 0; i < Simulation.PopulationSize; i++) {
+      for(int i = 0; i < Simulation.PopulationSize; i++) {
         AIPlayer randomIndividual = new AIPlayer(Simulation.NeuralNetworkMaker);
         randomIndividual.CalcFitness(Simulation.Game);
         individuals.Add(randomIndividual);
@@ -106,13 +107,13 @@ namespace Genetics {
     /// <returns>The least fit individual in the population.</returns>
     public AIPlayer GetWorst() {
       return individuals.Get(individuals.Count - 1);
-     }
+    }
 
     /// <summary>
     /// Gets the mean individual.
     /// </summary>
     /// <returns>The individual in the middle of the list of individuals.</returns>
-    public AIPlayer GetMean(){
+    public AIPlayer GetMean() {
       return individuals.Get((int)(individuals.Count / 2.0));
     }
 
@@ -120,7 +121,7 @@ namespace Genetics {
     /// Gets the average fitness of the entire population.
     /// </summary>
     /// <returns>The average fitness of the population.</returns>
-    public double GetAverage(){
+    public double GetAverage() {
       double total = 0.0;
       for(int i = 0; i < individuals.Count; i++)
         total += individuals.Get(i).GetFitness();
@@ -146,7 +147,7 @@ namespace Genetics {
     /// </summary>
     public void CalcFitnessValues(SortList<AIPlayer> list) {
       Parallel.For(0, list.Count, i => list.Get(i).CalcFitness(Simulation.Game));
-  }
+    }
 
     /// <summary>
     /// Measures the diversity.
@@ -163,22 +164,22 @@ namespace Genetics {
         for(int i = 0; i < randInputs.Length; i++)
           randInputs[i] = RandomNum.RandomDouble();
 
-      foreach(AIPlayer i in individuals)
+        foreach(AIPlayer i in individuals)
           outputCount[i.GetOutput(randInputs)]++;
       
-      double numerator = 0.0;
-      for (int i = 0; i < outputSize; i++)
-        numerator += outputCount[i] * ( outputCount[i] - 1 );
+        double numerator = 0.0;
+        for(int i = 0; i < outputSize; i++)
+          numerator += outputCount[i] * (outputCount[i] - 1);
 
-      int s = individuals.Count;
-      double demoninator = s * (s - 1); 
+        int s = individuals.Count;
+        double demoninator = s * (s - 1); 
         diversities[j] = 1.0 - numerator / demoninator;
-    }
-      double diversity = 0;
+      }
+      double diversity = 0.0;
       for(int i = 0; i < runs; i++)
         diversity += diversities[i];
 
       return diversity / (double)(runs);
+    }
   }
-}
 }
