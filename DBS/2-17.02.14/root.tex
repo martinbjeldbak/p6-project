@@ -2,21 +2,21 @@
 \deadline{12}{3}{2014}
 
 \subsection{Entity-relationship Diagram}
-Below we show an updated ER diagram based on concepts we've learned in the course.
-\begin{figure}[H]
+In figure \ref{fig:ss2-ERdiagram}, we show an updated ER diagram based on concepts we've learned in the course.
+\begin{figure}[h]
   \centering
   \includegraphics[width=\linewidth]{2-17.02.14/ERDiagram.eps}
-  \caption{ER diagram of an IMDB-like website.}\label{fig:ERdiagram2}
+  \caption{ER diagram of an IMDB-like website.}\label{fig:ss2-ERdiagram}
 \end{figure}
 
 Primary keys are underlined. Chen, min max, and arrows on lines represent the different cardinalities between entities and their relations. Circles are attributes and squares represent entities. Diamonds are relationships, just like we have learned in the course. 
 
 \subsection{Schema}
-The entities and relationships have been mapped to relations in the below diagram.
-\begin{figure}[H]
+The entities and relationships have been mapped to relations in the diagram of figure \ref{fig:ss2-schema}.
+\begin{figure}[h]
   \centering
   \includegraphics[width=\linewidth]{2-17.02.14/DatabaseSchema.eps}
-  \caption{The schema, i.e.\ mapped relations of an IMDB-like website.}\label{fig:schema}
+  \caption{The schema, i.e.\ mapped relations of an IMDB-like website.}\label{fig:ss2-schema}
 \end{figure}
 Attributes acting as foreign keys in relation $A$ are marked by an ASCII arrow \texttt{->}, where the arrow points to the primary key(s) in relation $B$. The symbols to the left of each attribute signal whether the attribute can be null or not. When black, they cannot take on the null value, when hollow, the attribute can be null, like the \emph{dateOfDeath} attribute on the \emph{Person} relation, since we cannot know when living actors/directors will die.
 

@@ -30,6 +30,16 @@
 \newcommand{\formatdatewday}[3]{\dayofweekname{#1}{#2}{#3} \formatdate{#1}{#2}{#3}}
 \newcommand{\deadline}[3]{Deadline: \formatdatewday{#1}{#2}{#3}}
 
+\newcommand{\lag}{\langle}
+\newcommand{\rag}{\rangle}
+\newcommand{\setof}[2]{\ensuremath{\{ #1 \mid #2 \}}}
+\newcommand{\set}[1]{\ensuremath{\{ #1 \}}}
+\newcommand{\besk}[1]{\ensuremath{\lag #1 \rag}}
+\newcommand{\ra}{\rightarrow}
+\newcommand{\lra}{\longrightarrow}
+\newcommand{\Ra}{\Rightarrow}
+\newcommand{\var}[1]{\mathit{#1}}
+
 \setlength{\parindent}{0pt}
 \nonzeroparskip{}
 
@@ -37,7 +47,7 @@
 %\date{\protect\formatdate{6}{2}{2014} to \protect\formatdate{6}{2}{2014}}
 \date{%
   \texttt{\href{mailto:d601f14@cs.aau.dk}{d601f14}, 1.1.01}\\
-  \protect\formatdate{6}{2}{2014} to \protect\formatdate{6}{2}{2014}
+  \protect\formatdate{6}{2}{2014} to \today %\protect\formatdate{6}{2}{2014}
 }
 
 \author{%
@@ -56,6 +66,7 @@
 \frontmatter
 
 \maketitle
+\thispagestyle{empty}
 \pagebreak
 
 \mainmatter
@@ -64,9 +75,8 @@
 \input{2-17.02.14/root}
 \input{3-12.03.14/root}
 
-\newpage
-\appendix
-
+%\newpage
+%\appendix
 %\chapter{SQL: Preliminary Database Modeling}\label{sec:sqlPre}
 %\inputminted{sql}{1-06.02.14/selfStudy1db.sql}
 
