@@ -17,6 +17,8 @@
 \usepackage{tikz}
 \usepackage[top=1in,bottom=1in,left=1.2in,right=1.2in]{geometry}
 
+\usepackage{amsmath}
+
 % Smaller spacing between lists
 \usepackage{enumitem}
 \setlist[itemize]{noitemsep}
@@ -36,7 +38,8 @@
 \newcommand{\ra}{\rightarrow}
 \newcommand{\lra}{\longrightarrow}
 \newcommand{\Ra}{\Rightarrow}
-\newcommand{\var}[1]{\mathit{#1}}
+\newcommand{\var}[1]{\text{ #1 }}
+\newcommand{\dvar}[1]{\lag\text{ #1 }\rag}
 
 \setlength{\parindent}{0pt}
 \nonzeroparskip{}
