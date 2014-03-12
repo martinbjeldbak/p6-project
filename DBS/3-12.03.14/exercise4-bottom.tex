@@ -1,0 +1,30 @@
+
+\subsubsection{5}
+
+Find the pids of parts supplied by at least two different suppliers:
+
+Relational Algebra:
+
+
+Tuple Relational Calculus:
+
+\begin{align*}
+  \setof{\var{c1.pid}}{\var{c1} \in \mathtt{Catalog} &\wedge \var{c2} \in \mathtt{Catalog} (\\
+  \var{c1.pid} &= \var{c2.pid} \\
+  \wedge \var{c1.sid} &\neq \var{c2.sid})}
+\end{align*}
+
+Domian Relational Calculus:
+
+\begin{align*}
+  \{\langle \text{ pid } \rangle 
+    \mid \exists \text{ sid}, \text{ cost } 
+    (\langle \text{ sid}, \text{ pid}, \text{ cost} \rangle 
+      &\in \mathtt{Catalog} \\
+      \wedge \exists \text{ sid'}, \text{ cost' } (
+        \langle \text{ sid'}, \text{ pid}, \text{ cost' } \rangle 
+    &\in \mathtt{Catalog} \\
+  &\wedge \text{sid } \neq \text{ sid'}))\}
+\end{align*}
+
+
