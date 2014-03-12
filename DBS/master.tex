@@ -9,10 +9,12 @@
 \usepackage[english]{babel}
 
 \usepackage[pdftex]{graphicx}
+\usepackage{epstopdf}
 
 \usepackage[activate={true,nocompatibility},final,tracking=true,kerning=true,spacing=true,factor=1100,stretch=10,shrink=10,verbose=silent]{microtype}
 
 \captiontitlefont{\itshape}
+\usepackage{tikz}
 \usepackage[top=1in,bottom=1in,left=1.2in,right=1.2in]{geometry}
 
 % Smaller spacing between lists
@@ -23,17 +25,20 @@
 \usepackage{minted}
 \usepackage{hyperref}
 \usepackage[nodayofweek]{datetime}
+\newcommand{\formatdatewday}[3]{\dayofweekname{#1}{#2}{#3} \formatdate{#1}{#2}{#3}}
+\newcommand{\deadline}[3]{Deadline: \formatdatewday{#1}{#2}{#3}}
 
 \setlength{\parindent}{0pt}
 \nonzeroparskip{}
 
-\title{Database Systems\\Mini Project}
+\title{Database Systems, spring 2014\\Mini Project}
 %\date{\protect\formatdate{6}{2}{2014} to \protect\formatdate{6}{2}{2014}}
-\date{
+\date{%
   \texttt{\href{mailto:d601f14@cs.aau.dk}{d601f14}, 1.1.01}\\
   \protect\formatdate{6}{2}{2014} to \protect\formatdate{6}{2}{2014}
 }
-\author{
+
+\author{%
   Elias Obeid\\
   \href{mailto:eobeid11@student.aau.dk}{\texttt{eobeid11@student.aau.dk}}
   \and
@@ -56,6 +61,7 @@
 \input{1-06.02.14/root}
 \input{2-17.02.14/root}
 
+\newpage
 \appendix
 
 \chapter{SQL: Preliminary Database Modeling}\label{sec:sqlPre}
