@@ -12,13 +12,6 @@ namespace Genetics {
     public readonly OffspringMerger offspringMerger;
 
     /// <summary>
-    /// If set, an individual x can only be added to the population if it is better than
-    /// the most similar individual y already contained in the population. 
-    /// If x is added, y is removed.
-    /// </summary>
-    public readonly bool ForceDiversity;
-
-    /// <summary>
     /// The number of individuals in a population
     /// </summary>
     public readonly int PopulationSize;
@@ -54,26 +47,16 @@ namespace Genetics {
     /// When setting the property Game, x game instances are made, where x is population size.
     /// This is convenient for running multi threaded
     /// </summary>
-    private AITrainableGame[] gameInstances;
-    
-    /// <summary>
-    /// The next game instance that can be used by a new thread
-    /// </summary>
-    private int nextGameInstanceId = 0;
+    private AITrainableGame gameInstance;
     
     public AITrainableGame Game { 
       get {
-        if (nextGameInstanceId >= gameInstances.Length)
-          nextGameInstanceId = 0;
-        return gameInstances[nextGameInstanceId++];
+        return gameInstance;
       }
       set {
         //use a new neural network maker which number of hidden neurons is based on number of inputs and outputs of the game. 
         NeuralNetworkMaker = new SimpleNNMaker(value);
-        nextGameInstanceId = 0;
-        gameInstances = new AITrainableGame[PopulationSize];
-        for (int i = 0; i < PopulationSize; i++)
-          gameInstances[i] = value.GetNewGameInstance();
+        gameInstance = value;
       }
     }
 
@@ -81,7 +64,7 @@ namespace Genetics {
 
     public Simulation(AITrainableGame game, int populationSize = 100, double crossOverBredAmount = 0.5, double mutateAfterCrossoverAmount = 0.1, 
       double mutationRate = 0.05, bool allowSinglePointCrossover = true, bool allowTwoPointCrossover = true, bool allowUniformCrossover = true,
-      int offspringMergeType = 0) {
+      int offspringMergeType = 2) {
       PopulationSize = populationSize;
       CrossoverBredAmount = crossOverBredAmount;
       MutateAfterCrossoverAmount = mutateAfterCrossoverAmount;
@@ -100,7 +83,8 @@ namespace Genetics {
 
       switch (offspringMergeType) {
         case 0: offspringMerger = new SimpleOffspringMerger(); break;
-        case 1: offspringMerger = new KillParentOffspringMerger(); break;
+        case 1: offspringMerger = new KPOffspringMerger(); break;
+        case 2: offspringMerger = new KPRIOffspringMerger(); break;
         default: throw new Exception("Wrong offspring merge type: " + offspringMergeType);
       }
 

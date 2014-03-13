@@ -5,7 +5,14 @@ using System.Text;
 using Utility;
 
 namespace Genetics {
-  public class KillParentOffspringMerger : OffspringMerger {
+
+  /// <summary>
+  /// Inserts an offspring individual into the population using the following rules:
+  /// If made by two parents, it is inserted if it performs better than both parents.
+  /// In that case, it removes both parents and inserts a random immigrant.
+  /// If made by only a single parent, the parent is just replace by itself.
+  /// </summary>
+  public class KPOffspringMerger : OffspringMerger {
     public void Merge(SortList<AIPlayer> individuals, List<AIPlayer> offspring, Simulation simulation) {
 
       //If having only single parent, replace it if better
@@ -37,7 +44,9 @@ namespace Genetics {
             individuals.Remove(o.Parent1);
             individuals.Remove(o.Parent2);
             individuals.Add(o);
-            individuals.Add(new AIPlayer(simulation.NeuralNetworkMaker));
+            AIPlayer randomImmagrant = new AIPlayer(simulation.NeuralNetworkMaker);
+            randomImmagrant.CalcFitness(simulation.Game);
+            individuals.Add(randomImmagrant);
           }
         }
       }

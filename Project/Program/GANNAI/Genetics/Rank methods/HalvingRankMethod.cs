@@ -18,8 +18,8 @@ namespace Genetics {
     /// by a factor
     /// </summary>
     /// <param name="decreaseFactor">The decreasing factor</param>
-    public HalvingRankMethod(double decreaseFactor) {
-      this.decreaseFactor = decreaseFactor;
+    public HalvingRankMethod() {
+      this.decreaseFactor = 0.5;
     }
 
     public int GetRandomIndex(int num) {
@@ -37,7 +37,7 @@ namespace Genetics {
           return i;
         subtract *= decreaseFactor;
       }
-      throw new Exception("An index should always be returned before reaching this point");
+      return num - 1;
     }
   }
 }
