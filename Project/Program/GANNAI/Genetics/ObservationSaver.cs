@@ -102,9 +102,9 @@ namespace Genetics {
       string mr = si.MutationRate.ToString(System.Globalization.CultureInfo.InvariantCulture);
       string cba = si.CrossoverBredAmount.ToString(System.Globalization.CultureInfo.InvariantCulture);
       string maca = si.MutateAfterCrossoverAmount.ToString(System.Globalization.CultureInfo.InvariantCulture);
-      bool uniform = si.AllowUniformCrossover;
-      bool singlepoint = si.AllowSinglePointCrossover;
-      bool twopoint = si.AllowTwoPointCrossover;
+      int uniform = si.AllowUniformCrossover ? 1 : 0;
+      int singlepoint = si.AllowSinglePointCrossover ? 1 : 0;
+      int twopoint = si.AllowTwoPointCrossover ? 1 : 0;
       int mergetype = si.OffspringMergeType;
       string saved_at = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
 

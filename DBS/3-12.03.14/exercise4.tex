@@ -87,12 +87,12 @@ p_1.\mathtt{color} = \mathtt{red} \; \wedge \; p_2.\mathtt{color} &= \mathtt{gre
 \subsubsection{5. Find the pids of parts supplied by at least two different suppliers}
 
 \begin{align*}
-  \pi_{\var{c1.pid}}(\sigma_{\var{c1.sid}=\var{c2.sid}}(\rho_{\var{c2}}(\mathtt{Catalog}) \bowtie_{\var{c1.pid} = \var{c2.pid}} \rho_{\var{c1}}(\mathtt{Catalog})))
+  \pi_{\var{c1.pid}}(\sigma_{\var{c1.sid}\neq\var{c2.sid}}(\rho_{\var{c2}}(\mathtt{Catalog}) \bowtie_{\var{c1.pid} = \var{c2.pid}} \rho_{\var{c1}}(\mathtt{Catalog})))
 \end{align*}
 
 \begin{align*}
-  \setof{\var{c1.pid}}{\var{c1} \in \mathtt{Catalog} \wedge \var{c2} \in \mathtt{Catalog} ( \var{c1.pid} = \var{c2.pid} \wedge \\ 
-  \var{c1.sid} \neq \var{c2.sid})}
+  \setof{\var{c1.pid}}{\var{c1} \in \mathtt{Catalog} \wedge \exists \var{c2} \in \mathtt{Catalog} 
+  ( \var{c1.pid} = \var{c2.pid} \wedge \\ \var{c1.sid} \neq \var{c2.sid})}
 \end{align*}
 
 \begin{align*}
