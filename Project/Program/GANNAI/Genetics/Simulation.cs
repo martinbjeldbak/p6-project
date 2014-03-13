@@ -10,6 +10,7 @@ namespace Genetics {
     public Population Population { get; private set; }
 
     public readonly OffspringMerger offspringMerger;
+    public readonly int OffspringMergeType;
 
     /// <summary>
     /// The number of individuals in a population
@@ -72,6 +73,7 @@ namespace Genetics {
       AllowSinglePointCrossover = allowSinglePointCrossover;
       AllowTwoPointCrossover = allowTwoPointCrossover;
       AllowUniformCrossover = allowUniformCrossover;
+      OffspringMergeType = offspringMergeType;
 
       allowedCrossoverMethods = new List<CrossoverMethod>();
       if (AllowSinglePointCrossover)
@@ -81,11 +83,11 @@ namespace Genetics {
       if (AllowUniformCrossover)
         allowedCrossoverMethods.Add(new UniformCrossover());
 
-      switch (offspringMergeType) {
+      switch (OffspringMergeType) {
         case 0: offspringMerger = new SimpleOffspringMerger(); break;
         case 1: offspringMerger = new KPOffspringMerger(); break;
         case 2: offspringMerger = new KPRIOffspringMerger(); break;
-        default: throw new Exception("Wrong offspring merge type: " + offspringMergeType);
+      default: throw new Exception("Wrong offspring merge type: " + OffspringMergeType);
       }
 
       Game = game;
