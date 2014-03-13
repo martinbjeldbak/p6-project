@@ -114,10 +114,9 @@ namespace Genetics {
         + "AND mutate_after_crossover_amount = '{4}' AND uniform_crossover = '{5}' "
         + "AND single_point_crossover = '{6}' AND two_point_crossover = '{7}' AND offspring_merge_type = '{8}'"
         , gameId, ps, mr, cba, maca, uniform, singlepoint, twopoint, mergetype);
-
-      int dbSimCount = 0;
+        
       cmd = new MySqlCommand(query, connection);
-      dbSimCount = int.Parse(cmd.ExecuteScalar() + "");
+      int dbSimCount = int.Parse(cmd.ExecuteScalar() + "");
 
       if(dbSimCount == 1) {
         Log.Info("Simulation already in database..");
@@ -125,8 +124,8 @@ namespace Genetics {
         query = String.Format("SELECT id FROM gannai.simulation WHERE game_id = '{0}' "
         + "AND population_size = '{1}' AND mutation_rate = '{2}' AND crossover_breed_amount = '{3}' "
         + "AND mutate_after_crossover_amount = '{4}' AND uniform_crossover = '{5}' "
-          + "AND single_point_crossover = '{6}' AND two_point_crossover = '{7}' AND offspring_merge_type = '{8}'"
-          , gameId, ps, mr, cba, maca, uniform, singlepoint, twopoint, mergetype);
+        + "AND single_point_crossover = '{6}' AND two_point_crossover = '{7}' AND offspring_merge_type = '{8}'"
+        , gameId, ps, mr, cba, maca, uniform, singlepoint, twopoint, mergetype);
 
         cmd = new MySqlCommand(query, connection);
         dataReader = cmd.ExecuteReader();
@@ -134,8 +133,6 @@ namespace Genetics {
         simId = int.Parse(dataReader["id"] + "");
         Log.Info("Simulation id found: " + simId);
         dataReader.Close();
-
-        InsertPopulationInDB();
       }
       else if(dbSimCount > 1){ //more than one row with same name
         Log.Info("There is more than one simulation entry of a in the table!");
@@ -145,16 +142,16 @@ namespace Genetics {
         query = String.Format("INSERT INTO gannai.simulation (game_id, population_size,"
         + " mutation_rate, crossover_breed_amount, mutate_after_crossover_amount,"
         + " uniform_crossover, single_point_crossover, two_point_crossover, offspring_merge_type, simulated_at)"
-          + " VALUES('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}')"
+        + " VALUES('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}')"
           , gameId, ps, mr, cba, maca, uniform, singlepoint, twopoint, mergetype, saved_at);
+
         cmd = new MySqlCommand(query, connection);
         cmd.ExecuteNonQuery();
 
         Log.Info("Retrieving simulation id...");
         simId = cmd.LastInsertedId;
-
-        InsertPopulationInDB();
       }
+      InsertPopulationInDB();
     }
 
     /// <summary>
@@ -188,11 +185,8 @@ namespace Genetics {
       int gameId;
 
       query = "SELECT COUNT(*) FROM gannai.game WHERE name = '" + name + "'";
-      int dbGameCount = 0;
       cmd = new MySqlCommand(query, connection);
-      //ExecuteScalar will return one value
-
-      dbGameCount = int.Parse(cmd.ExecuteScalar() + "");
+      int dbGameCount = int.Parse(cmd.ExecuteScalar() + "");
 
       if(dbGameCount == 1) { //row exists
         Log.Info("Game found. Retrieving id...");
