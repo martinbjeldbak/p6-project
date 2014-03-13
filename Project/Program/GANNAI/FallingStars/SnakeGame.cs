@@ -162,7 +162,7 @@ namespace FallingStars {
       while (alive && ticks < 1000) {
         Tick();
       }
-      return score;
+      return score + (double)ticks / 1000;
     }
 
 
