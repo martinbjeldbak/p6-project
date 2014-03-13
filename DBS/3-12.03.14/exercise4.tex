@@ -1,0 +1,107 @@
+\subsection{Excercise 4: Relational Calculus}
+
+The following queries are presented in the following combination:
+
+\begin{enumerate}[noitemsep]
+  \item Relation algebra
+  \item Tuple relational algebra
+  \item Domain relational algebra
+\end{enumerate}
+
+\subsubsection{1. Find the names of suppliers who supply some red part}
+
+\begin{align*}
+  \pi_{\texttt{sname}}(\texttt{Suppliers} \bowtie (\texttt{Catalog} \bowtie \sigma_{\texttt{color} = \texttt{red}}(\texttt{Parts})))
+\end{align*}
+ 
+\begin{align*}
+  \{s.\texttt{sname} \; \mid \; s \in \texttt{Suppliers} \; \wedge \; \exists c \in \texttt{Catalog}(s.\mathtt{sid} = c.\mathtt{sid} \; \wedge \\
+\exists p \in \texttt{Parts}(c.\mathtt{pid} = p.\mathtt{pid} \; \wedge \; p.\mathtt{color} = \mathtt{red}))\} 
+\end{align*}
+
+\begin{align*}
+  \{\langle b \rangle  \; \mid \; \exists a, c \; (\langle a, b, c \rangle \in \mathtt{Suppliers} \wedge 
+    \exists i,j(\langle b,i,j \rangle  \in \mathtt{Catalog} \; \wedge \\
+ \exists y, z(\langle i, y, z \rangle  \in \mathtt{Parts} \; \wedge \; z = \mathtt{red})
+ ))
+\end{align*}
+
+\subsubsection{2. Find the sids of suppliers who supply some red or green part}
+
+\begin{align*}
+   \pi_{\mathtt{sid}}(\mathtt{Catalog} \bowtie \sigma_{\mathtt{color} = \mathtt{red} \; \vee \; \mathtt{color} = \mathtt{green} }(\mathtt{Parts}))
+\end{align*}
+
+\begin{align*}
+  \{c.\mathtt{sid} \; \mid \; c \in \mathtt{Catalog} \; \wedge \; \exists p \in \mathtt{Parts} (c.\mathtt{pid} = p.\mathtt{pid} \; \wedge \\
+p.\mathtt{color} = \mathtt{red} \; \vee \; p.\mathtt{color} = \mathtt{green}))\}
+\end{align*}
+
+\begin{align*}
+  \{\langle b \rangle \; \mid \; \exists i, j (\langle b,i,j \rangle  \in \mathtt{Catalog} \; \wedge \; \exists y, z
+ (\langle i, y, z \rangle  \in \mathtt{Parts} \; \wedge \\
+ (z = \mathtt{red} \vee z = \mathtt{green})))
+\end{align*}
+
+\subsubsection{3. Find the sids of suppliers who supply some red part and some green part}
+
+\begin{align*}
+  \pi_{\mathtt{sid}}(\texttt{Catalog} \bowtie \sigma_{\texttt{color} = \texttt{red}}(\texttt{Parts})) 
+  \bowtie_{} \pi_{\mathtt{sid}}(\texttt{Catalog} \bowtie \sigma_{\texttt{color} = \texttt{green}}(\texttt{Parts}))
+\end{align*}
+
+\begin{align*}
+  \{c_1.\mathtt{sid} \; | \; c_1 \in \mathtt{Catalog} \; \wedge \; \exists c_2 \in \mathtt{Catalog}(c_1.\mathtt{sid} &= c_2.\mathtt{sid} \; \wedge \\
+  \exists p_1,p_2 \in \mathtt{Parts}(c_1.\mathtt{pid} = p_1.\mathtt{pid} \; \wedge \; c_2.\mathtt{pid} &= p_2.\mathtt{pid} \; \wedge \\
+p_1.\mathtt{color} = \mathtt{red} \; \wedge \; p_2.\mathtt{color} &= \mathtt{green}))\}
+\end{align*}
+
+\begin{align*}
+  \{\langle b \rangle  \; | \; \exists i,j,k,l(\langle b,i,k \rangle  \in \mathtt{Catalog} \; \wedge \; 
+  \langle b,j,l \rangle  \in \mathtt{Catalog} \; \wedge \\
+  \exists u, v, x, y(\langle i, u, v \rangle  \in \mathtt{Parts} \; \wedge \; \langle i, x, y \rangle  \in \mathtt{Parts} \; \wedge \\ 
+  v = \mathtt{red} \wedge y = \mathtt{green})))) 
+\end{align*}
+
+\subsubsection{4. Find pairs of sids such taht the supplier with the first sid charges more for some pat than the supplier with the second sid}
+
+\begin{align*}
+  \pi_{\text{ c1.sid, c2.sid }}((\rho_{\text{ c1 }}(\mathtt{Catalog}) \times \rho_{\text{ c2 }}(\mathtt{Catalog})) \bowtie_{\text{ c1.pid } = \text{ p1.pid }} \wedge \\ 
+  \text{ c2.pid } = \text{ p2.pid }(\rho_{\text{ p1 }}(\mathtt{Parts}) \bowtie_{\text{ p1.cost } > \text{ p2.cost }} \rho_{\text{ p2 }}(\mathtt{Parts})))
+\end{align*}
+
+\begin{align*}
+  \{s_1.\mathtt{sid}, s_2.\mathtt{sid} \; | \; \exists c_1, c_2 \in \mathtt{Catalog}
+  (c_1.\mathtt{sid} = s_1.\mathtt{sid} \; \wedge \; c_2.\mathtt{sid} = s_2.\mathtt{sid} \; \wedge \\
+  \exists p_1, p_2 \in \mathtt{Parts} (c_1.\mathtt{pid} = p_1.\mathtt{pid} \; \wedge \; c_2.\mathtt{pid} = p_2.\mathtt{pid} \; \wedge \\
+  p_1.\mathtt{cost} > p_2.\mathtt{cost}))\}
+\end{align*}
+
+\begin{align*}
+  \{\langle \text{ sid, sid' } \rangle 
+    \mid \exists \text{ pid, cost} (\langle \text{ sid, pid, cost } \rangle \in \mathtt{Catalog} \; \wedge \\
+    \exists \text{ pid, cost } (\lag \text{ sid', pid, cost' } \rag \in \mathtt{Catalog} \; \wedge \\
+  (\text{ cost } > \text{ cost' }) \wedge (\text{ sid } \neq \text{ sid' })))\}
+\end{align*}
+
+\subsubsection{5. Find the pids of parts supplied by at least two different suppliers}
+
+\begin{align*}
+  \pi_{\var{c1.pid}}(\sigma_{\var{c1.sid}=\var{c2.sid}}(\rho_{\var{c2}}(\mathtt{Catalog}) \bowtie_{\var{c1.pid} = \var{c2.pid}} \rho_{\var{c1}}(\mathtt{Catalog})))
+\end{align*}
+
+\begin{align*}
+  \setof{\var{c1.pid}}{\var{c1} \in \mathtt{Catalog} \wedge \var{c2} \in \mathtt{Catalog} ( \var{c1.pid} = \var{c2.pid} \wedge \\ 
+  \var{c1.sid} \neq \var{c2.sid})}
+\end{align*}
+
+\begin{align*}
+  \{\langle \text{ pid } \rangle 
+    \mid \exists \text{ sid}, \text{ cost } 
+    (\langle \text{ sid}, \text{ pid}, \text{ cost} \rangle 
+      \in \mathtt{Catalog} \; \wedge \\ \exists \text{ sid'}, \text{ cost' } (
+        \langle \text{ sid'}, \text{ pid}, \text{ cost' } \rangle 
+    \in \mathtt{Catalog} \; \wedge \\
+  \text{sid } \neq \text{ sid'}))\}
+\end{align*}
+

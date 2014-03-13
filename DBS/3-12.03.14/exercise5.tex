@@ -1,0 +1,17 @@
+\subsection{Exercise 5: Functional Dependencies}
+
+\begin{center}
+\begin{tabular}{r  l }
+  \hline
+  FD & OK or violated? \\
+   \hline
+   $A \rightarrow C$ & violated: tuples 3, 4 \\
+   $B \rightarrow A$ & OK \\
+   $C \rightarrow A$ & violated: tuples 1, 3 and 2, 4 \\
+   $A \rightarrow B$ & violated: tuples 1, 2 \\
+   $B \rightarrow C$ & violated: tuples 3, 4 \\
+   $BC \rightarrow A$ & OK \\
+   $AC \rightarrow B$ & OK \\
+   \hline
+\end{tabular}
+\end{center}
