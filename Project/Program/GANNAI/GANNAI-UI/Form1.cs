@@ -38,7 +38,8 @@ namespace GANNAIUI {
         return;
       }
 
-      simulation.Simulate(iterations);
+      ObservationSaver obs = saveToDBButton.Checked ? new ObservationSaver(simulation) : null;
+      simulation.Simulate(iterations, obs);
       PrintFitnessValues();
 
       continueButton.Enabled = true;
