@@ -7,7 +7,7 @@ using System.Windows.Forms;
 using System.Drawing;
 using Genetics;
 
-namespace FallingStars {
+namespace Games {
   public class SnakeGame : AITrainableGame {
 
     Random random;

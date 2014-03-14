@@ -8,7 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.Diagnostics;
 using Genetics;
-using FallingStars;
+using Games;
 
 namespace GANNAIUI {
   public partial class Form1 : Form {
