@@ -33,13 +33,14 @@ namespace Genetics {
       Log.Info("Opening DB connection...");
       this.OpenDBConnection();
 
+      Log.Info("Initializing iteration.");
       Log.Info("Finding corresponding game...");
       FindGameInDB(si.Game.Name());
       Log.Info("Game id retrieved!");
 
-      Log.Info("Inserting new simulation data...");
+      Log.Info("Inserting initial data...");
       InsertConfigurationInDB(si);
-      Log.Info("Simulation data inserted!");
+      Log.Info("Initial configuration, simulation, and population data inserted!");
 
       Log.Info("Closing DB connection...");
       this.CloseDBConnection();
