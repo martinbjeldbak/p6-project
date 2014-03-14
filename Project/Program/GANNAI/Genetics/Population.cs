@@ -72,8 +72,10 @@ namespace Genetics {
         newlyBred.Add(toAdd);
       }
 
-      Parallel.For(0, newlyBred.Count, i => newlyBred[i].CalcFitness(Simulation.Game));
-
+      //Parallel.For(0, newlyBred.Count, i => newlyBred[i].CalcFitness(Simulation.Game));
+      foreach (AIPlayer aip in newlyBred) {
+        aip.CalcFitness(Simulation.Game);
+      }
       return newlyBred;
     }
     //A weighted random selection of an individual based on the rank of each individual (least fitness has rank 1, greatest fitness has rank n)
@@ -168,18 +170,21 @@ namespace Genetics {
           outputCount[i.GetOutput(randInputs)]++;
       
         double numerator = 0.0;
-        for(int i = 0; i < outputSize; i++)
+        int totalOrganisms = 0;
+        for (int i = 0; i < outputSize; i++) {
           numerator += outputCount[i] * (outputCount[i] - 1);
+          totalOrganisms += outputCount[i];
+        }
 
         int s = individuals.Count;
-        double demoninator = s * (s - 1); 
+        double demoninator = totalOrganisms * (totalOrganisms - 1); 
         diversities[j] = 1.0 - numerator / demoninator;
       }
       double diversity = 0.0;
       for(int i = 0; i < runs; i++)
         diversity += diversities[i];
 
-      return diversity / (double)(runs);
+      return diversity / runs;
     }
   }
 }

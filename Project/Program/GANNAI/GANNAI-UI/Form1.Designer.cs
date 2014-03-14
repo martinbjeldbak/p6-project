@@ -21,6 +21,7 @@
       this.visualizeButton = new System.Windows.Forms.Button();
       this.generationCountLabel = new System.Windows.Forms.Label();
       this.saveToDBButton = new System.Windows.Forms.CheckBox();
+      this.diversityLabel = new System.Windows.Forms.Label();
       this.groupBox1.SuspendLayout();
       this.groupBox2.SuspendLayout();
       this.SuspendLayout();
@@ -141,11 +142,11 @@
       // generationCountLabel
       // 
       this.generationCountLabel.AutoSize = true;
-      this.generationCountLabel.Location = new System.Drawing.Point(559, 12);
+      this.generationCountLabel.Location = new System.Drawing.Point(496, 18);
       this.generationCountLabel.Name = "generationCountLabel";
-      this.generationCountLabel.Size = new System.Drawing.Size(68, 13);
+      this.generationCountLabel.Size = new System.Drawing.Size(88, 13);
       this.generationCountLabel.TabIndex = 10;
-      this.generationCountLabel.Text = "Generation 0";
+      this.generationCountLabel.Text = "Generation No: 0";
       // 
       // saveToDBButton
       // 
@@ -157,11 +158,21 @@
       this.saveToDBButton.Text = "Save To DB";
       this.saveToDBButton.UseVisualStyleBackColor = true;
       // 
+      // diversityLabel
+      // 
+      this.diversityLabel.AutoSize = true;
+      this.diversityLabel.Location = new System.Drawing.Point(644, 18);
+      this.diversityLabel.Name = "diversityLabel";
+      this.diversityLabel.Size = new System.Drawing.Size(59, 13);
+      this.diversityLabel.TabIndex = 12;
+      this.diversityLabel.Text = "Diversity: 0";
+      // 
       // Form1
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.ClientSize = new System.Drawing.Size(741, 236);
+      this.Controls.Add(this.diversityLabel);
       this.Controls.Add(this.saveToDBButton);
       this.Controls.Add(this.generationCountLabel);
       this.Controls.Add(this.visualizeButton);
@@ -196,6 +207,7 @@
     private System.Windows.Forms.Button visualizeButton;
     private System.Windows.Forms.Label generationCountLabel;
     private System.Windows.Forms.CheckBox saveToDBButton;
+    private System.Windows.Forms.Label diversityLabel;
   }
 }
 
