@@ -85,10 +85,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\FallingStars\FallingStars.csproj">
-      <Project>{0343135E-EECA-4D19-99FC-7CC2DA7C859B}</Project>
-      <Name>FallingStars</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Genetics\Genetics.csproj">
       <Project>{3025EBE0-C362-4F31-8B1A-E3B0CF3ABACB}</Project>
       <Name>Genetics</Name>
@@ -96,6 +92,10 @@
     <ProjectReference Include="..\Utility\Utility.csproj">
       <Project>{94E3B305-BCA1-4A47-B766-A456DEA24560}</Project>
       <Name>Utility</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Games\Games.csproj">
+      <Project>{0343135E-EECA-4D19-99FC-7CC2DA7C859B}</Project>
+      <Name>Games</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

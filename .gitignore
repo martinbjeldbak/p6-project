@@ -2,3 +2,4 @@ Project/article/*.log
 Project/article/*.aux
 Project/article/*.pdf
 Project/article/*.out
+DBS/*.synctex.gz

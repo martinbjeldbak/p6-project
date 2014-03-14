@@ -8,9 +8,8 @@
     <ProjectGuid>{0343135E-EECA-4D19-99FC-7CC2DA7C859B}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>FallingStars</RootNamespace>
+    <RootNamespace>Games</RootNamespace>
     <AssemblyName>FallingStars</AssemblyName>
-    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">

@@ -58,9 +58,9 @@
       <Project>{3025EBE0-C362-4F31-8B1A-E3B0CF3ABACB}</Project>
       <Name>Genetics</Name>
     </ProjectReference>
-    <ProjectReference Include="..\FallingStars\FallingStars.csproj">
+    <ProjectReference Include="..\Games\Games.csproj">
       <Project>{0343135E-EECA-4D19-99FC-7CC2DA7C859B}</Project>
-      <Name>FallingStars</Name>
+      <Name>Games</Name>
     </ProjectReference>
   </ItemGroup>
 </Project>
