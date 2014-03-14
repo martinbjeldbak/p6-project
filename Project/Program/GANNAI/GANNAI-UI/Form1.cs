@@ -14,6 +14,7 @@ namespace GANNAIUI {
   public partial class Form1 : Form {
 
     Simulation simulation;
+    ObservationSaver obs;
 
     public Form1() {
       InitializeComponent();
@@ -38,12 +39,13 @@ namespace GANNAIUI {
         return;
       }
 
-      simulation.Simulate(iterations);
+      simulation.Simulate(iterations, saveToDBButton.Checked ? obs : null);
       PrintFitnessValues();
 
       continueButton.Enabled = true;
       visualizeButton.Enabled = true;
       generationCountLabel.Text = "Generation No: " + simulation.Population.Generation.ToString();
+      diversityLabel.Text = "Diversity: " + simulation.Population.MeasureDiversity(10).ToString();
     }
 
     private void PrintFitnessValues() {
@@ -56,14 +58,26 @@ namespace GANNAIUI {
 
     private void goButton_Click(object sender, EventArgs e) {
       simulation.Restart();
+      saveToDBButton.Enabled = false;
+      if (saveToDBButton.Checked) {
+        obs = new ObservationSaver(simulation);
+      }
       StartTraining();
     }
 
     private void FallingStarsRadioButton_CheckedChanged(object sender, EventArgs e) {
+      simulation = new Simulation(new FallingStarsGame());
+      GameChanged();
+    }
+
+    private void GameChanged(){
       goButton.Enabled = true;
       continueButton.Enabled = false;
       visualizeButton.Enabled = false;
-      simulation = new Simulation(new FallingStarsGame());
+      saveToDBButton.Enabled = true;
+      listBox1.Items.Clear();
+      generationCountLabel.Text = "Generation No:";
+      diversityLabel.Text = "Diversity:";
     }
 
     private void BombermanRadioButton_CheckedChanged(object sender, EventArgs e) {
@@ -71,10 +85,8 @@ namespace GANNAIUI {
     }
 
     private void SnakeRadioButton_CheckedChanged(object sender, EventArgs e) {
-      goButton.Enabled = true;
-      continueButton.Enabled = false;
-      visualizeButton.Enabled = false;
       simulation = new Simulation(new SnakeGame());
+      GameChanged();
     }
 
     private void continueButton_Click(object sender, EventArgs e) {
@@ -85,10 +97,6 @@ namespace GANNAIUI {
       Form form = new Form();
       form.Show();
       simulation.Game.Visualize(simulation.GetBest(), form);
-    }
-
-    private void measurePerformanceButton_Click(object sender, EventArgs e) {
-
     }
   }
 }

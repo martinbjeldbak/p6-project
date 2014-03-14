@@ -71,7 +71,8 @@
     <Compile Include="Crossover methods\UniformCrossover.cs" />
     <Compile Include="CrossoverMethod.cs" />
     <Compile Include="OffspringMerger.cs" />
-    <Compile Include="OffspringMerger\KillParentOffspringMerger.cs" />
+    <Compile Include="OffspringMerger\KPRIOffspringMerger.cs" />
+    <Compile Include="OffspringMerger\KPOffspringMerger.cs" />
     <Compile Include="OffspringMerger\SimpleOffspringMerger.cs" />
     <Compile Include="Rank methods\HalvingRankMethod.cs" />
     <Compile Include="Rank methods\LinearRankMethod.cs" />
