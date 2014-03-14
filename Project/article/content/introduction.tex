@@ -20,9 +20,51 @@ Neural networks are often chosen as individuals within genetic algorithms.
 
 \subsection{Artificial Neural Network}
 
+An artificial neural network can from the outside be seen as a black box that 
+given the values $x_1, x_2, ..., x_n$ outputs the values $y_1, y_2, ..., y_m$.
+With the right internal structure, a neural network can be used for a variety of purposes, 
+e.g. face recognition, where the intensities of different pixels in an image are used as input,
+and a single output value $y_1$ is produced, where $y_1 = 1$ if the image was of a face and $0$ if not. 
+We will now dig a bit into the internals of a neural network, to see how these output values are calculated based on the
+input values.
+
+\paragraph{Neurons}
+A neural network is a collection of neurons. A neuron takes a number of values as input, applies
+a weight to each value, sum them, and finally apply a function to produce a single output value. 
+The function applied is called the transfer function.
+In a feed forward network, neurons are placed in different layers, where each neuron uses the output of all
+neurons from the previous layer as input. Each neuron in the first layer is called an input neuron and receives one
+of the values input to the neural network. Any neuron that does not belong to the first layer is called a hidden neuron.
+The neurons in the last layer are called output neurons. The value output by these neurons becomes
+the output of the neural network.
+
+
+\paragraph{Training a neural network}
+Any application of a neural network requires that a correct number of layers, neurons, and weights between
+neurons are found to adequately solve the problem. In many applications, a single layer of $k$ hidden neurons works well, where $k = \frac{1}{2}(|\mathtt{input neurons}| |\mathtt{output neurons}|$.
+The weights between neurons are calculated by a process called training. Training algorithms, such as the
+back-propagation algorithm, typically requires that for each input to the neural network, the output is already known.
+For the application of face recognition, this means that the pictures used for training,
+each has a predicate indicating whether it is a picture of a face or not.  
+
+For some purposes, the desired output of a neural network is not known given a number of input values.
+Consider for instance a computer game, where a player is controlled by a neural network. 
+The neural network takes as input values indicating the state of the game, such as the position of the players
+and enemies around him. For each input, the neural network returns a single value indicating which action the
+player should take, e.g. move left, move right, jump. Given a state of the game, we might not be able to say
+whether an action output by the neural network is right or wrong. It might be wrong to move closer to
+an enemy if it kills you, but it might be right if the next action is to kill the enemy.
+
+From this, it is clear that a back-propagation algorithm is not appropriate for training a neural network
+to control the actions of a artificial intelligent (AI) player in a computer game. For this purpose
+we propose another approach. We can tell how good a neural network performs, or how fit it is,
+by simulating a game being played using the neural network to control the player. 
+The fitness of the neural network can be determined by the score achieved in the game or
+any other function indicating how well the AI player performed using that particular neural network.
+By now being able to measure the fitness of a particular neural network, we can use a genetic algorithm
+to search for a neural network with the highest possible fitness.
 
 \subsection{Genetic algorithms}
-
 A \emph{genetic algorithm} belongs to the class of evolutionary algorithms. This class of algorithms is inspired by natural evolution as seen in Biology. Genetic algorithms are search algorithms which imitate the process of natural selection.
 
 \paragraph{Populations}
@@ -49,10 +91,6 @@ A \emph{fitness function} must be defined to calculate the fitness level for eac
 \subsection{Neural network}
 
 The artificial \emph{neural network} is a computational model inspired by the brain. Neural networks are constructed of connected computational units called \emph{neurons}.
-
-\paragraph{Neurons}
-
-We distinguish between \emph{input}, \emph{hidden}, and \emph{output neurons}. Input neurons provide and forward the input for the network. Hidden neurons are the units between the input and the output neurons. Based on the values of the output neurons an action is to be performed. Neurons receive one or more inputs and produce a single output. The output is forwarded to the next layer of neurons in the network.  The network consists of layers of neurons. All these neurons in one layer are connected to all the neurons of the next layer. Each connection has an associated weight which is used to produce the single output.
 
 \paragraph{Transfer function}
 
