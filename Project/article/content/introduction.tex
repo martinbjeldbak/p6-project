@@ -1,6 +1,8 @@
 \section{Introduction}
 Neural networks are often chosen as individuals in a population within genetic algorithms. These individuals procreate to form a new generation by creating offspring. Offspring consists of some combination of parent individuals and usually replace the individuals that are worst off in the preceding generation, simulating natural selection.
 
+\input{content/motivation}
+
 \subsection{Artificial Neural Network}
 An artificial neural network is a graph structure that can from the outside be seen as a black box, that given the values $x_1, x_2, \dots, x_n$ outputs the values $y_1, y_2, \dots, y_m$. With the right internal structure, a neural network can be used for a variety of purposes, e.g.\ face recognition, where the intensities of different pixels in an image are used as input, and a single output value $y_1$ is produced, where $y_1 = 1$ if the image was of a face and $0$ if not. We now describe the structure and inner workings of neural networks to understand how these output values are calculated based on input values.
 
@@ -42,7 +44,6 @@ Genetic algorithms belong to the class of evolutionary algorithms. This class of
 Individuals in evolutionary computational algorithms have a sets of traits and behaviors that define each individual. They can take on any form of data structure, as long as they wholly represent a possible solution to the problem. 
 
 Encoding individuals with bit strings eases many forms of operators within genetic algorithms.
-\todo{Add section about encoding neural networks here}
 
 %\subsubsection{Genes}
 Each individual consists of \emph{genes}. Genes constitute the DNA of the individual. These genes are an encoding of some attribute or skill the individual has. Because we defined neural networks to be individuals, the weights and node biases consist of the DNA.
