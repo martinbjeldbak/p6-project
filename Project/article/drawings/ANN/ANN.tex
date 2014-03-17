@@ -1,8 +1,8 @@
-\documentclass[border=0.125cm]{standalone}
+%\documentclass[border=0.125cm]{standalone}
+\documentclass{standalone}
 \usepackage{tikz}
 \usetikzlibrary{positioning}
 \begin{document}
-
 \tikzset{%
   every neuron/.style={
     circle,
@@ -16,9 +16,7 @@
     execute at begin node=\color{black}$\vdots$
   },
 }
-
 \begin{tikzpicture}[x=1.5cm, y=1.5cm, >=stealth, shorten >=1pt]
-
 % Draw input nodes
 \foreach \m/\l [count=\y] in {1,2,3,missing,4}
   \node [every neuron/.try, neuron \m/.try] (input-\m) at (0,2.5-\y) {};
@@ -59,7 +57,5 @@
 % Annotate the layers
 \foreach \l [count=\x from 0] in {Input, Hidden, Output}
   \node [align=center, above] at (\x*2,2) {\l \\ layer};
-
 \end{tikzpicture}
-
 \end{document}
