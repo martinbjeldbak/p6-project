@@ -1,0 +1,22 @@
+\paragraph{Encoding a Neural Network}
+
+%bitstrings
+%weight on connections
+%each input and each output
+%amount of hidden neurons
+
+Neural networks are ideal for decision making and we use them for encoding individuals. Each possible input an individual can get will be recieved through an input neuron. Likewise, each possible action an individual can perform is formulated through the output neurons. The network is constructed with connections between neurons with associated weights. These weights are used to calculate an action given the actual input.
+
+We represent the connections and weights as bitstrings. Each weight is encoded with $n$ bits. Each bitstring is concatenated with the next, to form one large bit string containing the entire encoding for the network.
+
+The bit string is constructed in an ordered manner, such that the first $n$ bits represent the weight for the first connection between the first input neuron and the first hidden neuron, and so forth. It is this large bit string that is manipulated by crossing different bit strings from different individuals.
+
+%\[
+%  \underbrace{w_{1,1}}_{n} w_{1,2} \ldots w_{i,j}
+%\]
+
+%\[
+%  \ldots \underbrace{w_{i,j-1}}_{n} w_{i,j} w_{i,j+1} \ldots
+%\]
+
+%where $w_{i,j}$ represents the weight of the connection between the $i'th$ and $j'th$ neuron in bits. Each weight is concatenated with the next weight. The lenght of any weight is of size $n$.
