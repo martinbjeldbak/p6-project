@@ -30,7 +30,7 @@ end
 
 task :clean do
   rm = 'rm -rf'
-  tmpAll = %w[aux log nav snm tdo pyg synctex.gz
+  tmpAll = %w[aux log nav snm tdo pyg 
               toc vrb bbl bcf blg out bib.bak thm
               run.xml].map{|f| '*.' + f}.join(' ')
   tmpFull = %W[output].join(' ')
