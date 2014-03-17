@@ -1,0 +1,26 @@
+\section{Measuring diversity}
+
+If two chromosomes have different bit strings, we say that they have different genotypes.
+If the behaviour they encode are different, that is, the neural network they encode produces a different output for some input,  we say they have different phenotypes.
+
+Common methods for measuring diversity focuses on either genotypic or phenotypic diversity.
+When chromosomes encode neural networks, one drawback of measuring diversity by comparing genotypes is that two individuals of different genotypes can have the same phenotype. Thus a high diversity does not necessarily imply that individuals with many different properties are represented in the population.
+\todo{include a picture showing two different neural networks that always produces the same output}.
+When basing diversity measures on phenotypes, a formula is needed for calculating how different two phenotypes are. 
+Usually, the phenotypic diversity is measured only based on the fitness value of each phenotype.
+%http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.104.912&rep=rep1&type=pdf
+The advantage is that it requires no extra computational power. 
+The drawback is that two individuals with the same fitness value might still have different traits, that is, the way of achieving these fitness values. Ideally, we want a high diversity in a population to reflect many different traits among the individuals. By enforcing a high diversity, we hope to see many different traits being explored and only keep the most fit individuals with each set of traits.
+
+We propose a new method for measuring phenotypic diversity, which is suitable for GA's using neural networks.
+Our hypothesis is that our method better reflects the different traits among individuals.
+We call it the trait diversity measure (TDM) which is calculated among $n$ neural networks with respect to the inputs $I_1, I_2, ..., I_m$.
+
+\todo{Insert a nice mathematical expression for TDM}
+
+where $O_j(I_p)$ is the output of the $j'th$ neural network given the input $I_p$.
+Each input $I_p$ must be an assignment of a random value to each input neuron in its allowed domain.
+
+One disadvantage of $TDM$ is that it relies on random inputs, which means that a lower value $m$ causes more statistical uncertainty. A greater value $m$ requires more computational power.
+Another disadvantage is that two neural networks which given the same input produces the two outputs $\{1, 2 ,3}$ and $\{5, -4, 8\}$ will be considered just as different as two neural networks which given the same input produces the outputs ${1, 2 ,3}$ and ${1.001, 2 ,3}$. Our method does not distinguish This problem does not exist for neural networks with only boolean output values.
+We shall therefore use neural networks with only boolean output values to prove that our method for enforcing phenotypic diversity works.
