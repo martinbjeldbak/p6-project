@@ -1,101 +1,6 @@
 \section{Introduction}
 Neural networks are often chosen as individuals in a population within genetic algorithms. These individuals procreate to form a new generation by creating offspring. Offspring consists of some combination of parent individuals and usually replace the individuals that are worst off in the preceding generation, simulating natural selection.
 
-Neural networks are often chosen as individuals within genetic algorithms.
-
-% Artificial Neural networks
-%   - Neurons
-%   - Transfer functions
-% Genetic algorithms
-%  Are inspired by nature
-%   - Individual encoding (bit strings), genotype, phenotype
-%   - Populations
-%   - Fitness function define how fit an individual is in a population
-%   - Generations
-%     - Selection methods
-%       We propose a new method of selection
-%       - Mass extinction, random individuals
-%     - Crossovers and mutations, probability of mutation and crossover
-%       - Methods
-
-\subsection{Artificial Neural Network}
-
-An artificial neural network can from the outside be seen as a black box that 
-given the values $x_1, x_2, ..., x_n$ outputs the values $y_1, y_2, ..., y_m$.
-With the right internal structure, a neural network can be used for a variety of purposes, 
-e.g. face recognition, where the intensities of different pixels in an image are used as input,
-and a single output value $y_1$ is produced, where $y_1 = 1$ if the image was of a face and $0$ if not. 
-We will now dig a bit into the internals of a neural network, to see how these output values are calculated based on the
-input values.
-
-\paragraph{Neurons}
-A neural network is a collection of neurons. A neuron takes a number of values as input, applies
-a weight to each value, sum them, and finally apply a function to produce a single output value. 
-The function applied is called the transfer function.
-In a feed forward network, neurons are placed in different layers, where each neuron uses the output of all
-neurons from the previous layer as input. Each neuron in the first layer is called an input neuron and receives one
-of the values input to the neural network. Any neuron that does not belong to the first layer is called a hidden neuron.
-The neurons in the last layer are called output neurons. The value output by these neurons becomes
-the output of the neural network.
-
-
-\paragraph{Training a neural network}
-Any application of a neural network requires that a correct number of layers, neurons, and weights between
-neurons are found to adequately solve the problem. In many applications, a single layer of $k$ hidden neurons works well, where $k = \frac{1}{2}(|\mathtt{input neurons}| |\mathtt{output neurons}|$.
-The weights between neurons are calculated by a process called training. Training algorithms, such as the
-back-propagation algorithm, typically requires that for each input to the neural network, the output is already known.
-For the application of face recognition, this means that the pictures used for training,
-each has a predicate indicating whether it is a picture of a face or not.  
-
-For some purposes, the desired output of a neural network is not known given a number of input values.
-Consider for instance a computer game, where a player is controlled by a neural network. 
-The neural network takes as input values indicating the state of the game, such as the position of the players
-and enemies around him. For each input, the neural network returns a single value indicating which action the
-player should take, e.g. move left, move right, jump. Given a state of the game, we might not be able to say
-whether an action output by the neural network is right or wrong. It might be wrong to move closer to
-an enemy if it kills you, but it might be right if the next action is to kill the enemy.
-
-From this, it is clear that a back-propagation algorithm is not appropriate for training a neural network
-to control the actions of a artificial intelligent (AI) player in a computer game. For this purpose
-we propose another approach. We can tell how good a neural network performs, or how fit it is,
-by simulating a game being played using the neural network to control the player. 
-The fitness of the neural network can be determined by the score achieved in the game or
-any other function indicating how well the AI player performed using that particular neural network.
-By now being able to measure the fitness of a particular neural network, we can use a genetic algorithm
-to search for a neural network with the highest possible fitness.
-
-\subsection{Genetic algorithms}
-A \emph{genetic algorithm} is inspired by natural evolution as seen in Biology and aims to solve
-an optimization problem. 
-
-\paragraph{Individuals and chromosomes}
-A genetic algorithm (GA) maintains a list of \emph{individuals} which together forms a \emph{population}. 
-Each individual represents a solution to the optimization problem and has a fitness value, which
-denotes how adequately the individual can solve the optimization problem.
-How an individual solves the optimization problem is determined by its \emph{chromosome}, which
-is typically represented by a bit string. Therefore, using a GA requires a way of decoding
-a chromosome into a solution to the optimization problem.
-The population used by a genetic algorithm typically has a fixed number of individuals, who are
-all initialized randomly when the GA is run. That is, the bit string representing the chromosome is
-initialized with random bits.
-As the GA iterates, new individuals are made by combining and modifying chromosomes from existing
-individuals of the population.
-Some of the newly created individuals will replace the older individuals using a replace policy
-that over time aims to maximize the fitness of the best individuals.
-After every iteration of the GA, where older individuals have been replaced by offspring, we
-say that we have another \emph{generation} of individuals.
-
-\paragraph{Crossovers and mutations}
-Many different methods are used to construct the offspring's chromosomes.
-Crossover-methods combine slices of two or more chromosomes from the population to form a new one.
-Offspring's chromosomes can also be constructed by just \emph{mutating} chromosomes from the population.
-This can be done by randomly changing the value of some bits in the chromosome's bit string.
-
-\input{content/encodingneuralnetwork}
-
-\section{Introduction}
-Neural networks are often chosen as individuals in a population within genetic algorithms. These individuals procreate to form a new generation by creating offspring. Offspring consists of some combination of parent individuals and usually replace the individuals that are worst off in the preceding generation, simulating natural selection.
-
 \input{content/motivation}
 
 \subsection{Artificial Neural Network}
@@ -135,18 +40,19 @@ From this, it is clear that a backpropagation algorithm is not appropriate for t
 \subsection{Genetic algorithms}
 Genetic algorithms belong to the class of evolutionary algorithms. This class of algorithms is inspired by natural evolution as seen in biology. Genetic algorithms are optimization algorithms which imitate the process of natural selection in search of global maximum.
 
+\subsubsection{Individuals and chromosomes}
+A genetic algorithm (GA) maintains a list of \emph{individuals} which together forms a \emph{population}. Each individual represents a possible solution to the optimization problem and has a fitness value, which denotes how adequately the individual can solve the optimization problem. How an individual solves the optimization problem is determined by its \emph{chromosome}, which is typically represented by a bit string. Therefore, using a GA requires a way of decoding a chromosome into a solution to the optimization problem. The population used by a genetic algorithm typically has a fixed number of individuals, who are all initialized randomly when the GA is initially run. That is, the bit string representing the chromosome is initialized with random bits. As the GA iterates, new individuals are made by combining and modifying chromosomes from existing individuals of the population. Some of the newly created individuals will replace the older individuals using a replace policy that over time aims to maximize the fitness of the best individuals. After each iteration of the GA, where a new population is formed, we say that we have another \emph{generation} of individuals.
+
 \subsubsection{Individuals}
 Individuals in evolutionary computational algorithms have a sets of traits and behaviors that define each individual. They can take on any form of data structure, as long as they wholly represent a possible solution to the problem. 
 
-Encoding individuals with bit strings eases many forms of operators within genetic algorithms.
-
 %\subsubsection{Genes}
-Each individual consists of \emph{genes}. Genes constitute the DNA of the individual. These genes are an encoding of some attribute or skill the individual has. Because we defined neural networks to be individuals, the weights and node biases consist of the DNA.
+%Each individual consists of many \emph{genes} as part of its chromosome. Genes constitute the DNA of the individual. These genes are an encoding of some attribute or skill the individual has. Because we defined neural networks to be individuals, the weights and node biases consist of the DNA.
 
-\subsubsection{Populations}
-A genetic algorithm manages a collection of many individuals, known as a population. Individuals in the first population are usually initialized randomly with a fixed population size. The goal for these individuals is to solve a problem optimally. Each individual in the population has a fitness level that defines the individual's ability to solve a given problem.
-
-Initially, there are no generations. Creating a new population from a previous population increases the amount of generations by one, hopefully yielding a net increase in average fitness.
+% This subsubsection is already described in individuals and hcromosomes
+%\subsubsection{Populations}
+%A genetic algorithm manages a collection of many individuals, known as a population. Individuals in the first population are usually initialized randomly with a fixed population size. The goal for these individuals is to solve a problem optimally. Each individual in the population has a fitness level that defines the individual's ability to solve a given problem.
+%Initially, there are no generations. Creating a new population from a previous population increases the amount of generations by one, hopefully yielding a net increase in average fitness.
 
 \subsubsection{Crossovers and mutations}
 In natural evolution, a pair of individuals come together to produce one or more new child individuals, with genes from both of the parent individuals. The process of procreation is done by performing a \emph{crossover} of the two parent individuals' genes.
@@ -160,3 +66,5 @@ Mutations can occur randomly at any point in time upon creating a child individu
 
 \subsubsection{Fitness functions}
 A fitness function must be defined to calculate the desirability for each individual. This function is used to define the most fit individuals in a population. The higher the fitness level is of a given individual, the higher the chance it has to be chosen to reproduce with another individual. The intuition behind this is that choosing to very fit individuals to crossover will create an even better individual with the best traits of each of its parents.
+
+\input{content/encodingneuralnetwork}
