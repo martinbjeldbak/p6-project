@@ -1,0 +1,134 @@
+\section{Self Study 4: Refinement, normalization, and SQL-DDL}
+
+\subsection{Revised ER diagram}
+We have added Chen and [min,max] notation.
+
+\subsection{Functional dependencies}
+\begin{itemize}
+  \item User: username $\ra$ email, password
+  \item Award: year, name $\ra$ title, date
+  \item Movie: title, date $\ra$ language
+  \item Person: id $\ra$ birthdate, firstName, lastName, dateOfDeath, sex
+  \item Review: id $\ra$ rating, date, username, title, date
+\end{itemize}
+
+\subsection{List of normalized relations}
+\subsubsection{Definitions}
+This is also the derived relational schema.
+\begin{itemize}
+  \item User: \schema{\key{username : string}, email : string, password :string}
+  \item Award: \schema{\key{year :integer, name : string}, \refs{title : string}{Movie}, \refs{date : string}{Movie}}
+  \item Genre: \schema{\key{name : string}}
+  \item GenreMovie: \schema{\key{\refs{name : string}{Genre}, \refs{title :string}{Movie}, \refs{date : date}{Movie}}}
+  \item Movie: \schema{\key{title : string, date : date}, language}
+  \item Refers: \schema{\key{\refs{title : string}{Movie}, \refs{date : date}{Movie}, \refs{referredTitle : string}{Movie}, \refs{referredDate : date}{Movie}}}
+  \item Role: \schema{\key{roleName : string}}
+  \item Participates: \schema{\key{\refs{title : string}{Movie}, \refs{date : date}{Movie}, \refs{roleName : string}{Role}, \refs{id : integer}{Person}}}
+  \item Person: \schema{\key{id : integer}, birthdate : date, firstName : string, lastName : string, dateOfDeath : date, sex : string}
+  \item Review: \schema{\key{id : integer}, rating : integer, date : date, \refs{username : string}{User}, \refs{title : string}{Movie}, \refs{date : date}{Movie}}
+\end{itemize}
+
+\subsection{SQL for creating tables}
+\begin{lstlisting}[language=SQL]
+CREATE TABLE user(
+  username varchar(50),
+  email varchar(50) UNIQUE NOT NULL,
+  password varchar(50) NOT NULL,
+  PRIMARY KEY(username)
+);
+\end{lstlisting}
+
+\begin{lstlisting}[language=SQL]
+CREATE TABLE award(
+  year int,
+  name varchar(50),
+  title varchar(50) NOT NULL,
+  date datetime NOT NULL,
+  PRIMARY KEY(year, name)
+);
+\end{lstlisting}
+
+\begin{lstlisting}[language=SQL]
+CREATE TABLE genre(
+  name varchar(50),
+  PRIMARY KEY(name)
+);
+\end{lstlisting}
+
+\begin{lstlisting}[language=SQL]
+CREATE TABLE genreMovie(
+  name varchar(50),
+  title varchar(50),
+  date datetime,
+  PRIMARY KEY(name, title, date),
+  FOREIGN KEY(name) REFERENCES genre(name),
+  FOREIGN KEY(title, date) REFERENCES movie(title, date)
+);
+\end{lstlisting}
+
+\begin{lstlisting}[language=SQL]
+CREATE TABLE movie(
+  title varchar(50),
+  date datetime,
+  language varchar(50),
+  PRIMARY KEY(title, date),
+);
+\end{lstlisting}
+
+\begin{lstlisting}[language=SQL]
+CREATE TABLE refers(
+  title varchar(50),
+  date datetime,
+  referredTitle varchar(50),
+  referredDate datetime,
+  PRIMARY KEY(title, date, referredTitle, referredDate),
+  FOREIGN KEY(title, date) REFERENCES movie(title, date),
+  FOREIGN KEY(referredTtitle, referredDate) REFERENCES movie(title, date)
+);
+\end{lstlisting}
+
+\begin{lstlisting}[language=SQL]
+CREATE TABLE role(
+  roleName varchar(50),
+  PRIMARY KEY(roleName)
+);
+\end{lstlisting}
+
+\begin{lstlisting}[language=SQL]
+CREATE TABLE participates(
+  title varchar(50),
+  date datetime,
+  roleName varchar(50),
+  id int,
+  PRIMARY KEY(title, date, roleName, id),
+  FOREIGN KEY(title, date) REFERENCES movie(title, date),
+  FOREIGN KEY(roleName) REFERENCES role(roleName),
+  FOREIGN KEY(id) REFERENCES person(id)
+);
+\end{lstlisting}
+
+\begin{lstlisting}[language=SQL]
+CREATE TABLE person(
+  id int,
+  birthdate datetime NOT NULL,
+  firstName varchar(50) NOT NULL,
+  lastName varchar(50) NOT NULL,
+  dateOfDeath datetime NOT NULL,
+  sex char(1) NOT NULL,
+  PRIMARY KEY(id)
+);
+\end{lstlisting}
+
+\begin{lstlisting}[language=SQL]
+CREATE TABLE review(
+  id int,
+  rating int,
+  date datetime NOT NULL,
+  username varchar(50) NOT NULL,
+  title varchar(50) NOT NULL,
+  date datetime NOT NULL,
+  PRIMARY KEY(id),
+  FOREIGN KEY(username) REFERENCES user(username),
+  FOREIGN KEY(title, date) REFERENCES role(title, date)
+);
+\end{lstlisting}
