@@ -1,6 +1,6 @@
 master.pdf
 master.pyg
 master.toc
-master.log
 *.mwb.bak
 *-eps-converted-to.pdf
+**.log
