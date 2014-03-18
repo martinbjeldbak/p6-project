@@ -23,6 +23,7 @@
 \usepackage{enumitem}
 \setlist[itemize]{noitemsep}
 \setlist[enumerate]{noitemsep}
+\usepackage{listings}
 
 %\usepackage{minted}
 \usepackage{hyperref}
@@ -40,6 +41,11 @@
 \newcommand{\Ra}{\Rightarrow}
 \newcommand{\var}[1]{\text{ #1 }}
 \newcommand{\dvar}[1]{\lag\text{ #1 }\rag}
+
+\newcommand{\key}[1]{\ensuremath{\underline{\mathit{#1}}}}
+\newcommand{\schema}[1]{\set{[#1]}}
+\newcommand{\refs}[2]{#1 \ra #2}
+
 
 \setlength{\parindent}{0pt}
 \nonzeroparskip{}
@@ -75,6 +81,7 @@
 \input{1-06.02.14/root}
 \input{2-17.02.14/root}
 \input{3-12.03.14/root}
+\input{4-18.03.14/root}
 
 %\newpage
 %\appendix
