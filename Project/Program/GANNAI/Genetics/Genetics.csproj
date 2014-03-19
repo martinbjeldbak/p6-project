@@ -70,6 +70,7 @@
     <Compile Include="Crossover methods\TwoPointCrossover.cs" />
     <Compile Include="Crossover methods\UniformCrossover.cs" />
     <Compile Include="CrossoverMethod.cs" />
+    <Compile Include="Neural network makers\LargeNeuralNetworkMaker.cs" />
     <Compile Include="OffspringMerger.cs" />
     <Compile Include="OffspringMerger\KPRIOffspringMerger.cs" />
     <Compile Include="OffspringMerger\KPOffspringMerger.cs" />

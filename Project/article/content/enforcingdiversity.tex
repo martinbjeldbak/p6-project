@@ -5,22 +5,21 @@ If the behaviour they encode are different, that is, the neural network they enc
 
 Common methods for measuring diversity focuses on either genotypic or phenotypic diversity.
 When chromosomes encode neural networks, one drawback of measuring diversity by comparing genotypes is that two individuals of different genotypes can have the same phenotype. Thus a high diversity does not necessarily imply that individuals with many different properties are represented in the population.
-\todo{include a picture showing two different neural networks that always produces the same output}.
+%\todo{include a picture showing two different neural networks that always produces the same output}.
 When basing diversity measures on phenotypes, a formula is needed for calculating how different two phenotypes are. 
 Usually, the phenotypic diversity is measured only based on the fitness value of each phenotype.
 %http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.104.912&rep=rep1&type=pdf
 The advantage is that it requires no extra computational power. 
 The drawback is that two individuals with the same fitness value might still have different traits, that is, the way of achieving these fitness values. Ideally, we want a high diversity in a population to reflect many different traits among the individuals. By enforcing a high diversity, we hope to see many different traits being explored and only keep the most fit individuals with each set of traits.
 
-We propose a new method for measuring phenotypic diversity, which is suitable for GA's using neural networks.
-Our hypothesis is that our method better reflects the different traits among individuals.
-We call it the trait diversity measure (TDM) which is calculated among $n$ neural networks with respect to the inputs $I_1, I_2, ..., I_m$.
+We propose a new method for measuring phenotypic diversity, which we claim is more suitable for measuring diversity in GA's using neural networks with binary output, compared to fitness based diversity measures. With \emph{more suitable}, we mean diversity function that better reflects different traits among the individuals of a population. 
+We denote a diversity calculated using our method for a \emph{Neural Network Trait Diversity} (NNTM).
+NNTD is calculated among the neural networks $F = \{f_1, f_2, ... f_n\}$, that all have the same architecture of $a$ input and $b$ output neurons. NNTD is based on the inputs $\{R_1, R_2, ..., R_m\}$, where each input is represented by an $a$-tuple of real values chosen randomly. NNTD uses Simpsons diversity index, which takes as input a total number of organisms $o$ as well as a distribution of organisms into a number of species $\{S_1, S_2, ..., S_k\}$, and returns a diversity index. Simpsons diversity index is used in ecology to quantify the biodiversity of a habitat and uses the term \emph{organism}, where we use the term \emph{individual} instead, which is the terminology used when describing genetic algorithms. 
+For each input $R_1$, NNTD distributes the population of individuals into a number species $\{S_1, S_2, ..., S_k\}$, such that  each specie represents a possible output from the neural network architecture used by the individuals, thus $k = 2^b$. We denote $S_i(R)$ to be the number of individuals belonging to the $i$'th specie, given the input $R$.
 
-\todo{Insert a nice mathematical expression for TDM}
+\[S_i(R) = \{f_j \; | \; i = 2^0\sigma_{R,j,1} + 2^1\sigma_{R,j,2} + ... + 2^{b-1}\sigma_{R,j,b} \}\]
 
-where $O_j(I_p)$ is the output of the $j'th$ neural network given the input $I_p$.
-Each input $I_p$ must be an assignment of a random value to each input neuron in its allowed domain.
+where $\sigma_{x,y,z} \in \{0, 1\}$ is the output of the $z$'th hidden neuron in neural network $f_y$ on input $x$, .
 
-One disadvantage of $TDM$ is that it relies on random inputs, which means that a lower value $m$ causes more statistical uncertainty. A greater value $m$ requires more computational power.
-Another disadvantage is that two neural networks which given the same input produces the two outputs $\{1, 2 ,3}$ and $\{5, -4, 8\}$ will be considered just as different as two neural networks which given the same input produces the outputs ${1, 2 ,3}$ and ${1.001, 2 ,3}$. Our method does not distinguish This problem does not exist for neural networks with only boolean output values.
-We shall therefore use neural networks with only boolean output values to prove that our method for enforcing phenotypic diversity works.
+One disadvantage of $NNTD$ is that it relies on random inputs, which means that a lower value $m$ causes more statistical uncertainty. A greater value of $m$ requires more computational power.
+Another disadvantage is that two neural networks which given the same input produces the outputs $\{0, 0, 0\}$, $\{0, 0, 1\}$ and $\{1, 1, 1\}$ will belong to three different species. The greater similarity of the two former inputs will not be reflected by the species they belong to.
