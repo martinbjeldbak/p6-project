@@ -56,7 +56,7 @@ namespace Genetics {
       }
       set {
         //use a new neural network maker which number of hidden neurons is based on number of inputs and outputs of the game. 
-        NeuralNetworkMaker = new SimpleNNMaker(value);
+        NeuralNetworkMaker = new LargeNeuralNetworkMaker(value);
         gameInstance = value;
       }
     }
@@ -65,7 +65,7 @@ namespace Genetics {
 
     public Simulation(AITrainableGame game, int populationSize = 100, double crossOverBredAmount = 0.5, double mutateAfterCrossoverAmount = 0.1, 
       double mutationRate = 0.05, bool allowSinglePointCrossover = true, bool allowTwoPointCrossover = true, bool allowUniformCrossover = true,
-      int offspringMergeType = 2) {
+      int offspringMergeType = 0) {
       PopulationSize = populationSize;
       CrossoverBredAmount = crossOverBredAmount;
       MutateAfterCrossoverAmount = mutateAfterCrossoverAmount;

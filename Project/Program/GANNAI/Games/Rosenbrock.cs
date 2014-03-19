@@ -1,22 +1,21 @@
 ﻿using System;
 using Genetics;
+using Utility;
 
 namespace Games {
   public class Rosenbrock : AITrainableGame {
     AIPlayer aiplayer;
-    int x, y;
 
     public Rosenbrock() {
-      x = 10;
-      y = 10;
+
     }
 
     private int RosenbrockFunction(int x, int y) {
       return (1 - x) ^ 2 + 100 * (y - x ^ 2) ^ 2;
     }
 
-    private int getApproximation() {
-      return aiplayer.GetOutput(new double[] { x, y });
+    private int getApproximation(int x, int y) {
+      return (int)aiplayer.GetOutputs(new double[] { x, y })[0];
     }
 
 
@@ -24,9 +23,15 @@ namespace Games {
     public double CalcFitness(AIPlayer aiplayer) {
       this.aiplayer = aiplayer;
 
-      // How do you reward it for getting close to the function? Ie the result of
-      // the subtraction is 0
-      return Math.Abs(RosenbrockFunction(x, y) - getApproximation());
+      double error = 0;
+      int numIterations = 0;
+      for (int i = -9; i < 10; i++) {
+        for (int p = -9; p < 10; p++) {
+          numIterations++;
+          error += Math.Abs(RosenbrockFunction(i, p) - getApproximation(i, p));
+        }
+      }
+      return -error / numIterations;
     }
 
     public int NumInputs() {

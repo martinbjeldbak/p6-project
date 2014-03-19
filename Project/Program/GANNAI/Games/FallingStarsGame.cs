@@ -51,7 +51,7 @@ namespace Games {
       int in4 = playerX;
 
 
-      int action = aiplayer.GetOutput(new double[] { in1, in2, in3, in4 });
+      int action = aiplayer.GetStrongestOutputIndex(new double[] { in1, in2, in3, in4 });
       //bool[] outputs = aiplayer.GetOutputs(new double[]{in1, in2, in3, in4});
 
       if (action == 0) { //move left
