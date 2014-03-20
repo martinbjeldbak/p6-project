@@ -1,0 +1,35 @@
+\subsection{Genetic algorithms}
+Genetic algorithms belong to the class of evolutionary algorithms. This class of algorithms is inspired by natural evolution as seen in biology. Genetic algorithms are optimization algorithms which imitate the process of natural selection in search of global maximum.
+
+\subsubsection{Individuals and chromosomes}
+A genetic algorithm (GA) maintains a list of \emph{individuals} which together forms a \emph{population}. Each individual represents a possible solution to the optimization problem and has a fitness value, which denotes how adequately the individual can solve the optimization problem. How an individual solves the optimization problem is determined by its \emph{chromosome}, which is typically represented by a bit string. Therefore, using a GA requires a way of decoding a chromosome into a solution to the optimization problem. The population used by a genetic algorithm typically has a fixed number of individuals, who are all initialized randomly when the GA is initially run. That is, the bit string representing the chromosome is initialized with random bits. As the GA iterates, new individuals are made by combining and modifying chromosomes from existing individuals of the population. Some of the newly created individuals will replace the older individuals using a replace policy that over time aims to maximize the fitness of the best individuals. After each iteration of the GA, where a new population is formed, we say that we have another \emph{generation} of individuals.
+
+\subsubsection{Individuals}
+Individuals in evolutionary computational algorithms have a sets of traits and behaviors that define each individual. They can take on any form of data structure, as long as they wholly represent a possible solution to the problem. 
+
+%\subsubsection{Genes}
+%Each individual consists of many \emph{genes} as part of its chromosome. Genes constitute the DNA of the individual. These genes are an encoding of some attribute or skill the individual has. Because we defined neural networks to be individuals, the weights and node biases consist of the DNA.
+
+% This subsubsection is already described in individuals and hcromosomes
+%\subsubsection{Populations}
+%A genetic algorithm manages a collection of many individuals, known as a population. Individuals in the first population are usually initialized randomly with a fixed population size. The goal for these individuals is to solve a problem optimally. Each individual in the population has a fitness level that defines the individual's ability to solve a given problem.
+%Initially, there are no generations. Creating a new population from a previous population increases the amount of generations by one, hopefully yielding a net increase in average fitness.
+
+\subsubsection{Crossovers and mutations}
+In natural evolution, a pair of individuals come together to produce one or more new child individuals, with genes from both of the parent individuals. The process of procreation is done by performing a \emph{crossover} of the two parent individuals' genes.
+
+% vvvvvv <= below a crossover method has been defined, when there are many different kinds - Martin
+%A crossover point is defined and one part of each of the parents is copied and combined to form a new set of genes for the child individual.
+
+%illustration of crossover and mutation
+
+Mutations can occur randomly at any point in time upon creating a child individual. If genes are encoded as bit strings, then a mutation arbitrarily toggles one of the bits. This ensures that the population can evolve if no progress would be made if the genes did not allow it.
+
+\subsubsection{Fitness functions}
+A fitness function must be defined to calculate the desirability for each individual. This function is used to define the most fit individuals in a population. The higher the fitness level is of a given individual, the higher the chance it has to be chosen to reproduce with another individual. The intuition behind this is that choosing to very fit individuals to crossover will create an even better individual with the best traits of each of its parents.
+
+\input{content/encodingneuralnetwork}
+
+If two chromosomes have different bit strings, we say that they have different genotypes.
+If the behaviour they encode are different, that is, the neural network they encode produces a different output for some input,  we say they have different phenotypes.
+

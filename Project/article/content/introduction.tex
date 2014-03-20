@@ -1,86 +1,9 @@
 \section{Introduction}
-Neural networks are often chosen as individuals in a population within genetic algorithms. These individuals procreate to form a new generation by creating offspring. Offspring consists of some combination of parent individuals and usually replace the individuals that are worst off in the preceding generation, simulating natural selection.
 
 \input{content/motivation}
 
-\subsection{Artificial Neural Network}
-An artificial neural network is a graph structure that can from the outside be seen as a black box, that given the values $x_1, x_2, \dots, x_n$ outputs the values $y_1, y_2, \dots, y_m$. With the right internal structure, a neural network can be used for a variety of purposes, e.g.\ face recognition, where the intensities of different pixels in an image are used as input, and a single output value $y_1$ is produced, where $y_1 = 1$ if the image was of a face and $0$ if not. We now describe the structure and inner workings of neural networks to understand how these output values are calculated based on input values.
+\input{content/artificialneuralnetwork}
 
-\subsubsection{Neurons}
-Nodes in the graph of a neural network are called neurons. A neuron takes a number of values as input from edges exiting other neurons, applies a weight to each value, sums them, then finally applies a function to produce a single output value. The function applied is called the transfer function, and is the same for all hidden neurons in the network. This is recursively expressed by the recurrence
-% Note: bias/threshold is not defined below, add if needed
-\begin{equation}
-  y_i =
-  \begin{cases}
-    \var{input}_i & \text{if } i \text{ is an input neuron} \\
-    f\left(\sum_{j=1}^n w_{ji} y_{j} \right) & \text{else} %- \theta_i \right)
-  \end{cases}
-\end{equation}
-where $\var{input}_i$ is the value given to input neuron $i$, $n$ is the amount of neurons, $y_i$ is the output value of neuron $i$, $w_{ji}$ is the weight of the edge from neuron $j$ to $i$ ($0$ if no connection exists), $y_j$ is the output of neuron $j$, and $f$ is the transfer function, usually defined to be the sigmoid function taking the form
-\begin{equation*}
-  f(t) = \frac{1}{1+e^{-t}}
-\end{equation*}
+\input{content/geneticalgorithm}
 
-In a feedforward network, neurons are placed in different layers, where each neuron takes the output of all neurons from the previous layer as input. Neurons in the first layer are called input neurons and receive values as input to the neural network.  The neurons in the last layer are called output neurons. The value output by these neurons becomes the output of the neural network. Any neuron in between these layers is called a hidden neuron. \Cref{fig:ann} illustrates the generic graph structure of a feedforward neural network with a single hidden layer.
-
-\begin{figure}[htpb]
-  \centering
-  \includestandalone[mode=buildnew, width=\linewidth]{drawings/ANN/ANN}
-  \caption{Structure of a neural network.}
-  \label{fig:ann}
-\end{figure}
-
-\subsubsection{Training a neural network}
-Any application of a neural network requires that a correct number of layers, neurons, and weights between neurons are found to adequately solve the problem. In many applications, a single layer of $k$ hidden neurons works well, where $k = 0.5\left(\mid\var{inputNeurons}\mid \times \mid\var{outputNeurons}\mid\right)$\citpls. The weights on edges connecting neurons are decided by a process called training. Well known training algorithms, such as backpropagation, typically require that for each input to the neural network, the output is already known. This kind of learning is called supervised learning. For the application of face recognition, this means that the pictures used for training, each has a predicate indicating whether or not it is a picture of a face.\footnote{Should we explain backpropagation more in detail?}
-
-For some purposes, the desired output of a neural network is not known given a number of input values. Consider for instance a computer game, where a player is controlled by a neural network. The neural network takes as input values indicating the state of the game, such as the position of the players and enemies around him. For each input, the neural network returns a single value indicating which action the player should take, e.g.\ move left, move right, or jump. Given a state of the game, we might not be able to say whether an action output by the neural network is right or wrong. It might be wrong to move closer to an enemy if he eliminates you, but it might be right if the next action is successfully to eliminate the enemy.
-
-From this, it is clear that a backpropagation algorithm is not appropriate for training a neural network to control the actions of a artificial intelligent player in a computer game. For this purpose we propose another approach. We can tell how good a neural network performs, or how fit it is, by simulating a game being played using the neural network to control the player and determining the score achieved in the game, or any other function indicating how well the artificial player performed according to some criteria using that particular neural network. By now being able to measure the fitness of a particular neural network, we can use genetic algorithms to create and search for the best performing neural network.
-
-\subsection{Genetic algorithms}
-Genetic algorithms belong to the class of evolutionary algorithms. This class of algorithms is inspired by natural evolution as seen in biology. Genetic algorithms are optimization algorithms which imitate the process of natural selection in search of global maximum.
-
-\subsubsection{Individuals and chromosomes}
-A genetic algorithm (GA) maintains a list of \emph{individuals} which together forms a \emph{population}. Each individual represents a possible solution to the optimization problem and has a fitness value, which denotes how adequately the individual can solve the optimization problem. How an individual solves the optimization problem is determined by its \emph{chromosome}, which is typically represented by a bit string. Therefore, using a GA requires a way of decoding a chromosome into a solution to the optimization problem. The population used by a genetic algorithm typically has a fixed number of individuals, who are all initialized randomly when the GA is initially run. That is, the bit string representing the chromosome is initialized with random bits. As the GA iterates, new individuals are made by combining and modifying chromosomes from existing individuals of the population. Some of the newly created individuals will replace the older individuals using a replace policy that over time aims to maximize the fitness of the best individuals. After each iteration of the GA, where a new population is formed, we say that we have another \emph{generation} of individuals.
-
-\subsubsection{Individuals}
-Individuals in evolutionary computational algorithms have a sets of traits and behaviors that define each individual. They can take on any form of data structure, as long as they wholly represent a possible solution to the problem. 
-
-%\subsubsection{Genes}
-%Each individual consists of many \emph{genes} as part of its chromosome. Genes constitute the DNA of the individual. These genes are an encoding of some attribute or skill the individual has. Because we defined neural networks to be individuals, the weights and node biases consist of the DNA.
-
-% This subsubsection is already described in individuals and hcromosomes
-%\subsubsection{Populations}
-%A genetic algorithm manages a collection of many individuals, known as a population. Individuals in the first population are usually initialized randomly with a fixed population size. The goal for these individuals is to solve a problem optimally. Each individual in the population has a fitness level that defines the individual's ability to solve a given problem.
-%Initially, there are no generations. Creating a new population from a previous population increases the amount of generations by one, hopefully yielding a net increase in average fitness.
-
-\subsubsection{Crossovers and mutations}
-In natural evolution, a pair of individuals come together to produce one or more new child individuals, with genes from both of the parent individuals. The process of procreation is done by performing a \emph{crossover} of the two parent individuals' genes.
-
-% vvvvvv <= below a crossover method has been defined, when there are many different kinds - Martin
-%A crossover point is defined and one part of each of the parents is copied and combined to form a new set of genes for the child individual.
-
-%illustration of crossover and mutation
-
-Mutations can occur randomly at any point in time upon creating a child individual. If genes are encoded as bit strings, then a mutation arbitrarily toggles one of the bits. This ensures that the population can evolve if no progress would be made if the genes did not allow it.
-
-\subsubsection{Fitness functions}
-A fitness function must be defined to calculate the desirability for each individual. This function is used to define the most fit individuals in a population. The higher the fitness level is of a given individual, the higher the chance it has to be chosen to reproduce with another individual. The intuition behind this is that choosing to very fit individuals to crossover will create an even better individual with the best traits of each of its parents.
-
-\input{content/encodingneuralnetwork}
-
-If two chromosomes have different bit strings, we say that they have different genotypes.
-If the behaviour they encode are different, that is, the neural network they encode produces a different output for some input,  we say they have different phenotypes.
-
-\subsection{Measuring diversity}
-In GAs, a great diversity among the individuals is important.
-It is often argued that the weakness of GAs is the fall in diversity over generations, which causes the GA to do a simple local hill climbing.
-
-Common methods for measuring diversity focuses on either genotypic or phenotypic diversity.
-When chromosomes encode neural networks, one drawback of measuring diversity by comparing genotypes is that two individuals of different genotypes can have the same phenotype. Thus a high diversity does not necessarily imply that individuals with many different properties are represented in the population.
-%\todo{include a picture showing two different neural networks that always produces the same output}.
-When basing diversity measures on phenotypes, a formula is needed for calculating how different two phenotypes are. 
-Usually, the phenotypic diversity is measured only based on the fitness value of each phenotype.
-%http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.104.912&rep=rep1&type=pdf
-The advantage is that it requires no extra computational power. 
-The drawback is that two individuals with the same fitness value might still have different traits, that is, the way of achieving these fitness values. We think that a high diversity in a population should reflect many different traits among the individuals. In the following, we propose a method for measuring diversity based on based on the different traits of the individuals as well as a method that increases this diversity measure. 
+\input{content/measurediversity}
