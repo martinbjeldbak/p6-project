@@ -167,7 +167,7 @@ namespace Genetics {
           randInputs[i] = RandomNum.RandomDouble();
 
         foreach(AIPlayer i in individuals)
-          outputCount[i.GetOutput(randInputs)]++;
+          outputCount[i.GetStrongestOutputIndex(randInputs)]++;
       
         double numerator = 0.0;
         int totalOrganisms = 0;
