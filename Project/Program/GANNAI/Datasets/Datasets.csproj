@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>10.0.0</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{9E5DFEC6-545C-4490-BE51-A99F28DC2AB0}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>Datasets</RootNamespace>
+    <AssemblyName>Datasets</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="IrisDataset.cs" />
+    <Compile Include="IDataset.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <Folder Include="Resources\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\data-sets\Iris\bezdekIris.csv" />
+    <None Include="Resources\data-sets\Iris\iris.txt" />
+    <None Include="Resources\data-sets\proben1-sets\.tar_x" />
+    <None Include="Resources\data-sets\proben1-sets\Makefile" />
+    <None Include="Resources\data-sets\proben1-sets\Makefile~" />
+    <None Include="Resources\data-sets\proben1-sets\README" />
+    <None Include="Resources\data-sets\proben1-sets\README~" />
+    <None Include="Resources\data-sets\proben1-sets\Doc\proben.dvi" />
+    <None Include="Resources\data-sets\proben1-sets\Doc\proben.ps" />
+    <None Include="Resources\data-sets\proben1-sets\Scripts\README" />
+    <None Include="Resources\data-sets\proben1-sets\Scripts\a" />
+    <None Include="Resources\data-sets\proben1-sets\Scripts\b" />
+    <None Include="Resources\data-sets\proben1-sets\Scripts\convertheaders" />
+    <None Include="Resources\data-sets\proben1-sets\Scripts\countfields" />
+    <None Include="Resources\data-sets\proben1-sets\Scripts\countmiss" />
+    <None Include="Resources\data-sets\proben1-sets\Scripts\findminmax" />
+    <None Include="Resources\data-sets\proben1-sets\Scripts\out" />
+    <None Include="Resources\data-sets\proben1-sets\Scripts\partition" />
+    <None Include="Resources\data-sets\proben1-sets\Scripts\shuffle" />
+    <None Include="Resources\data-sets\proben1-sets\building\Makefile" />
+    <None Include="Resources\data-sets\proben1-sets\building\README" />
+    <None Include="Resources\data-sets\proben1-sets\building\a_ans.dat" />
+    <None Include="Resources\data-sets\proben1-sets\building\atrain.dat" />
+    <None Include="Resources\data-sets\proben1-sets\building\building.raw" />
+    <None Include="Resources\data-sets\proben1-sets\building\building1.dt" />
+    <None Include="Resources\data-sets\proben1-sets\building\building2.dt" />
+    <None Include="Resources\data-sets\proben1-sets\building\building3.dt" />
+    <None Include="Resources\data-sets\proben1-sets\building\header" />
+    <None Include="Resources\data-sets\proben1-sets\building\num2cod" />
+    <None Include="Resources\data-sets\proben1-sets\building\out2raw" />
+    <None Include="Resources\data-sets\proben1-sets\building\raw2num" />
+    <None Include="Resources\data-sets\proben1-sets\cancer\Makefile" />
+    <None Include="Resources\data-sets\proben1-sets\cancer\README" />
+    <None Include="Resources\data-sets\proben1-sets\cancer\breast-cancer-wisconsin.data" />
+    <None Include="Resources\data-sets\proben1-sets\cancer\breast-cancer-wisconsin.names" />
+    <None Include="Resources\data-sets\proben1-sets\cancer\cancer.raw" />
+    <None Include="Resources\data-sets\proben1-sets\cancer\cancer1.dt" />
+    <None Include="Resources\data-sets\proben1-sets\cancer\cancer2.dt" />
+    <None Include="Resources\data-sets\proben1-sets\cancer\cancer3.dt" />
+    <None Include="Resources\data-sets\proben1-sets\cancer\header" />
+    <None Include="Resources\data-sets\proben1-sets\cancer\raw2cod" />
+    <None Include="Resources\data-sets\proben1-sets\card\Makefile" />
+    <None Include="Resources\data-sets\proben1-sets\card\README" />
+    <None Include="Resources\data-sets\proben1-sets\card\card.raw" />
+    <None Include="Resources\data-sets\proben1-sets\card\card1.dt" />
+    <None Include="Resources\data-sets\proben1-sets\card\card2.dt" />
+    <None Include="Resources\data-sets\proben1-sets\card\card3.dt" />
+    <None Include="Resources\data-sets\proben1-sets\card\crx.data" />
+    <None Include="Resources\data-sets\proben1-sets\card\crx.names" />
+    <None Include="Resources\data-sets\proben1-sets\card\header" />
+    <None Include="Resources\data-sets\proben1-sets\card\raw2cod" />
+    <None Include="Resources\data-sets\proben1-sets\diabetes\Makefile" />
+    <None Include="Resources\data-sets\proben1-sets\diabetes\README" />
+    <None Include="Resources\data-sets\proben1-sets\diabetes\diabetes.raw" />
+    <None Include="Resources\data-sets\proben1-sets\diabetes\diabetes1.dt" />
+    <None Include="Resources\data-sets\proben1-sets\diabetes\diabetes2.dt" />
+    <None Include="Resources\data-sets\proben1-sets\diabetes\diabetes3.dt" />
+    <None Include="Resources\data-sets\proben1-sets\diabetes\header" />
+    <None Include="Resources\data-sets\proben1-sets\diabetes\pima-indians-diabetes.data" />
+    <None Include="Resources\data-sets\proben1-sets\diabetes\pima-indians-diabetes.names" />
+    <None Include="Resources\data-sets\proben1-sets\diabetes\raw2cod" />
+    <None Include="Resources\data-sets\proben1-sets\flare\Makefile" />
+    <None Include="Resources\data-sets\proben1-sets\flare\README" />
+    <None Include="Resources\data-sets\proben1-sets\flare\flare.data2" />
+    <None Include="Resources\data-sets\proben1-sets\flare\flare.names" />
+    <None Include="Resources\data-sets\proben1-sets\flare\flare.raw" />
+    <None Include="Resources\data-sets\proben1-sets\flare\flare1.dt" />
+    <None Include="Resources\data-sets\proben1-sets\flare\flare2.dt" />
+    <None Include="Resources\data-sets\proben1-sets\flare\flare3.dt" />
+    <None Include="Resources\data-sets\proben1-sets\flare\header" />
+    <None Include="Resources\data-sets\proben1-sets\flare\raw2cod" />
+    <None Include="Resources\data-sets\proben1-sets\gene\Makefile" />
+    <None Include="Resources\data-sets\proben1-sets\gene\README" />
+    <None Include="Resources\data-sets\proben1-sets\gene\gene.data" />
+    <None Include="Resources\data-sets\proben1-sets\gene\gene.names" />
+    <None Include="Resources\data-sets\proben1-sets\gene\gene.theory" />
+    <None Include="Resources\data-sets\proben1-sets\gene\gene1.dt" />
+    <None Include="Resources\data-sets\proben1-sets\gene\gene2.dt" />
+    <None Include="Resources\data-sets\proben1-sets\gene\gene3.dt" />
+    <None Include="Resources\data-sets\proben1-sets\gene\header" />
+    <None Include="Resources\data-sets\proben1-sets\gene\raw2cod" />
+    <None Include="Resources\data-sets\proben1-sets\glass\Makefile" />
+    <None Include="Resources\data-sets\proben1-sets\glass\README" />
+    <None Include="Resources\data-sets\proben1-sets\glass\glass.data" />
+    <None Include="Resources\data-sets\proben1-sets\glass\glass.names" />
+    <None Include="Resources\data-sets\proben1-sets\glass\glass.raw" />
+    <None Include="Resources\data-sets\proben1-sets\glass\glass1.dt" />
+    <None Include="Resources\data-sets\proben1-sets\glass\glass2.dt" />
+    <None Include="Resources\data-sets\proben1-sets\glass\glass3.dt" />
+    <None Include="Resources\data-sets\proben1-sets\glass\header" />
+    <None Include="Resources\data-sets\proben1-sets\glass\raw2cod" />
+    <None Include="Resources\data-sets\proben1-sets\heart\Makefile" />
+    <None Include="Resources\data-sets\proben1-sets\heart\README" />
+    <None Include="Resources\data-sets\proben1-sets\heart\header" />
+    <None Include="Resources\data-sets\proben1-sets\heart\header_a" />
+    <None Include="Resources\data-sets\proben1-sets\heart\header_ac" />
+    <None Include="Resources\data-sets\proben1-sets\heart\header_c" />
+    <None Include="Resources\data-sets\proben1-sets\heart\heart-disease.names" />
+    <None Include="Resources\data-sets\proben1-sets\heart\heart.raw" />
+    <None Include="Resources\data-sets\proben1-sets\heart\heart1.dt" />
+    <None Include="Resources\data-sets\proben1-sets\heart\heart2.dt" />
+    <None Include="Resources\data-sets\proben1-sets\heart\heart3.dt" />
+    <None Include="Resources\data-sets\proben1-sets\heart\hearta1.dt" />
+    <None Include="Resources\data-sets\proben1-sets\heart\hearta2.dt" />
+    <None Include="Resources\data-sets\proben1-sets\heart\hearta3.dt" />
+    <None Include="Resources\data-sets\proben1-sets\heart\heartac1.dt" />
+    <None Include="Resources\data-sets\proben1-sets\heart\heartac2.dt" />
+    <None Include="Resources\data-sets\proben1-sets\heart\heartac3.dt" />
+    <None Include="Resources\data-sets\proben1-sets\heart\heartc.raw" />
+    <None Include="Resources\data-sets\proben1-sets\heart\heartc1.dt" />
+    <None Include="Resources\data-sets\proben1-sets\heart\heartc2.dt" />
+    <None Include="Resources\data-sets\proben1-sets\heart\heartc3.dt" />
+    <None Include="Resources\data-sets\proben1-sets\heart\processed.cleveland.data" />
+    <None Include="Resources\data-sets\proben1-sets\heart\processed.hungarian.data" />
+    <None Include="Resources\data-sets\proben1-sets\heart\processed.switzerland.data" />
+    <None Include="Resources\data-sets\proben1-sets\heart\processed.va.data" />
+    <None Include="Resources\data-sets\proben1-sets\heart\raw2cod" />
+    <None Include="Resources\data-sets\proben1-sets\horse\Makefile" />
+    <None Include="Resources\data-sets\proben1-sets\horse\README" />
+    <None Include="Resources\data-sets\proben1-sets\horse\header" />
+    <None Include="Resources\data-sets\proben1-sets\horse\horse-colic.data" />
+    <None Include="Resources\data-sets\proben1-sets\horse\horse-colic.names" />
+    <None Include="Resources\data-sets\proben1-sets\horse\horse-colic.test" />
+    <None Include="Resources\data-sets\proben1-sets\horse\horse.raw" />
+    <None Include="Resources\data-sets\proben1-sets\horse\horse1.dt" />
+    <None Include="Resources\data-sets\proben1-sets\horse\horse2.dt" />
+    <None Include="Resources\data-sets\proben1-sets\horse\horse3.dt" />
+    <None Include="Resources\data-sets\proben1-sets\horse\raw2cod" />
+    <None Include="Resources\data-sets\proben1-sets\mushroom\Index" />
+    <None Include="Resources\data-sets\proben1-sets\mushroom\Makefile" />
+    <None Include="Resources\data-sets\proben1-sets\mushroom\README" />
+    <None Include="Resources\data-sets\proben1-sets\mushroom\README.orig" />
+    <None Include="Resources\data-sets\proben1-sets\mushroom\agaricus-lepiota.data" />
+    <None Include="Resources\data-sets\proben1-sets\mushroom\agaricus-lepiota.names" />
+    <None Include="Resources\data-sets\proben1-sets\mushroom\header" />
+    <None Include="Resources\data-sets\proben1-sets\mushroom\mushroom.raw" />
+    <None Include="Resources\data-sets\proben1-sets\mushroom\mushroom1.dt" />
+    <None Include="Resources\data-sets\proben1-sets\mushroom\mushroom2.dt" />
+    <None Include="Resources\data-sets\proben1-sets\mushroom\mushroom3.dt" />
+    <None Include="Resources\data-sets\proben1-sets\mushroom\raw2cod" />
+    <None Include="Resources\data-sets\proben1-sets\soybean\Makefile" />
+    <None Include="Resources\data-sets\proben1-sets\soybean\README" />
+    <None Include="Resources\data-sets\proben1-sets\soybean\header" />
+    <None Include="Resources\data-sets\proben1-sets\soybean\raw2cod" />
+    <None Include="Resources\data-sets\proben1-sets\soybean\soybean-large.data" />
+    <None Include="Resources\data-sets\proben1-sets\soybean\soybean-large.names" />
+    <None Include="Resources\data-sets\proben1-sets\soybean\soybean-large.test" />
+    <None Include="Resources\data-sets\proben1-sets\soybean\soybean1.dt" />
+    <None Include="Resources\data-sets\proben1-sets\soybean\soybean2.dt" />
+    <None Include="Resources\data-sets\proben1-sets\soybean\soybean3.dt" />
+    <None Include="Resources\data-sets\proben1-sets\thyroid\Makefile" />
+    <None Include="Resources\data-sets\proben1-sets\thyroid\README" />
+    <None Include="Resources\data-sets\proben1-sets\thyroid\ann-Readme" />
+    <None Include="Resources\data-sets\proben1-sets\thyroid\ann-test.data" />
+    <None Include="Resources\data-sets\proben1-sets\thyroid\ann-thyroid.names" />
+    <None Include="Resources\data-sets\proben1-sets\thyroid\ann-train.data" />
+    <None Include="Resources\data-sets\proben1-sets\thyroid\header" />
+    <None Include="Resources\data-sets\proben1-sets\thyroid\raw2cod" />
+    <None Include="Resources\data-sets\proben1-sets\thyroid\thyroid1.dt" />
+    <None Include="Resources\data-sets\proben1-sets\thyroid\thyroid2.dt" />
+    <None Include="Resources\data-sets\proben1-sets\thyroid\thyroid3.dt" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\data-sets\Iris\iris.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+</Project>
