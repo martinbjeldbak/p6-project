@@ -1,18 +1,24 @@
 \section{Neural Network Trait Diversity}
-We propose a new method for measuring phenotypic diversity, which we claim is more suitable for measuring diversity in GA's using neural networks with binary output, compared to fitness based diversity measures. With \emph{more suitable}, we mean a diversity function that better reflects different traits among the individuals of a population. 
-We denote a diversity calculated using our method for a \emph{Neural Network Trait Diversity} (NNTM).
-NNTD is calculated among the neural networks $F = \{f_1, f_2, ... f_n\}$, that all have the same architecture of $a$ input and $b$ output neurons. NNTD is based on the inputs $\{R_1, R_2, ..., R_m\}$, where each input is represented by an $a$-tuple of real values chosen randomly. NNTD returns a Simpsons diversity index (SDI) and is merely a way of obtaining the inputs used to calculate SDI. SDI is used in ecology to quantify the biodiversity of a habitat and uses the term \emph{organism}, where we use the term \emph{individual} instead, which is the terminology used when describing genetic algorithms. To calculate SDI, a total number of organisms $o$ as well as a distribution of organisms into a number of species $\{S_1, S_2, ..., S_k\}$ is needed.
-For each input $R_1$, NNTD distributes the population of individuals into a number species such that each specie represents a single output from the neural network architecture used by the individuals, thus $k = 2^b$. We denote $S_i(R)$ to be $i$'th specie with respect to the input $R$.
+We propose a new method for measuring phenotypic diversity, which we claim is more suitable for measuring diversity in GA's using neural networks with binary output, compared to fitness based diversity measures. With 'more suitable', we mean a diversity function that better reflects different traits among the individuals of a population. We will refer to diversity, calculated using our method, by \emph{Neural Network Trait Diversity} (NNTD).
 
-\[S_i(R) = \{f_j \; | \; i = 2^0\sigma_{R,j,1} + 2^1\sigma_{R,j,2} + ... + 2^{b-1}\sigma_{R,j,b} \}\]
+NNTD is calculated among the neural networks $F = \{f_1, f_2, \ldots, f_n\}$, that all have the same architecture of $a$ input and $b$ output neurons. NNTD is based on the inputs $\{R_1, R_2, \ldots, R_m\}$, where each input is represented by an $a$-tuple of real values chosen randomly. NNTD returns a Simpsons Diversity Index (SDI), and is merely a way of obtaining the inputs used to calculate SDI. SDI is used in ecology to quantify the biodiversity of a habitat and uses the term \emph{organism}, where we use the term \emph{individual} instead, which is the terminology used when describing GAs. To calculate SDI, a total number of organisms $o$ as well as a distribution of organisms into a number of species $\{S_0, S_1, \ldots, S_{k-1}\}$ is needed.
+
+For each input $R_i$, NNTD distributes the population of individuals into a number of species such that each species represents a single output from the neural network architecture used by the individuals, thus $k = 2^b$. We calculate $S_i(R)$ as in \cref{eq:species}, where $S_i(R)$ is the $i$'th species with respect to input $R$.
+
+\begin{equation}\label{eq:species}
+  \begin{split}
+    S_i(R) = \{f_j \mid i = 2^0\sigma_{R,j,1} & + 2^1\sigma_{R,j,2}\; + \\
+  \ldots & + 2^{b-1}\sigma_{R,j,b} \}
+  \end{split}
+\end{equation}
 
 where $\sigma_{x,y,z} \in \{0, 1\}$ is the output of the $z$'th hidden neuron in neural network $f_y$ on input $x$.
 
 The total number of organisms is then:
 
-\[o = \sum\limits_{l = 1}^k |S_l|\]
+\[o = \sum\limits_{l = 0}^{k-1} \mid S_l \mid\]
 
 And thus SDI can be calculated from $o$ and the size of each set $S_l$.
 \todo{Radu: Interested readers can easily find the formula for SDI on Google. Should we include the formula here?}
 
-One disadvantage of $NNTD$ is that it relies on random inputs, which means that a lower value of $m$ causes more statistical uncertainty. A greater value of $m$ requires more computational power. Also, consider three neural networks which given the same input produces the outputs $\{0, 0, 0\}$, $\{0, 0, 1\}$ and $\{1, 1, 1\}$. All three neural networks belong to indifferent species even though the former two seems to be more similar because their outputs are more similar. This kind of similarity is not catched by NNTD. Also, NNTD is not suitable for neural networks with real valued outputs because of the infinite number of species this would result in. This can maybe be fixed by distributing the real valued output into a number of buckets, where each bucket represent a real valued range, we will however not look into this, but only focus on neural networks with binary outputs.
+One disadvantage of NNTD is that it relies on random inputs, which means that the less inputs we have the more statistical uncertainty we end up with. The more inputs we have the more computational power is required. Also, consider three neural networks which given the same input produces the outputs $\{0, 0, 0\}$, $\{0, 0, 1\}$, and $\{1, 1, 1\}$. All three neural networks belong to indifferent species even though the first two seem to be more similar than the third one, because their outputs are more similar. This kind of similarity is not caught by NNTD. Also, NNTD is not suitable for neural networks with real valued outputs, because of the infinite number of species this would result in. This can maybe be fixed by distributing the real valued output into a number of buckets, where each bucket represent a real valued range, we will however not look into this, but only focus on neural networks with binary outputs.
