@@ -11,7 +11,7 @@
   },
   neuron missing/.style={
     draw=none, 
-    scale=4,
+    scale=3,
     text height=0.333cm,
     execute at begin node=\color{black}$\vdots$
   },
@@ -32,7 +32,7 @@
 
 % Label hidden nodes
 \foreach \l [count=\i] in {1,k}
-\node [above] at (hidden-\i.north) {$\mathtt{h_\l}$};
+\node [yshift=-0.5cm] at (hidden-\i.north) {$\mathtt{h_\l}$};
 
 % Draw output nodes
 \foreach \m [count=\y] in {1,missing,2}
