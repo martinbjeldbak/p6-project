@@ -24,7 +24,7 @@ namespace Datasets {
     /// the dataset denoted as the valdiation set
     /// </summary>
     /// <param name="validation">Percentage of dataset to be used as validation. Range 0-1.</param>
-    public IrisDataset(double validationPercent) {
+    public IrisDataset(double validationPercent) : this() {
       this.ValidationPercentage = validationPercent;
     }
 
@@ -44,7 +44,7 @@ namespace Datasets {
 
 
     private List<List<string>> GetDataset() {
-      string[] lines = loadCSVLines(Directory.GetCurrentDirectory() + Path.DirectorySeparatorChar.ToString() + "Resources/data-sets/Iris/Iris.csv");
+      string[] lines = loadCSVLines( "Resources/data-sets/Iris/iris.csv");
 
       List<List<string>> lineData = new List<List<string>>();
 
