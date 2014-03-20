@@ -9,7 +9,7 @@ Neural networks are ideal for decision making and we use them for encoding indiv
 
 We represent the connections and weights as bitstrings. Each weight is encoded with $n$ bits. Each bitstring is concatenated with the next, to form one large bit string containing the entire encoding for the network.
 
-The bit string is constructed in an ordered manner, such that the first $n$ bits represent the weight for the first connection between the first input neuron and the first hidden neuron, and so forth. It is this large bit string that is manipulated by crossing different bit strings from different individuals.
+The bit string is constructed in an ordered manner, such that the first $n$ bits represent the weight for the first connection between the first input neuron and the first hidden neuron, the next $n$ bits represent the weight for the connection between the first input neuron to the second hidden neuron, and so forth. It is this large bit string that is manipulated by crossing different bit strings from different individuals. An illustration of neural networks is presented in \cref{fig:ann}, and should give a good idea of how the bit string is concatenated.
 
 %\[
 %  \underbrace{w_{1,1}}_{n} w_{1,2} \ldots w_{i,j}
@@ -20,3 +20,5 @@ The bit string is constructed in an ordered manner, such that the first $n$ bits
 %\]
 
 %where $w_{i,j}$ represents the weight of the connection between the $i'th$ and $j'th$ neuron in bits. Each weight is concatenated with the next weight. The lenght of any weight is of size $n$.
+
+If two chromosomes have different bit strings, we say that they have different genotypes. If the behaviour they encode are different, that is, the neural network they encode produces a different output for some input,  we say they have different phenotypes.
