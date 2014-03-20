@@ -1,0 +1,26 @@
+\subsection{Selection policy}
+In every iteration of a GA, offspring is produced from a generation of individuals which combined with the existing individuals must form the next generation according to a selection policy.
+In some implementations, only the offspring is used for the next generation and all individuals of previous generations are discarded. Common implementations form the next generation by selecting the best individuals from both the existing population and the offspring created\cite{masterthesis}. Such a policy leads to homogeneous individuals and thus a low diversity.
+We propose a computationally inexpensive selection policy that forces a higher diversity, we call this selection policy \emph{Ancestor Elitism Selection Policy} (AESP).
+
+Given a generation of individuals $G_k$ and their offspring $O_k$, EASP puts together the next generation, $G_{k+1}$ as follows:
+
+\begin{algorithmic}
+\State $G_{k+1} = G_k$
+\ForAll{individual $o \in O_k$}
+	\If {$o.\mathtt{numParents} = 1$}
+    	\If {$\beta(o) > \beta(\pi_1(o))$}
+    		\State $G_{k+1} = (G_{k+1} \setminus \{\pi_1(o)\}) \cup \{o\}$
+		\EndIf
+	\Else
+    	\If {$\beta(o) > \mathtt{Max}(\beta(\pi_1(o)), \beta(\pi_2(o)))$}
+    	    \State $G_{k+1} = (G_{k+1} \setminus \{\pi_1(o), \pi_2(o)\} \cup \{o\} \cup \{\rho\}$
+	    \EndIf
+	\EndIf
+\EndFor
+\end{algorithmic}
+
+In the algorithm, $\beta(o)$ denotes the fitness of the individual $o$, $\phi_i(o)$ denotes the $i$'th parent og $o$ and $\rho$ denotes a random immigrant, which is a newly created individual with a random chromosome.
+
+
+
