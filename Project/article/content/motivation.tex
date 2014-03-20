@@ -1,14 +1,7 @@
-
-\subsection{Motivation}
-\label{sec:motivation}
-
-%Diversity is important. Avoid retardation.
-%Local optimum. The best breed. Low diversity.
-%Maintain high diversity. Slow search for optimum.
-
-Genetic algorithms rely on the individuals in a population to be able to evolve. Each individual tries to solve a given problem in its own way. Naturally, this implies that it is important to maintain a divers set of individuals to be able to keep evolving and trying different solutions to the problem. Otherwise, if diversity is not maintained within the population, a global optimal solution might never be found.
+Genetic algorithms rely on a number of individuals in a population that procreates to form more fit individuals. Offspring should ideally contain the best traits from both parents, hence a diverse set of individuals is crucial to identify the combination of traits that works best. If diversity is not maintained, only the local optimal solution of those traits available in the population will be explored, and a global optimal solution might not be found.
 \cite{ursem2002diversity}
 
-If diversity is not taken into account, it will of course quickly become low. The population will contain more and more similar individuals, which actually stops the much needed evolution. This approach produces a local optimal solution, by letting the best of the individuals breed and produce offspring, without any kind of intervention to try to maintain diversity. 
-
-The benefit of maintaining a divers population, is a higher likelihood that the outcome will be a global optimal solution. The downside of maintaining diversity, is that the search for a solution becomes much slower. We propose an approach where the diversity is maximised and the time searching for a solution is minimised.
+Many existing methods that aims to increase diversity require much greater computational power.
+We propose a light weight method that is computationally inexpensive.
+Common methods for measuring the phenotypic diversity of a population do only take into account the fitness of each individual.
+We propose a method for measuring phenotypic diversity that takes into account the different traits among individuals.
