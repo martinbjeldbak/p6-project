@@ -65,8 +65,12 @@ namespace Genetics {
       fitness = game.CalcFitness(this);
     }
 
-    //Gets the output of the AIPlayer given a number of inputs
-    public int GetOutput(double[] inputs) {
+    /// <summary>
+    /// Gets the index of the strongest output value
+    /// </summary>
+    /// <param name="inputs">The inputs for the AIPlayer</param>
+    /// <returns></returns>
+    public int GetStrongestOutputIndex(double[] inputs) {
       neuralNetwork.SetInput(inputs);
       
       double[] outputs = neuralNetwork.GetOutput();
@@ -80,6 +84,16 @@ namespace Genetics {
         }
       }
       return bestIndex;
+    }
+
+    /// <summary>
+    /// Gets the
+    /// </summary>
+    /// <param name="inputs">The inputs for the AIPlayer</param>
+    /// <returns></returns>
+    public double[] GetOutputs(double[] inputs) {
+      neuralNetwork.SetInput(inputs);
+      return neuralNetwork.GetOutput();
     }
 
     /// <summary>

@@ -67,7 +67,7 @@ namespace Games {
       int foodHorizontal = foodX == snakeX ? 0 : (foodX > snakeX ? 1 : -1);
 
 
-      return aiplayer.GetOutput( new double[]{right, left, top, bottom, foodHorizontal, foodVertical});
+      return aiplayer.GetStrongestOutputIndex( new double[]{right, left, top, bottom, foodHorizontal, foodVertical});
     }
 
     private void PickUpFood() {
