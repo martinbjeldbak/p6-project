@@ -68,3 +68,19 @@ Mutations can occur randomly at any point in time upon creating a child individu
 A fitness function must be defined to calculate the desirability for each individual. This function is used to define the most fit individuals in a population. The higher the fitness level is of a given individual, the higher the chance it has to be chosen to reproduce with another individual. The intuition behind this is that choosing to very fit individuals to crossover will create an even better individual with the best traits of each of its parents.
 
 \input{content/encodingneuralnetwork}
+
+If two chromosomes have different bit strings, we say that they have different genotypes.
+If the behaviour they encode are different, that is, the neural network they encode produces a different output for some input,  we say they have different phenotypes.
+
+\subsection{Measuring diversity}
+In GAs, a great diversity among the individuals is important.
+It is often argued that the weakness of GAs is the fall in diversity over generations, which causes the GA to do a simple local hill climbing.
+
+Common methods for measuring diversity focuses on either genotypic or phenotypic diversity.
+When chromosomes encode neural networks, one drawback of measuring diversity by comparing genotypes is that two individuals of different genotypes can have the same phenotype. Thus a high diversity does not necessarily imply that individuals with many different properties are represented in the population.
+%\todo{include a picture showing two different neural networks that always produces the same output}.
+When basing diversity measures on phenotypes, a formula is needed for calculating how different two phenotypes are. 
+Usually, the phenotypic diversity is measured only based on the fitness value of each phenotype.
+%http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.104.912&rep=rep1&type=pdf
+The advantage is that it requires no extra computational power. 
+The drawback is that two individuals with the same fitness value might still have different traits, that is, the way of achieving these fitness values. We think that a high diversity in a population should reflect many different traits among the individuals. In the following, we propose a method for measuring diversity based on based on the different traits of the individuals as well as a method that increases this diversity measure. 
