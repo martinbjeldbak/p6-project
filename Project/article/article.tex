@@ -19,6 +19,7 @@
 \usepackage{hyperref}
 \usepackage{tikz}
 \usepackage{cleveref}
+\usepackage{mathtools}
 \usepackage[activate={true,nocompatibility},final,tracking=true,kerning=true,spacing=true,factor=1100,stretch=10,shrink=10]{microtype}
 % activate={true,nocompatibility} - activate protrusion and expansion
 % final - enable microtype; use ``draft'' to disable
@@ -36,7 +37,7 @@
 
 \newcommand{\mail}[1]{\href{mailto:#1}{#1}}
 \newcommand{\var}[1]{\ensuremath{\mathit{#1}}}
-\newcommand{\citpls}[1]{\footnote{\textcolor{green}{citation needed here}}}
+\newcommand{\citpls}[1]{\footnote{\textcolor{red}{ Citation needed here.}}}
 
 \begin{document}
 
@@ -59,6 +60,8 @@
 
 
 \maketitle
+
+\listoftodos
 
 \input{content/abstract}
 
