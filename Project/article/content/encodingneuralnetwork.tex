@@ -1,14 +1,20 @@
-\subsubsection{Encoding a Neural Network}
+\subsubsection{Neural Networks as Individuals}
 %bitstrings
 %weight on connections
 %each input and each output
 %amount of hidden neurons
 
-Neural networks are ideal for decision making and we use them for encoding individuals. Each possible input an individual can get will be recieved through an input neuron. Likewise, each possible action an individual can perform is formulated through the output neurons. The network is constructed with connections between neurons with associated weights. These weights are used to calculate an action given the actual input.
+As we have discussed, neural networks are ideal for decision making and hence are appropriate as individuals in a GA. To support various GA operators, individuals are encoded as bit strings.
 
-We represent the connections and weights as bitstrings. Each weight is encoded with $n$ bits. Each bitstring is concatenated with the next, to form one large bit string containing the entire encoding for the network.
+% Uncommented this paragraph friday 2014-3-21, as it just says what a NN is? -Martin
+%Each possible input an individual can get will be received through an input neuron. Likewise, each possible action an individual can perform is formulated through the output neurons. The network is constructed with connections between neurons with associated weights. These weights are used to calculate an action given the actual input.
 
-The bit string is constructed in an ordered manner, such that the first $n$ bits represent the weight for the first connection between the first input neuron and the first hidden neuron, the next $n$ bits represent the weight for the connection between the first input neuron to the second hidden neuron, and so forth. It is this large bit string that is manipulated by crossing different bit strings from different individuals. An illustration of neural networks is presented in \cref{fig:ann}, and should give a good idea of how the bit string is concatenated.
+We represent each neuron and weight of any given neural network as a single bit string of a fixed length. Each weight is encoded with $n$ bits. Each bit string is concatenated with the next, to form one large bit string containing the entire encoding for the network.
+
+The bit string is constructed in an ordered manner, such that the first $n$ bits represent the weight for the first connection between the first input neuron and the first hidden neuron, the next $n$ bits represent the weight for the connection between the first input neuron to the second hidden neuron, and so forth. It is this large bit string that is manipulated by different GA operators. From now on, we will refer to the bit string encoding of a neural network as its \emph{chromosome}.
+
+% ALso removed this friday 2014-3-21, no need to reference it twice. Possibly if there was an example on how to encode the network in the example?
+%An illustration of neural networks is presented in \cref{fig:ann}, and should give a good idea of how the bit string is concatenated.
 
 %\[
 %  \underbrace{w_{1,1}}_{n} w_{1,2} \ldots w_{i,j}
@@ -18,6 +24,6 @@ The bit string is constructed in an ordered manner, such that the first $n$ bits
 %  \ldots \underbrace{w_{i,j-1}}_{n} w_{i,j} w_{i,j+1} \ldots
 %\]
 
-%where $w_{i,j}$ represents the weight of the connection between the $i'th$ and $j'th$ neuron in bits. Each weight is concatenated with the next weight. The lenght of any weight is of size $n$.
-
-If two chromosomes have different bit strings, we say that they have different genotypes. If the behaviour they encode are different, that is, the neural network they encode produces a different output for some input,  we say they have different phenotypes.
+%where $w_{i,j}$ represents the weight of the connection between the $i'th$ and $j'th$ neuron in bits. Each weight is concatenated with the next weight. The length of any weight is of size $n$.
+%
+If two chromosomes have different bit strings, we say that they have different genotypes. If the neural network they encode produces a different output for some input, we say they have different phenotypes.
