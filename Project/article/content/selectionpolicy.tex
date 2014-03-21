@@ -3,29 +3,8 @@ Offspring are produced in each iteration of a GA from a generation of individual
 
 In some implementations, only the offspring is used for the next generation and all individuals of previous generations are discarded\footnote{ Give an example of such a selection policy}. Common implementations form the next generation by selecting the best individuals from both the existing population and the offspring created\cite{masterThesisGANN}. Such a policy leads to homogeneous individuals and thus a low diversity.
 
-We propose a computationally inexpensive selection policy that forces a higher diversity, we call this selection policy \emph{Ancestor Elitism Selection Policy} (AESP).
-
-Given a generation of individuals $G_k$ and their offspring $O_k$, AESP puts together the next generation, $G_{k+1}$ as follows:
+We propose a computationally inexpensive selection policy that forces a higher diversity, we call this selection policy \emph{Ancestor Elitism Selection Policy} (AESP). Given a generation of individuals $G_k$ and their offspring $O_k$, AESP puts together the next generation, $G_{k+1}$, as shown in \cref{alg:aesp}.
 %
-\begin{algorithm}
-  \caption{Procedure AESP}\label{alg:aesp}
-\begin{algorithmic}[1]
-  \Procedure{AESP}{$G_k, O_k$}
-  \State $G_{k+1} \gets G_k$
-  \ForAll{individual $o \in O_k$}
-    \If {$o.\mathtt{num\_parents} = 1$}
-      \If {$\beta(o) > \beta(\pi_1(o))$}
-        \State $G_{k+1} \gets (G_{k+1} \setminus \set{\pi_1(o)}) \cup \set{o}$
-      \EndIf
-    \Else
-      \If {$\beta(o) > \mathtt{max}(\beta(\pi_1(o)), \beta(\pi_2(o)))$}
-      \State $\mathtt{tmp} \gets (G_{k+1} \setminus \{\pi_1(o), \pi_2(o)\})$ 
-        \State $G_{k+1} \gets \mathtt{tmp} \cup \set{o} \cup \set{\rho}$
-      \EndIf
-    \EndIf
-  \EndFor
-\EndProcedure
-\end{algorithmic}
-\end{algorithm}
+\input{floats/aesp}
 %
 In the algorithm, $\beta(o)$ denotes the fitness of the individual $o$, $\pi_i(o)$ denotes the $i$'th parent of $o$, and $\rho$ denotes a random immigrant, which is a newly created individual with a random chromosome.
