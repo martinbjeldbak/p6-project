@@ -1,13 +1,13 @@
-
 \subsection{Measuring diversity}
-In GAs, a high diversity among the individuals is important.
-It is often argued that the weakness of GAs is the fall in diversity over generations, which causes the GA to do a simple local hill climbing.
+In GAs, a high diversity among the individuals is important. It is often argued that the weakness of GAs is the fall in diversity over generations, which causes the GA to do a simple local hill climbing \citpls{}.
 
-Common methods for measuring diversity focuses on either genotypic or phenotypic diversity.
-When chromosomes encode neural networks, one drawback of measuring diversity by comparing genotypes is that two individuals of different genotypes can have the same phenotype. Thus a high diversity does not necessarily imply that individuals with many different properties are represented in the population.
-%\todo{include a picture showing two different neural networks that always produces the same output}.
-When basing diversity measures on phenotypes, a formula is needed for calculating how different two phenotypes are. 
-Usually, the phenotypic diversity is measured only based on the fitness value of each phenotype.
+Common methods for measuring diversity focuses on either genotypic or phenotypic diversity.When chromosomes encode neural networks, one drawback of measuring diversity by comparing genotypes is that two individuals of different genotypes can have the same phenotype. Thus a high diversity does not necessarily imply that individuals with many different properties are represented in the population.
+%
+\todo{Include a picture showing two different neural networks that always produces the same output}
+%
+When basing diversity measures on phenotypes, a formula is needed for calculating how different two phenotypes are.  Usually, the phenotypic diversity is measured only based on the fitness value of each phenotype.
+This has advantage of requiring no extra computational power. The drawback is that two individuals with the same fitness value might still have different traits, that is, the way of achieving these fitness values. We think that a high diversity in a population should reflect many different traits among the individuals.
+
+In the following, we propose a method for measuring diversity based on the different traits of the individuals as well as a method that increases this diversity measure. 
+
 %http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.104.912&rep=rep1&type=pdf
-The advantage is that it requires no extra computational power. 
-The drawback is that two individuals with the same fitness value might still have different traits, that is, the way of achieving these fitness values. We think that a high diversity in a population should reflect many different traits among the individuals. In the following, we propose a method for measuring diversity based on the different traits of the individuals as well as a method that increases this diversity measure. 
