@@ -13,6 +13,7 @@
       this.BombermanRadioButton = new System.Windows.Forms.RadioButton();
       this.goButton = new System.Windows.Forms.Button();
       this.groupBox1 = new System.Windows.Forms.GroupBox();
+      this.IrisRadioButton = new System.Windows.Forms.RadioButton();
       this.groupBox2 = new System.Windows.Forms.GroupBox();
       this.label1 = new System.Windows.Forms.Label();
       this.num_iterations = new System.Windows.Forms.TextBox();
@@ -62,7 +63,7 @@
       // goButton
       // 
       this.goButton.Enabled = false;
-      this.goButton.Location = new System.Drawing.Point(220, 197);
+      this.goButton.Location = new System.Drawing.Point(220, 234);
       this.goButton.Name = "goButton";
       this.goButton.Size = new System.Drawing.Size(75, 23);
       this.goButton.TabIndex = 4;
@@ -72,21 +73,34 @@
       // 
       // groupBox1
       // 
+      this.groupBox1.Controls.Add(this.IrisRadioButton);
       this.groupBox1.Controls.Add(this.BombermanRadioButton);
       this.groupBox1.Controls.Add(this.FallingStarsRadioButton);
       this.groupBox1.Controls.Add(this.SnakeRadioButton);
       this.groupBox1.Location = new System.Drawing.Point(47, 12);
       this.groupBox1.Name = "groupBox1";
-      this.groupBox1.Size = new System.Drawing.Size(410, 78);
+      this.groupBox1.Size = new System.Drawing.Size(410, 107);
       this.groupBox1.TabIndex = 5;
       this.groupBox1.TabStop = false;
       this.groupBox1.Text = "Select game";
+      // 
+      // IrisRadioButton
+      // 
+      this.IrisRadioButton.AutoSize = true;
+      this.IrisRadioButton.Location = new System.Drawing.Point(42, 67);
+      this.IrisRadioButton.Name = "IrisRadioButton";
+      this.IrisRadioButton.Size = new System.Drawing.Size(38, 17);
+      this.IrisRadioButton.TabIndex = 3;
+      this.IrisRadioButton.TabStop = true;
+      this.IrisRadioButton.Text = "Iris";
+      this.IrisRadioButton.UseVisualStyleBackColor = true;
+      this.IrisRadioButton.Click += new System.EventHandler(this.IrisRadioButton_Click);
       // 
       // groupBox2
       // 
       this.groupBox2.Controls.Add(this.label1);
       this.groupBox2.Controls.Add(this.num_iterations);
-      this.groupBox2.Location = new System.Drawing.Point(47, 111);
+      this.groupBox2.Location = new System.Drawing.Point(47, 148);
       this.groupBox2.Name = "groupBox2";
       this.groupBox2.Size = new System.Drawing.Size(410, 70);
       this.groupBox2.TabIndex = 6;
@@ -120,7 +134,7 @@
       // continueButton
       // 
       this.continueButton.Enabled = false;
-      this.continueButton.Location = new System.Drawing.Point(301, 197);
+      this.continueButton.Location = new System.Drawing.Point(301, 234);
       this.continueButton.Name = "continueButton";
       this.continueButton.Size = new System.Drawing.Size(75, 23);
       this.continueButton.TabIndex = 8;
@@ -131,7 +145,7 @@
       // visualizeButton
       // 
       this.visualizeButton.Enabled = false;
-      this.visualizeButton.Location = new System.Drawing.Point(382, 197);
+      this.visualizeButton.Location = new System.Drawing.Point(382, 234);
       this.visualizeButton.Name = "visualizeButton";
       this.visualizeButton.Size = new System.Drawing.Size(75, 23);
       this.visualizeButton.TabIndex = 9;
@@ -151,7 +165,7 @@
       // saveToDBButton
       // 
       this.saveToDBButton.AutoSize = true;
-      this.saveToDBButton.Location = new System.Drawing.Point(47, 197);
+      this.saveToDBButton.Location = new System.Drawing.Point(47, 234);
       this.saveToDBButton.Name = "saveToDBButton";
       this.saveToDBButton.Size = new System.Drawing.Size(85, 17);
       this.saveToDBButton.TabIndex = 11;
@@ -171,7 +185,7 @@
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-      this.ClientSize = new System.Drawing.Size(741, 236);
+      this.ClientSize = new System.Drawing.Size(741, 298);
       this.Controls.Add(this.diversityLabel);
       this.Controls.Add(this.saveToDBButton);
       this.Controls.Add(this.generationCountLabel);
@@ -208,6 +222,7 @@
     private System.Windows.Forms.Label generationCountLabel;
     private System.Windows.Forms.CheckBox saveToDBButton;
     private System.Windows.Forms.Label diversityLabel;
+    private System.Windows.Forms.RadioButton IrisRadioButton;
   }
 }
 
