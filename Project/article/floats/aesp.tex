@@ -1,6 +1,6 @@
 \begin{algorithm}
   \caption{Procedure AESP}\label{alg:aesp}
-\begin{algorithmic}%[1]
+\begin{algorithmic}[1]
   \Procedure{AESP}{$G_k, O_k$}
   \State $G_{k+1} \gets G_k$
   \ForAll{$o \in O_k$}
@@ -10,8 +10,9 @@
       \EndIf
     \Else
       \If {$\beta(o) > \mathtt{max}(\beta(\pi_1(o)), \beta(\pi_2(o)))$}
-      \State $\mathtt{tmp} \gets (G_{k+1} \setminus \{\pi_1(o), \pi_2(o)\})$ 
-        \State $G_{k+1} \gets \mathtt{tmp} \cup \set{o} \cup \set{\rho}$
+      \State  $G_{k+1} \gets$ \begin{varwidth}[t]{\linewidth}$(G_{k+1} \setminus \{\pi_1(o), \pi_2(o)\})$\par
+        \hskip\algorithmicindent $\cup \set{o} \cup \set{\rho}$
+      \end{varwidth}
       \EndIf
     \EndIf
   \EndFor
