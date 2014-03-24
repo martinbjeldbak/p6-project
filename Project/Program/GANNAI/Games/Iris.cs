@@ -3,26 +3,14 @@ using Genetics;
 using Datasets;
 using System.Collections.Generic;
 using System.Linq;
+using System.Globalization;
 
 namespace Games {
   public class Iris : AITrainableGame  {
     IrisDataset iris;
 
     public Iris() {
-      this.iris = new IrisDataset(0.5);
-    }
-
-    private string IrisMap(int index) {
-      switch(index) {
-      case 0:
-        return "Iris-setosa";
-      case 1:
-        return "Iris-versicolor";
-      case 2:
-        return "Isis-virginica";
-      default:
-        throw new Exception("No such mapping to Iris plant");
-      }
+      this.iris = new IrisDataset(0.6);
     }
 
     #region AITrainableGame implementation
@@ -30,10 +18,17 @@ namespace Games {
       int fitness = 0;
 
       foreach(List<string> line in iris.ValidationSet) {
-        int outputIndex = aiplayer.GetStrongestOutputIndex(line.Take(4).Select(double.Parse).ToArray());
+        int numInputs = NumInputs();
+        double[] tmp = new double[numInputs]; //= line.Take(4).Select(Double.Parse).ToArray();
+        
+        for (int i = 0; i < numInputs; i++) {
+          tmp[i] = Double.Parse(line[i], CultureInfo.InvariantCulture);
+        }
+
+        int outputIndex = aiplayer.GetStrongestOutputIndex(tmp);
 
         // If the output is correct, better fitness
-        if(String.Equals(IrisMap(outputIndex), line.Last().ToLower(), StringComparison.CurrentCultureIgnoreCase)) {
+        if(String.Equals(IrisDataset.IrisMap(outputIndex), line.Last(), StringComparison.CurrentCultureIgnoreCase)) {
           fitness++;
         }
       }
