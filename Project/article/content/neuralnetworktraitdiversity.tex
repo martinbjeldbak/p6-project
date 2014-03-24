@@ -14,7 +14,7 @@ We distribute neural networks into a set of species as follows:
   \end{split}
 \end{equation*}
 
-where $\sigma_{x,y,z} \in \set{0, 1}$ is the output of the $z$'th output neuron in neural network $f_y$ on input $x$.
+where $\sigma_{x ,y, z} \in \set{0, 1}$ is the output of the $z$'th output neuron in neural network $f_y$ on input $x$.
 \todo{Radu: Interested readers can easily find the formula for SDI on Google. Should we include the formula here?}
 
 One disadvantage of NNTD is that it relies on random inputs, which means that the less inputs we have the more statistical uncertainty we end up with. The more inputs we have the more computational power is required. Consider three neural networks, which given the same input produce the output $\set{0, 0, 0}$, $\set{0, 0, 1}$, and $\set{1, 1, 1}$. All three neural networks belong to indifferent species even though the first two seem to be more similar than the third one, because their outputs are more similar. This kind of similarity is not caught by NNTD\@. NNTD is also not suitable for neural networks with real valued outputs, because of the infinite number of species this would result in. A possibility is to distribute real valued outputs into a number of buckets, where each bucket represents a range. We will however not look into this and only focus on neural networks with binary outputs.
