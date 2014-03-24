@@ -45,6 +45,7 @@
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup />
   <ItemGroup>
+    <None Include="Resources\data-sets\Adult\adult.csv" />
     <None Include="Resources\data-sets\Iris\bezdekIris.csv" />
     <None Include="Resources\data-sets\Iris\iris.txt" />
     <None Include="Resources\data-sets\proben1-sets\.tar_x" />
