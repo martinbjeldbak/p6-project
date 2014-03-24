@@ -1,16 +1,16 @@
 \subsection{Artificial Neural Network}
-An artificial neural network is a graph structure that can from the outside be seen as a black box, that given the values $x_1, x_2, \dots, x_n$ outputs the values $y_1, y_2, \dots, y_m$. With the right internal structure, a neural network can be used for a variety of purposes, e.g.\ face recognition, where the intensities of different pixels in an image are used as input, and a single output value $y_1$ is produced, where $y_1 = 1$ if the image was of a face and $0$ if not. We now describe the structure and inner workings of neural networks to understand how these output values are calculated based on input values.
+An artificial neural network is a graph structure that, from the outside, can be seen as a black box, that given the values $x_1, x_2, \dots, x_n$ outputs the values $y_1, y_2, \dots, y_m$. With the right internal structure, a neural network can be used for a variety of purposes, e.g.\ face recognition, where the intensities of different pixels in an image are used as input, and a single output value $y_1$ is produced, where $y_1 = 1$ if the image was of a face and $0$ if not. We now describe the structure and inner workings of neural networks to understand how these output values are calculated based on input values.
 
 \subsubsection{Neurons}
-Nodes in the graph of a neural network are called neurons. Three classes of neurons exist: input, hidden, and output. Input neurons receive $x_1, x_2, \dots, x_n$ and output the same value. Hidden and output neurons take a number of values as input from edges exiting other neurons, applies a weight to each value, sums them, then applies a function to produce a single output value. The function applied is called the transfer function, and is the same for all hidden and output neurons in the network. This is recursively expressed by \cref{eq:weightcalc}
+Nodes in the graph of a neural network are called neurons. Three classes of neurons exist: input, hidden, and output. Input neurons receive $x_1, x_2, \dots, x_n$ and output the same value. Hidden and output neurons take a number of values as input from edges exiting other neurons, applies a weight to each value, sums them, then applies a function to produce a single output value. The function applied is called the transfer function, and is the same for all hidden and output neurons in the network. This is recursively expressed by 
 % Note: bias/threshold is not defined below, add if needed
-\begin{equation}\label{eq:weightcalc}
+\begin{equation*}\label{eq:weightcalc}
   y_i =
   \begin{cases}
-    \var{x}_i & \text{if } i \text{ is an input neuron} \\
+    \var{x}_i                     & \text{if } i \text{ is an input neuron} \\
     f\left(\sum_{j=1}^n w_{ji} y_{j} \right) & \text{otherwise} %- \theta_i \right)
   \end{cases}
-\end{equation}
+\end{equation*}
 where $x_i$ is the input to input neuron $i$, $n$ is the amount of neurons, $y_i$ is the output value of neuron $i$, $w_{ji}$ is the weight of the edge from neuron $j$ to $i$ ($0$ if no connection exists), $y_j$ is the output of neuron $j$, and $f$ is the transfer function, usually defined to be the sigmoid function taking the form
 \begin{equation*}
   f(t) = \frac{1}{1+e^{-t}}
