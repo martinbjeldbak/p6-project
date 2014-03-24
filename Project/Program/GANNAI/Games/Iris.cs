@@ -10,14 +10,14 @@ namespace Games {
     IrisDataset iris;
 
     public Iris() {
-      this.iris = new IrisDataset(0.6);
+      this.iris = new IrisDataset();
     }
 
     #region AITrainableGame implementation
     public double CalcFitness(AIPlayer aiplayer) {
       int fitness = 0;
 
-      foreach(List<string> line in iris.ValidationSet) {
+      foreach(List<string> line in iris.TestSet) {
         int numInputs = NumInputs();
         double[] tmp = new double[numInputs]; //= line.Take(4).Select(Double.Parse).ToArray();
         
