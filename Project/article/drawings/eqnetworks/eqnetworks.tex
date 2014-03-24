@@ -1,0 +1,31 @@
+\documentclass{standalone}
+\usepackage{tikz}
+\usetikzlibrary{positioning}
+\begin{document}
+\tikzset{%
+  neuron/.style={
+    circle, draw, minimum size=1cm
+  }
+}
+\begin{tikzpicture}[x=1.5cm, y=1.5cm, >=stealth, shorten >=1pt]
+  %left network
+  \node[neuron, xshift=1.0cm]                (1i1){};
+  \node[neuron, yshift=-1.5cm]               (1h1) {};
+  \node[neuron, yshift=-1.5cm, xshift=2.0cm] (1h2) {};
+  \node[neuron, yshift=-3.0cm, xshift=1.0cm] (1o1) {};
+
+  \node[yshift=-0.6cm, xshift=0.4cm] () {$2$};
+  \node[yshift=-2.3cm, xshift=0.3cm] () {$3$};
+  \node[yshift=-0.6cm, xshift=1.6cm] () {$4$};
+  \node[yshift=-2.3cm, xshift=1.7cm] () {$7$};
+
+  \foreach \d in {1,...,2}
+    \draw[->,thick] (1i1) -- (1h\d);
+  \foreach \s in {1,...,2}
+    \draw[->,thick] (1h\s) -- (1o1);
+  \draw[->, thick] (0.67,0.6) -- (1i1);
+  \draw[->, thick] (1o1) -- (0.67,-2.6);
+
+  \node[yshift=-1.5cm, xshift=4.5cm] () {$\mathtt{0010}\; \mathtt{0100}\; \mathtt{0011}\; \mathtt{0111}$};
+\end{tikzpicture}
+\end{document}
