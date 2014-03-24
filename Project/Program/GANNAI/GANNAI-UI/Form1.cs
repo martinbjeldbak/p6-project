@@ -81,11 +81,7 @@ namespace GANNAIUI {
     }
 
     private void BombermanRadioButton_CheckedChanged(object sender, EventArgs e) {
-      //throw new Exception("Bomberman not implemented yet");
-      simulation = new Simulation(new Iris());
-
-      GameChanged();
-
+      throw new Exception("Bomberman not implemented yet");
     }
 
     private void SnakeRadioButton_CheckedChanged(object sender, EventArgs e) {
@@ -101,6 +97,11 @@ namespace GANNAIUI {
       Form form = new Form();
       form.Show();
       simulation.Game.Visualize(simulation.GetBest(), form);
+    }
+
+    private void IrisRadioButton_Click(object sender, EventArgs e) {
+      simulation = new Simulation(new Iris());
+      GameChanged();
     }
   }
 }
