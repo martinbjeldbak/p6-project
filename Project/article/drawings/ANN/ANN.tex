@@ -21,10 +21,10 @@
 \foreach \m/\l [count=\y] in {1,2,3,missing,4}
   \node [every neuron/.try, neuron \m/.try] (input-\m) at (0,2.5-\y) {};
 
-% Label input nodes
-\foreach \l [count=\i] in {1,2,3,j}
-  \draw [<-] (input-\i) -- ++(-1,0)
-  node [above, midway] {$\mathtt{i_\l}$};
+% Label input edges 
+\foreach \l [count=\i] in {1,2,3,n}
+  \draw [<-, shorten <=1pt, shorten >=0pt] (input-\i) -- ++(-1,0)
+  node [above, midway] {$x_\l$};
 
 % Draw hidden nodes
 \foreach \m [count=\y] in {1,missing,2}
@@ -32,7 +32,7 @@
 
 % Label hidden nodes
 \foreach \l [count=\i] in {1,k}
-\node [yshift=-0.5cm] at (hidden-\i.north) {$\mathtt{h_\l}$};
+\node [yshift=-0.5cm] at (hidden-\i.north) {$h_\l$};
 
 % Draw output nodes
 \foreach \m [count=\y] in {1,missing,2}
@@ -40,9 +40,9 @@
 
 
 % Label output edges 
-\foreach \l [count=\i] in {1,l}
+\foreach \l [count=\i] in {1,m}
   \draw [->] (output-\i) -- ++(1,0)
-  node [above, midway] {$\mathtt{o_\l}$};
+  node [above, midway] {$y_\l$};
 
 % Connect input nodes with hidden nodes
 \foreach \i in {1,...,4}

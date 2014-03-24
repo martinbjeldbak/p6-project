@@ -1,6 +1,5 @@
 \subsection{Artificial Neural Network}
 An artificial neural network is a graph structure that can from the outside be seen as a black box, that given the values $x_1, x_2, \dots, x_n$ outputs the values $y_1, y_2, \dots, y_m$. With the right internal structure, a neural network can be used for a variety of purposes, e.g.\ face recognition, where the intensities of different pixels in an image are used as input, and a single output value $y_1$ is produced, where $y_1 = 1$ if the image was of a face and $0$ if not. We now describe the structure and inner workings of neural networks to understand how these output values are calculated based on input values.
-\todo{Need consistent variable names for input, output, and hidden neurons.}
 
 \subsubsection{Neurons}
 Nodes in the graph of a neural network are called neurons. Three classes of neurons exist: input, hidden, and output. Input neurons receive $x_1, x_2, \dots, x_n$ and output the same value. Hidden and output neurons take a number of values as input from edges exiting other neurons, applies a weight to each value, sums them, then applies a function to produce a single output value. The function applied is called the transfer function, and is the same for all hidden and output neurons in the network. This is recursively expressed by \cref{eq:weightcalc}
