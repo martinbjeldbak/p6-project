@@ -5,7 +5,7 @@ using System.Resources;
 
 namespace Datasets {
   public class IrisDataset : Dataset {
-    public IrisDataset(double validationPercent)
+    public IrisDataset(double validationPercent = 0.4)
       : base(validationPercent) {
         string csvString = Properties.Resources.iris;
         CreateValidationAndTestSet(ParseDataFromString(csvString));
