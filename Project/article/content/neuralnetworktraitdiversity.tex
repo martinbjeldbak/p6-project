@@ -1,13 +1,8 @@
 \section{Neural Network Trait Diversity}
 We propose a new method for measuring phenotypic diversity, which we claim is more suitable for measuring diversity in GAs using neural networks with binary output, compared to fitness based diversity measures. With ``more suitable'', we mean a diversity function that better reflects different traits among the individuals of a population. We will refer to diversity, calculated using our method, by \emph{Neural Network Trait Diversity} (NNTD).
 
-NNTD is calculated based on the neural networks contained by the individuals of a population. 
-In the following, we will use the term individual and neural network interchangeable, since we represent an individual by a neural network. 
-Let $F = \set{f_1, f_2, \dots, f_n}$, denote the neural networks contained in a population, which all have the same architecture of $a$ input and $b$ output neurons. 
-NNTD is based on the inputs $\set{R_1, R_2, \dots, R_m}$, where each $R_i$ is an $a$-tuple of real values chosen randomly.
-NNTD calculates the SDI\footnote{Simpson's Diversity Index (SDI) is used in ecology to quantify the biodiversity of a habitat.} of all neural networks with respect to $R_i$, and returns the average SDI.
-To calculate SDI, the total number of neural networks $o$ is needed, as well as a distribution of neural networks into a set of species, such that for each species we know how many neural networks it contains.
-By $S_i(R)$, we denote the set of neural networks belonging to the $i$'th species with respect to the input $R$.
+NNTD is calculated based on the neural networks contained by the individuals of a population. In the following, we will use the term individual and neural network interchangeable, since we represent an individual by a neural network.  Let $F = \set{f_1, f_2, \dots, f_n}$, denote the neural networks contained in a population, which all have the same architecture of $a$ input and $b$ output neurons.  NNTD is based on the inputs $\set{R_1, R_2, \dots, R_m}$, where each $R_i$ is an $a$-tuple of real values chosen randomly. NNTD calculates SDI\footnote{Simpson's Diversity Index (SDI) is used in ecology to quantify the biodiversity of a habitat.} of all neural networks with respect to $R_i$, and returns the average SDI. To calculate SDI, the total number of neural networks $\mid f \mid$ is needed, as well as a distribution of neural networks into a set of species. By $S_i(R)$, we denote the set of neural networks belonging to the $i$'th specie with respect to the input $R$.
+
 We distribute the neural networks into species based on their output on $R$. This means, that every neural network in $S_i(R)$ produces the same output on $R$, which is distinct from the output of any other neural network $f \in S_j(R)$, where $i \neq j$.
 Since we are only concerned with boolean output values, we have the number of species $k = 2^b$. 
 We distribute neural networks into a set of species as follows:
@@ -20,13 +15,6 @@ We distribute neural networks into a set of species as follows:
 \end{equation*}
 
 where $\sigma_{x,y,z} \in \set{0, 1}$ is the output of the $z$'th output neuron in neural network $f_y$ on input $x$.
-
-The total number of neural networks is then
-%
-\[
-  o = \sum\limits_{l = 0}^{k-1} \mid S_l \mid
-\]
-%
 \todo{Radu: Interested readers can easily find the formula for SDI on Google. Should we include the formula here?}
 
 One disadvantage of NNTD is that it relies on random inputs, which means that the less inputs we have the more statistical uncertainty we end up with. The more inputs we have the more computational power is required. Consider three neural networks, which given the same input produce the output $\set{0, 0, 0}$, $\set{0, 0, 1}$, and $\set{1, 1, 1}$. All three neural networks belong to indifferent species even though the first two seem to be more similar than the third one, because their outputs are more similar. This kind of similarity is not caught by NNTD\@. NNTD is also not suitable for neural networks with real valued outputs, because of the infinite number of species this would result in. A possibility is to distribute real valued outputs into a number of buckets, where each bucket represents a range. We will however not look into this and only focus on neural networks with binary outputs.
