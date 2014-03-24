@@ -2,7 +2,7 @@
 Genetic algorithms are optimization algorithms which imitate the process of natural selection in search of global maxima.
 
 \subsubsection{Individuals and chromosomes}
-A genetic algorithm (GA) maintains a list of \emph{individuals}, which together form a \emph{population}. Each individual represents a possible solution to the optimization problem and has a fitness value, which denotes how adequately the individual can solve the optimization problem. How an individual solves the optimization problem is determined by its \emph{chromosome}, which is typically represented by a bit string\footnote{Jeg forstår ikke denne sætning --Martin}. Therefore, using a GA requires a way of decoding a chromosome into a solution to the optimization problem.
+Genetic algorithms (GA) maintain a list of \emph{individuals}, which together form a \emph{population}. Each individual represents a possible solution to the optimization problem and has a fitness value, which denotes how adequately the individual can solve the optimization problem. An individual is encoded by its \emph{chromosome}, which is typically represented by a bit string. Therefore, using a GA requires a way of decoding an individuals chromosome into a solution to the optimization problem.
 
 The population used by a GA typically has a fixed number of individuals, each initialized with a random chromosome when the GA is run. That is, the bit string representing the chromosome is initialized with random bits. As the GA iterates, new individuals are made by combining and modifying chromosomes from existing individuals of the population. Over time, more fit individuals will replace the less fit individuals, using a replace policy that aims to maximize the fitness of the entire population. After each iteration of the GA, where a new population is formed, we say that we have another \emph{generation} of individuals.
 
@@ -19,20 +19,7 @@ Individuals in GAs have a set of traits and behaviors which define each individu
 %Initially, there are no generations. Creating a new population from a previous population increases the amount of generations by one, hopefully yielding a net increase in average fitness.
 
 \subsubsection{Crossovers and mutations}
-In natural evolution, a pair of individuals come together to produce one or more new child individuals, with genes from both of the parent individuals. The process of procreation is done by performing a \emph{crossover} of the two parent individuals' chromosomes. Different methods crossover methods exist. Below we describe three popular methods.
-
-\emph{One-point crossover} is\ldots
-
-\emph{Two-point crossover} is\ldots
-
-\emph{Univorm crossover} is when\ldots
-
-\todo{Finish above paragraphs\ldots}
-
-% vvvvvv <= below a crossover method has been defined, when there are many different kinds - Martin
-%A crossover point is defined and one part of each of the parents is copied and combined to form a new set of genes for the child individual.
-
-%illustration of crossover and mutation
+In natural evolution, a pair of individuals come together to produce one or more new child individuals, with genes from both of the parent individuals. The process of procreation is done by performing a \emph{crossover} of the two parent individuals' chromosomes. Parts of each parent's bit strings are used to create the child individual.
 
 \emph{Mutations} can also occur randomly at any point in time upon creating a child individual. If genes are encoded as bit strings, then a mutation arbitrarily toggles one of the bits. This ensures that the population can evolve if no progress would be made if the chromosomes did not allow it.
 
