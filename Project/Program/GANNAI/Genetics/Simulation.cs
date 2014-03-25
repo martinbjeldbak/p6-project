@@ -110,6 +110,8 @@ namespace Genetics {
     /// <param name="generations">The number of generations to evolve</param>
     public void Simulate(int generations, ObservationSaver obs) {
       Restart();
+      if (obs != null)
+          obs.SavePopulation();
       for (int i = 0; i < generations; i++) {
         Population.Iterate();
         if (obs != null) {

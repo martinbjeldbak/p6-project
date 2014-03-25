@@ -164,7 +164,6 @@ namespace Genetics {
         confId = cmd.LastInsertedId;
       }
       InsertSimulationInDB();
-      InsertPopulationInDB();
     }
 
     /// <summary>
