@@ -55,16 +55,9 @@ namespace Games {
 
       List<List<string>> sample = income.TestSet.Take(100).ToList();
 
-      int lineNr = 0;
-
       foreach(List<string> line in sample) {
         List<double> inputs = new List<double>();
         int cols = line.Count;
-
-        if(lineNr % 10 == 0)
-          System.Console.WriteLine("On line number: " + lineNr);
-        
-        lineNr++;
 
         for(int i = 0; i < cols; i++) {
           string value = line[i];
@@ -125,12 +118,12 @@ namespace Games {
 
         int outputIndex = aiplayer.GetStrongestOutputIndex(inputs.ToArray());
 
-        // If the output is correct, better fitness
-        if(String.Equals(IncomeDataset.IncomeMap(outputIndex), line[income.OutputIndicies().First()], StringComparison.CurrentCultureIgnoreCase)) {
-          System.Console.WriteLine("Upping fitness");
+				// If the output is correct, up the fitness
+				//if(String.Equals(IncomeDataset.IncomeMap(outputIndex), line[income.OutputIndicies().First()], StringComparison.CurrentCultureIgnoreCase))
+				if(Convert.ToBoolean(outputIndex) == IncomeDataset.IncomeMap(line[income.OutputIndicies().First()][0]))
           fitness++;
-        }
       }
+
       return fitness;
     }
 
