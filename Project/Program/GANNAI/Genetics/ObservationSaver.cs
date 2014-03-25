@@ -180,7 +180,7 @@ namespace Genetics {
       string maxFit = p.GetBest().GetFitness().ToString(System.Globalization.CultureInfo.InvariantCulture);
       string avgFit = p.GetAverage().ToString(System.Globalization.CultureInfo.InvariantCulture);
       string simulated_at = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-      string diversity = p.GetDiversity().ToString(System.Globalization.CultureInfo.InvariantCulture);
+      string diversity = p.MeasureDiversity().ToString(System.Globalization.CultureInfo.InvariantCulture);
 
       query = String.Format("INSERT INTO gannai.population (simulation_id,"
         + " generation, min_fitness, max_fitness, avg_fitness, mean_fitness, simulated_at)"
