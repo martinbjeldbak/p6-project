@@ -35,14 +35,12 @@ namespace GANNAIUI {
         return;
       }
       if (iterations < 0) {
-        MessageBox.Show("Number of iterations must be a positive integer");
+        MessageBox.Show("Number of iterations must be a positive integer or 0");
         return;
       }
 
       simulation.Simulate(iterations, saveToDBButton.Checked ? obs : null);
       PrintFitnessValues();
-
-      continueButton.Enabled = true;
       visualizeButton.Enabled = true;
       generationCountLabel.Text = "Generation No: " + simulation.Population.Generation.ToString();
       diversityLabel.Text = "Diversity: " + simulation.Population.MeasureDiversity(10).ToString();
@@ -57,12 +55,28 @@ namespace GANNAIUI {
     }
 
     private void goButton_Click(object sender, EventArgs e) {
-      simulation.Restart();
-      saveToDBButton.Enabled = false;
       if (saveToDBButton.Checked) {
         obs = new ObservationSaver(simulation);
       }
-      StartTraining();
+
+      int runs;
+      try
+      {
+          runs = Int32.Parse(runsTextBox.Text);
+      }
+      catch (FormatException)
+      {
+          MessageBox.Show("Number of runs must be a positive integer");
+          return;
+      }
+      if (runs <= 0)
+      {
+          MessageBox.Show("Number of runs must be a positive integer");
+          return;
+      }
+
+      for (int i = 0; i < runs; i++ )
+          StartTraining();
     }
 
     private void FallingStarsRadioButton_CheckedChanged(object sender, EventArgs e) {
@@ -72,7 +86,6 @@ namespace GANNAIUI {
 
     private void GameChanged(){
       goButton.Enabled = true;
-      continueButton.Enabled = false;
       visualizeButton.Enabled = false;
       saveToDBButton.Enabled = true;
       listBox1.Items.Clear();
@@ -81,16 +94,14 @@ namespace GANNAIUI {
     }
 
     private void BombermanRadioButton_CheckedChanged(object sender, EventArgs e) {
-      throw new Exception("Bomberman not implemented yet");
+      //throw new Exception("Bomberman not implemented yet");
+      simulation = new Simulation(new Income());
+      GameChanged();
     }
 
     private void SnakeRadioButton_CheckedChanged(object sender, EventArgs e) {
       simulation = new Simulation(new SnakeGame());
       GameChanged();
-    }
-
-    private void continueButton_Click(object sender, EventArgs e) {
-      StartTraining();
     }
 
     private void visualizeButton_Click(object sender, EventArgs e) {

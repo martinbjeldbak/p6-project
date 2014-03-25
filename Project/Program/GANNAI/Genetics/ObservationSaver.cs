@@ -155,8 +155,8 @@ namespace Genetics {
         query = String.Format("INSERT INTO gannai.configuration (game_id, population_size,"
         + " mutation_rate, crossover_breed_amount, mutate_after_crossover_amount,"
         + " uniform_crossover, single_point_crossover, two_point_crossover, offspring_merge_type," 
-	+ " initial_mutation, initial_simulation)"
-        + " VALUES('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', {10}')"
+	+ " initial_mutation, initial_similarity)"
+        + " VALUES('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}')"
 	, gameId, ps, mr, cba, maca, uniform, singlepoint, twopoint, mergetype, initmu, initsim);
         cmd = new MySqlCommand(query, connection);
         cmd.ExecuteNonQuery();
@@ -182,7 +182,7 @@ namespace Genetics {
       string diversity = p.MeasureDiversity().ToString(System.Globalization.CultureInfo.InvariantCulture);
 
       query = String.Format("INSERT INTO gannai.population (simulation_id,"
-        + " generation, min_fitness, max_fitness, avg_fitness, mean_fitness, simulated_at)"
+        + " generation, min_fitness, max_fitness, avg_fitness, mean_fitness, simulated_at, diversity)"
         + " VALUES('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}')"
 	, simId, g, minFit, maxFit, avgFit, meanFit, simulated_at, diversity);
       cmd = new MySqlCommand(query, connection);
