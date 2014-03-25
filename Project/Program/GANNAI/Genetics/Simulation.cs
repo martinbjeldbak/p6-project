@@ -98,7 +98,6 @@ namespace Genetics {
 
       Game = game;
       NeuralNetworkMaker = new SimpleNNMaker(game);
-      Population = new Population(this, 1);
     }
 
     public void Restart() {
