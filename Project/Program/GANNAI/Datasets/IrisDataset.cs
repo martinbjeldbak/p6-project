@@ -8,7 +8,18 @@ namespace Datasets {
     public IrisDataset(double validationPercent = 0.4)
       : base(validationPercent) {
         string csvString = Properties.Resources.iris;
-        CreateValidationAndTestSet(ParseDataFromString(csvString));
+
+        DataSet.AddRange(ParseDataFromString(csvString));
+
+        CreateValidationAndTestSet();
+    }
+
+    public override int[] OutputIndicies() {
+      return new int[] { 4 };
+    }
+
+    public override int[] InputIndicies() {
+      return new int[] { 0, 1, 2, 3 };
     }
 
     public static string IrisMap(int index) {

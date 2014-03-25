@@ -28,7 +28,7 @@ namespace Games {
         int outputIndex = aiplayer.GetStrongestOutputIndex(tmp);
 
         // If the output is correct, better fitness
-        if(String.Equals(IrisDataset.IrisMap(outputIndex), line.Last(), StringComparison.CurrentCultureIgnoreCase)) {
+        if(String.Equals(IrisDataset.IrisMap(outputIndex), line[iris.OutputIndicies().First()], StringComparison.CurrentCultureIgnoreCase)) {
           fitness++;
         }
       }
@@ -36,7 +36,7 @@ namespace Games {
     }
 
     public int NumInputs() {
-      return 4;
+      return iris.InputIndicies().Count();
     }
 
     public int NumOutputs() {
