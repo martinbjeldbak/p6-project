@@ -51,17 +51,17 @@ namespace Datasets {
 
       List<List<string>> lineData = new List<List<string>>();
 
-      foreach (var line in lines) {
-        string[] data = line.Split(',').ToArray();
+			foreach (string line in lines) {
+				List<string> data = line.Split(',').ToList();
 
-        lineData.Add(data.ToList());
+        lineData.Add(data);
       }
 
       return lineData;
     }
 
     protected List<string> loadCSVLines(string csv) {
-      return csv.Split(System.Environment.NewLine.ToCharArray(), StringSplitOptions.RemoveEmptyEntries).ToList();
+			return csv.Replace(" ", "").Split(System.Environment.NewLine.ToCharArray(), StringSplitOptions.RemoveEmptyEntries).ToList();
     }
   }
 }
