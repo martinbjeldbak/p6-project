@@ -85,10 +85,29 @@ namespace Genetics {
     }
 
     public void InitializeRandomPopulation() {
-      if(individuals == null)
-        individuals = new SortList<AIPlayer>();
-      individuals.Clear();
-      for(int i = 0; i < Simulation.PopulationSize; i++) {
+			double cloneRate = Simulation.InitialSimilarity;
+			double mutateRate = Simulation.InitialMutation;
+			if(cloneRate > 1.0 || cloneRate < 0.0)
+				throw new Exception("clone rate is not set correctly.");
+			if(individuals == null)
+				individuals = new SortList<AIPlayer>();
+			individuals.Clear();
+			
+			AIPlayer cloneIndividual = new AIPlayer(Simulation.NeuralNetworkMaker);
+			cloneIndividual.CalcFitness(Simulation.Game);
+			individuals.Add(cloneIndividual);
+			int cloneSize = (int)(cloneRate * Simulation.PopulationSize);
+			for(int i = 1; i < cloneSize; i++) {
+				DNA cloneDNA = cloneIndividual.DNA.Clone();
+				if(mutateRate > 0.0) 
+					cloneDNA = cloneDNA.GetMutated(mutateRate);
+				cloneIndividual = new AIPlayer(cloneDNA, Simulation.NeuralNetworkMaker);
+				cloneIndividual.CalcFitness(Simulation.Game);
+				individuals.Add(cloneIndividual);
+			}
+			
+			int randSize = Simulation.PopulationSize - cloneSize;
+			for(int i = 0; i < randSize; i++) {
         AIPlayer randomIndividual = new AIPlayer(Simulation.NeuralNetworkMaker);
         randomIndividual.CalcFitness(Simulation.Game);
         individuals.Add(randomIndividual);

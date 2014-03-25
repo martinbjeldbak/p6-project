@@ -31,6 +31,10 @@ namespace Genetics {
     /// The fraction of newly breeded individuals from crossover, that should also be mutated
     /// </summary>
     public readonly double MutateAfterCrossoverAmount;
+		
+    public readonly double InitialMutation;
+		
+    public readonly double InitialSimilarity;
 
     public readonly bool AllowUniformCrossover;
 
@@ -65,7 +69,7 @@ namespace Genetics {
 
     public Simulation(AITrainableGame game, int populationSize = 100, double crossOverBredAmount = 0.5, double mutateAfterCrossoverAmount = 0.1, 
       double mutationRate = 0.05, bool allowSinglePointCrossover = true, bool allowTwoPointCrossover = true, bool allowUniformCrossover = true,
-      int offspringMergeType = 0) {
+      int offspringMergeType = 0, double initialMutation = 0.0, double initialSimilarity = 0.0) {
       PopulationSize = populationSize;
       CrossoverBredAmount = crossOverBredAmount;
       MutateAfterCrossoverAmount = mutateAfterCrossoverAmount;
@@ -74,6 +78,8 @@ namespace Genetics {
       AllowTwoPointCrossover = allowTwoPointCrossover;
       AllowUniformCrossover = allowUniformCrossover;
       OffspringMergeType = offspringMergeType;
+      InitialMutation = initialMutation;
+      InitialSimilarity = initialSimilarity;
 
       allowedCrossoverMethods = new List<CrossoverMethod>();
       if (AllowSinglePointCrossover)
@@ -92,7 +98,6 @@ namespace Genetics {
 
       Game = game;
       NeuralNetworkMaker = new SimpleNNMaker(game);
-      Population = new Population(this, 1);
     }
 
     public void Restart() {
@@ -104,6 +109,7 @@ namespace Genetics {
     /// </summary>
     /// <param name="generations">The number of generations to evolve</param>
     public void Simulate(int generations, ObservationSaver obs) {
+      Restart();
       for (int i = 0; i < generations; i++) {
         Population.Iterate();
         if (obs != null) {
