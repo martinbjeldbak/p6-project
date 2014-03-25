@@ -81,7 +81,9 @@ namespace GANNAIUI {
     }
 
     private void BombermanRadioButton_CheckedChanged(object sender, EventArgs e) {
-      throw new Exception("Bomberman not implemented yet");
+      //throw new Exception("Bomberman not implemented yet");
+      simulation = new Simulation(new Income());
+      GameChanged();
     }
 
     private void SnakeRadioButton_CheckedChanged(object sender, EventArgs e) {
