@@ -34,6 +34,7 @@
     <Compile Include="RandomNum.cs" />
     <Compile Include="SortList.cs" />
     <Compile Include="Log.cs" />
+    <Compile Include="Util.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>
