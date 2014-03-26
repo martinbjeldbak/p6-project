@@ -17,21 +17,23 @@ namespace Games {
     public double CalcFitness(AIPlayer aiplayer) {
       int fitness = 0;
 
-      foreach(List<string> line in iris.TestSet) {
-        int numInputs = NumInputs();
-        double[] tmp = new double[numInputs]; //= line.Take(4).Select(Double.Parse).ToArray();
-        
-        for (int i = 0; i < numInputs; i++) {
-          tmp[i] = Double.Parse(line[i], CultureInfo.InvariantCulture);
-        }
+      int lineNr = 0;
+      int numInputs = NumInputs();
+      int outputIndex = iris.OutputIndicies()[0];
+      List<double> inputs = new List<double>(numInputs);
+      // For each row in the data set, get its converted values
+      foreach (Line l in iris.MappedTestSet) {
+        System.Console.WriteLine("On line " + (lineNr++) + 1);
 
-        int outputIndex = aiplayer.GetStrongestOutputIndex(tmp);
+        inputs = new List<double>(numInputs);
+        inputs.AddRange(l.entries.Where(e => !iris.OutputIndicies().ToList().Contains(e.Column)).Select(e => e.ID));
 
-        // If the output is correct, better fitness
-        if(String.Equals(IrisDataset.IrisMap(outputIndex), line[iris.OutputIndicies().First()], StringComparison.CurrentCultureIgnoreCase)) {
+        int outputNeuron = aiplayer.GetStrongestOutputIndex(inputs.ToArray());
+
+        if (outputNeuron == l.entries[outputIndex].ID)
           fitness++;
-        }
       }
+
       return fitness;
     }
 
