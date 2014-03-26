@@ -15,14 +15,16 @@ namespace Datasets {
       switch(index) {
         case 0:
           return ">50K";
-          break;
         case 1:
           return "<=50K";
-          break;
         default:
           throw new Exception("No such mapping to adult income class");
       }
     }
+
+		public static bool IncomeMap(char c) {
+			return c == '<';
+		}
 
     public static double AgeMap(string age) {
       double mappedAge = Double.Parse(age);
