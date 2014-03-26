@@ -43,7 +43,7 @@ namespace GANNAIUI {
       PrintFitnessValues();
       visualizeButton.Enabled = true;
       generationCountLabel.Text = "Generation No: " + simulation.Population.Generation.ToString();
-      diversityLabel.Text = "Diversity: " + simulation.Population.MeasureDiversity(10).ToString();
+      diversityLabel.Text = "Diversity: " + simulation.Population.MeasureDiversity().ToString();
     }
 
     private void PrintFitnessValues() {
