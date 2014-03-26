@@ -11,41 +11,7 @@ namespace Games {
     IncomeDataset income;
 
     public Income() {
-      this.income = new IncomeDataset();
-    }
-
-    private double gainMedian, lossMedian = Double.NegativeInfinity;
-
-    public double GainMedian {
-      get {
-        return gainMedian = (Double.IsNegativeInfinity(gainMedian) ? CapitalGainMedian() : gainMedian);
-      }
-    }
-
-    public double LossMedian {
-      get {
-        return lossMedian = (Double.IsNegativeInfinity(lossMedian) ? CapitalLossMedian() : lossMedian);
-      }
-    }
-
-    private double CapitalGainMedian() {
-      List<double> gains = new List<double>();
-
-      foreach(List<string> line in income.DataSet) {
-        gains.Add(Double.Parse(line[10]));
-      }
-
-      return Util.ComputeMedian(gains.OrderBy(n => n).ToList());
-    }
-
-    private double CapitalLossMedian() {
-      List<double> losses = new List<double>();
-
-      foreach(List<string> line in income.DataSet) {
-        losses.Add(Double.Parse(line[11]));
-      }
-
-      return Util.ComputeMedian(losses.OrderBy(n => n).ToList());
+      income = new IncomeDataset();
     }
 
     #region AITrainableGame implementation
@@ -53,74 +19,20 @@ namespace Games {
     public double CalcFitness(AIPlayer aiplayer) {
       int fitness = 0;
 
-      List<List<string>> sample = income.TestSet.Take(100).ToList();
+      int lineNr = 0;
+      int numInputs = NumInputs();
+      int outputIndex = income.OutputIndicies()[0];
+      List<double> inputs = new List<double>(numInputs);
+      // For each row in the data set, get its converted values
+      foreach (Line l in income.MappedTestSet) {
+        System.Console.WriteLine("On line " + (lineNr++) + 1);
 
-      foreach(List<string> line in sample) {
-        List<double> inputs = new List<double>();
-        int cols = line.Count;
+        inputs = new List<double>(numInputs);
+        inputs.AddRange(l.entries.Where(e => !income.OutputIndicies().ToList().Contains(e.Column)).Select(e => e.ID));
 
-        for(int i = 0; i < cols; i++) {
-          string value = line[i];
+        int outputNeuron = aiplayer.GetStrongestOutputIndex(inputs.ToArray());
 
-          //if(line.IndexOf("?") != -1)
-          //  continue;
-
-          switch(i) {
-            case 0:
-              inputs.Add(IncomeDataset.AgeMap(value));
-              break;
-            case 1:
-              inputs.Add(IncomeDataset.WorkClassMap(value));
-              break;
-            case 2:
-              // Fitting weight, not needed
-              break;
-            case 3:
-              // Education in words, case 4 is the same in years
-              break;
-            case 4:
-              inputs.Add(IncomeDataset.EducationNumMap(value));
-              break;
-            case 5:
-              inputs.Add(IncomeDataset.MaritalStatusMap(value));
-              break;
-            case 6:
-              inputs.Add(IncomeDataset.OccupationMap(value));
-              break;
-            case 7:
-              inputs.Add(IncomeDataset.RelationshipMap(value));
-              break;
-            case 8:
-              inputs.Add(IncomeDataset.RaceMap(value));
-              break;
-            case 9:
-              inputs.Add(IncomeDataset.SexMap(value));
-              break;
-            case 10:
-              inputs.Add(IncomeDataset.CapitalGainMap(value, GainMedian));
-              break;
-            case 11:
-              inputs.Add(IncomeDataset.CapitalLossMap(value, CapitalLossMedian()));
-              break;
-            case 12:
-              inputs.Add(IncomeDataset.HoursPerWeekMap(value));
-              break;
-            case 13:
-              inputs.Add(IncomeDataset.NativeCountryMap(value));
-              break;
-            case 14:
-              // This is the output value we wish to guess, not part of input
-              break;
-            default:
-              throw new Exception("No mapping of inputs");
-          }
-        }
-
-        int outputIndex = aiplayer.GetStrongestOutputIndex(inputs.ToArray());
-
-				// If the output is correct, up the fitness
-				//if(String.Equals(IncomeDataset.IncomeMap(outputIndex), line[income.OutputIndicies().First()], StringComparison.CurrentCultureIgnoreCase))
-				if(Convert.ToBoolean(outputIndex) == IncomeDataset.IncomeMap(line[income.OutputIndicies().First()][0]))
+        if (outputNeuron == l.entries[outputIndex].ID)
           fitness++;
       }
 
