@@ -46,7 +46,7 @@
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <ProjectReference Include="..\Utility\Utility.csproj">
-      <Project>{94e3b305-bca1-4a47-b766-a456dea24560}</Project>
+      <Project>{94E3B305-BCA1-4A47-B766-A456DEA24560}</Project>
       <Name>Utility</Name>
     </ProjectReference>
   </ItemGroup>
