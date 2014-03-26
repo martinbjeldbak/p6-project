@@ -30,7 +30,7 @@ namespace Genetics {
           + bitsPerWeight + " bits/weight");
 
       for (int i = 0; i < weights.Length; i++) {
-        weights[i] = dna.CalcInt(i*bitsPerWeight, (i+1)*bitsPerWeight-1);
+        weights[i] = dna.CalcDouble(i*bitsPerWeight, (i+1)*bitsPerWeight-1);
       }
 
       return new NeuralNetwork(inputs, hiddenNeurons, outputs, weights);

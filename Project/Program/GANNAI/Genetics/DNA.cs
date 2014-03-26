@@ -104,7 +104,8 @@ namespace Genetics {
     }
 
     /// <summary>
-    /// Calculates a signed integer from a sequence of bits on the DNA string .
+    /// Calculates a signed integer from a sequence of bits on the DNA string.
+    /// For a 5 bit string, a value is returned in the range [-8, 8]
     /// The index of the starting point must have a value less than the index of the ending point
     /// </summary>
     /// <param name="from">the index of the starting point</param>
@@ -118,6 +119,28 @@ namespace Genetics {
           result += 1 << i;
       }
       return factor * result;
+    }
+
+    /// <summary>
+    /// Calculates a double from a sequence of bits on the DNA string.
+    /// A value is returned in the range [-1, 1].
+    /// More bits adds more precision.
+    /// The index of the starting point must have a value less than the index of the ending point
+    /// </summary>
+    /// <param name="from">the index of the starting point</param>
+    /// <param name="to">the index of the ending point</param>
+    /// <returns></returns>
+    public double CalcDouble(int from, int to)
+    {
+        double maxVal = Math.Pow(to - from, 2) - 1;
+        int factor = Bitstring[from] ? -1 : 1;
+        int result = 0;
+        for (int i = 0; i < to - from; i++)
+        {
+            if (Bitstring[to - i])
+                result += 1 << i;
+        }
+        return (factor * result) / maxVal;
     }
   }
 }

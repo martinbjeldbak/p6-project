@@ -175,18 +175,21 @@ namespace Genetics {
     /// </summary>
     /// <returns>The diversity.</returns>
     /// <param name="runs">Number of runs. Default is 1.</param>
-    public double MeasureDiversity(int runs = 1) {
+    public double MeasureDiversity(int runs = 100) {
       int outputSize = individuals.Get(0).neuralNetwork.GetNumberOfOutputs();
-      int[] outputCount = new int[outputSize];
+
       double[] diversities = new double[runs];
 
       for(int j = 0; j < runs; j++) {
+        int[] outputCount = new int[outputSize];
         double[] randInputs = new double[individuals.Get(0).neuralNetwork.GetNumberOfInputs()];
         for(int i = 0; i < randInputs.Length; i++)
           randInputs[i] = RandomNum.RandomDouble();
 
-        foreach(AIPlayer i in individuals)
+        foreach(AIPlayer i in individuals){
           outputCount[i.GetStrongestOutputIndex(randInputs)]++;
+          double[] outputs = i.GetOutputs(randInputs);
+        }
       
         double numerator = 0.0;
         int totalOrganisms = 0;

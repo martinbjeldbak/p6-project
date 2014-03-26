@@ -18,7 +18,7 @@ namespace ArtificialNeuralNetwork {
     /// to the sum of the inputs given.</returns>
     /// <param name="sumInputs">The sum of inputs into a specific neuron.</param>
     private double ActivationFunction(double sumInputs) {
-      return 1.0 / (1.0 + Math.Exp(-(sumInputs)));
+      return 1.0 / (1.0 + Math.Exp(-sumInputs));
     }
 
     /// <summary>
