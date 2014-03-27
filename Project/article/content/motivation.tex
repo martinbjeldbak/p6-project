@@ -1,4 +1,29 @@
 Genetic algorithms rely on a number of individuals in a population to procreate to create better, more fit individuals. Offspring should ideally contain the best traits from both parents, hence a diverse set of individuals is crucial to identify the combination of traits that works best. If diversity is not maintained, only the local optimal solution of those traits available in the population will be explored, and a global optimal solution might not be found.
 \cite{ursem2002diversity}
 
+Diversity measures can be either genotypic of phenotypic.
+The former concerns different ways individuals are represented while the latter is concerned with behavioural differences.
+Phenotypic diversity is often measured based on how fit each individual is. 
+An individual is said to be more fit than another, if it provides a better solution to the same optimization problem that all individuals aim to solve. 
+Two individuals with different traits does not necessarily have different fitness values.
+Consider two artificial intelligent (AI) players for the well known cell phone game Snake.
+We can calculate their fitness based on how many pieces of food they collect before they die.
+One of the AI players may have traits that makes it good at avoiding death by not hitting any walls or its own body.
+Sometimes by chance, it hits a piece of food.
+The other AI player may have traits that makes it good at searching for food.
+The two AI players can have the same fitness value, that is, they collect the same amount of food before they die, and still have completely different traits. Therefore, fitness based diversity measures does not always catch the difference in traits among individuals.
+
+We propose a new method for measuring phenotypic diversity, which we claim is more suitable for measuring diversity in GAs that use neural networks, compared to fitness based diversity measures.
+With ``more suitable'', we mean a diversity function that better reflects different traits among the individuals of a population.
+We will call this measure \emph{Neural Network Trait Diversity} (NNTD).
+
 Many existing methods aim to increase diversity require much more computational power \citpls{}. We wish to develop a lightweight method that is computationally inexpensive, yet maintains a high diversity in a population. Common methods for measuring the phenotypic diversity of a population only take into account the fitness of each individual \citpls{}. We develop a method for measuring phenotypic diversity that takes into account the different traits among individuals.
+
+We propose a policy for how offspring is selected to form a the next generation of a population, which forces a higher NNTD.
+We call this selection policy \emph{Ancestor Elitism Selection Policy} (AESP).
+
+
+
+
+
+
