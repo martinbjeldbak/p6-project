@@ -18,21 +18,21 @@ namespace Games {
 
     public double CalcFitness(AIPlayer aiplayer) {
       int fitness = 0;
-
-      int lineNr = 0;
+ 
       int numInputs = NumInputs();
-      int outputIndex = income.OutputIndicies()[0];
       List<double> inputs = new List<double>(numInputs);
       // For each row in the data set, get its converted values
-      foreach (Line l in income.MappedTestSet) {
-        System.Console.WriteLine("On line " + (lineNr++) + 1);
+      foreach(Line l in income.MappedTestSet) {
 
         inputs = new List<double>(numInputs);
         inputs.AddRange(l.entries.Where(e => !income.OutputIndicies().ToList().Contains(e.Column)).Select(e => e.ID));
 
-        int outputNeuron = aiplayer.GetStrongestOutputIndex(inputs.ToArray());
 
-        if (outputNeuron == l.entries[outputIndex].ID)
+        int outputNeuronIndex = aiplayer.GetStrongestOutputIndex(inputs.ToArray());
+
+
+        //System.Console.WriteLine("Is the strongest output neuron: " + outputNeuronIndex + "(" + IncomeDataset.IncomeMap(outputNeuronIndex) + ") equal to: " + l.entries.Last().ID + "(" + l.entries.Last().Value + ")?");
+        if(outputNeuronIndex == l.entries.Last().ID)
           fitness++;
       }
 
