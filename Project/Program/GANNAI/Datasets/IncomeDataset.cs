@@ -270,19 +270,11 @@ namespace Datasets {
     #region implemented abstract members of Dataset
 
     public override int[] OutputIndicies() {
-      return new int[] { MappedDataSet.IndexOf(MappedDataSet.Last()) };
+      return MappedDataSet.First().entries.Where(e => e.Column == 14).Select(e => e.Column).ToArray();
     }
 
     public override int[] InputIndicies() {
-      List<int> indicies = new List<int>();
-
-      int outputIndex = OutputIndicies()[0];
-
-      for(int i = 0; i < outputIndex; i++) {
-        indicies.Add(i);
-      }
-
-      return indicies.ToArray();
+      return MappedDataSet.First().entries.Where(e => e.Column != 14).Select(e => e.Column).ToArray();
     }
 
     #endregion
