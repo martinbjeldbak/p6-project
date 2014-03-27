@@ -1,7 +1,4 @@
 \section{Neural Network Trait Diversity}
-We propose a new method for measuring phenotypic diversity, which we claim is more suitable for measuring diversity in GAs that use neural networks, compared to fitness based diversity measures. With ``more suitable'', we mean a diversity function that better reflects different traits among the individuals of a population.
-We will call this measure \emph{Neural Network Trait Diversity} (NNTD).
-
 In the following, we will use the term individual and neural network interchangeable, since we represent an individual by a neural network.  Let $F = \set{f_1, f_2, \dots, f_n}$, denote the neural networks contained in a population, which all have the same architecture of $a$ input and $b$ output neurons.
 NNTD is calculated with respect to a number of random inputs, $\set{R_1, R_2, \dots, R_m}$, where each $R_i$ for $1 \leq i \leq m$ is an $a$-tuple of real values chosen randomly.
 For each $R_i$, a Simpson's Diversity Index (SDI) is calculated.
