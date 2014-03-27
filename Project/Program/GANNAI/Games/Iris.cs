@@ -17,14 +17,11 @@ namespace Games {
     public double CalcFitness(AIPlayer aiplayer) {
       int fitness = 0;
 
-      int lineNr = 0;
       int numInputs = NumInputs();
       int outputIndex = iris.OutputIndicies()[0];
       List<double> inputs = new List<double>(numInputs);
       // For each row in the data set, get its converted values
       foreach (Line l in iris.MappedTestSet) {
-        System.Console.WriteLine("On line " + (lineNr++) + 1);
-
         inputs = new List<double>(numInputs);
         inputs.AddRange(l.entries.Where(e => !iris.OutputIndicies().ToList().Contains(e.Column)).Select(e => e.ID));
 
