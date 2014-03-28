@@ -3,16 +3,14 @@
   \begin{algorithmic}[1]
   \Procedure{aesp}{$G_k, O_k$}
     \State $G_{k+1} \gets G_k$
-    \ForAll{$o \in O_k$}
-      \If {$o.\mathtt{num\_parents} = 1$}
-        \If {$\beta(o) > \beta(o.p_1)$}
-          \State $G_{k+1} \gets \left(G_{k+1} \setminus \set{o.p_1}\right) \cup \set{o}$
+    \ForAll{$i \in O_k$}
+      \If {$i.\mathtt{num\_parents} = 1$}
+        \If {$i.\phi > i.p_1.\phi$}
+          \State $G_{k+1} \gets \left(G_{k+1} \setminus \set{i.p_1}\right) \cup \set{i}$
         \EndIf
       \Else
-        \If {$\beta(o) > \max\left(\beta(o.p_1), \beta(o.p_2)\right)$}
-        \State  $G_{k+1} \gets$ \begin{varwidth}[t]{\linewidth}$(G_{k+1} \setminus \{o.p_1, o.p_2\})$\par
-          \hskip\algorithmicindent $\cup \set{o} \cup \set{\rho}$
-        \end{varwidth}
+        \If {$i.\phi > \max\left(i.p_1.\phi, i.p_2.\phi\right)$}
+        \State $G_{k+1} \gets (G_{k+1} \setminus \{i.p_1, i.p_2\}) \cup \set{i} \cup \set{\rho}$
         \EndIf
       \EndIf
     \EndFor
