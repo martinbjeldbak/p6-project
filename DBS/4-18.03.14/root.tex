@@ -64,7 +64,7 @@ CREATE TABLE award(
   year int,
   name varchar(50),
   title varchar(50) NOT NULL,
-  date datetime NOT NULL,
+  date date NOT NULL,
   PRIMARY KEY(year, name)
 );
 \end{lstlisting}
@@ -80,7 +80,7 @@ CREATE TABLE genre(
 CREATE TABLE genreMovie(
   name varchar(50),
   title varchar(50),
-  date datetime,
+  date date,
   PRIMARY KEY(name, title, date),
   FOREIGN KEY(name) REFERENCES genre(name),
   FOREIGN KEY(title, date) REFERENCES movie(title, date)
@@ -90,7 +90,7 @@ CREATE TABLE genreMovie(
 \begin{lstlisting}[language=SQL]
 CREATE TABLE movie(
   title varchar(50),
-  date datetime,
+  date date,
   language varchar(50),
   PRIMARY KEY(title, date),
 );
@@ -99,9 +99,9 @@ CREATE TABLE movie(
 \begin{lstlisting}[language=SQL]
 CREATE TABLE refers(
   title varchar(50),
-  date datetime,
+  date date,
   referredTitle varchar(50),
-  referredDate datetime,
+  referredDate date,
   PRIMARY KEY(title, date, referredTitle, referredDate),
   FOREIGN KEY(title, date) REFERENCES movie(title, date),
   FOREIGN KEY(referredTtitle, referredDate) REFERENCES movie(title, date)
@@ -118,7 +118,7 @@ CREATE TABLE role(
 \begin{lstlisting}[language=SQL]
 CREATE TABLE participates(
   title varchar(50),
-  date datetime,
+  date date,
   roleName varchar(50),
   id int,
   PRIMARY KEY(title, date, roleName, id),
@@ -131,10 +131,10 @@ CREATE TABLE participates(
 \begin{lstlisting}[language=SQL]
 CREATE TABLE person(
   id int,
-  birthdate datetime NOT NULL,
+  birthdate date NOT NULL,
   firstName varchar(50) NOT NULL,
   lastName varchar(50) NOT NULL,
-  dateOfDeath datetime NOT NULL,
+  dateOfDeath date NOT NULL,
   sex char(1) NOT NULL,
   PRIMARY KEY(id)
 );
@@ -144,13 +144,13 @@ CREATE TABLE person(
 CREATE TABLE review(
   id int,
   rating int,
-  date datetime NOT NULL,
+  dateOfReview date NOT NULL,
   username varchar(50) NOT NULL,
   title varchar(50) NOT NULL,
-  date datetime NOT NULL,
+  date date NOT NULL,
   PRIMARY KEY(id),
   FOREIGN KEY(username) REFERENCES user(username),
-  FOREIGN KEY(title, date) REFERENCES role(title, date)
+  FOREIGN KEY(title, date) REFERENCES movie(title, date)
 );
 \end{lstlisting}
 
