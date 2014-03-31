@@ -1,21 +1,19 @@
 \begin{algorithm}
   \caption{Procedure AESP}\label{alg:aesp}
-\begin{algorithmic}[1]
-  \Procedure{AESP}{$G_k, O_k$}
-  \State $G_{k+1} \gets G_k$
-  \ForAll{$o \in O_k$}
-    \If {$o.\mathtt{num\_parents} = 1$}
-      \If {$\beta(o) > \beta(\pi_1(o))$}
-        \State $G_{k+1} \gets (G_{k+1} \setminus \set{\pi_1(o)}) \cup \set{o}$
+  \begin{algorithmic}[1]
+  \Procedure{aesp}{$G_k, O_k$}
+    \State $G_{k+1} \gets G_k$
+    \ForAll{$i \in O_k$}
+      \If {$i.\mathtt{num\_parents} = 1$}
+        \If {$i.\phi > i.p_1.\phi$}
+          \State $G_{k+1} \gets \left(G_{k+1} \setminus \set{i.p_1}\right) \cup \set{i}$
+        \EndIf
+      \Else
+        \If {$i.\phi > \max\left(i.p_1.\phi, i.p_2.\phi\right)$}
+        \State $G_{k+1} \gets (G_{k+1} \setminus \{i.p_1, i.p_2\}) \cup \set{i} \cup \set{\rho}$
+        \EndIf
       \EndIf
-    \Else
-      \If {$\beta(o) > \mathtt{max}(\beta(\pi_1(o)), \beta(\pi_2(o)))$}
-      \State  $G_{k+1} \gets$ \begin{varwidth}[t]{\linewidth}$(G_{k+1} \setminus \{\pi_1(o), \pi_2(o)\})$\par
-        \hskip\algorithmicindent $\cup \set{o} \cup \set{\rho}$
-      \end{varwidth}
-      \EndIf
-    \EndIf
-  \EndFor
-\EndProcedure
-\end{algorithmic}
+    \EndFor
+  \EndProcedure
+  \end{algorithmic}
 \end{algorithm}

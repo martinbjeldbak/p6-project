@@ -30,9 +30,9 @@
 \foreach \m [count=\y] in {1,missing,2}
   \node [every neuron/.try, neuron \m/.try ] (hidden-\m) at (2,2-\y*1.25) {};
 
-% Label hidden nodes
-\foreach \l [count=\i] in {1,k}
-\node [yshift=-0.5cm] at (hidden-\i.north) {$h_\l$};
+% Label hidden node
+%\foreach \l [count=\i] in {1,k}
+%\node [yshift=-0.5cm] at (hidden-\i.north) {$h_\l$};
 
 % Draw output nodes
 \foreach \m [count=\y] in {1,missing,2}
