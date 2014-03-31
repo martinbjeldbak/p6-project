@@ -1,0 +1,263 @@
+\section{Self Study 5: Mini-project part 4}
+This self study was done on \formatdatewday{31}{3}{2014}. We first converted the IMDB MySQL dump to PosgresSQL and then mapped all the tables to our schema, before finally designing the queries described in the exercise document. The PostgreSQL dump of our converted schema can be found at this link: \url{https://bitbucket.org/Obeyed/p6-project/src/72274ff3487ef59dfd2782cb3a277775b179654c/DBS/5-31.03.14/ourimdb.sql?at=master}.
+
+\subsection{Filling the database}
+We use a Ruby gem (\url{https://github.com/maxlapshin/mysql2postgres}) to convert the MySQL dump of the IMDB database found on Moodle to a PostgreSQL database with the same tables and data. To ease transfer, we added the tables defined in \cref{fig:ss2-schema} of self study 2 in the same database and executed the \texttt{INSERT INTO} queries below to map the data from IMDB to our tables.
+
+\begin{lstlisting}[language=SQL]
+INSERT INTO our_movie
+SELECT title, language, year
+FROM movie
+\end{lstlisting}
+
+\begin{lstlisting}[language=SQL]
+INSERT INTO our_genre
+SELECT DISTINCT genre
+FROM genre
+\end{lstlisting}
+
+\begin{lstlisting}[language=SQL]
+INSERT INTO "our_genreMovie"
+SELECT genre.genre, movie.title, movie.year
+FROM genre, movie
+WHERE genre."movieId" = movie.id
+\end{lstlisting}
+
+\begin{lstlisting}[language=SQL]
+INSERT INTO our_refers
+SELECT m1.title, m2.title, m1.year, m2.year
+FROM movieref, movie m1, movie m2
+WHERE movieref."fromId" = m1.id AND movieref."toId" = m2.id
+\end{lstlisting}
+
+\begin{lstlisting}[language=SQL]
+INSERT INTO our_person
+SELECT id, birthdate, name, '', deathdate, gender
+FROM person
+\end{lstlisting}
+
+\begin{lstlisting}[language=SQL]
+INSERT INTO our_role
+SELECT DISTINCT role
+FROM involved
+\end{lstlisting}
+
+\begin{lstlisting}[language=SQL]
+INSERT INTO our_participates
+SELECT movie.title, involved.role, involved."personId", movie.year
+FROM involved, movie
+WHERE involved."movieId" = movie.id
+\end{lstlisting}
+
+\begin{lstlisting}[language=SQL]
+INSERT INTO our_participates
+SELECT movie.title, involved.role, involved."personId", movie.year
+FROM involved, movie
+WHERE involved."movieId" = movie.id
+\end{lstlisting}
+
+\begin{lstlisting}[language=SQL]
+INSERT INTO our_user
+SELECT DISTINCT "user", null, null
+FROM ratings
+\end{lstlisting}
+
+\begin{lstlisting}[language=SQL]
+INSERT INTO our_review
+SELECT rating, "user", movie.title, null, movie.year
+FROM ratings, movie
+WHERE movie.id = ratings."movieId"
+\end{lstlisting}
+
+No data was present in the dump to identify awards given to movies.
+
+Sometimes we have decided to drop the “date” attribute, rename it to ``year'' and change its type to int, causing the order of attributes to be rearranged.
+
+There was no information about gender in the database, making it impossible to do any queries based on gender.
+
+Upon mapping of the ‘ratings’ table in the IMDB database, we noticed out that our structure (as shown in figure 3) can uniquely identifiy ratings (reviews) merely by the user’s primary key: username, and the movie’s primary keys: title and date. This restricts the user in only being able to have one review per movie, which is what we wish and allows us to remove the ``id'' column.
+
+\subsection{Querying}
+
+\subsubsection{How many Danish language movies are in the database?}
+Query can be seen below and result is illustrated in \cref{tab:5q1}.
+\begin{lstlisting}[language=SQL]
+SELECT COUNT(*) FROM movie WHERE language = 'Danish'
+\end{lstlisting}
+
+\begin{table}
+  \centering
+\begin{tabular}[htpb]{S}
+  \toprule
+  {Count} \\
+  \midrule
+  419 \\
+  \bottomrule
+\end{tabular}
+\caption{Results of query 1}\label{tab:5q1}
+\end{table}
+
+\subsubsection{For each year, what is the total number of reviews to movies from that year?}
+Query can be seen below and result is illustrated in \cref{tab:5q2}.
+
+\begin{lstlisting}[language=SQL]
+SELECT movie.year, COUNT(movie.year) FROM review, movie
+WHERE review.title = movie.title AND review.year = movie.year
+GROUP BY movie.year
+\end{lstlisting}
+
+\begin{table}
+  \centering
+  \begin{tabular}[htpb]{S S}
+    \toprule
+    {movie.year} & {COUNT(movie.year)} \\
+    \midrule
+    2010 & 23 \\
+    2000 & 24 \\
+    2006 & 27 \\
+    1962 & 1 \\
+    2003 & 27 \\
+    2012 & 17 \\
+    2002 & 19 \\
+    1993 & 4 \\
+    2001 & 28 \\
+    1999 & 48 \\
+    \bottomrule
+\end{tabular}
+\caption{Results of query 2}\label{tab:5q2}
+\end{table}
+
+\subsection{Which movies have John Travolta and Uma Thurman starred in together?}
+Query can be seen below and result is illustrated in \cref{tab:5q3}.
+\begin{lstlisting}[language=SQL]
+SELECT m.title, m.year, FROM movie m, person pe1, person pe2, participates pa1, participates pa2
+WHERE pa1.title = m.title AND pa1.year = m.year AND pa2.title = m.title AND pa2.year = m.year AND pe1.id = pa1.id AND pe2.id = pa2.id AND pe1.id != pe2.id AND pe1.name = 'John Travolta' AND pe2.name = 'Uma Thurman' AND pa1.rolename = 'actor' AND pa2.rolename = 'actor'
+\end{lstlisting}
+
+\begin{table}
+  \centering
+  \begin{tabular}[htpb]{l S}
+    \toprule
+    m.title & {m.year} \\
+    \midrule
+    Entertainment Tonight & 1981 \\
+    Late Show with David Letterman & 1993 \\
+    The Tonight Show with Jay Leno & 1992 \\
+    E! True Hollywood Story & 1996 \\
+    Live with Regis and Kathie Lee & 1988 \\
+    The Charlie Rose Show & 1991 \\
+    The Rosie O'Donnell Show &1996 \\
+    Ellen: The Ellen DeGeneres Show & 2003 \\
+    Be Cool & 2005 \\
+    Pulp Fiction & 1994 \\
+    \bottomrule
+\end{tabular}
+\caption{Results of query 3}\label{tab:5q3}
+\end{table}
+
+\subsection{How many actors and directors have a first name starting with ``Q``?}
+Query can be seen below and result is illustrated in \cref{tab:5q4}.
+
+\begin{lstlisting}[language=SQL]
+SELECT pa.rolename, COUNT(*) FROM person pe, participates pa 
+WHERE pe.id = pa.id AND pa.rolename IN ('actor', 'director') AND pe.name LIKE 'Q%'
+GROUP BY pa.rolename
+\end{lstlisting}
+
+\begin{table}
+  \centering
+  \begin{tabular}[htpb]{l S}
+    \toprule
+    pa.rolename & {COUNT(*)} \\
+    \midrule
+    "actor & 2100 \\
+    "director & 45 \\
+    \bottomrule
+\end{tabular}
+\caption{Results of query 4}\label{tab:5q4}
+\end{table}
+
+\subsection{How many users rated at least 3 movies?}
+Query can be seen below and result is illustrated in \cref{tab:5q5}.
+
+\begin{lstlisting}[language=SQL]
+SELECT COUNT(*) FROM 
+(SELECT r1.username FROM review r1, review r2, review r3
+WHERE r1.username = r2.username AND r1.username = r3.username
+    AND r1.title != r2.title AND r2.title != r3.title
+    AND r1.title != r3.title
+GROUP BY r1.username) AS "total"
+\end{lstlisting}
+
+\begin{table}
+  \centering
+  \begin{tabular}[htpb]{S}
+    \toprule
+    {COUNT(*)} \\
+    \midrule
+    34 \\
+    \bottomrule
+  \end{tabular}
+  \caption{Results of query 5}\label{tab:5q5}
+\end{table}
+
+\subsection{What is the name and birth year of all actors in “Pulp Fiction”? List the actors in increasing order of birth year.}
+Query can be seen below and result is illustrated in \cref{tab:5q6}.
+
+\begin{lstlisting}[language=SQL]
+SELECT p.name, p.birthdate FROM participates pp,
+       person p WHERE pp.title = 'Pulp Fiction' AND pp.id = p.id
+       AND pp.rolename = 'actor' ORDER BY p.birthdate ASC
+\end{lstlisting}
+
+\begin{table}
+  \centering
+  \begin{tabular}[htpb]{l l}
+    \toprule
+    p.name & p.birthdate \\
+    \midrule
+    Emil Sitka & 1914-12-22 \\
+    Harvey Keitel & 1939-05-13 \\
+    Rene Beard & 1941-06-03 \\
+    Christopher Walken & 1943-03-31 \\
+    Joseph Pilato & 1949-03-16 \\
+    Brenda Hillhouse & 1953-12-11 \\
+    John Travolta & 1954-02-18 \\
+    Bruce Willis & 1955-03-19 \\
+    Amanda Plummer & 1957-03-23 \\
+    Lawrence Bender & 1957-10-17 \\
+    \bottomrule
+  \end{tabular}
+  \caption{Results of query 6}\label{tab:5q6}
+\end{table}
+
+\subsection{What are the titles and years of all movies from the 1980s that John Travolta starred in?}
+Query can be seen below and result is illustrated in \cref{tab:5q7}.
+
+\begin{lstlisting}[language=SQL]
+SELECT pa.title, pa.year FROM participates pa, person p 
+WHERE pa.year >= 1980 AND pa.year < 1990
+      AND p.name = 'John Travolta' AND pa.id = p.id
+      AND pa.rolename = 'actor'
+\end{lstlisting}
+
+\begin{table}
+  \centering
+  \begin{tabular}[htpb]{l S}
+    \toprule
+    pa.title & {pa.year} \\
+    \midrule
+    Entertainment Tonight & 1981 \\
+    Live with Regis and Kathie Lee & 1988 \\
+    Biography & 1987 \\
+    Look Who's Talking & 1989 \\
+    Wetten, dass\dots? & 1981 \\
+    Larry King Live & 1985 \\
+    Two of a Kind & 1983 \\
+    Staying Alive & 1983 \\
+    That's Dancing! & 1985 \\
+    Urban Cowboy & 1980 \\
+    \bottomrule
+  \end{tabular}
+  \caption{Results of query 7}\label{tab:5q7}
+\end{table}
