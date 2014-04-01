@@ -4,3 +4,4 @@ master.toc
 *.mwb.bak
 *-eps-converted-to.pdf
 **.log
+*.sql
