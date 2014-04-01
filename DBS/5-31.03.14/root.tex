@@ -79,7 +79,7 @@ Upon mapping of the ‘ratings’ table in the IMDB database, we noticed out tha
 
 \subsection{Querying}
 
-\subsubsection{How many Danish language movies are in the database?}
+\subsubsection{1.\ How many Danish language movies are in the database?}
 Query can be seen below and result is illustrated in \cref{tab:5q1}.
 \begin{lstlisting}[language=SQL]
 SELECT COUNT(*) FROM movie WHERE language = 'Danish'
@@ -97,7 +97,7 @@ SELECT COUNT(*) FROM movie WHERE language = 'Danish'
 \caption{Results of query 1}\label{tab:5q1}
 \end{table}
 
-\subsubsection{For each year, what is the total number of reviews to movies from that year?}
+\subsubsection{2.\ For each year, what is the total number of reviews to movies from that year?}
 Query can be seen below and result is illustrated in \cref{tab:5q2}.
 
 \begin{lstlisting}[language=SQL]
@@ -127,7 +127,7 @@ GROUP BY movie.year
 \caption{Results of query 2}\label{tab:5q2}
 \end{table}
 
-\subsection{Which movies have John Travolta and Uma Thurman starred in together?}
+\subsubsection{3.\ Which movies have John Travolta and Uma Thurman starred in together?}
 Query can be seen below and result is illustrated in \cref{tab:5q3}.
 \begin{lstlisting}[language=SQL]
 SELECT m.title, m.year
@@ -162,7 +162,7 @@ WHERE pa1.title = m.title AND pa1.year = m.year AND
 \caption{Results of query 3}\label{tab:5q3}
 \end{table}
 
-\subsection{How many actors and directors have a first name starting with ``Q``?}
+\subsubsection{4.\ How many actors and directors have a first name starting with ``Q``?}
 Query can be seen below and result is illustrated in \cref{tab:5q4}.
 
 \begin{lstlisting}[language=SQL]
@@ -185,7 +185,7 @@ GROUP BY pa.rolename
 \caption{Results of query 4}\label{tab:5q4}
 \end{table}
 
-\subsection{How many users rated at least 3 movies?}
+\subsubsection{5.\ How many users rated at least 3 movies?}
 Query can be seen below and result is illustrated in \cref{tab:5q5}.
 
 \begin{lstlisting}[language=SQL]
@@ -209,7 +209,7 @@ GROUP BY r1.username) AS "total"
   \caption{Results of query 5}\label{tab:5q5}
 \end{table}
 
-\subsection{What is the name and birth year of all actors in “Pulp Fiction”? List the actors in increasing order of birth year.}
+\subsubsection{6.\ What is the name and birth year of all actors in “Pulp Fiction”? List the actors in increasing order of birth year.}
 Query can be seen below and result is illustrated in \cref{tab:5q6}.
 
 \begin{lstlisting}[language=SQL]
@@ -239,7 +239,7 @@ SELECT p.name, p.birthdate FROM participates pp,
   \caption{Results of query 6}\label{tab:5q6}
 \end{table}
 
-\subsection{What are the titles and years of all movies from the 1980s that John Travolta starred in?}
+\subsubsection{7.\ What are the titles and years of all movies from the 1980s that John Travolta starred in?}
 Query can be seen below and result is illustrated in \cref{tab:5q7}.
 
 \begin{lstlisting}[language=SQL]
@@ -269,8 +269,7 @@ WHERE pa.year >= 1980 AND pa.year < 1990
   \end{tabular}
   \caption{Results of query 7}\label{tab:5q7}
 \end{table}
-
-\subsection{What are the top-2 highest rated movies (average) from the 1990s according to the users?}
+\subsubsection{8.\ What are the top-2 highest rated movies (average) from the 1990s according to the users?}
 Query can be seen below and result is illustrated in \cref{tab:5q8}.
 
 \begin{lstlisting}[language=SQL]
@@ -292,7 +291,7 @@ ORDER BY avgrate DESC LIMIT 2
   \caption{Results of query 8}\label{tab:5q8}
 \end{table}
 
-\subsection{What are the top-2 highest rated movies (average) from the 1990s according to at least 2 users?}
+\subsubsection{9.\ What are the top-2 highest rated movies (average) from the 1990s according to at least 2 users?}
 Query can be seen below and result is illustrated in \cref{tab:5q9}.
 
 \begin{lstlisting}[language=SQL]
@@ -316,7 +315,7 @@ ORDER BY avgrate DESC LIMIT 2
   \caption{Results of query 9}\label{tab:5q9}
 \end{table}
 
-\subsection{In 1994, what was the average rating of a movie for each language?}
+\subsubsection{10.\ In 1994, what was the average rating of a movie for each language?}
 Query can be seen below and result is illustrated in \cref{tab:5q10}.
 
 \begin{lstlisting}[language=SQL]
@@ -340,10 +339,10 @@ GROUP BY m.language
   \caption{Results of query 10}\label{tab:5q10}
 \end{table}
 
-\subsection{Which actors in Pulp Fiction have never, before or after, starred in the same movie as one of the other actors in “Pulp Fiction”?}
+\subsubsection{11.\ Which actors in Pulp Fiction have never, before or after, starred in the same movie as one of the other actors in “Pulp Fiction”?}
 We did not complete this query, because it required a massive, advanced query.
 
-\subsection{Which movie starring John Travolta has the highest user ratings?}
+\subsubsection{12.\ Which movie starring John Travolta has the highest user ratings?}
 Query can be seen below and result is illustrated in \cref{tab:5q12}.
 
 \begin{lstlisting}[language=SQL]
@@ -367,7 +366,7 @@ LIMIT 1
   \caption{Results of query 12}\label{tab:5q12}
 \end{table}
 
-\subsection{How many actresses have not been alive at the same time as Charles Chaplin?}
+\subsubsection{13.\ How many actresses have not been alive at the same time as Charles Chaplin?}
 Query can be seen below and result is illustrated in \cref{tab:5q13}.
 
 \begin{lstlisting}[language=SQL]
@@ -390,7 +389,7 @@ ON (p1.birthdate > p2.dateofdeath OR
   \caption{Results of query 13}\label{tab:5q13}
 \end{table}
 
-\subsection{What is the average rating of movies from each genre?}
+\subsubsection{14.\ What is the average rating of movies from each genre?}
 Query can be seen below and result is illustrated in \cref{tab:5q14}.
 
 \begin{lstlisting}[language=SQL]
@@ -421,7 +420,7 @@ GROUP BY gm.name
   \caption{Results of query 14}\label{tab:5q14}
 \end{table}
 
-\subsection{What is the average rating of movies from each genre? List only genres with at least 2 ratings.}
+\subsubsection{15.\ What is the average rating of movies from each genre? List only genres with at least 2 ratings.}
 Query can be seen below and result is illustrated in \cref{tab:5q15}.
 %
 \begin{lstlisting}[language=SQL]
@@ -452,7 +451,7 @@ GROUP BY name HAVING COUNT(*) >= 2
   \caption{Results of query 15}\label{tab:5q15}
 \end{table}
 
-\subsection{Which movie has the largest number of 2-link references?}
+\subsubsection{16.\ Which movie has the largest number of 2-link references?}
 If A refers to B, and B refers to C, then we say that A has a 2-link reference, through B, to C. If there are several paths leasing from A to C, we count all of them. Query can be seen below and result is illustrated in \cref{tab:5q16}.
 %
 \begin{lstlisting}[language=SQL]
@@ -474,7 +473,7 @@ GROUP BY r1.title ORDER BY ref DESC LIMIT 1
   \caption{Results of query 16}\label{tab:5q16}
 \end{table}
 
-\subsection{How many actors have also been active as director of at least one movie?}
+\subsubsection{17.\ How many actors have also been active as director of at least one movie?}
 Query can be seen below and result is illustrated in \cref{tab:5q17}.
 %
 \begin{lstlisting}[language=SQL]
@@ -497,7 +496,7 @@ FROM (SELECT DISTINCT p1.id
   \caption{Results of query 17}\label{tab:5q17}
 \end{table}
 
-\subsection{Which two genres are most often linked to the same movie?}
+\subsubsection{18.\ Which two genres are most often linked to the same movie?}
 Query can be seen below and result is illustrated in \cref{tab:5q18}.
 %
 \begin{lstlisting}[language=SQL]
