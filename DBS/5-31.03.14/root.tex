@@ -130,8 +130,15 @@ GROUP BY movie.year
 \subsection{Which movies have John Travolta and Uma Thurman starred in together?}
 Query can be seen below and result is illustrated in \cref{tab:5q3}.
 \begin{lstlisting}[language=SQL]
-SELECT m.title, m.year, FROM movie m, person pe1, person pe2, participates pa1, participates pa2
-WHERE pa1.title = m.title AND pa1.year = m.year AND pa2.title = m.title AND pa2.year = m.year AND pe1.id = pa1.id AND pe2.id = pa2.id AND pe1.id != pe2.id AND pe1.name = 'John Travolta' AND pe2.name = 'Uma Thurman' AND pa1.rolename = 'actor' AND pa2.rolename = 'actor'
+SELECT m.title, m.year
+FROM movie m, person pe1, person pe2, participates pa1,
+     participates pa2
+WHERE pa1.title = m.title AND pa1.year = m.year AND
+      pa2.title = m.title AND pa2.year = m.year AND
+      pe1.id = pa1.id AND pe2.id = pa2.id AND pe1.id != pe2.id AND
+      pe1.name = 'John Travolta' AND
+      pe2.name = 'Uma Thurman' AND pa1.rolename = 'actor'
+      AND pa2.rolename = 'actor'
 \end{lstlisting}
 
 \begin{table}
@@ -160,7 +167,8 @@ Query can be seen below and result is illustrated in \cref{tab:5q4}.
 
 \begin{lstlisting}[language=SQL]
 SELECT pa.rolename, COUNT(*) FROM person pe, participates pa 
-WHERE pe.id = pa.id AND pa.rolename IN ('actor', 'director') AND pe.name LIKE 'Q%'
+WHERE pe.id = pa.id AND pa.rolename IN ('actor', 'director') AND
+      pe.name LIKE 'Q%'
 GROUP BY pa.rolename
 \end{lstlisting}
 
@@ -260,4 +268,253 @@ WHERE pa.year >= 1980 AND pa.year < 1990
     \bottomrule
   \end{tabular}
   \caption{Results of query 7}\label{tab:5q7}
+\end{table}
+
+\subsection{What are the top-2 highest rated movies (average) from the 1990s according to the users?}
+Query can be seen below and result is illustrated in \cref{tab:5q8}.
+
+\begin{lstlisting}[language=SQL]
+SELECT title, year, AVG(rating) AS avgrate
+FROM review WHERE year >= 1990 AND year < 2000 GROUP BY title, year
+ORDER BY avgrate DESC LIMIT 2
+\end{lstlisting}
+
+\begin{table}
+  \centering
+  \begin{tabular}[htpb]{l S S}
+    \toprule
+    title & {year} & {avgrate} \\
+    \midrule
+    The Usual Suspects & 1995 & 9.3333333333333333 \\
+    The Shawshank Redemption & 1994 & 9.1250000000000000 \\
+    \bottomrule
+  \end{tabular}
+  \caption{Results of query 8}\label{tab:5q8}
+\end{table}
+
+\subsection{What are the top-2 highest rated movies (average) from the 1990s according to at least 2 users?}
+Query can be seen below and result is illustrated in \cref{tab:5q9}.
+
+\begin{lstlisting}[language=SQL]
+SELECT r1.title, r1.year, AVG(r1.rating) AS avgrate
+FROM review r1, review r2 WHERE r1.year >= 1990 AND r1.year < 2000 AND r1.username != r2.username
+GROUP BY r1.title, r1.year
+ORDER BY avgrate DESC LIMIT 2
+\end{lstlisting}
+
+\begin{table}
+  \centering
+  \begin{tabular}[htpb]{l S S}
+    \toprule
+    title & {year} & {avgrate} \\
+    \midrule
+    The Usual Suspects & 1995 & 9.3489392831016825 \\
+    The Shawshank Redemption & 1994 & 9.1187933796049119 \\
+    \bottomrule
+  \end{tabular}
+  \caption{Results of query 9}\label{tab:5q9}
+\end{table}
+
+\subsection{In 1994, what was the average rating of a movie for each language?}
+Query can be seen below and result is illustrated in \cref{tab:5q10}.
+
+\begin{lstlisting}[language=SQL]
+SELECT AVG(r.rating), m.language 
+FROM movie m, review r 
+WHERE m.title = r.title AND m.year = r.year AND m.year = 1994
+GROUP BY m.language
+\end{lstlisting}
+
+\begin{table}
+  \centering
+  \begin{tabular}[htpb]{l S}
+    \toprule
+    {AVG(r.rating)} & m.language \\
+    \midrule
+    7.0000000000000000 & "" \\
+    9.0000000000000000 & French \\
+    8.3043478260869565 & English \\
+    \bottomrule
+  \end{tabular}
+  \caption{Results of query 10}\label{tab:5q10}
+\end{table}
+
+\subsection{Which actors in Pulp Fiction have never, before or after, starred in the same movie as one of the other actors in “Pulp Fiction”?}
+We did not complete this query, because it required a massive, advanced query.
+
+\subsection{Which movie starring John Travolta has the highest user ratings?}
+Query can be seen below and result is illustrated in \cref{tab:5q12}.
+
+\begin{lstlisting}[language=SQL]
+SELECT r.title, r.year FROM review r, person p, participates pa 
+WHERE p.name = 'John Travolta' AND p.id = pa.id AND r.title = pa.title AND r.year = pa.year
+GROUP BY r.title, r.year
+ORDER BY AVG (r.rating) DESC
+LIMIT 1
+\end{lstlisting}
+
+\begin{table}
+  \centering
+  \begin{tabular}[htpb]{l S}
+    \toprule
+    r.title & {r.year} \\
+    \midrule
+    Pulp Fiction & 1994 \\
+    \bottomrule
+  \end{tabular}
+  \caption{Results of query 12}\label{tab:5q12}
+\end{table}
+
+\subsection{How many actresses have not been alive at the same time as Charles Chaplin?}
+Query can be seen below and result is illustrated in \cref{tab:5q13}.
+
+\begin{lstlisting}[language=SQL]
+SELECT COUNT(*)
+FROM person p1 JOIN person p2
+ON (p1.birthdate > p2.dateofdeath OR
+    p1.dateofdeath < p2.birthdate) AND
+    p2.name = 'Charles Chaplin'
+\end{lstlisting}
+%
+\begin{table}
+  \centering
+  \begin{tabular}[htpb]{S}
+    \toprule
+    {COUNT(*)} \\
+    \midrule
+    11707 \\
+    \bottomrule
+  \end{tabular}
+  \caption{Results of query 13}\label{tab:5q13}
+\end{table}
+
+\subsection{What is the average rating of movies from each genre?}
+Query can be seen below and result is illustrated in \cref{tab:5q14}.
+
+\begin{lstlisting}[language=SQL]
+SELECT gm.name, AVG(r.rating)
+FROM review r, genremovie gm 
+WHERE gm.title = r.title AND gm.year = r.year
+GROUP BY gm.name
+\end{lstlisting}
+%
+\begin{table}
+  \centering
+  \begin{tabular}[htpb]{l S}
+    \toprule
+    gm.name & {AVG(r.rating)} \\
+    \midrule
+    Drama & 7.8423236514522822 \\
+    Comedy & 7.2380952380952381 \\
+    Fantasy & 7.2685185185185185 \\
+    Biography & 8.1333333333333333 \\
+    Thriller & 7.7543859649122807 \\
+    Crime & 8.3949579831932773 \\
+    War & 8.2692307692307692 \\
+    Musical & 7.0000000000000000 \\
+    History & 8.1250000000000000 \\
+    Adventure & 7.4479166666666667 \\
+    \bottomrule
+  \end{tabular}
+  \caption{Results of query 14}\label{tab:5q14}
+\end{table}
+
+\subsection{What is the average rating of movies from each genre? List only genres with at least 2 ratings.}
+Query can be seen below and result is illustrated in \cref{tab:5q15}.
+%
+\begin{lstlisting}[language=SQL]
+SELECT name, AVG(review.rating)
+FROM genremovie, review
+WHERE genremovie.title = review.title AND genremovie.year = review.year
+GROUP BY name HAVING COUNT(*) >= 2
+\end{lstlisting}
+%
+\begin{table}
+  \centering
+  \begin{tabular}[htpb]{l S}
+    \toprule
+    name & {AVG(review.rating)} \\
+    \midrule
+    Drama & 7.8423236514522822 \\
+    Comedy & 7.2380952380952381 \\
+    Fantasy & 7.2685185185185185 \\
+    Biography & 8.1333333333333333 \\
+    Thriller & 7.7543859649122807 \\
+    Crime & 8.3949579831932773 \\
+    War & 8.2692307692307692 \\
+    History & 8.1250000000000000 \\
+    Adventure & 7.4479166666666667 \\
+    Sci-Fi & 7.4710144927536232 \\
+    \bottomrule
+  \end{tabular}
+  \caption{Results of query 15}\label{tab:5q15}
+\end{table}
+
+\subsection{Which movie has the largest number of 2-link references?}
+If A refers to B, and B refers to C, then we say that A has a 2-link reference, through B, to C. If there are several paths leasing from A to C, we count all of them. Query can be seen below and result is illustrated in \cref{tab:5q16}.
+%
+\begin{lstlisting}[language=SQL]
+SELECT r1.title, COUNT(*) AS ref
+FROM refers r1, refers r2
+WHERE r1.referredtitle = r2.title AND r1.referredyear = r2.year
+GROUP BY r1.title ORDER BY ref DESC LIMIT 1
+\end{lstlisting}
+%
+\begin{table}
+  \centering
+  \begin{tabular}[htpb]{l S}
+    \toprule
+    r1.title & {ref} \\
+    \midrule
+    Saturday Night Live & 38834 \\
+    \bottomrule
+  \end{tabular}
+  \caption{Results of query 16}\label{tab:5q16}
+\end{table}
+
+\subsection{How many actors have also been active as director of at least one movie?}
+Query can be seen below and result is illustrated in \cref{tab:5q17}.
+%
+\begin{lstlisting}[language=SQL]
+SELECT COUNT(*)
+FROM (SELECT DISTINCT p1.id
+      FROM participates p1, participates p2
+      WHERE p1.id = p2.id AND p1.rolename = ‘actor’ AND
+            p2.rolename = ‘director’) AS director_actors
+\end{lstlisting}
+%
+\begin{table}
+  \centering
+  \begin{tabular}[htpb]{S}
+    \toprule
+    {count(*)} \\
+    \midrule
+    5930 \\
+    \bottomrule
+  \end{tabular}
+  \caption{Results of query 17}\label{tab:5q17}
+\end{table}
+
+\subsection{Which two genres are most often linked to the same movie?}
+Query can be seen below and result is illustrated in \cref{tab:5q18}.
+%
+\begin{lstlisting}[language=SQL]
+SELECT g1.name, g2.name, COUNT(*) as c
+FROM genremovie g1, genremovie g2
+WHERE g1.name != g2.name AND g1.title = g2.title AND
+      g1.year = g2.year GROUP BY g1.name, g2.name
+ORDER BY c DESC
+LIMIT 1
+\end{lstlisting}
+%
+\begin{table}
+  \centering
+  \begin{tabular}{l l S}
+    \toprule
+    g1.name & g2.name & {COUNT(*)} \\
+    \midrule
+    Romance & Drama & 5837 \\
+    \bottomrule
+  \end{tabular}
+  \caption{Results of query 18.}\label{tab:5q18}
 \end{table}
