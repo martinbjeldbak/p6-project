@@ -3,7 +3,6 @@
 
 \counterwithout{section}{chapter}
 
-\usepackage{cleveref}
 \usepackage[utf8x]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage[english]{babel}
@@ -19,6 +18,10 @@
 
 \usepackage{amsmath}
 \usepackage{siunitx}
+\sisetup{%
+  round-mode     = places,
+  round-recision = 2
+}
 
 % Smaller spacing between lists
 \usepackage{enumitem}
@@ -29,6 +32,7 @@
 %\usepackage{minted}
 \usepackage{hyperref}
 \usepackage[nodayofweek]{datetime}
+\usepackage{cleveref}
 \newcommand{\formatdatewday}[3]{\dayofweekname{#1}{#2}{#3} \formatdate{#1}{#2}{#3}}
 \newcommand{\deadline}[3]{Deadline: \formatdatewday{#1}{#2}{#3}}
 
