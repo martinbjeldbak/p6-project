@@ -1,5 +1,5 @@
 \section{Self Study 5: Mini-project part 4}
-This self study was done on \formatdatewday{31}{3}{2014}. We first converted the IMDB MySQL dump to PosgresSQL and then mapped all the tables to our schema, before finally designing the queries described in the exercise document. The PostgreSQL dump of our converted schema can be found at this link: \url{https://bitbucket.org/Obeyed/p6-project/src/72274ff3487ef59dfd2782cb3a277775b179654c/DBS/5-31.03.14/ourimdb.sql?at=master}.
+This self study was done on \formatdatewday{31}{3}{2014}. We first converted the IMDB MySQL dump to PosgresSQL and then mapped all the tables to our schema, before finally designing the queries described in the exercise document. The PostgreSQL dump of our converted schema can be found at this link: \url{https://bitbucket.org/Obeyed/p6-project/src/72274ff3487ef59dfd2782cb3a277775b179654c/DBS/5-31.03.14/ourimdb.sql?at=master} with filename \texttt{ourimdb.sql}.
 
 \subsection{Filling the database}
 We use a Ruby gem (\url{https://github.com/maxlapshin/mysql2postgres}) to convert the MySQL dump of the IMDB database found on Moodle to a PostgreSQL database with the same tables and data. To ease transfer, we added the tables defined in \cref{fig:ss2-schema} of self study 2 in the same database and executed the \texttt{INSERT INTO} queries below to map the data from IMDB to our tables.
@@ -297,7 +297,8 @@ Query can be seen below and result is illustrated in \cref{tab:5q9}.
 
 \begin{lstlisting}[language=SQL]
 SELECT r1.title, r1.year, AVG(r1.rating) AS avgrate
-FROM review r1, review r2 WHERE r1.year >= 1990 AND r1.year < 2000 AND r1.username != r2.username
+FROM review r1, review r2 WHERE r1.year >= 1990 AND
+     r1.year < 2000 AND r1.username != r2.username
 GROUP BY r1.title, r1.year
 ORDER BY avgrate DESC LIMIT 2
 \end{lstlisting}
@@ -347,7 +348,8 @@ Query can be seen below and result is illustrated in \cref{tab:5q12}.
 
 \begin{lstlisting}[language=SQL]
 SELECT r.title, r.year FROM review r, person p, participates pa 
-WHERE p.name = 'John Travolta' AND p.id = pa.id AND r.title = pa.title AND r.year = pa.year
+WHERE p.name = 'John Travolta' AND p.id = pa.id AND
+      r.title = pa.title AND r.year = pa.year
 GROUP BY r.title, r.year
 ORDER BY AVG (r.rating) DESC
 LIMIT 1
@@ -487,7 +489,7 @@ FROM (SELECT DISTINCT p1.id
   \centering
   \begin{tabular}[htpb]{S}
     \toprule
-    {count(*)} \\
+    {COUNT(*)} \\
     \midrule
     5930 \\
     \bottomrule
