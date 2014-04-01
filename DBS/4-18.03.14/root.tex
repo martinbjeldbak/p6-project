@@ -104,7 +104,8 @@ CREATE TABLE refers(
   referredDate date,
   PRIMARY KEY(title, date, referredTitle, referredDate),
   FOREIGN KEY(title, date) REFERENCES movie(title, date),
-  FOREIGN KEY(referredTtitle, referredDate) REFERENCES movie(title, date)
+  FOREIGN KEY(referredTtitle, referredDate)
+    REFERENCES movie(title, date)
 );
 \end{lstlisting}
 
