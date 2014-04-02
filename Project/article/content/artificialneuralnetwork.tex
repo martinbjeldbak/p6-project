@@ -8,14 +8,14 @@ Nodes in the graph of a neural network are called neurons. Three classes of neur
   y_i =
   \begin{cases}
     \var{x}_i                     & \text{if } i \text{ is an input neuron} \\
-    f\left(\sum_{j=1}^n w_{ji} y_{j} \right) & \text{otherwise} %- \theta_i \right)
+    \theta\left(\sum_{j=1}^n w_{ji} y_{j} \right) & \text{otherwise} %- \theta_i \right)
   \end{cases}
 \end{equation*}
 %
-where $x_i$ is the input to input neuron $i$, $n$ is the amount of neurons, $y_i$ is the output value of neuron $i$, $w_{ji}$ is the weight of the edge from neuron $j$ to $i$ ($0$ if no connection exists), $y_j$ is the output of neuron $j$, and $f$ is the transfer function, usually defined to be the sigmoid function taking the form
+where $x_i$ is the input to input neuron $i$, $n$ is the amount of neurons, $y_i$ is the output value of neuron $i$, $w_{ji}$ is the weight of the edge from neuron $j$ to $i$ ($0$ if no connection exists), $y_j$ is the output of neuron $j$, and $\theta$ is the transfer function, usually defined to be the sigmoid function taking the form
 %
 \begin{equation*}
-  f(t) = \frac{1}{1+e^{-t}}
+  \theta(t) = \frac{1}{1+e^{-t}}
 \end{equation*}
 %
 In a feedforward network, neurons are placed in one or more layers in an acyclic graph structure, where each neuron in layer $i$ is connected to every neuron in layer $i + 1$. The value output by the last layer, or the output layer, becomes the output of the neural network. \Cref{fig:ann} illustrates the generic graph structure of a feedforward neural network with a single hidden layer.
@@ -32,7 +32,7 @@ Any applica\-tion of a neural network requires a suitable number of layers, neur
 
 The weights on edges connecting neurons are decided by a process called training. Well known training algorithms, such as backpropagation, typically require that for each input to the neural network, the correct output is already known. This kind of learning is called supervised learning. For the application of face recognition, this means that the pictures used for training, each has a predicate indicating whether or not it is a picture of a face.
 
+\todo{We need to fix the following two paragraphs. Change them to a shorter, more concise argument against backpropagation in general terms. Cite articles that argument against BP in GA.}
 For some purposes, the desired output of a neural network is not known beforehand. Consider for instance a computer game, where a player is controlled by a neural network. The neural network takes values indicating the state of the game as input, such as the observed position of the players and enemies. For each input, the neural network returns a single value indicating which action the player should take, e.g.\ move left, move right, or jump. Given a state of the game, we might not be able to say whether an action output by the neural network is right or wrong. It might be wrong to move closer to an enemy if he eliminates you, but it might be right if the next action is successfully to eliminate the enemy.
 
-\todo{There are other reasons not to use backpropagation. They might be used as a stronger argument?}
 From this, it is clear that a backpropagation algorithm is not appropriate for training a neural network to control the actions of an artificial intelligent player in a computer game. For this purpose we propose another approach. We can tell how good a neural network performs, or how fit it is, by simulating a game being played using the neural network to control the player and determining the score achieved in the game, or any other function indicating how well the artificial player performed according to some criteria using that particular neural network. By being able to measure the fitness of a particular neural network, we can use genetic algorithms to create and search for the best performing neural network.

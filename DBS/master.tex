@@ -3,7 +3,6 @@
 
 \counterwithout{section}{chapter}
 
-%\usepackage{cleveref}
 \usepackage[utf8x]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage[english]{babel}
@@ -18,6 +17,11 @@
 \usepackage[top=1in,bottom=1in,left=1.2in,right=1.2in]{geometry}
 
 \usepackage{amsmath}
+\usepackage{siunitx}
+\sisetup{%
+  round-mode     = places,
+  round-recision = 2
+}
 
 % Smaller spacing between lists
 \usepackage{enumitem}
@@ -28,6 +32,7 @@
 %\usepackage{minted}
 \usepackage{hyperref}
 \usepackage[nodayofweek]{datetime}
+\usepackage{cleveref}
 \newcommand{\formatdatewday}[3]{\dayofweekname{#1}{#2}{#3} \formatdate{#1}{#2}{#3}}
 \newcommand{\deadline}[3]{Deadline: \formatdatewday{#1}{#2}{#3}}
 
@@ -45,7 +50,6 @@
 \newcommand{\key}[1]{\ensuremath{\underline{\mathit{#1}}}}
 \newcommand{\schema}[1]{\set{[#1]}}
 \newcommand{\refs}[2]{#1 \ra #2}
-
 
 \setlength{\parindent}{0pt}
 \nonzeroparskip{}
@@ -82,6 +86,7 @@
 \input{2-17.02.14/root}
 \input{3-12.03.14/root}
 \input{4-18.03.14/root}
+\input{5-31.03.14/root}
 
 %\newpage
 %\appendix
