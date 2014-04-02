@@ -28,7 +28,9 @@
 % factor=1100 - add 10% to the protrusion amount (default is 1000)
 % stretch=10, shrink=10 - reduce stretchability/shrinkability (default is 20/20)
 
-%\usepackage[locale=US]{siunitx}
+\usepackage[locale=US]{siunitx}
+\newcommand{\perc}[1]{\SI{#1}{\percent}}
+\newcommand{\fit}{\phi}
 %\sisetup{group-separator = {,},
 %         per-mode = symbol,
 %         inter-unit-product = \ensuremath{\cdot},
