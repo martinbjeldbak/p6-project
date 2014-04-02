@@ -44,6 +44,8 @@
             this.textBox_populationSize = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
+            this.textBox_offspringSelectionPolicy = new System.Windows.Forms.TextBox();
+            this.label12 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -52,10 +54,12 @@
             // SnakeRadioButton
             // 
             this.SnakeRadioButton.AutoSize = true;
+            this.SnakeRadioButton.Checked = true;
             this.SnakeRadioButton.Location = new System.Drawing.Point(42, 29);
             this.SnakeRadioButton.Name = "SnakeRadioButton";
             this.SnakeRadioButton.Size = new System.Drawing.Size(56, 17);
             this.SnakeRadioButton.TabIndex = 0;
+            this.SnakeRadioButton.TabStop = true;
             this.SnakeRadioButton.Text = "Snake";
             this.SnakeRadioButton.UseVisualStyleBackColor = true;
             this.SnakeRadioButton.CheckedChanged += new System.EventHandler(this.SnakeRadioButton_CheckedChanged);
@@ -84,7 +88,6 @@
             // 
             // goButton
             // 
-            this.goButton.Enabled = false;
             this.goButton.Location = new System.Drawing.Point(47, 413);
             this.goButton.Name = "goButton";
             this.goButton.Size = new System.Drawing.Size(75, 23);
@@ -113,7 +116,6 @@
             this.IrisRadioButton.Name = "IrisRadioButton";
             this.IrisRadioButton.Size = new System.Drawing.Size(38, 17);
             this.IrisRadioButton.TabIndex = 3;
-            this.IrisRadioButton.TabStop = true;
             this.IrisRadioButton.Text = "Iris";
             this.IrisRadioButton.UseVisualStyleBackColor = true;
             this.IrisRadioButton.Click += new System.EventHandler(this.IrisRadioButton_Click);
@@ -214,6 +216,8 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.textBox_offspringSelectionPolicy);
+            this.groupBox3.Controls.Add(this.label12);
             this.groupBox3.Controls.Add(this.label11);
             this.groupBox3.Controls.Add(this.label7);
             this.groupBox3.Controls.Add(this.textBox_initialSimilarity);
@@ -221,14 +225,14 @@
             this.groupBox3.Controls.Add(this.textBox_allowTwoPointCrossover);
             this.groupBox3.Controls.Add(this.label6);
             this.groupBox3.Controls.Add(this.label8);
-            this.groupBox3.Controls.Add(this.textBox_mutateAfterCrossoverAmount);
             this.groupBox3.Controls.Add(this.label10);
             this.groupBox3.Controls.Add(this.label5);
+            this.groupBox3.Controls.Add(this.textBox_mutateAfterCrossoverAmount);
             this.groupBox3.Controls.Add(this.textBox_allowUniformCrossover);
+            this.groupBox3.Controls.Add(this.label9);
             this.groupBox3.Controls.Add(this.textBox_crossoverBredAmount);
             this.groupBox3.Controls.Add(this.textBox_allowSinglePointCrossover);
             this.groupBox3.Controls.Add(this.label4);
-            this.groupBox3.Controls.Add(this.label9);
             this.groupBox3.Controls.Add(this.textBox_mutationRate);
             this.groupBox3.Controls.Add(this.textBox_populationSize);
             this.groupBox3.Controls.Add(this.label3);
@@ -242,7 +246,7 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(491, 113);
+            this.label11.Location = new System.Drawing.Point(487, 100);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(127, 13);
             this.label11.TabIndex = 45;
@@ -259,7 +263,7 @@
             // 
             // textBox_initialSimilarity
             // 
-            this.textBox_initialSimilarity.Location = new System.Drawing.Point(385, 32);
+            this.textBox_initialSimilarity.Location = new System.Drawing.Point(381, 20);
             this.textBox_initialSimilarity.Name = "textBox_initialSimilarity";
             this.textBox_initialSimilarity.Size = new System.Drawing.Size(100, 20);
             this.textBox_initialSimilarity.TabIndex = 40;
@@ -275,7 +279,7 @@
             // 
             // textBox_allowTwoPointCrossover
             // 
-            this.textBox_allowTwoPointCrossover.Location = new System.Drawing.Point(385, 110);
+            this.textBox_allowTwoPointCrossover.Location = new System.Drawing.Point(381, 97);
             this.textBox_allowTwoPointCrossover.Name = "textBox_allowTwoPointCrossover";
             this.textBox_allowTwoPointCrossover.Size = new System.Drawing.Size(100, 20);
             this.textBox_allowTwoPointCrossover.TabIndex = 46;
@@ -284,7 +288,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(149, 101);
+            this.label6.Location = new System.Drawing.Point(148, 74);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(151, 13);
             this.label6.TabIndex = 35;
@@ -293,7 +297,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(491, 35);
+            this.label8.Location = new System.Drawing.Point(487, 23);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(72, 13);
             this.label8.TabIndex = 39;
@@ -301,7 +305,7 @@
             // 
             // textBox_mutateAfterCrossoverAmount
             // 
-            this.textBox_mutateAfterCrossoverAmount.Location = new System.Drawing.Point(43, 98);
+            this.textBox_mutateAfterCrossoverAmount.Location = new System.Drawing.Point(42, 71);
             this.textBox_mutateAfterCrossoverAmount.Name = "textBox_mutateAfterCrossoverAmount";
             this.textBox_mutateAfterCrossoverAmount.Size = new System.Drawing.Size(100, 20);
             this.textBox_mutateAfterCrossoverAmount.TabIndex = 36;
@@ -310,7 +314,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(491, 87);
+            this.label10.Location = new System.Drawing.Point(487, 74);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(137, 13);
             this.label10.TabIndex = 43;
@@ -319,7 +323,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(149, 75);
+            this.label5.Location = new System.Drawing.Point(149, 48);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(116, 13);
             this.label5.TabIndex = 33;
@@ -327,7 +331,7 @@
             // 
             // textBox_allowUniformCrossover
             // 
-            this.textBox_allowUniformCrossover.Location = new System.Drawing.Point(385, 58);
+            this.textBox_allowUniformCrossover.Location = new System.Drawing.Point(381, 123);
             this.textBox_allowUniformCrossover.Name = "textBox_allowUniformCrossover";
             this.textBox_allowUniformCrossover.Size = new System.Drawing.Size(100, 20);
             this.textBox_allowUniformCrossover.TabIndex = 42;
@@ -335,7 +339,7 @@
             // 
             // textBox_crossoverBredAmount
             // 
-            this.textBox_crossoverBredAmount.Location = new System.Drawing.Point(43, 72);
+            this.textBox_crossoverBredAmount.Location = new System.Drawing.Point(43, 45);
             this.textBox_crossoverBredAmount.Name = "textBox_crossoverBredAmount";
             this.textBox_crossoverBredAmount.Size = new System.Drawing.Size(100, 20);
             this.textBox_crossoverBredAmount.TabIndex = 34;
@@ -343,7 +347,7 @@
             // 
             // textBox_allowSinglePointCrossover
             // 
-            this.textBox_allowSinglePointCrossover.Location = new System.Drawing.Point(385, 84);
+            this.textBox_allowSinglePointCrossover.Location = new System.Drawing.Point(381, 71);
             this.textBox_allowSinglePointCrossover.Name = "textBox_allowSinglePointCrossover";
             this.textBox_allowSinglePointCrossover.Size = new System.Drawing.Size(100, 20);
             this.textBox_allowSinglePointCrossover.TabIndex = 44;
@@ -352,7 +356,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(149, 49);
+            this.label4.Location = new System.Drawing.Point(149, 100);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(69, 13);
             this.label4.TabIndex = 31;
@@ -361,7 +365,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(491, 61);
+            this.label9.Location = new System.Drawing.Point(487, 126);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(118, 13);
             this.label9.TabIndex = 41;
@@ -369,7 +373,7 @@
             // 
             // textBox_mutationRate
             // 
-            this.textBox_mutationRate.Location = new System.Drawing.Point(43, 46);
+            this.textBox_mutationRate.Location = new System.Drawing.Point(43, 97);
             this.textBox_mutationRate.Name = "textBox_mutationRate";
             this.textBox_mutationRate.Size = new System.Drawing.Size(100, 20);
             this.textBox_mutationRate.TabIndex = 32;
@@ -399,6 +403,23 @@
             this.progressBar1.Size = new System.Drawing.Size(192, 23);
             this.progressBar1.Step = 1;
             this.progressBar1.TabIndex = 31;
+            // 
+            // textBox_offspringSelectionPolicy
+            // 
+            this.textBox_offspringSelectionPolicy.Location = new System.Drawing.Point(381, 45);
+            this.textBox_offspringSelectionPolicy.Name = "textBox_offspringSelectionPolicy";
+            this.textBox_offspringSelectionPolicy.Size = new System.Drawing.Size(100, 20);
+            this.textBox_offspringSelectionPolicy.TabIndex = 48;
+            this.textBox_offspringSelectionPolicy.Text = "0";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(487, 48);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(124, 13);
+            this.label12.TabIndex = 47;
+            this.label12.Text = "Offspring selection policy";
             // 
             // Form1
             // 
@@ -467,6 +488,8 @@
     private System.Windows.Forms.TextBox textBox_populationSize;
     private System.Windows.Forms.Label label3;
     private System.Windows.Forms.ProgressBar progressBar1;
+    private System.Windows.Forms.TextBox textBox_offspringSelectionPolicy;
+    private System.Windows.Forms.Label label12;
   }
 }
 
