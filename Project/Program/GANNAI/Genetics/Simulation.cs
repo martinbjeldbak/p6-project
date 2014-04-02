@@ -68,15 +68,15 @@ namespace Genetics {
     public NNMaker NeuralNetworkMaker { get; private set; }
 
     public Simulation(AITrainableGame game, int populationSize = 100, double crossOverBredAmount = 0.5, double mutateAfterCrossoverAmount = 0.1, 
-      double mutationRate = 0.05, bool allowSinglePointCrossover = true, bool allowTwoPointCrossover = true, bool allowUniformCrossover = true,
-      int offspringMergeType = 0, double initialMutation = 0.0, double initialSimilarity = 0) {
+      double mutationRate = 0.05, int allowSinglePointCrossover = 1, int allowTwoPointCrossover = 1, int allowUniformCrossover = 1,
+      int offspringMergeType = 0, double initialMutation = 0.0, double initialSimilarity = 0.0) {
       PopulationSize = populationSize;
       CrossoverBredAmount = crossOverBredAmount;
       MutateAfterCrossoverAmount = mutateAfterCrossoverAmount;
       MutationRate = mutationRate;
-      AllowSinglePointCrossover = allowSinglePointCrossover;
-      AllowTwoPointCrossover = allowTwoPointCrossover;
-      AllowUniformCrossover = allowUniformCrossover;
+      AllowSinglePointCrossover = allowSinglePointCrossover == 1 ? true : false;
+      AllowTwoPointCrossover = allowTwoPointCrossover == 1 ? true : false;
+      AllowUniformCrossover = allowUniformCrossover == 1 ? true : false;
       OffspringMergeType = offspringMergeType;
       InitialMutation = initialMutation;
       InitialSimilarity = initialSimilarity;
