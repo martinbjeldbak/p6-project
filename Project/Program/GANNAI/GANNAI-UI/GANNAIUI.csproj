@@ -83,6 +83,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\GANNAI\GANNAI.csproj">
+      <Project>{f9322c92-def6-4101-a324-aebf6d83fd0f}</Project>
+      <Name>GANNAI</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Genetics\Genetics.csproj">
       <Project>{3025EBE0-C362-4F31-8B1A-E3B0CF3ABACB}</Project>
       <Name>Genetics</Name>
