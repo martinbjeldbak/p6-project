@@ -10,7 +10,7 @@ namespace Genetics {
     public Population Population { get; private set; }
 
     public readonly OffspringMerger offspringMerger;
-    public readonly int OffspringMergeType;
+    public readonly int OffspringSelectionPolicy;
 
     /// <summary>
     /// The number of individuals in a population
@@ -69,7 +69,7 @@ namespace Genetics {
 
     public Simulation(AITrainableGame game, int populationSize = 100, double crossOverBredAmount = 0.5, double mutateAfterCrossoverAmount = 0.1, 
       double mutationRate = 0.05, int allowSinglePointCrossover = 1, int allowTwoPointCrossover = 1, int allowUniformCrossover = 1,
-      int offspringMergeType = 0, double initialMutation = 0.0, double initialSimilarity = 0.0) {
+      int offspringSelectionPolicy = 0, double initialMutation = 0.0, double initialSimilarity = 0.0) {
       PopulationSize = populationSize;
       CrossoverBredAmount = crossOverBredAmount;
       MutateAfterCrossoverAmount = mutateAfterCrossoverAmount;
@@ -77,7 +77,7 @@ namespace Genetics {
       AllowSinglePointCrossover = allowSinglePointCrossover == 1 ? true : false;
       AllowTwoPointCrossover = allowTwoPointCrossover == 1 ? true : false;
       AllowUniformCrossover = allowUniformCrossover == 1 ? true : false;
-      OffspringMergeType = offspringMergeType;
+      OffspringSelectionPolicy = offspringSelectionPolicy;
       InitialMutation = initialMutation;
       InitialSimilarity = initialSimilarity;
 
@@ -89,11 +89,11 @@ namespace Genetics {
       if (AllowUniformCrossover)
         allowedCrossoverMethods.Add(new UniformCrossover());
 
-      switch (OffspringMergeType) {
+      switch (OffspringSelectionPolicy) {
         case 0: offspringMerger = new SimpleOffspringMerger(); break;
         case 1: offspringMerger = new KPOffspringMerger(); break;
         case 2: offspringMerger = new KPRIOffspringMerger(); break;
-      default: throw new Exception("Wrong offspring merge type: " + OffspringMergeType);
+      default: throw new Exception("Wrong offspring merge type: " + OffspringSelectionPolicy);
       }
 
       Game = game;
@@ -105,7 +105,8 @@ namespace Genetics {
     }
 
     /// <summary>
-    /// Simulates the population evolving for a number of generations
+    /// Reset the population according to the simulation's configuration
+    /// and simulates the population evolving for a number of generations.
     /// </summary>
     /// <param name="generations">The number of generations to evolve</param>
     public void Simulate(int generations, ObservationSaver obs) {

@@ -86,13 +86,20 @@ namespace Genetics {
     }
 
     /// <summary>
-    /// Gets a mutated deep clone of itself
+    /// Gets a mutated deep clone of itself according to a mutation rate in the range [0.0-1.0]
     /// </summary>
+    /// <param name="mutationRate">The chance for each bit to be set to a a random value</param>
+    /// <returns></returns>
     public DNA GetMutated(double mutationRate) {
       bool[] bitstring = new bool[Bitstring.Length];
+
+      //if mutation rate is 1 or more, return a random DNA
+      if (mutationRate >= 1.0)
+          return new DNA(this.Length);
+
       for (int i = 0; i < Bitstring.Length; i++)
         if (RandomNum.RandomDouble() < mutationRate)
-          bitstring[i] = !Bitstring[i];
+          bitstring[i] = RandomNum.RandomBool();
       return new DNA(bitstring, this, null, 1.0, 0.0);
     }
 

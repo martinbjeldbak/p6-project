@@ -117,7 +117,7 @@ namespace Genetics {
       int uniform = si.AllowUniformCrossover ? 1 : 0;
       int singlepoint = si.AllowSinglePointCrossover ? 1 : 0;
       int twopoint = si.AllowTwoPointCrossover ? 1 : 0;
-      int mergetype = si.OffspringMergeType;
+      int mergetype = si.OffspringSelectionPolicy;
       string initmu = si.InitialMutation.ToString(System.Globalization.CultureInfo.InvariantCulture);
       string initsim = si.InitialSimilarity.ToString(System.Globalization.CultureInfo.InvariantCulture);
 

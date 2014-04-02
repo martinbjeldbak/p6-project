@@ -38,6 +38,9 @@ namespace GANNAI
         /// </summary>
         /// <returns>The progress</returns>
         public double getProgress() {
+            if (attributeValueLists == null)
+                return 1;
+
             double combinations = 1;
             double tried = 1;
             for (int i = 0; i < attributeValueLists.Count; i++) {
