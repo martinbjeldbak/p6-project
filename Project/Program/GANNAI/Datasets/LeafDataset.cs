@@ -1,8 +1,14 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Globalization;
 
 namespace Datasets {
   public class LeafDataset : Dataset {
-    public LeafDataset() {
+    public LeafDataset(double validationPercent = 0.0) : base(validationPercent) {
+        string csv = Properties.Resources.leaf;
+
+        DataSet.AddRange(ParseDataFromString(csv));
+        CreateMappedDataset();
     }
 
     #region implemented abstract members of Dataset
@@ -33,7 +39,23 @@ namespace Datasets {
     }
 
     protected override void CreateMappedDataset() {
-      throw new NotImplementedException();
+      foreach(List<string> row in DataSet) {
+        int columns = row.Count;
+        
+        Line data = new Line();
+        MappedDataSet.Add(data);
+        
+        data.AddEntry(new LineEntry(row[0], Double.Parse(row[0]), 0));
+        
+        for(int i = 2; i < columns; i++) {
+          if(i > 15)
+            throw new Exception("The column is out of bounds. "
+              + "The leaf dataset contains " + 16 + " columns. "
+              + "Tried to access the " + i + "th column!");
+          else
+            data.AddEntry(new LineEntry("column " + i, Double.Parse(row[i], CultureInfo.InvariantCulture), i));
+        }
+      }
     }
 
     #endregion

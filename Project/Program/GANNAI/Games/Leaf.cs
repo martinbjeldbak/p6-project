@@ -1,27 +1,46 @@
 ﻿using System;
 using Genetics;
+using System.Collections.Generic;
+using Datasets;
+using System.Linq;
 
 namespace Games {
   public class Leaf :AITrainableGame {
+    LeafDataset leaf;
+    
 		public Leaf() {
+      this.leaf = new LeafDataset(); 
 		}
 
     #region AITrainableGame implementation
 
     public double CalcFitness(AIPlayer aiplayer) {
-      throw new NotImplementedException();
+      int fitness = 0;
+      int numInputs = NumInputs();
+      int outputIndex = 0;
+      List<double> inputs;
+      
+      foreach(Line row in leaf.MappedDataSet) {
+        inputs = new List<double>(numInputs);
+        inputs.AddRange(row.entries.Where(e => e.Column >= 2).Select(e => e.Value));
+        
+        int outputNeuron = aiplayer.GetStrongestOutputIndex(inputs.ToArray());
+        if(outputNeuron == row.entries[outputIndex].Value)
+          fitness++;
+      }
+      return fitness;
     }
 
     public int NumInputs() {
-      throw new NotImplementedException();
+      return leaf.InputIndicies().Count();
     }
 
     public int NumOutputs() {
-      throw new NotImplementedException();
+      return 40;
     }
 
     public AITrainableGame GetNewGameInstance() {
-      throw new NotImplementedException();
+      return new Leaf();
     }
 
     public void Visualize(AIPlayer aiplayer, System.Windows.Forms.Form form) {
@@ -29,7 +48,7 @@ namespace Games {
     }
 
     public string Name() {
-      throw new NotImplementedException();
+      return "Leaf Classification";
     }
 
     #endregion
