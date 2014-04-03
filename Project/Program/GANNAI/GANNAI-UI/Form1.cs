@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Diagnostics;
+using GANNAI;
 using Genetics;
 using Games;
 
@@ -15,35 +16,15 @@ namespace GANNAIUI {
 
     Simulation simulation;
     ObservationSaver obs;
+    AITrainableGame game;
 
     public Form1() {
       InitializeComponent();
+      game = new SnakeGame();
     }
 
-    private void StartTraining() {
-      if (simulation.Game == null) {
-        MessageBox.Show("No game selected");
-        return;
-      }
-
-      int iterations;
-      try {
-        iterations = Int32.Parse(num_iterations.Text);
-      }
-      catch (FormatException) {
-        MessageBox.Show("Number of iterations must be a positive integer");
-        return;
-      }
-      if (iterations < 0) {
-        MessageBox.Show("Number of iterations must be a positive integer or 0");
-        return;
-      }
-
+    private void StartTraining(int iterations) {
       simulation.Simulate(iterations, saveToDBButton.Checked ? obs : null);
-      PrintFitnessValues();
-      visualizeButton.Enabled = true;
-      generationCountLabel.Text = "Generation No: " + simulation.Population.Generation.ToString();
-      diversityLabel.Text = "Diversity: " + simulation.Population.MeasureDiversity().ToString();
     }
 
     private void PrintFitnessValues() {
@@ -55,32 +36,73 @@ namespace GANNAIUI {
     }
 
     private void goButton_Click(object sender, EventArgs e) {
-      if (saveToDBButton.Checked) {
-        obs = new ObservationSaver(simulation);
-      }
+        int runs = getRuns();
+        int iterations = getIterations();
+        if (runs == -1 || iterations == -1)
+            return;
+        string[] attributeValues = new string[] {
+            textBox_populationSize.Text,
+            textBox_crossoverBredAmount.Text,
+            textBox_mutateAfterCrossoverAmount.Text,
+            textBox_mutationRate.Text,
+            textBox_allowSinglePointCrossover.Text,
+            textBox_allowTwoPointCrossover.Text,
+            textBox_allowUniformCrossover.Text,
+            textBox_offspringSelectionPolicy.Text,
+            textBox_initialMutation.Text,
+            textBox_initialSimilarity.Text
+        };
+        GANNAI.ConfigurationParser confParser = new ConfigurationParser(attributeValues);
+        double[] c;
+        while ((c = confParser.getNextConfiguration()) != null) {
+            progressBar1.Value = (int)(confParser.getProgress() * 100);
+            simulation = new Simulation(game, (int)c[0], c[1], c[2], c[3], (int)c[4], (int)c[5], (int)c[6], (int)c[7], c[8], c[9]);
+            if (saveToDBButton.Checked) {
+                obs = new ObservationSaver(simulation);
+            }
+            for (int i = 0; i < runs; i++)
+                StartTraining(iterations);
+            PrintFitnessValues();
+            visualizeButton.Enabled = true;
+            generationCountLabel.Text = "Generation No: " + simulation.Population.Generation.ToString();
+            diversityLabel.Text = "Diversity: " + simulation.Population.MeasureDiversity().ToString();
+        }
+    }
 
-      int runs;
-      try
-      {
-          runs = Int32.Parse(runsTextBox.Text);
-      }
-      catch (FormatException)
-      {
-          MessageBox.Show("Number of runs must be a positive integer");
-          return;
-      }
-      if (runs <= 0)
-      {
-          MessageBox.Show("Number of runs must be a positive integer");
-          return;
-      }
+    private int getRuns() {
+        int runs;
+        try {
+            runs = Int32.Parse(runsTextBox.Text);
+        }
+        catch (FormatException) {
+            MessageBox.Show("Number of runs must be a positive integer");
+            return -1;
+        }
+        if (runs <= 0) {
+            MessageBox.Show("Number of runs must be a positive integer");
+            return -1;
+        }
+        return runs;
+    }
 
-      for (int i = 0; i < runs; i++ )
-          StartTraining();
+    private int getIterations(){
+        int iterations;
+        try {
+            iterations = Int32.Parse(num_iterations.Text);
+        }
+        catch (FormatException) {
+            MessageBox.Show("Number of iterations must be a positive integer");
+            return -1;
+        }
+        if (iterations < 0) {
+            MessageBox.Show("Number of iterations must be a positive integer or 0");
+            return -1;
+        }
+        return iterations;
     }
 
     private void FallingStarsRadioButton_CheckedChanged(object sender, EventArgs e) {
-      simulation = new Simulation(new FallingStarsGame());
+      game = new FallingStarsGame();
       GameChanged();
     }
 
@@ -93,14 +115,14 @@ namespace GANNAIUI {
       diversityLabel.Text = "Diversity:";
     }
 
-    private void BombermanRadioButton_CheckedChanged(object sender, EventArgs e) {
+    private void IncomeRadioButton_CheckedChanged(object sender, EventArgs e) {
       //throw new Exception("Bomberman not implemented yet");
-      simulation = new Simulation(new Income());
+      game = new Income();
       GameChanged();
     }
 
     private void SnakeRadioButton_CheckedChanged(object sender, EventArgs e) {
-      simulation = new Simulation(new SnakeGame());
+      game = new SnakeGame();
       GameChanged();
     }
 
@@ -111,8 +133,12 @@ namespace GANNAIUI {
     }
 
     private void IrisRadioButton_Click(object sender, EventArgs e) {
-      simulation = new Simulation(new Iris());
+      game = new Iris();
       GameChanged();
+    }
+
+    private void Form1_Load(object sender, EventArgs e)
+    {
     }
   }
 }
