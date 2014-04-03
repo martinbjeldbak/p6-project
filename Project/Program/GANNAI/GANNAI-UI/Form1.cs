@@ -55,13 +55,14 @@ namespace GANNAIUI {
         GANNAI.ConfigurationParser confParser = new ConfigurationParser(attributeValues);
         double[] c;
         while ((c = confParser.getNextConfiguration()) != null) {
-            progressBar1.Value = (int)(confParser.getProgress() * 100);
             simulation = new Simulation(game, (int)c[0], c[1], c[2], c[3], (int)c[4], (int)c[5], (int)c[6], (int)c[7], c[8], c[9]);
             if (saveToDBButton.Checked) {
                 obs = new ObservationSaver(simulation);
             }
-            for (int i = 0; i < runs; i++)
+            for (int i = 0; i < runs; i++) {
                 StartTraining(iterations);
+                progressBar1.Value = (int)(((confParser.getProgress() * (i+1)) / runs) * 100);
+            }
             PrintFitnessValues();
             visualizeButton.Enabled = true;
             generationCountLabel.Text = "Generation No: " + simulation.Population.Generation.ToString();
