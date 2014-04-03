@@ -25,14 +25,14 @@ namespace Games {
       foreach(Line l in income.MappedTestSet) {
 
         inputs = new List<double>(numInputs);
-        inputs.AddRange(l.entries.Where(e => !income.OutputIndicies().ToList().Contains(e.Column)).Select(e => e.ID));
+        inputs.AddRange(l.entries.Where(e => !income.OutputIndicies().ToList().Contains(e.Column)).Select(e => e.Value));
 
 
         int outputNeuronIndex = aiplayer.GetStrongestOutputIndex(inputs.ToArray());
 
 
         //System.Console.WriteLine("Is the strongest output neuron: " + outputNeuronIndex + "(" + IncomeDataset.IncomeMap(outputNeuronIndex) + ") equal to: " + l.entries.Last().ID + "(" + l.entries.Last().Value + ")?");
-        if(outputNeuronIndex == l.entries.Last().ID)
+        if(outputNeuronIndex == l.entries.Last().Value)
           fitness++;
       }
 
