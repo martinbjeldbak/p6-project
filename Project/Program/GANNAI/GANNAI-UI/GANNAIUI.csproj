@@ -84,7 +84,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GANNAI\GANNAI.csproj">
-      <Project>{f9322c92-def6-4101-a324-aebf6d83fd0f}</Project>
+      <Project>{F9322C92-DEF6-4101-A324-AEBF6D83FD0F}</Project>
       <Name>GANNAI</Name>
     </ProjectReference>
     <ProjectReference Include="..\Genetics\Genetics.csproj">
