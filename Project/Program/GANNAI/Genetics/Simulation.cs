@@ -137,11 +137,5 @@ namespace Genetics {
       int randomFuncIndex = RandomNum.RandomInt(0, allowedCrossoverMethods.Count);
       return allowedCrossoverMethods[randomFuncIndex];
     }
-
-    /// <summary>
-    /// Saves information about simulation state to the database
-    /// </summary>
-    public void SaveSimulation() {
-    }
   }
 }
