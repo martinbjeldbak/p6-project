@@ -43,6 +43,7 @@
     </Compile>
     <Compile Include="IncomeDataset.cs" />
     <Compile Include="LeafDataset.cs" />
+    <Compile Include="BankruptcyDataset.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
