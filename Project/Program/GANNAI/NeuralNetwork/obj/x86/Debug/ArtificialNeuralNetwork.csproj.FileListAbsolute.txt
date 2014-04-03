@@ -1,7 +1,5 @@
 C:\Users\Kent-Nord\Desktop\p6-project\Project\Program\GANNAI\NeuralNetwork\bin\Debug\ArtificialNeuralNetwork.dll
 C:\Users\Kent-Nord\Desktop\p6-project\Project\Program\GANNAI\NeuralNetwork\bin\Debug\ArtificialNeuralNetwork.pdb
-C:\Users\Kent-Nord\Desktop\p6-project\Project\Program\GANNAI\NeuralNetwork\bin\Debug\GANNAI.dll
-C:\Users\Kent-Nord\Desktop\p6-project\Project\Program\GANNAI\NeuralNetwork\bin\Debug\GANNAI.pdb
 C:\Users\Kent-Nord\Desktop\p6-project\Project\Program\GANNAI\NeuralNetwork\obj\x86\Debug\ArtificialNeuralNetwork.csprojResolveAssemblyReference.cache
 C:\Users\Kent-Nord\Desktop\p6-project\Project\Program\GANNAI\NeuralNetwork\obj\x86\Debug\ArtificialNeuralNetwork.dll
 C:\Users\Kent-Nord\Desktop\p6-project\Project\Program\GANNAI\NeuralNetwork\obj\x86\Debug\ArtificialNeuralNetwork.pdb
@@ -19,3 +17,5 @@ C:\Users\Martin\Source\Repos\p6-project\Project\Program\GANNAI\NeuralNetwork\bin
 C:\Users\Martin\Source\Repos\p6-project\Project\Program\GANNAI\NeuralNetwork\obj\x86\Debug\ArtificialNeuralNetwork.csprojResolveAssemblyReference.cache
 C:\Users\Martin\Source\Repos\p6-project\Project\Program\GANNAI\NeuralNetwork\obj\x86\Debug\ArtificialNeuralNetwork.dll
 C:\Users\Martin\Source\Repos\p6-project\Project\Program\GANNAI\NeuralNetwork\obj\x86\Debug\ArtificialNeuralNetwork.pdb
+C:\Users\Kent-Nord\Desktop\p6-project\Project\Program\GANNAI\NeuralNetwork\bin\Debug\Utility.dll
+C:\Users\Kent-Nord\Desktop\p6-project\Project\Program\GANNAI\NeuralNetwork\bin\Debug\Utility.pdb

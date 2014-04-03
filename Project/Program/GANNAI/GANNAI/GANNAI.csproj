@@ -50,6 +50,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ConfigurationParser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
@@ -62,5 +63,11 @@
   -->
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Genetics\Genetics.csproj">
+      <Project>{3025ebe0-c362-4f31-8b1a-e3b0cf3abacb}</Project>
+      <Name>Genetics</Name>
+    </ProjectReference>
   </ItemGroup>
 </Project>
