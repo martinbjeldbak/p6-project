@@ -23,11 +23,11 @@ namespace Games {
       // For each row in the data set, get its converted values
       foreach (Line l in iris.MappedTestSet) {
         inputs = new List<double>(numInputs);
-        inputs.AddRange(l.entries.Where(e => !iris.OutputIndicies().ToList().Contains(e.Column)).Select(e => e.ID));
+        inputs.AddRange(l.entries.Where(e => !iris.OutputIndicies().ToList().Contains(e.Column)).Select(e => e.Value));
 
         int outputNeuron = aiplayer.GetStrongestOutputIndex(inputs.ToArray());
 
-        if (outputNeuron == l.entries[outputIndex].ID)
+        if (outputNeuron == l.entries[outputIndex].Value)
           fitness++;
       }
 
