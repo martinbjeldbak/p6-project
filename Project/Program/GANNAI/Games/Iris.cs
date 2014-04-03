@@ -19,7 +19,7 @@ namespace Games {
 
       int numInputs = NumInputs();
       int outputIndex = iris.OutputIndicies()[0];
-      List<double> inputs = new List<double>(numInputs);
+      List<double> inputs;
       // For each row in the data set, get its converted values
       foreach (Line l in iris.MappedTestSet) {
         inputs = new List<double>(numInputs);

@@ -227,5 +227,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\data-sets\Leaf\" />
+    <Folder Include="Resources\data-sets\Bankruptcy\" />
   </ItemGroup>
 </Project>
