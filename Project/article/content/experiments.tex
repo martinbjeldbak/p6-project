@@ -1,0 +1,8 @@
+\section{Experiments}
+In this section, we evaluate our developed diversity measurement method and comparison our AESP selection policy to crowding and xxx selection policies.
+
+%During each generation, a defined number of crossover and mutation operators are applied.
+Each of the experiments are set up to use the same configuration. Populations consist of \num{100} individuals, and upon creating a new population, rank-based selection is utilized to create a new population with the same size. Half of this new population is created by crossover, the other half created by mutation; both using individuals in the current population. For each individual belonging to the half created by crossover, there is a \perc{10} chance that it also will be selected for mutation. For each bit defining these individuals, and the individuals of the last half of the new population selected for mutation, there is a \perc{5} that bit will be selected for mutation. When a bit is selected for mutation, there is a \perc{50} chance it will stay the same, or be inverted.
+
+\input{content/experiments/aesp}
+\input{content/experiments/diversity}
