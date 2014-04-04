@@ -17,7 +17,7 @@ namespace Games {
     public double CalcFitness(AIPlayer aiplayer) {
       int fitness = 0;
       int numInputs = NumInputs();
-      int outputIndex = 0;
+      int outputIndex = 6;
       List<double> inputs;
       
       foreach(Line row in bankruptcy.MappedDataSet) {
@@ -40,7 +40,7 @@ namespace Games {
     }
 
     public AITrainableGame GetNewGameInstance() {
-      return new Bankruptcy();
+      return this;
     }
 
     public void Visualize(AIPlayer aiplayer, System.Windows.Forms.Form form) {
