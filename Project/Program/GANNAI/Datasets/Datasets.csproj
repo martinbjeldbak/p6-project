@@ -44,7 +44,6 @@
     <Compile Include="LeafDataset.cs" />
     <Compile Include="BankruptcyDataset.cs" />
     <Compile Include="WineDataset.cs" />
-    <Compile Include="Thoracic SurgeryDataset.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
