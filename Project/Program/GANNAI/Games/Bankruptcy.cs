@@ -5,12 +5,12 @@ using Datasets;
 using System.Linq;
 
 namespace Games {
-  public class Leaf : AITrainableGame {
-    LeafDataset leaf;
+  public class Bankruptcy : AITrainableGame {
+    BankruptcyDataset bankruptcy;
     
-		public Leaf() {
-      this.leaf = new LeafDataset(); 
-		}
+    public Bankruptcy(){
+      this.bankruptcy = new BankruptcyDataset();
+    }
 
     #region AITrainableGame implementation
 
@@ -20,9 +20,9 @@ namespace Games {
       int outputIndex = 0;
       List<double> inputs;
       
-      foreach(Line row in leaf.MappedDataSet) {
+      foreach(Line row in bankruptcy.MappedDataSet) {
         inputs = new List<double>(numInputs);
-        inputs.AddRange(row.entries.Where(e => e.Column >= 2).Select(e => e.Value));
+        inputs.AddRange(row.entries.Where(e => e.Column < 6).Select(e => e.Value));
         
         int outputNeuron = aiplayer.GetStrongestOutputIndex(inputs.ToArray());
         if(outputNeuron == row.entries[outputIndex].Value)
@@ -32,15 +32,15 @@ namespace Games {
     }
 
     public int NumInputs() {
-      return leaf.InputIndicies().Count();
+      return bankruptcy.InputIndicies().Count();
     }
 
     public int NumOutputs() {
-      return 40;
+      return 2;
     }
 
     public AITrainableGame GetNewGameInstance() {
-      return new Leaf();
+      return new Bankruptcy();
     }
 
     public void Visualize(AIPlayer aiplayer, System.Windows.Forms.Form form) {
@@ -48,10 +48,10 @@ namespace Games {
     }
 
     public string Name() {
-      return "Leaf Classification";
+      return "Bankruptcy Classification";
     }
 
     #endregion
-	}
+  }
 }
 
