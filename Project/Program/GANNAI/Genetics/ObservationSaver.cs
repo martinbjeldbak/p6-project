@@ -26,6 +26,11 @@ namespace Genetics {
       Initialize();
     }
 
+    ~ObservationSaver() {
+      Log.Info("Destructing DB object, closing connection");
+      this.CloseDBConnection();
+    }
+
     /// <summary>
     /// Initialize the simulation instance in the Database.
     /// </summary>
@@ -42,8 +47,8 @@ namespace Genetics {
       InsertConfigurationInDB(si);
       Log.Info("Initial configuration, simulation, and population data inserted!");
 
-      Log.Info("Closing DB connection...");
-      this.CloseDBConnection();
+      //Log.Info("Closing DB connection...");
+      //this.CloseDBConnection();
     }
 
     private void OpenDBConnection() {
@@ -80,15 +85,15 @@ namespace Genetics {
     /// Saves the data of the Population.
     /// </summary>
     public void SavePopulation() {
-      Log.Info("Opening DB connection...");
-      this.OpenDBConnection();
+      //Log.Info("Opening DB connection...");
+      //this.OpenDBConnection();
 
       Log.Info("Inserting new population data...");
       InsertPopulationInDB();
       Log.Info("Population data inserted!");
 
-      Log.Info("Closing DB connection...");
-      this.CloseDBConnection();
+      //Log.Info("Closing DB connection...");
+      //this.CloseDBConnection();
     }
 
     /// <summary>

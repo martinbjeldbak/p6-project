@@ -54,6 +54,7 @@
     <Compile Include="Iris.cs" />
     <Compile Include="Income.cs" />
     <Compile Include="Leaf.cs" />
+    <Compile Include="Bankruptcy.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GANNAI\GANNAI.csproj">
