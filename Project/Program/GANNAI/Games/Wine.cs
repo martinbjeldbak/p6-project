@@ -40,7 +40,7 @@ namespace Games {
     }
 
     public AITrainableGame GetNewGameInstance() {
-      throw new NotImplementedException();
+      return this;
     }
 
     public void Visualize(AIPlayer aiplayer, System.Windows.Forms.Form form) {

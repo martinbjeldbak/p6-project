@@ -15,24 +15,25 @@ namespace Datasets {
 
     public override int[] OutputIndicies() {
       return new int[] {
-        0 //Alcohol   
+        0 //The wine class
       };
     }
 
     public override int[] InputIndicies() {
       return new int[] {        
-        1,  //Malic acid 
-        2,  //Ash 
-        3,  //Alcalinity of ash 
-        4,  //Magnesium 
-        5,  //Total phenols 
-        6,  //Flavanoids 
-        7,  //Nonflavanoid phenols 
-        8,  //Proanthocyanins 
-        9,  //Color intensity 
-        10, //Hue 
-        11, //OD280/OD315 of diluted wines 
-        12, //Proline 
+        1,  //Alcohol   
+        2,  //Malic acid 
+        3,  //Ash 
+        4,  //Alcalinity of ash 
+        5,  //Magnesium 
+        6,  //Total phenols 
+        7,  //Flavanoids 
+        8,  //Nonflavanoid phenols 
+        9,  //Proanthocyanins 
+        10,  //Color intensity 
+        11, //Hue 
+        12, //OD280/OD315 of diluted wines 
+        13  //Proline 
       };
     }
 
@@ -46,9 +47,9 @@ namespace Datasets {
         data.AddEntry(new LineEntry(row[0], Double.Parse(row[0]), 0));
         
         for(int i = 1; i < columns; i++) {
-          if(i > 12)
+          if(i > columns - 1)
             throw new Exception("The column is out of bounds. "
-              + "The leaf dataset contains " + 13 + " columns. "
+              + "The wine dataset contains " + columns + " columns. "
               + "Tried to access the " + (i+1) + "th column!");
           else
             data.AddEntry(new LineEntry("column " + i, Double.Parse(row[i], CultureInfo.InvariantCulture), i));
