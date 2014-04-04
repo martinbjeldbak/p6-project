@@ -43,7 +43,7 @@ namespace Games {
     }
 
     public AITrainableGame GetNewGameInstance() {
-      return new Iris();
+      return this;
     }
 
     public void Visualize(AIPlayer aiplayer, System.Windows.Forms.Form form) {
