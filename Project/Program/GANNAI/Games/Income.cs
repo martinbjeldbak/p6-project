@@ -22,7 +22,7 @@ namespace Games {
       int numInputs = NumInputs();
       List<double> inputs = new List<double>(numInputs);
       // For each row in the data set, get its converted values
-      foreach(Line l in income.MappedTestSet) {
+      foreach(Line l in income.MappedDataSet) {
 
         inputs = new List<double>(numInputs);
         inputs.AddRange(l.entries.Where(e => !income.OutputIndicies().ToList().Contains(e.Column)).Select(e => e.Value));
@@ -48,7 +48,7 @@ namespace Games {
     }
 
     public AITrainableGame GetNewGameInstance() {
-      throw new NotImplementedException();
+        return this;
     }
 
     public void Visualize(AIPlayer aiplayer, System.Windows.Forms.Form form) {
