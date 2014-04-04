@@ -47,10 +47,11 @@ namespace Genetics {
         /// </summary>
         /// <param name="offspring"></param>
         private void CalcFitnessValuesThreaded(List<AIPlayer> list) {
+            Console.WriteLine("Calculating fitness values");
             Task[] tasks = new Task[list.Count];
             for (int i = 0; i < list.Count; i++) {
                 int index = i; //necessary because of lazy evaluation
-                AITrainableGame game = Simulation.Game;
+                AITrainableGame game = Simulation.Game; //necessary because of lazy evaluation
                 tasks[index] = Task.Factory.StartNew(() => { list[index].CalcFitness(game); });
             }
             Task.WaitAll(tasks.ToArray());
