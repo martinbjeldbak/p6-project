@@ -61,7 +61,6 @@ namespace Genetics {
     public AITrainableGame Game {
         get {
             nextGameInstanceIndex = (nextGameInstanceIndex + 1) % PopulationSize;
-            Console.WriteLine(nextGameInstanceIndex);
             return gameInstances[nextGameInstanceIndex];
             
         }
