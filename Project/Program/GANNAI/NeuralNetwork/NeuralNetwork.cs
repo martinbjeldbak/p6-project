@@ -142,7 +142,9 @@ namespace ArtificialNeuralNetwork {
     /// <param name="vals">The input vector.</param>
     public void SetInput(double[] vals) {
       if(inputNeurons.Count != vals.Length)
-        throw new Exception("Size of input doesn't match number of input neurons.");
+        throw new Exception("Size of input doesn't match number of input neurons."
+          + "Excepted " + inputNeurons.Count + " inputs, but got " + vals.Length + "."
+        );
       for(int i = 0; i < vals.Length; i++)
         inputNeurons[i].SetValue(vals[i]);
     }
