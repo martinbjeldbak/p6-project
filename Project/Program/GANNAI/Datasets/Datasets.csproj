@@ -7,6 +7,8 @@
     <OutputType>Library</OutputType>
     <RootNamespace>Datasets</RootNamespace>
     <AssemblyName>Datasets</AssemblyName>
+    <ProductVersion>12.0.0</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -35,7 +37,6 @@
     <Compile Include="LineEntry.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="IrisDataset.cs" />
-    <Compile Include="IDataset.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
