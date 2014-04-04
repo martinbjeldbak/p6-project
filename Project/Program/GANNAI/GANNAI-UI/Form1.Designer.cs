@@ -10,9 +10,10 @@
     private void InitializeComponent() {
             this.SnakeRadioButton = new System.Windows.Forms.RadioButton();
             this.FallingStarsRadioButton = new System.Windows.Forms.RadioButton();
-            this.BombermanRadioButton = new System.Windows.Forms.RadioButton();
+            this.IncomeRadioButton = new System.Windows.Forms.RadioButton();
             this.goButton = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.leafRadioButton = new System.Windows.Forms.RadioButton();
             this.IrisRadioButton = new System.Windows.Forms.RadioButton();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -25,6 +26,8 @@
             this.saveToDBButton = new System.Windows.Forms.CheckBox();
             this.diversityLabel = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.textBox_offspringSelectionPolicy = new System.Windows.Forms.TextBox();
+            this.label12 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.textBox_initialSimilarity = new System.Windows.Forms.TextBox();
@@ -32,20 +35,19 @@
             this.textBox_allowTwoPointCrossover = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.textBox_mutateAfterCrossoverAmount = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
+            this.textBox_mutateAfterCrossoverAmount = new System.Windows.Forms.TextBox();
             this.textBox_allowUniformCrossover = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
             this.textBox_crossoverBredAmount = new System.Windows.Forms.TextBox();
             this.textBox_allowSinglePointCrossover = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
             this.textBox_mutationRate = new System.Windows.Forms.TextBox();
             this.textBox_populationSize = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
-            this.textBox_offspringSelectionPolicy = new System.Windows.Forms.TextBox();
-            this.label12 = new System.Windows.Forms.Label();
+            this.bankruptcyRadioButton = new System.Windows.Forms.RadioButton();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -75,16 +77,16 @@
             this.FallingStarsRadioButton.UseVisualStyleBackColor = true;
             this.FallingStarsRadioButton.CheckedChanged += new System.EventHandler(this.FallingStarsRadioButton_CheckedChanged);
             // 
-            // BombermanRadioButton
+            // IncomeRadioButton
             // 
-            this.BombermanRadioButton.AutoSize = true;
-            this.BombermanRadioButton.Location = new System.Drawing.Point(290, 29);
-            this.BombermanRadioButton.Name = "BombermanRadioButton";
-            this.BombermanRadioButton.Size = new System.Drawing.Size(81, 17);
-            this.BombermanRadioButton.TabIndex = 2;
-            this.BombermanRadioButton.Text = "Bomberman";
-            this.BombermanRadioButton.UseVisualStyleBackColor = true;
-            this.BombermanRadioButton.CheckedChanged += new System.EventHandler(this.IncomeRadioButton_CheckedChanged);
+            this.IncomeRadioButton.AutoSize = true;
+            this.IncomeRadioButton.Location = new System.Drawing.Point(290, 29);
+            this.IncomeRadioButton.Name = "IncomeRadioButton";
+            this.IncomeRadioButton.Size = new System.Drawing.Size(60, 17);
+            this.IncomeRadioButton.TabIndex = 2;
+            this.IncomeRadioButton.Text = "Income";
+            this.IncomeRadioButton.UseVisualStyleBackColor = true;
+            this.IncomeRadioButton.CheckedChanged += new System.EventHandler(this.IncomeRadioButton_CheckedChanged);
             // 
             // goButton
             // 
@@ -98,8 +100,10 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.bankruptcyRadioButton);
+            this.groupBox1.Controls.Add(this.leafRadioButton);
             this.groupBox1.Controls.Add(this.IrisRadioButton);
-            this.groupBox1.Controls.Add(this.BombermanRadioButton);
+            this.groupBox1.Controls.Add(this.IncomeRadioButton);
             this.groupBox1.Controls.Add(this.FallingStarsRadioButton);
             this.groupBox1.Controls.Add(this.SnakeRadioButton);
             this.groupBox1.Location = new System.Drawing.Point(47, 12);
@@ -108,6 +112,17 @@
             this.groupBox1.TabIndex = 5;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Select game";
+            // 
+            // leafRadioButton
+            // 
+            this.leafRadioButton.AutoSize = true;
+            this.leafRadioButton.Location = new System.Drawing.Point(152, 67);
+            this.leafRadioButton.Name = "leafRadioButton";
+            this.leafRadioButton.Size = new System.Drawing.Size(46, 17);
+            this.leafRadioButton.TabIndex = 4;
+            this.leafRadioButton.Text = "Leaf";
+            this.leafRadioButton.UseVisualStyleBackColor = true;
+            this.leafRadioButton.CheckedChanged += new System.EventHandler(this.leafRadioButton_CheckedChanged);
             // 
             // IrisRadioButton
             // 
@@ -243,6 +258,23 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Settings";
             // 
+            // textBox_offspringSelectionPolicy
+            // 
+            this.textBox_offspringSelectionPolicy.Location = new System.Drawing.Point(381, 45);
+            this.textBox_offspringSelectionPolicy.Name = "textBox_offspringSelectionPolicy";
+            this.textBox_offspringSelectionPolicy.Size = new System.Drawing.Size(100, 20);
+            this.textBox_offspringSelectionPolicy.TabIndex = 48;
+            this.textBox_offspringSelectionPolicy.Text = "0";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(487, 48);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(124, 13);
+            this.label12.TabIndex = 47;
+            this.label12.Text = "Offspring selection policy";
+            // 
             // label11
             // 
             this.label11.AutoSize = true;
@@ -303,14 +335,6 @@
             this.label8.TabIndex = 39;
             this.label8.Text = "Initial similarity";
             // 
-            // textBox_mutateAfterCrossoverAmount
-            // 
-            this.textBox_mutateAfterCrossoverAmount.Location = new System.Drawing.Point(42, 71);
-            this.textBox_mutateAfterCrossoverAmount.Name = "textBox_mutateAfterCrossoverAmount";
-            this.textBox_mutateAfterCrossoverAmount.Size = new System.Drawing.Size(100, 20);
-            this.textBox_mutateAfterCrossoverAmount.TabIndex = 36;
-            this.textBox_mutateAfterCrossoverAmount.Text = "0.1";
-            // 
             // label10
             // 
             this.label10.AutoSize = true;
@@ -329,6 +353,14 @@
             this.label5.TabIndex = 33;
             this.label5.Text = "Crossover bred amount";
             // 
+            // textBox_mutateAfterCrossoverAmount
+            // 
+            this.textBox_mutateAfterCrossoverAmount.Location = new System.Drawing.Point(42, 71);
+            this.textBox_mutateAfterCrossoverAmount.Name = "textBox_mutateAfterCrossoverAmount";
+            this.textBox_mutateAfterCrossoverAmount.Size = new System.Drawing.Size(100, 20);
+            this.textBox_mutateAfterCrossoverAmount.TabIndex = 36;
+            this.textBox_mutateAfterCrossoverAmount.Text = "0.1";
+            // 
             // textBox_allowUniformCrossover
             // 
             this.textBox_allowUniformCrossover.Location = new System.Drawing.Point(381, 123);
@@ -336,6 +368,15 @@
             this.textBox_allowUniformCrossover.Size = new System.Drawing.Size(100, 20);
             this.textBox_allowUniformCrossover.TabIndex = 42;
             this.textBox_allowUniformCrossover.Text = "1";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(487, 126);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(118, 13);
+            this.label9.TabIndex = 41;
+            this.label9.Text = "Allow uniform crossover";
             // 
             // textBox_crossoverBredAmount
             // 
@@ -361,15 +402,6 @@
             this.label4.Size = new System.Drawing.Size(69, 13);
             this.label4.TabIndex = 31;
             this.label4.Text = "Mutation rate";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(487, 126);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(118, 13);
-            this.label9.TabIndex = 41;
-            this.label9.Text = "Allow uniform crossover";
             // 
             // textBox_mutationRate
             // 
@@ -404,22 +436,16 @@
             this.progressBar1.Step = 1;
             this.progressBar1.TabIndex = 31;
             // 
-            // textBox_offspringSelectionPolicy
+            // bankruptcyRadioButton
             // 
-            this.textBox_offspringSelectionPolicy.Location = new System.Drawing.Point(381, 45);
-            this.textBox_offspringSelectionPolicy.Name = "textBox_offspringSelectionPolicy";
-            this.textBox_offspringSelectionPolicy.Size = new System.Drawing.Size(100, 20);
-            this.textBox_offspringSelectionPolicy.TabIndex = 48;
-            this.textBox_offspringSelectionPolicy.Text = "0";
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(487, 48);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(124, 13);
-            this.label12.TabIndex = 47;
-            this.label12.Text = "Offspring selection policy";
+            this.bankruptcyRadioButton.AutoSize = true;
+            this.bankruptcyRadioButton.Location = new System.Drawing.Point(290, 67);
+            this.bankruptcyRadioButton.Name = "bankruptcyRadioButton";
+            this.bankruptcyRadioButton.Size = new System.Drawing.Size(79, 17);
+            this.bankruptcyRadioButton.TabIndex = 5;
+            this.bankruptcyRadioButton.Text = "Bankruptcy";
+            this.bankruptcyRadioButton.UseVisualStyleBackColor = true;
+            this.bankruptcyRadioButton.CheckedChanged += new System.EventHandler(this.bankruptcyRadioButton_CheckedChanged);
             // 
             // Form1
             // 
@@ -454,7 +480,7 @@
 
     private System.Windows.Forms.RadioButton SnakeRadioButton;
     private System.Windows.Forms.RadioButton FallingStarsRadioButton;
-    private System.Windows.Forms.RadioButton BombermanRadioButton;
+    private System.Windows.Forms.RadioButton IncomeRadioButton;
     private System.Windows.Forms.Button goButton;
     private System.Windows.Forms.GroupBox groupBox1;
     private System.Windows.Forms.GroupBox groupBox2;
@@ -490,6 +516,8 @@
     private System.Windows.Forms.ProgressBar progressBar1;
     private System.Windows.Forms.TextBox textBox_offspringSelectionPolicy;
     private System.Windows.Forms.Label label12;
+    private System.Windows.Forms.RadioButton leafRadioButton;
+    private System.Windows.Forms.RadioButton bankruptcyRadioButton;
   }
 }
 

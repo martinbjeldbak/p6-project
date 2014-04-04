@@ -117,7 +117,6 @@ namespace GANNAIUI {
     }
 
     private void IncomeRadioButton_CheckedChanged(object sender, EventArgs e) {
-      //throw new Exception("Bomberman not implemented yet");
       game = new Income();
       GameChanged();
     }
@@ -140,6 +139,16 @@ namespace GANNAIUI {
 
     private void Form1_Load(object sender, EventArgs e)
     {
+    }
+
+    private void leafRadioButton_CheckedChanged(object sender, EventArgs e) {
+        game = new Leaf();
+        GameChanged();
+    }
+
+    private void bankruptcyRadioButton_CheckedChanged(object sender, EventArgs e) {
+        game = new Bankruptcy();
+        GameChanged();
     }
   }
 }
