@@ -11,7 +11,8 @@ namespace Genetics {
     int NumOutputs();
 
     /// <summary>
-    /// Returns a new game instance, that can be run in another thread simultaniously
+    /// Returns a new instance of the same game.
+    /// This can be used to run more game instances in parallel.
     /// </summary>
     /// <returns></returns>
     AITrainableGame GetNewGameInstance();

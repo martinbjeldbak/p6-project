@@ -48,20 +48,28 @@ namespace Genetics {
     private List<CrossoverMethod> allowedCrossoverMethods =
       new List<CrossoverMethod>() { new SinglePointCrossover(), new TwoPointCrossover(), new UniformCrossover() };
     
+    ///Keeps track of which game instance to give to to the next thread asking for it.
+    ///Only 'Population.Count' instances can run in parallel 
+    private int nextGameInstanceIndex = -1;
+
     /// <summary>
     /// When setting the property Game, x game instances are made, where x is population size.
     /// This is convenient for running multi threaded
     /// </summary>
-    private AITrainableGame gameInstance;
+    private AITrainableGame[] gameInstances;
     
-    public AITrainableGame Game { 
-      get {
-        return gameInstance;
-      }
+    public AITrainableGame Game {
+        get {
+            nextGameInstanceIndex = (nextGameInstanceIndex + 1) % PopulationSize;
+            return gameInstances[nextGameInstanceIndex++];
+            
+        }
       set {
         //use a new neural network maker which number of hidden neurons is based on number of inputs and outputs of the game. 
         NeuralNetworkMaker = new LargeNeuralNetworkMaker(value);
-        gameInstance = value;
+        gameInstances = new AITrainableGame[PopulationSize];
+        for (int i = 0; i < PopulationSize; i++ )
+            gameInstances[i] = value.GetNewGameInstance();
       }
     }
 
