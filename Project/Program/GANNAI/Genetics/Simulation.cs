@@ -61,7 +61,7 @@ namespace Genetics {
     public AITrainableGame Game {
         get {
             nextGameInstanceIndex = (nextGameInstanceIndex + 1) % PopulationSize;
-            return gameInstances[nextGameInstanceIndex++];
+            return gameInstances[nextGameInstanceIndex];
             
         }
       set {
