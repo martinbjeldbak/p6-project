@@ -40,7 +40,7 @@ namespace Games {
     }
 
     public AITrainableGame GetNewGameInstance() {
-      return new Leaf();
+      return this;
     }
 
     public void Visualize(AIPlayer aiplayer, System.Windows.Forms.Form form) {
