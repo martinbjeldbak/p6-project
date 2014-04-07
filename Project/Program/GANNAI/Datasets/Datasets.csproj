@@ -44,6 +44,7 @@
     <Compile Include="LeafDataset.cs" />
     <Compile Include="BankruptcyDataset.cs" />
     <Compile Include="WineDataset.cs" />
+    <Compile Include="PurchaseDataset.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -229,5 +230,6 @@
   <ItemGroup>
     <Folder Include="Resources\data-sets\Leaf\" />
     <Folder Include="Resources\data-sets\Bankruptcy\" />
+    <Folder Include="Resources\data-sets\Purchase\" />
   </ItemGroup>
 </Project>
