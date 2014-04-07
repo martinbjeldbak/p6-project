@@ -1,41 +1,38 @@
 ﻿using System;
 using Genetics;
-using Datasets;
 using System.Collections.Generic;
+using Datasets;
 using System.Linq;
-using System.Globalization;
 
 namespace Games {
-  public class Iris : AITrainableGame  {
-    IrisDataset iris;
-
-    public Iris() {
-      this.iris = new IrisDataset();
+  public class Wine : AITrainableGame  {
+    WineDataset wine;
+    
+    public Wine() {
+      this.wine = new WineDataset();
     }
 
     #region AITrainableGame implementation
+
     public double CalcFitness(AIPlayer aiplayer) {
       int fitness = 0;
-
       int numInputs = NumInputs();
-      int outputIndex = iris.OutputIndicies()[0];
+      int outputIndex = 0;
       List<double> inputs;
-      // For each row in the data set, get its converted values
-      foreach (Line l in iris.MappedTestSet) {
+      
+      foreach(Line row in wine.MappedDataSet) {
         inputs = new List<double>(numInputs);
-        inputs.AddRange(l.entries.Where(e => !iris.OutputIndicies().ToList().Contains(e.Column)).Select(e => e.Value));
-
+        inputs.AddRange(row.entries.Where(e => e.Column > 0).Select(e => e.Value));
+        
         int outputNeuron = aiplayer.GetStrongestOutputIndex(inputs.ToArray());
-
-        if (outputNeuron == l.entries[outputIndex].Value)
+        if(outputNeuron == row.entries[outputIndex].Value)
           fitness++;
       }
-
       return fitness;
     }
 
     public int NumInputs() {
-      return iris.InputIndicies().Count();
+      return wine.InputIndicies().Count();
     }
 
     public int NumOutputs() {
@@ -51,8 +48,9 @@ namespace Games {
     }
 
     public string Name() {
-      return "Iris classification";
+      return "Wine Classification";
     }
+
     #endregion
   }
 }

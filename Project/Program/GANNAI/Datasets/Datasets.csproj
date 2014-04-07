@@ -7,8 +7,6 @@
     <OutputType>Library</OutputType>
     <RootNamespace>Datasets</RootNamespace>
     <AssemblyName>Datasets</AssemblyName>
-    <ProductVersion>12.0.0</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -45,6 +43,7 @@
     <Compile Include="IncomeDataset.cs" />
     <Compile Include="LeafDataset.cs" />
     <Compile Include="BankruptcyDataset.cs" />
+    <Compile Include="WineDataset.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
