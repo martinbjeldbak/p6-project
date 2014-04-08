@@ -4,7 +4,6 @@
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage[english]{babel}
-\usepackage[mode=buildnew]{standalone}
 \usepackage[cmex10]{amsmath}
 \interdisplaylinepenalty=2500
 \usepackage[nocompress]{cite}
@@ -19,6 +18,9 @@
 \usepackage{booktabs}
 \usepackage{hyperref}
 \usepackage{tikz}
+\usetikzlibrary{positioning}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.9}
 \usepackage{cleveref}
 \usepackage{mathtools}
 \usepackage[activate={true,nocompatibility},final,tracking=true,kerning=true,spacing=true,factor=1100,stretch=10,shrink=10]{microtype}
@@ -44,6 +46,12 @@
 \newcommand{\set}[1]{\ensuremath{\{ #1 \}}}
 \newcommand{\setof}[2]{\ensuremath{\{ #1 \mid #2 \}}}
 
+\newcommand{\correctlyresize}[1]{\resizebox{\linewidth}{!}{#1}}
+\newcommand{\inputresize}[1]{\correctlyresize{\input{#1}}}
+
+
+\definecolor{scarletred}{rgb}{0.937,0.161,0.161}
+\definecolor{skyblue}{rgb}{0.447,0.624,0.812}
 \begin{document}
 
 \title{Procreation in Genetic Artificial Neural Networks}
