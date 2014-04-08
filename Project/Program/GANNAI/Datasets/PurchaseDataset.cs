@@ -56,10 +56,16 @@ namespace Datasets {
         int columns = row.Count;
         Line data = new Line();
         MappedDataSet.Add(data);
+        double x = 0;
         
         // outputs
-        for(int i = 17; i < 24; i++)
-          data.AddEntry(new LineEntry(row[i], Double.Parse(row[i]), i));  
+        for(int i = 17; i < 24; i++) {
+          if(Double.TryParse(row[i], out x))
+            data.AddEntry(new LineEntry(row[i], x, i));  
+          else throw new Exception("Was expecting a double, but got " + row[i] + "."
+            + "This was encountered in column " + i + "!"
+            + "The index of the row is: " + DataSet.IndexOf(row));
+        }
           
         // inputs
         data.AddEntry(new LineEntry("day", DayMap(row[3]), 3));
@@ -110,9 +116,10 @@ namespace Datasets {
         return 0.4;
       if(i >= 14 && i < 17)
         return 0.6;
-      if(i >= 17 && i < 8)
+      if(i >= 17 && i < 24 
+        || i >= 0 && i < 8)
         return 0.8;
-      throw new Exception("Range of hour is not correct!");
+      throw new Exception("Range of hour is not correct! Got " + i + " as input..");
     }
     
     private double StateMap(string s) {
