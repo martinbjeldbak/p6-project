@@ -1,0 +1,30 @@
+\begin{tikzpicture}
+  \pgfplotsset{%
+    grid=major,
+    grid style={dashed,gray!30},
+    scale only axis
+  }
+  \begin{axis}[
+      xlabel = {Diversity},
+      ylabel = {Initial Mutation},
+      axis y line* = left,
+      %x tick label style = {rotate=90, anchor=east}
+  ]
+  \addplot[color=scarletred]
+    table[col sep=comma, x index=1, y index=0] {data/initial_mutation_average.csv};\label{Mutation}
+\end{axis}
+\begin{axis}[
+    ylabel         = {Initial Similarity},
+    axis y line*   = right,
+    hide x axis,
+    legend columns=2,
+    legend style={%
+      at={(1,1.1)},
+      anchor=north east
+    }
+  ]
+  \addlegendimage{/pgfplots/refstyle=Mutation}\addlegendentry{Mutation}
+  \addplot[color=skyblue]
+  table[col sep=comma, x index=1, y index=0] {data/initial_similarity_average.csv}; \addlegendentry{Similarity}
+\end{axis}
+\end{tikzpicture}
