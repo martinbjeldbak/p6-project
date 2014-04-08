@@ -1,0 +1,31 @@
+\documentclass{standalone}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.9}
+\definecolor{scarletred}{rgb}{0.937,0.161,0.161}
+\definecolor{skyblue}{rgb}{0.447,0.624,0.812}
+\begin{document}
+\begin{tikzpicture}
+  \pgfplotsset{%
+    grid=major,
+    grid style={dashed,gray!30}
+  }
+  \begin{axis}[
+      xlabel = {Diversity},
+      ylabel = {Initial Mutation},
+      axis y line* = left,
+      %x tick label style = {rotate=90, anchor=east}
+  ]
+  \addplot[smooth, no markers, color=scarletred]
+    table[col sep=comma, x index=1, y index=0] {initial_mutation_average.csv};\label{Mutation}
+\end{axis}
+\begin{axis}[
+    ylabel         = {Initial Similarity},
+    hide x axis,
+    axis y line*   = right,
+  ]
+  \addlegendimage{/pgfplots/refstyle=Mutation}\addlegendentry{Mutation}
+  \addplot[smooth, no markers, color=skyblue]
+  table[col sep=comma, x index=1, y index=0] {initial_similarity_average.csv}; \addlegendentry{Similarity}
+\end{axis}
+\end{tikzpicture}
+\end{document}
