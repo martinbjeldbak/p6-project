@@ -11,7 +11,7 @@ namespace Datasets {
       CreateMappedDataset();
     }
 
-    private double OutputMap(string c){
+    private double InputMap(string c){
       string negative = "N";
       string average = "A";
       string positive = "P";
@@ -32,7 +32,7 @@ namespace Datasets {
           , negative, average, positive, C));
     }
     
-    private double InputMap(string c){
+    private double OutputMap(string c){
       string NB = "NB";
       string B = "B";
       double nb = 0.0;
@@ -75,16 +75,16 @@ namespace Datasets {
         Line data = new Line();
         MappedDataSet.Add(data);
         
-        data.AddEntry(new LineEntry(row[6], InputMap(row[6]), 6));
-        
         for(int i = 0; i < columns - 1; i++) {
           if(i > 5)
             throw new Exception("The column is out of bounds. "
-            + "The bankruptcy dataset contains " + 6 + " input columns. "
+            + "The bankruptcy dataset contains 5 input columns. "
             + "Tried to access the " + i + "th column!");
           else
-            data.AddEntry(new LineEntry("column " + i, OutputMap(row[i]), i));
+            data.AddEntry(new LineEntry("column " + i, InputMap(row[i]), i));
         }
+        
+        data.AddEntry(new LineEntry(row[6], OutputMap(row[6]), 6));
       }
     }
 

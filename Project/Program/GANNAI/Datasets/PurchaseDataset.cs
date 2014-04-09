@@ -58,15 +58,6 @@ namespace Datasets {
         MappedDataSet.Add(data);
         double x = 0;
         
-        // outputs
-        for(int i = 17; i < 24; i++) {
-          if(Double.TryParse(row[i], out x))
-            data.AddEntry(new LineEntry(row[i], x, i));  
-          else throw new Exception("Was expecting a double, but got " + row[i] + "."
-            + "This was encountered in column " + i + "!"
-            + "The index of the row is: " + DataSet.IndexOf(row));
-        }
-          
         // inputs
         data.AddEntry(new LineEntry("day", DayMap(row[3]), 3));
         data.AddEntry(new LineEntry("time", TimeMap(row[4]), 4));
@@ -81,6 +72,16 @@ namespace Datasets {
         data.AddEntry(new LineEntry("married couple", MarriedCoupleMap(row[14]), 14));
         data.AddEntry(new LineEntry("C previous", CPreviousMap(row[15]), 15));
         data.AddEntry(new LineEntry("duration previous", DurationPreviousMap(row[16]), 16));
+        
+        // outputs
+        for(int i = 17; i < 24; i++) {
+          if(Double.TryParse(row[i], out x))
+            data.AddEntry(new LineEntry(row[i], x, i));  
+          else throw new Exception("Was expecting a double, but got " + row[i] + "."
+            + "This was encountered in column " + i + "!"
+            + "The index of the row is: " + DataSet.IndexOf(row));
+        }
+        // final output
         data.AddEntry(new LineEntry("cost", CostMap(row[24]), 24));
       }
     }
