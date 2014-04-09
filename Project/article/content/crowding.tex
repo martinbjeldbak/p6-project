@@ -1,33 +1,20 @@
 \subsubsection{Crowding}
-\label{sec:crowding} 
-A simple way to compose the $i$'th generation, denoted $G_i$, is by selecting the $n$ best individuals from the union of $G_{i-1}$ and $O_{i-1}$, where $O_{i-1}$ is the offspring produced from $G_{i-1}$ by selecting a number of individuals, where more fit individuals are more likely to be selected.
+Many methods have been proposed to overcome the problem that diversity decreases through generations - these methods include inserting new random individuals into the population (called random immigrants), using complex population structures to lower the gene flow, and the use of special selection procedures\cite{ursem2002diversity}. The latter is known as crowding. 
+How crowding is performed can be described formally by a replacement rule.
+
+\subsubsection{Replacement rule}
+A \emph{replacement rule} determines how a number of individuals that compete against each other are replaced by only a subset of themselves, e.g. when the individuals of the $i$'th generation $G_i$ and their offspring $O_i$ compete to be selected for the next generation $G_{i+1}$.
+A commonly used replacement rule is to make $G_i$ contain the $n$ most fit individuals from $G_{i-1} \cup O_{i-1}$, where $|G_x| = n$ for all $x$\cite{masterThesisGANN}. We will refer to this as the naive replacement rule.
 It is easy to see that this method causes a low diversity over time - since the best individuals are more likely to be selected for procreation, much of the offspring will have similar properties that yields a high fitness value and thus be a part of the next generation just like their parents. Now the chance is even greater that the same properties will be spread out even further in the next generation.
 
-Many methods have been proposed to overcome the problem that diversity decreases through generations - these methods include inserting new random individuals into the population (called random immigrants), removing a number of individuals from the population, using complex population structures to lower the gene flow, and the use of special selection procedures\cite{ursem2002diversity}. The latter is known as crowding. 
-An example of crowding is to dictate that a child only can be added to the population if one of its parents is removed.
-Crowding has been found to work well on test functions as well as other applications\cite{crowding}. 
-
-\subsubsection{Replacement rules}
-A \emph{replacement rule} can be used when two or more individuals are very similar, and one wishes to replace them all by just a single individual. This will decrease the similarity of individuals and thus increase diversity.
-
-An example is the probabilistic crowding replacement rule\cite{Mengshoel_and_Goldberg:1999}
+Another well known replacement rule is the probabilistic crowding replacement rule\cite{Mengshoel_and_Goldberg:1999}
 
 \[p_x = \frac{f(x)}{f(x)+f(y)}\]
 
-where $p_x$ denotes the chance that individual $x$ replaces the similar individuals $\{x, y\}$, $f(x)$ is the fitness of $x$, and $f(y)$ is the fitness value of $y$. This rule can easily be generalized for larger family size. 
-In an attempt to keep a low diversity, the rule can be applied between a two parents and their offspring, to select two individuals that will replace the two parents in the next generation.
+where $p_x$ denotes the chance that individual $x$ replaces the individuals $\{x, y\}$, and $f(i)$ is the fitness of the individual $i$. This rule can easily be generalized for larger family size. 
 
-
-
-
-
-
-
-
-
-
-
-
+The probabilistic crowding replacement rule favours the more fit individuals to be selected.
+A replacement rule can also favour more diverse individuals to be selected, for instance by dictating that for any $a$ individuals that have produced $b$ offspring individuals, we only select $a$ of these $a+b$ individuals for the next generation.
 
 %\paragraph{Roulette wheel selection}
 %Also known as fitness proportionate selection, uses the fitness value of each individual to associate a probability of being selected to procreate. The probabilities are calculated to give the most fit individual the largest probability to be selected. We define $\fit_i$ to be the fitness of individual $i$, and the probability for selection is then calculated by $p_i = \frac{\fit_i}{\Phi}$, where $\Phi = \sum_{j=1}^{I} \fit_j$, and $I$ is the total number of individuals~\cite{tang1996genetic, koza1992genetic}. Using this method, the most fit individuals have the highest probability to be selected, while the least fit individuals have the lowest probability.

@@ -1,9 +1,10 @@
-\section{Diversity-based selection policy}
-Offspring are produced in each iteration of a GA from a generation of individuals, which combined with the existing individuals, must form the next generation according to a selection policy. In some GA implementations, only the offspring is used for the next generation, discarding all individuals of previous generations. Other common implementations form the next generation by selecting the best individuals from both the existing population and the offspring created~\cite{masterThesisGANN}. Such a policy leads to homogeneous individuals and thus a low diversity due to the fact that the same, best individuals will with a large probability be selected as parents.
+\section{A naive replacement rule}
+In common implementations of GA, the next generation $G_{i}$ is made by selecting the best  next generation by selecting the best individuals from both the existing population and the offspring created~. Such a policy leads to homogeneous individuals and thus a low diversity due to the fact that the same, best individuals will with a large probability be selected as parents.
 
-\subsection{Ancestor Elitism Selection Policy}
-Given a generation of individuals $G_k$ and their offspring $O_k$, AESP creates the next generation, $G_{k+1}$, as shown in \cref{alg:aesp}.
+\subsection{Ancestor Elitism Replacement Rule}
+Given a generation of individuals $G_k$ and their offspring $O_k$, AERR dictates that the next generation, $G_{k+1}$, is created as shown in \cref{alg:aesp}.
 %
 \input{floats/aesp}
 %
 In the algorithm, $i.\phi$ denotes the fitness of the individual $i$, $i.p_j$ denotes the $j$th parent of $i$, and $\rho$ denotes a random immigrant, which is a newly created individual with a random chromosome.
+Briefly explained, any individual from the offspring that has only a single parent will replace that parent only if it is more fit than its parent. If it has two parents and is more fit than both of them, it will replace them both by itself and a random immigrant.
