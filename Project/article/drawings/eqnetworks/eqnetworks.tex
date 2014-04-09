@@ -1,13 +1,9 @@
-\documentclass{standalone}
-\usepackage{tikz}
-\usetikzlibrary{positioning}
-\begin{document}
-\tikzset{%
-  neuron/.style={
-    circle, draw, minimum size=1cm
-  }
-}
-\begin{tikzpicture}[x=1.5cm, y=1.5cm, >=stealth, shorten >=1pt]
+\begin{tikzpicture}
+  [x=1.5cm, y=1.5cm, >=stealth, shorten >=1pt,
+    neuron/.style={
+      circle, draw, minimum size=1cm
+    }
+  ]
   %left network
   \node[neuron, xshift=1.0cm]                (1i1){};
   \node[neuron, yshift=-1.5cm]               (1h1) {};
@@ -28,4 +24,3 @@
 
   \node[yshift=-1.5cm, xshift=4.5cm] () {$\mathtt{0010}\; \mathtt{0100}\; \mathtt{0011}\; \mathtt{0111}$};
 \end{tikzpicture}
-\end{document}

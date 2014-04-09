@@ -147,7 +147,7 @@ namespace GANNAIUI {
     }
 
     private void bankruptcyRadioButton_CheckedChanged(object sender, EventArgs e) {
-        game = new Bankruptcy();
+      game = new Bankruptcy();
         GameChanged();
     }
   }
