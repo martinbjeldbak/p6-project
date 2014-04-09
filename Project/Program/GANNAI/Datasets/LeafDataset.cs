@@ -50,7 +50,7 @@ namespace Datasets {
         for(int i = 2; i < columns; i++) {
           if(i > 15)
             throw new Exception("The column is out of bounds. "
-              + "The leaf dataset contains " + 16 + " columns. "
+              + "The leaf dataset contains 15 input columns. "
               + "Tried to access the " + i + "th column!");
           else
             data.AddEntry(new LineEntry("column " + i, Double.Parse(row[i], CultureInfo.InvariantCulture), i));
