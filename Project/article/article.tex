@@ -46,8 +46,9 @@
 \newcommand{\set}[1]{\ensuremath{\{ #1 \}}}
 \newcommand{\setof}[2]{\ensuremath{\{ #1 \mid #2 \}}}
 
-\newcommand{\correctlyresize}[1]{\resizebox{\linewidth}{!}{#1}}
-\newcommand{\inputresize}[1]{\correctlyresize{\input{#1}}}
+\newcommand{\correctlyresize}[2]{\resizebox{#1}{!}{#2}}
+\newcommand{\inputresize}[1]{\correctlyresize{\linewidth}{\input{#1}}}
+\newcommand{\inputresizeto}[2]{\correctlyresize{#1}{\input{#2}}}
 
 
 \definecolor{scarletred}{rgb}{0.937,0.161,0.161}
