@@ -13,6 +13,8 @@
             this.IncomeRadioButton = new System.Windows.Forms.RadioButton();
             this.goButton = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.purchaseRadioButton = new System.Windows.Forms.RadioButton();
+            this.bankruptcyRadioButton = new System.Windows.Forms.RadioButton();
             this.leafRadioButton = new System.Windows.Forms.RadioButton();
             this.IrisRadioButton = new System.Windows.Forms.RadioButton();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -47,7 +49,6 @@
             this.textBox_populationSize = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
-            this.bankruptcyRadioButton = new System.Windows.Forms.RadioButton();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -57,7 +58,7 @@
             // 
             this.SnakeRadioButton.AutoSize = true;
             this.SnakeRadioButton.Checked = true;
-            this.SnakeRadioButton.Location = new System.Drawing.Point(42, 29);
+            this.SnakeRadioButton.Location = new System.Drawing.Point(42, 22);
             this.SnakeRadioButton.Name = "SnakeRadioButton";
             this.SnakeRadioButton.Size = new System.Drawing.Size(56, 17);
             this.SnakeRadioButton.TabIndex = 0;
@@ -69,7 +70,7 @@
             // FallingStarsRadioButton
             // 
             this.FallingStarsRadioButton.AutoSize = true;
-            this.FallingStarsRadioButton.Location = new System.Drawing.Point(152, 29);
+            this.FallingStarsRadioButton.Location = new System.Drawing.Point(152, 22);
             this.FallingStarsRadioButton.Name = "FallingStarsRadioButton";
             this.FallingStarsRadioButton.Size = new System.Drawing.Size(82, 17);
             this.FallingStarsRadioButton.TabIndex = 1;
@@ -80,7 +81,7 @@
             // IncomeRadioButton
             // 
             this.IncomeRadioButton.AutoSize = true;
-            this.IncomeRadioButton.Location = new System.Drawing.Point(290, 29);
+            this.IncomeRadioButton.Location = new System.Drawing.Point(290, 22);
             this.IncomeRadioButton.Name = "IncomeRadioButton";
             this.IncomeRadioButton.Size = new System.Drawing.Size(60, 17);
             this.IncomeRadioButton.TabIndex = 2;
@@ -100,6 +101,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.purchaseRadioButton);
             this.groupBox1.Controls.Add(this.bankruptcyRadioButton);
             this.groupBox1.Controls.Add(this.leafRadioButton);
             this.groupBox1.Controls.Add(this.IrisRadioButton);
@@ -113,10 +115,32 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Select game";
             // 
+            // purchaseRadioButton
+            // 
+            this.purchaseRadioButton.AutoSize = true;
+            this.purchaseRadioButton.Location = new System.Drawing.Point(42, 68);
+            this.purchaseRadioButton.Name = "purchaseRadioButton";
+            this.purchaseRadioButton.Size = new System.Drawing.Size(70, 17);
+            this.purchaseRadioButton.TabIndex = 6;
+            this.purchaseRadioButton.Text = "Purchase";
+            this.purchaseRadioButton.UseVisualStyleBackColor = true;
+            this.purchaseRadioButton.CheckedChanged += new System.EventHandler(this.purchaseRadioButton_CheckedChanged);
+            // 
+            // bankruptcyRadioButton
+            // 
+            this.bankruptcyRadioButton.AutoSize = true;
+            this.bankruptcyRadioButton.Location = new System.Drawing.Point(290, 45);
+            this.bankruptcyRadioButton.Name = "bankruptcyRadioButton";
+            this.bankruptcyRadioButton.Size = new System.Drawing.Size(79, 17);
+            this.bankruptcyRadioButton.TabIndex = 5;
+            this.bankruptcyRadioButton.Text = "Bankruptcy";
+            this.bankruptcyRadioButton.UseVisualStyleBackColor = true;
+            this.bankruptcyRadioButton.CheckedChanged += new System.EventHandler(this.bankruptcyRadioButton_CheckedChanged);
+            // 
             // leafRadioButton
             // 
             this.leafRadioButton.AutoSize = true;
-            this.leafRadioButton.Location = new System.Drawing.Point(152, 67);
+            this.leafRadioButton.Location = new System.Drawing.Point(152, 45);
             this.leafRadioButton.Name = "leafRadioButton";
             this.leafRadioButton.Size = new System.Drawing.Size(46, 17);
             this.leafRadioButton.TabIndex = 4;
@@ -127,7 +151,7 @@
             // IrisRadioButton
             // 
             this.IrisRadioButton.AutoSize = true;
-            this.IrisRadioButton.Location = new System.Drawing.Point(42, 67);
+            this.IrisRadioButton.Location = new System.Drawing.Point(42, 45);
             this.IrisRadioButton.Name = "IrisRadioButton";
             this.IrisRadioButton.Size = new System.Drawing.Size(38, 17);
             this.IrisRadioButton.TabIndex = 3;
@@ -436,17 +460,6 @@
             this.progressBar1.Step = 1;
             this.progressBar1.TabIndex = 31;
             // 
-            // bankruptcyRadioButton
-            // 
-            this.bankruptcyRadioButton.AutoSize = true;
-            this.bankruptcyRadioButton.Location = new System.Drawing.Point(290, 67);
-            this.bankruptcyRadioButton.Name = "bankruptcyRadioButton";
-            this.bankruptcyRadioButton.Size = new System.Drawing.Size(79, 17);
-            this.bankruptcyRadioButton.TabIndex = 5;
-            this.bankruptcyRadioButton.Text = "Bankruptcy";
-            this.bankruptcyRadioButton.UseVisualStyleBackColor = true;
-            this.bankruptcyRadioButton.CheckedChanged += new System.EventHandler(this.bankruptcyRadioButton_CheckedChanged);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -518,6 +531,7 @@
     private System.Windows.Forms.Label label12;
     private System.Windows.Forms.RadioButton leafRadioButton;
     private System.Windows.Forms.RadioButton bankruptcyRadioButton;
+    private System.Windows.Forms.RadioButton purchaseRadioButton;
   }
 }
 
