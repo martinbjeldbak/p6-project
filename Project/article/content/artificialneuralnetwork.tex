@@ -2,7 +2,7 @@
 An artificial neural network is a graph structure that, from the outside, can be seen as a black box, that given the values $x_1, x_2, \dots, x_n$ outputs the values $y_1, y_2, \dots, y_m$. With the right internal structure, a neural network can be used for a variety of purposes, e.g.\ face recognition, where the intensities of different pixels in an image are used as input, and a single output value $y_1$ is produced, where $y_1 = 1$ if the image was of a face and $0$ if not. We now describe the structure and inner workings of neural networks to understand how these output values are calculated based on input values.
 
 \subsubsection{Neurons}
-Nodes in the graph of a neural network are called neurons. Three classes of neurons exist: input, hidden, and output. Input neurons receive $x_1, x_2, \dots, x_n$ and output the same value. Hidden and output neurons take a number of values as input from edges exiting other neurons, applies a weight to each value, sums them, then applies a function to produce a single output value. The function applied is called the transfer function, and is the same for all hidden and output neurons in the network. This is recursively expressed by 
+Nodes in the graph of a neural network are called neurons. Three classes of neurons exist: input, hidden, and output. Input neurons receive $x_1, x_2, \dots, x_n$ and forward the same value. Hidden and output neurons take a number of values as input from edges exiting other neurons, applies a weight to each value, sums them, then applies a function to produce a single output value. The function applied is called the transfer function, and is the same for all hidden and output neurons in the network. This is recursively expressed by 
 % Note: bias/threshold is not defined below, add if needed
 \begin{equation*}\label{eq:weightcalc}
   y_i =
@@ -12,13 +12,13 @@ Nodes in the graph of a neural network are called neurons. Three classes of neur
   \end{cases}
 \end{equation*}
 %
-where $x_i$ is the input to input neuron $i$, $n$ is the amount of neurons, $y_i$ is the output value of neuron $i$, $w_{ji}$ is the weight of the edge from neuron $j$ to $i$ ($0$ if no connection exists), $y_j$ is the output of neuron $j$, and $\theta$ is the transfer function, usually defined to be the sigmoid function taking the form
+where $x_i$ is the input to input neuron $i$, $n$ is the amount of neurons, $y_i$ is the output value of neuron $i$, $w_{ji}$ is the weight of the edge from neuron $j$ to $i$ ($0$ if no connection exists), $y_j$ is the output of neuron $j$, and $\theta$ is the transfer function, usually defined to be the sigmoid function, taking the form
 %
 \begin{equation*}
   \theta(t) = \frac{1}{1+e^{-t}}
 \end{equation*}
 %
-In a feedforward network, neurons are placed in one or more layers in an acyclic graph structure, where each neuron in layer $i$ is connected to every neuron in layer $i + 1$. The value output by the last layer, or the output layer, becomes the output of the neural network. \Cref{fig:ann} illustrates the generic graph structure of a feedforward neural network with a single hidden layer.
+In a feedforward network, neurons are placed in one or more layers in an acyclic directed graph structure, where each neuron in layer $i$ is connected to every neuron in layer $i + 1$. The value output by the last layer, or the output layer, becomes the output of the neural network. \Cref{fig:ann} illustrates the generic graph structure of a feedforward neural network with a single hidden layer.
 %
 \begin{figure}[htpb]
   \centering
@@ -30,10 +30,6 @@ In a feedforward network, neurons are placed in one or more layers in an acyclic
 \subsubsection{Training a Neural Network}
 Any applica\-tion of a neural network requires a suitable number of layers, neurons, and weights between neurons, to adequately solve a given problem. How many hidden neurons and layers to have is a highly debated subject, see \cite{sarle1997}.
 
-The weights on edges connecting neurons are decided by a process called training. 
-A well known training algorithm called backpropagation, requires that for each input to the neural network, the correct output is already known\cite{backpropagation}. This kind of learning is called supervised learning. For the application of face recognition, this means that the pictures used for training, each has a predicate indicating whether or not it is a picture of a face.
+The weights on edges connecting neurons are decided by a process called training.  A well known training algorithm called backpropagation, requires that for each input to the neural network, the correct output is already known\cite{backpropagation}. This kind of learning is called supervised learning. For the application of face recognition, this means that the pictures used for training, each has a predicate indicating whether or not it is a picture of a face.
 
-Consider training an artificial intelligent (AI) player for a computer game. Given a state of the game, the desired action for the AI player to take might not be known beforehand, because any action may be either good or bad, depending on the actions that follows it. 
-Instead of backpropagation, a genetic algorithm (GA) can be used.
-A GA requires that a fitness can be measured for any neural network.
-For the application of an AI player, the fitness value of a neural network indicates how good the AI player, which behaviour is based on the neural network, performs.
+Consider training an artificial intelligent (AI) player for a computer game. Given a state of the game, the desired action for the AI player to take might not be known beforehand, because any action may be either good or bad, depending on the actions that follow.  Instead of backpropagation, a genetic algorithm (GA) can be used to construct a desired player. A GA requires that fitness can be measured for each individual. For the application of an AI player, the fitness value of a player indicates how well it performs according to some criteria. This can be measured by simulating the player in the game.
