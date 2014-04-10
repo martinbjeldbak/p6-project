@@ -1,6 +1,6 @@
 \subsubsection{Crowding}
 \label{sec:crowding} 
-A simple way to compose the $i$'th generation, denoted $G_i$, is by selecting the $n$ best individuals from the union of $G_{i-1}$ and $O_{i-1}$, where $O_{i-1}$ is the offspring produced from $G_{i-1}$ by selecting a number of individuals, where more fit individuals are more likely to be selected.
+A simple way to compose the $i$th generation, denoted $G_i$, is by selecting the $n$ best individuals from the union of $G_{i-1}$ and $O_{i-1}$, where $O_{i-1}$ contains the offspring produced from $G_{i-1}$. %by selecting a number of individuals, where more fit individuals are more likely to be selected.
 It is easy to see that this method causes a low diversity over time - since the best individuals are more likely to be selected for procreation, much of the offspring will have similar properties that yields a high fitness value and thus be a part of the next generation just like their parents. Now the chance is even greater that the same properties will be spread out even further in the next generation.
 
 Many methods have been proposed to overcome the problem that diversity decreases through generations - these methods include inserting new random individuals into the population (called random immigrants), removing a number of individuals from the population, using complex population structures to lower the gene flow, and the use of special selection procedures\cite{ursem2002diversity}. The latter is known as crowding. 
@@ -15,7 +15,7 @@ An example is the probabilistic crowding replacement rule\cite{Mengshoel_and_Gol
 \[p_x = \frac{f(x)}{f(x)+f(y)}\]
 
 where $p_x$ denotes the chance that individual $x$ replaces the similar individuals $\{x, y\}$, $f(x)$ is the fitness of $x$, and $f(y)$ is the fitness value of $y$. This rule can easily be generalized for larger family size. 
-In an attempt to keep a low diversity, the rule can be applied between a two parents and their offspring, to select two individuals that will replace the two parents in the next generation.
+In an attempt to keep a low diversity, the rule can be applied between two parents and their offspring, to select two individuals that will replace the two parents in the next generation.
 
 
 
