@@ -28,6 +28,7 @@
             this.saveToDBButton = new System.Windows.Forms.CheckBox();
             this.diversityLabel = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.comboBox_replacementRule = new System.Windows.Forms.ComboBox();
             this.label12 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
@@ -48,7 +49,6 @@
             this.textBox_populationSize = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
-            this.comboBox_replacementRule = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -282,6 +282,20 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Settings";
             // 
+            // comboBox_replacementRule
+            // 
+            this.comboBox_replacementRule.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox_replacementRule.FormattingEnabled = true;
+            this.comboBox_replacementRule.Items.AddRange(new object[] {
+            "Naive",
+            "Ancestor Elitism",
+            "Ancestor Elitism Random Immigrants",
+            "Single Parent Elitism"});
+            this.comboBox_replacementRule.Location = new System.Drawing.Point(350, 45);
+            this.comboBox_replacementRule.Name = "comboBox_replacementRule";
+            this.comboBox_replacementRule.Size = new System.Drawing.Size(171, 21);
+            this.comboBox_replacementRule.TabIndex = 49;
+            // 
             // label12
             // 
             this.label12.AutoSize = true;
@@ -451,20 +465,6 @@
             this.progressBar1.Size = new System.Drawing.Size(192, 23);
             this.progressBar1.Step = 1;
             this.progressBar1.TabIndex = 31;
-            // 
-            // comboBox_replacementRule
-            // 
-            this.comboBox_replacementRule.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox_replacementRule.FormattingEnabled = true;
-            this.comboBox_replacementRule.Items.AddRange(new object[] {
-            "Naive",
-            "Ancestor Elitism",
-            "Ancestor Elitism Random Immigrants",
-            "Probabilistic Ancestor Elitism"});
-            this.comboBox_replacementRule.Location = new System.Drawing.Point(350, 45);
-            this.comboBox_replacementRule.Name = "comboBox_replacementRule";
-            this.comboBox_replacementRule.Size = new System.Drawing.Size(171, 21);
-            this.comboBox_replacementRule.TabIndex = 49;
             // 
             // Form1
             // 
