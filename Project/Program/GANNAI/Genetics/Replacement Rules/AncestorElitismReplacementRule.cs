@@ -8,11 +8,11 @@ namespace Genetics {
 
   /// <summary>
   /// Inserts an offspring individual into the population using the following rules:
-  /// If made by two parents, it is inserted if it performs better than both parents.
-  /// In that case, it removes both parents and inserts a random immigrant.
-  /// If made by only a single parent, the parent is just replace by itself.
+  /// If made by two parents, and it performs better than them both, it replaces
+  /// both of them and inserts a random immigrant.
+  /// If made by only a single parent, it replaces that parent if it performs better.
   /// </summary>
-  public class KPOffspringMerger : OffspringMerger {
+  public class AncestorElitismReplacementRule : OffspringMerger {
     public void Merge(SortList<AIPlayer> individuals, List<AIPlayer> offspring, Simulation simulation) {
 
       //If having only single parent, replace it if better

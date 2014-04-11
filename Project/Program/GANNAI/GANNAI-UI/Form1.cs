@@ -48,7 +48,7 @@ namespace GANNAIUI {
             textBox_allowSinglePointCrossover.Text,
             textBox_allowTwoPointCrossover.Text,
             textBox_allowUniformCrossover.Text,
-            textBox_offspringSelectionPolicy.Text,
+            comboBox_replacementRule.SelectedIndex.ToString(),
             textBox_initialMutation.Text,
             textBox_initialSimilarity.Text
         };
@@ -139,6 +139,7 @@ namespace GANNAIUI {
 
     private void Form1_Load(object sender, EventArgs e)
     {
+        comboBox_replacementRule.SelectedIndex = 0;
     }
 
     private void leafRadioButton_CheckedChanged(object sender, EventArgs e) {
