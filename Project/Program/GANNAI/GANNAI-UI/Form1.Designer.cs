@@ -28,7 +28,6 @@
             this.saveToDBButton = new System.Windows.Forms.CheckBox();
             this.diversityLabel = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.textBox_offspringSelectionPolicy = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
@@ -49,6 +48,7 @@
             this.textBox_populationSize = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
+            this.comboBox_replacementRule = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -255,7 +255,7 @@
             // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.textBox_offspringSelectionPolicy);
+            this.groupBox3.Controls.Add(this.comboBox_replacementRule);
             this.groupBox3.Controls.Add(this.label12);
             this.groupBox3.Controls.Add(this.label11);
             this.groupBox3.Controls.Add(this.label7);
@@ -282,27 +282,19 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Settings";
             // 
-            // textBox_offspringSelectionPolicy
-            // 
-            this.textBox_offspringSelectionPolicy.Location = new System.Drawing.Point(381, 45);
-            this.textBox_offspringSelectionPolicy.Name = "textBox_offspringSelectionPolicy";
-            this.textBox_offspringSelectionPolicy.Size = new System.Drawing.Size(100, 20);
-            this.textBox_offspringSelectionPolicy.TabIndex = 48;
-            this.textBox_offspringSelectionPolicy.Text = "0";
-            // 
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(487, 48);
+            this.label12.Location = new System.Drawing.Point(527, 48);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(124, 13);
+            this.label12.Size = new System.Drawing.Size(90, 13);
             this.label12.TabIndex = 47;
-            this.label12.Text = "Offspring selection policy";
+            this.label12.Text = "Replacement rule";
             // 
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(487, 100);
+            this.label11.Location = new System.Drawing.Point(527, 100);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(127, 13);
             this.label11.TabIndex = 45;
@@ -319,9 +311,9 @@
             // 
             // textBox_initialSimilarity
             // 
-            this.textBox_initialSimilarity.Location = new System.Drawing.Point(381, 20);
+            this.textBox_initialSimilarity.Location = new System.Drawing.Point(350, 20);
             this.textBox_initialSimilarity.Name = "textBox_initialSimilarity";
-            this.textBox_initialSimilarity.Size = new System.Drawing.Size(100, 20);
+            this.textBox_initialSimilarity.Size = new System.Drawing.Size(171, 20);
             this.textBox_initialSimilarity.TabIndex = 40;
             this.textBox_initialSimilarity.Text = "0";
             // 
@@ -335,9 +327,9 @@
             // 
             // textBox_allowTwoPointCrossover
             // 
-            this.textBox_allowTwoPointCrossover.Location = new System.Drawing.Point(381, 97);
+            this.textBox_allowTwoPointCrossover.Location = new System.Drawing.Point(350, 97);
             this.textBox_allowTwoPointCrossover.Name = "textBox_allowTwoPointCrossover";
-            this.textBox_allowTwoPointCrossover.Size = new System.Drawing.Size(100, 20);
+            this.textBox_allowTwoPointCrossover.Size = new System.Drawing.Size(171, 20);
             this.textBox_allowTwoPointCrossover.TabIndex = 46;
             this.textBox_allowTwoPointCrossover.Text = "1";
             // 
@@ -353,7 +345,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(487, 23);
+            this.label8.Location = new System.Drawing.Point(527, 23);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(72, 13);
             this.label8.TabIndex = 39;
@@ -362,7 +354,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(487, 74);
+            this.label10.Location = new System.Drawing.Point(527, 74);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(137, 13);
             this.label10.TabIndex = 43;
@@ -387,16 +379,16 @@
             // 
             // textBox_allowUniformCrossover
             // 
-            this.textBox_allowUniformCrossover.Location = new System.Drawing.Point(381, 123);
+            this.textBox_allowUniformCrossover.Location = new System.Drawing.Point(350, 123);
             this.textBox_allowUniformCrossover.Name = "textBox_allowUniformCrossover";
-            this.textBox_allowUniformCrossover.Size = new System.Drawing.Size(100, 20);
+            this.textBox_allowUniformCrossover.Size = new System.Drawing.Size(171, 20);
             this.textBox_allowUniformCrossover.TabIndex = 42;
             this.textBox_allowUniformCrossover.Text = "1";
             // 
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(487, 126);
+            this.label9.Location = new System.Drawing.Point(527, 126);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(118, 13);
             this.label9.TabIndex = 41;
@@ -412,9 +404,9 @@
             // 
             // textBox_allowSinglePointCrossover
             // 
-            this.textBox_allowSinglePointCrossover.Location = new System.Drawing.Point(381, 71);
+            this.textBox_allowSinglePointCrossover.Location = new System.Drawing.Point(350, 71);
             this.textBox_allowSinglePointCrossover.Name = "textBox_allowSinglePointCrossover";
-            this.textBox_allowSinglePointCrossover.Size = new System.Drawing.Size(100, 20);
+            this.textBox_allowSinglePointCrossover.Size = new System.Drawing.Size(171, 20);
             this.textBox_allowSinglePointCrossover.TabIndex = 44;
             this.textBox_allowSinglePointCrossover.Text = "1";
             // 
@@ -459,6 +451,20 @@
             this.progressBar1.Size = new System.Drawing.Size(192, 23);
             this.progressBar1.Step = 1;
             this.progressBar1.TabIndex = 31;
+            // 
+            // comboBox_replacementRule
+            // 
+            this.comboBox_replacementRule.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox_replacementRule.FormattingEnabled = true;
+            this.comboBox_replacementRule.Items.AddRange(new object[] {
+            "Naive",
+            "Ancestor Elitism",
+            "Ancestor Elitism Random Immigrants",
+            "Probabilistic Ancestor Elitism"});
+            this.comboBox_replacementRule.Location = new System.Drawing.Point(350, 45);
+            this.comboBox_replacementRule.Name = "comboBox_replacementRule";
+            this.comboBox_replacementRule.Size = new System.Drawing.Size(171, 21);
+            this.comboBox_replacementRule.TabIndex = 49;
             // 
             // Form1
             // 
@@ -527,11 +533,11 @@
     private System.Windows.Forms.TextBox textBox_populationSize;
     private System.Windows.Forms.Label label3;
     private System.Windows.Forms.ProgressBar progressBar1;
-    private System.Windows.Forms.TextBox textBox_offspringSelectionPolicy;
     private System.Windows.Forms.Label label12;
     private System.Windows.Forms.RadioButton leafRadioButton;
     private System.Windows.Forms.RadioButton bankruptcyRadioButton;
     private System.Windows.Forms.RadioButton purchaseRadioButton;
+    private System.Windows.Forms.ComboBox comboBox_replacementRule;
   }
 }
 

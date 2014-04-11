@@ -6,15 +6,15 @@ using Utility;
 
 namespace Genetics {
 
-  /// <summary>
-  /// Inserts an offspring individual into the population using the following rules:
-  /// If made by two parents, it is inserted if it performs better than both parents.
-  /// In that case, it removes both parents and inserts a random immigrant.
-  /// If made by only a single parent, the parent is just replace by itself.
-  /// Additional, after every iteration, the worst half of the population is removed
-  /// and replaced by random immigrants.
-  /// </summary>
-  public class KPRIOffspringMerger : OffspringMerger {
+    /// <summary>
+    /// Inserts an offspring individual into the population using the following rules:
+    /// If made by two parents, and it performs better than them both, it replaces
+    /// both of them and inserts a random immigrant.
+    /// If made by only a single parent, it replaces that parent if it performs better.
+    /// Additional, after every iteration, the least fit half of the population is removed
+    /// and replaced by random immigrants.
+    /// </summary>
+  public class AncestorElitismRandomImmigrantsReplacementRule : OffspringMerger {
     public void Merge(SortList<AIPlayer> individuals, List<AIPlayer> offspring, Simulation simulation) {
 
       //If having only single parent, replace it if better
