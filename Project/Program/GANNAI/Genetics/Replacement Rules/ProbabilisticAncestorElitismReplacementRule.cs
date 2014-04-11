@@ -8,56 +8,41 @@ namespace Genetics {
 
     /// <summary>
     /// Inserts an offspring individual into the population using the following rules:
-    /// If made by two parents, and with a probability that depends on their average fitness related to
-    /// the fitness of the individual: replace both parents with the individual and insert a random immigrant
-    /// If made by only a single parent, replace it with a probability proportional to their
-    /// relative fitness
+    /// If made from two parents, a random parent is chosen. If the individual is more fit than the chosen parent,
+    /// it replaces the parent.
+    /// If made from only a single parent, it will replace its parent only if it performs better
     /// </summary>
-    public class ProbabilisticAncestorElitismReplacementRule : OffspringMerger {
+    public class SingleParentElitismReplacementRule : OffspringMerger {
         public void Merge(SortList<AIPlayer> individuals, List<AIPlayer> offspring, Simulation simulation) {
-
-            throw new Exception("Only partially implemented, Kent is working on it.");
 
             //If having only single parent, replace it with a probability
             foreach (AIPlayer o in offspring) {
                 if (o.Parent2 == null) {
-                    for (int i = 0; i < individuals.Count; i++) {
-                        if (individuals.Get(i) == o.Parent1) {
-                            if (Utility.RandomNum.RandomDouble() * (o.GetFitness() + individuals.Get(i).GetFitness()) > o.GetFitness()) {
-                                individuals.Remove(individuals.Get(i));
-                                individuals.Add(o);
-                            }
-                        }
+                    if (o.GetFitness() > o.Parent1.GetFitness() && individuals.Contains(o.Parent1))
+                            individuals.Remove(o.Parent1);
+                            individuals.Add(o);
                     }
-                }
                 else {
                     //The offspring were made from 2 parents
-                    //If offspring is better than both parents, replace both parents and add a random AIPlayer
-                    bool betterThanParent1 = false;
-                    bool betterThanParent2 = false;
-                    for (int i = 0; i < individuals.Count; i++) {
-                        if (individuals.Get(i) == o.Parent1 && individuals.Get(i).GetFitness() < o.Parent1.GetFitness())
-                            betterThanParent1 = true;
-                        if (individuals.Get(i) == o.Parent2 && individuals.Get(i).GetFitness() < o.Parent2.GetFitness())
-                            betterThanParent2 = true;
+                    AIPlayer firstPriority = null;
+                    AIPlayer secondPriority = null;
+                    if (Utility.RandomNum.RandomInt(0, 2) == 0) {
+                        firstPriority = o.Parent1;
+                        secondPriority = o.Parent2;
                     }
-
-                    //if better than both parents, remove both parents and add a random immigrant
-                    if (betterThanParent1 && betterThanParent2) {
-                        individuals.Remove(o.Parent1);
-                        individuals.Remove(o.Parent2);
+                    else {
+                        firstPriority = o.Parent2;
+                        secondPriority = o.Parent1;
+                    }
+                    if (o.GetFitness() > firstPriority.GetFitness() && individuals.Contains(firstPriority)) {
+                        individuals.Remove(firstPriority);
                         individuals.Add(o);
-                        AIPlayer randomImmagrant = new AIPlayer(simulation.NeuralNetworkMaker);
-                        randomImmagrant.CalcFitness(simulation.Game);
-                        individuals.Add(randomImmagrant);
+                    }
+                    else if (o.GetFitness() > secondPriority.GetFitness() && individuals.Contains(secondPriority)) {
+                        individuals.Remove(secondPriority);
+                        individuals.Add(o);
                     }
                 }
-            }
-            individuals.Crop(individuals.Count / 2);
-            while (individuals.Count < simulation.PopulationSize) {
-                AIPlayer randomImmagrant = new AIPlayer(simulation.NeuralNetworkMaker);
-                randomImmagrant.CalcFitness(simulation.Game);
-                individuals.Add(randomImmagrant);
             }
         }
     }

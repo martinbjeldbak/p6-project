@@ -101,7 +101,7 @@ namespace Genetics {
         case 0: offspringMerger = new NaiveReplacementRule(); break;
         case 1: offspringMerger = new AncestorElitismReplacementRule(); break;
         case 2: offspringMerger = new AncestorElitismRandomImmigrantsReplacementRule(); break;
-        case 3: offspringMerger = new ProbabilisticAncestorElitismReplacementRule(); break;
+        case 3: offspringMerger = new SingleParentElitismReplacementRule(); break;
       default: throw new Exception("Wrong offspring merge type: " + ReplacementRule);
       }
 
