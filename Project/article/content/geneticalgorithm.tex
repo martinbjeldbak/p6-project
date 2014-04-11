@@ -4,10 +4,14 @@ Genetic algorithms are optimization algorithms which imitate the process of natu
 \subsubsection{Individuals and chromosomes}
 Genetic algorithms (GA) maintain a list of \emph{individuals}, which together form a \emph{population}. Each individual represents a possible solution to the optimization problem and has a fitness value, which denotes how adequately the individual can solve the optimization problem. An individual is encoded by its \emph{chromosome}, which is typically represented by a bit string. Therefore, using a GA requires a way of decoding an individuals chromosome into a solution to the optimization problem.
 
-The population used by a GA typically has a fixed number of individuals, each initialized with a random chromosome when the GA is run. That is, the bit string representing the chromosome is initialized with random bits. As the GA iterates, new individuals are made by combining and modifying chromosomes from existing individuals of the population. Over time, more fit individuals will replace the less fit individuals, using a replacement policy that aims to maximize the fitness of the entire population. After each iteration of the GA, where a new population is formed, we say that we have another \emph{generation} of individuals.
+The population used by a GA typically has a fixed number of individuals, each initialized with a random chromosome when the GA is run. That is, the bit string representing the chromosome is initialized with random bits. As the GA iterates, new individuals are made by combining and modifying chromosomes from existing individuals of the population. 
+In a steady state GA, some of the new individuals will replace older individuals according to some replacement rule. 
+In contrast, a generational GA will choose a group of new individuals that will form a next generation, and then discard the old generation\cite{fogarty}. 
+We will turn our look to steady state GAs and use the term \emph{generation} $n$ to denote the content of the population after
+$n-1$ iterations of producing offspring and replacing some of the existing individuals by offspring according to a replacement rule.
 
 \subsubsection{Individuals}
-Individuals in GAs have a set of traits and behaviors which define each individual. They can take on any form of data structure, as long as they wholly represent a possible solution to the problem. 
+Individuals in GAs have a set of traits and behaviours which define each individual. They can take on any form of data structure, as long as they wholly represent a possible solution to the problem. 
 
 \input{content/encodingneuralnetwork}
 %\subsubsection{Genes}
