@@ -1,0 +1,29 @@
+\begin{tikzpicture}
+  \pgfplotsset{%
+    grid=major,
+    grid style={dashed,gray!30},
+    scale only axis
+  }
+  \begin{axis}[
+      xlabel= Generation,
+      ylabel = {Average diversity},
+      xmax = 2000,
+      legend columns=3,
+      legend style={%
+        at={(1,1.1)},
+        anchor=north east
+      }
+    ]
+    \addplot[no marks,color=scarletred]
+    table[col sep=comma, x index=0, y index=1] {data/replacement_rule_0_snake.csv};
+    \addlegendentry{Naive}
+
+    \addplot[no marks, color=skyblue]
+    table[col sep=comma, x index=0, y index=1] {data/replacement_rule_2_snake.csv};
+    \addlegendentry{AESP}
+
+    \addplot[no marks]
+    table[col sep=comma, x index=0, y index=1] {data/replacement_rule_3_snake.csv};
+    \addlegendentry{SPE}
+  \end{axis}
+\end{tikzpicture}
