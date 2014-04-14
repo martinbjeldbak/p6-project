@@ -1,6 +1,7 @@
 ﻿using System;
 using MySql.Data.MySqlClient;
 using Utility;
+using System.Text;
 
 namespace Genetics {
   public class ObservationSaver {
@@ -231,6 +232,19 @@ namespace Genetics {
         gameId = int.Parse(dataReader["id"] + "");
         dataReader.Close();
       }
+    }
+
+    public void SaveBestBitstring(bool[] bitstring, double fitness) {
+        query = String.Format("UPDATE gannai.simulation SET best_fitness = '" + fitness.ToString(System.Globalization.CultureInfo.InvariantCulture) +
+            "', best_bitstring = '"+PrintBitstring(bitstring) + "' WHERE id = " + simId);
+        cmd = new MySqlCommand(query, connection);
+        cmd.ExecuteNonQuery();
+    }
+    private string PrintBitstring(bool[] bitstring) {
+        StringBuilder s = new StringBuilder(bitstring.Length);
+        for (int i = 0; i < bitstring.Length; i++)
+            s.Append(bitstring[i] ? "1" : "0");
+        return s.ToString();
     }
   }
 }
