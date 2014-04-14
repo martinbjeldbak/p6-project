@@ -12,7 +12,7 @@ namespace Genetics {
   /// both of them and inserts a random immigrant.
   /// If made by only a single parent, it replaces that parent if it performs better.
   /// </summary>
-  public class AncestorElitismReplacementRule : OffspringMerger {
+  public class AncestorElitismReplacementRule : ReplacementRule {
     public void Merge(SortList<AIPlayer> individuals, List<AIPlayer> offspring, Simulation simulation) {
 
       //If having only single parent, replace it if better
