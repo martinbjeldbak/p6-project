@@ -9,7 +9,7 @@ namespace Genetics {
 
     public Population Population { get; private set; }
 
-    public readonly OffspringMerger offspringMerger;
+    public readonly ReplacementRule offspringMerger;
     public readonly int ReplacementRule;
 
     /// <summary>
@@ -102,6 +102,7 @@ namespace Genetics {
         case 1: offspringMerger = new AncestorElitismReplacementRule(); break;
         case 2: offspringMerger = new AncestorElitismRandomImmigrantsReplacementRule(); break;
         case 3: offspringMerger = new SingleParentElitismReplacementRule(); break;
+        case 4: offspringMerger = new InProgressReplacementRule(); break;
       default: throw new Exception("Wrong offspring merge type: " + ReplacementRule);
       }
 

@@ -13,6 +13,7 @@ namespace Games {
     Random random;
     bool alive;
     AIPlayer aiplayer;
+    int tailX, tailY;
     int snakeX, snakeY;
     int foodX, foodY;
     int score;
@@ -20,10 +21,14 @@ namespace Games {
     int mapWidth, mapHeight;
     int ticks;
     int lastDir;
+    bool snakeGrows;
+    Queue<int> moveHistory;
+    int startLength;
 
     public SnakeGame() {
       mapWidth = 10;
       mapHeight = 10;
+      moveHistory = new Queue<int>();
       RestartGame();
     }
 
@@ -33,16 +38,20 @@ namespace Games {
 
     private void RestartGame() {
       random = new Random(242); //use the same seed to play the same map over and over
+      moveHistory.Clear();
       ticks = 0;
       alive = true;
       map = new int[mapWidth, mapHeight];
-  
       snakeX = 0;
       snakeY = 0;
+      tailX = snakeX;
+      tailY = snakeY;
+      startLength = 5;
       foodX = 2;
       foodY = 6;
       score = 0;
       lastDir = 0;
+      snakeGrows = true;
     }
 
     void Tick() {
@@ -50,14 +59,15 @@ namespace Games {
 
       int action = GetAIPlayerOutput();
       MoveSnake(action);
-      PickUpFood();
-      DecreaseSnakeLength();
-
+      PickUpFood(); //can set snakeGrows = true
+      if (!snakeGrows)
+          DecreaseSnakeLength();
+      if (ticks >= startLength)
+          snakeGrows = false;
     }
 
     private int GetAIPlayerOutput() {
       //calc inputs
-
       int right = snakeX == mapWidth - 1 ? -1 : (map[snakeX + 1, snakeY] == 0 ? 1 : -1);
       int left = snakeX == 0 ? -1 : (map[snakeX - 1, snakeY] == 0 ? 1 : -1);
       int bottom = snakeY == mapHeight - 1 ? -1 : (map[snakeX, snakeY + 1] == 0 ? 1 : -1);
@@ -66,13 +76,13 @@ namespace Games {
       int foodVertical = foodY == snakeY ? 0 : (foodY > snakeY ? 1 : -1);
       int foodHorizontal = foodX == snakeX ? 0 : (foodX > snakeX ? 1 : -1);
 
-
       return aiplayer.GetStrongestOutputIndex( new double[]{right, left, top, bottom, foodHorizontal, foodVertical});
     }
 
     private void PickUpFood() {
       if (snakeX == foodX && snakeY == foodY) {
         score++;
+        snakeGrows = true;
         while (map[foodX, foodY] != 0) {
           foodX = random.Next(0, mapWidth);
           foodY = random.Next(0, mapHeight);
@@ -81,10 +91,10 @@ namespace Games {
     }
 
     private void DecreaseSnakeLength() {
-      for (int i = 0; i < mapWidth; i++)
-        for (int p = 0; p < mapHeight; p++)
-          if (map[i, p] > 0)
-            map[i, p]--;
+        map[tailX, tailY] = 0;
+        int t = moveHistory.Dequeue();
+        tailX += t == 0 ? 1 : (t == 2 ? -1 : 0);
+        tailY += t == 3 ? 1 : (t == 1 ? -1 : 0);
     }
 
     private void MoveSnake(int action) {
@@ -116,42 +126,46 @@ namespace Games {
     }
 
     private void MoveRight() {
+      moveHistory.Enqueue(0);
       if (snakeX == mapWidth - 1 || map[snakeX + 1, snakeY] != 0) {
         alive = false;
       }
       else {
         snakeX++;
-        map[snakeX, snakeY] = score + 5;
+        map[snakeX, snakeY] = 1;
         lastDir = 0;
       }
     }
     private void MoveLeft() {
+      moveHistory.Enqueue(2);
       if (snakeX == 0 || map[snakeX - 1, snakeY] != 0) {
         alive = false;
       }
       else {
         snakeX--;
-        map[snakeX, snakeY] = score + 5;
+        map[snakeX, snakeY] = 1;
         lastDir = 2;
       }
     }
     private void MoveUp() {
+      moveHistory.Enqueue(1);
       if (snakeY == 0 || map[snakeX, snakeY - 1] != 0) {
         alive = false;
       }
       else {
         snakeY--;
-        map[snakeX, snakeY] = score + 5;
+        map[snakeX, snakeY] = 1;
         lastDir = 1;
       }
     }
     private void MoveDown() {
+      moveHistory.Enqueue(3);
       if (snakeY == mapHeight - 1 || map[snakeX, snakeY + 1] != 0) {
         alive = false;
       }
       else {
         snakeY++;
-        map[snakeX, snakeY] = score + 5;
+        map[snakeX, snakeY] = 1;
         lastDir = 3;
       }
     }
