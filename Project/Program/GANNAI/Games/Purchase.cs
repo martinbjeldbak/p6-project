@@ -74,7 +74,7 @@ namespace Games {
         });
          
         //int sevenOutputsMustCorrespond = 0;
-        for(int i = 17, j = 0; i < 24; i++, j++) {
+        for(int i = 15, j = 0; i < 21; i++, j++) {
           if(outputs[j] == row.entries[i].Value)
             fitness += 0.143;
           //  sevenOutputsMustCorrespond++;
