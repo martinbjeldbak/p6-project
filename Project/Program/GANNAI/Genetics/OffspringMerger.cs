@@ -6,7 +6,7 @@ using Utility;
 
 namespace Genetics {
 
-  public interface OffspringMerger {
+  public interface ReplacementRule {
     /// <summary>
     /// Merges the offspring into the population using a particular technique for choosing which
     /// individuals to replace. The population list will be altered by calling this method. 

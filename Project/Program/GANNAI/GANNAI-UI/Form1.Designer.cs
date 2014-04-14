@@ -290,7 +290,8 @@
             "Naive",
             "Ancestor Elitism",
             "Ancestor Elitism Random Immigrants",
-            "Single Parent Elitism"});
+            "Single Parent Elitism",
+            "In Progress"});
             this.comboBox_replacementRule.Location = new System.Drawing.Point(350, 45);
             this.comboBox_replacementRule.Name = "comboBox_replacementRule";
             this.comboBox_replacementRule.Size = new System.Drawing.Size(171, 21);
