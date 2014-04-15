@@ -1,10 +1,5 @@
-\section{A naive replacement rule}
-In common implementations of GA, the next generation $G_{i}$ is made by selecting the best  next generation by selecting the best individuals from both the existing population and the offspring created. Such a policy leads to homogeneous individuals and thus a low diversity due to the fact that the same, best individuals will with a large probability be selected as parents.
-
-\todo{I think we should drop this section title and use the subsection below as the section, then write why we develop this: to combat the problems discussed in 1.3 Measuring diversity --Martin}
-
-\subsection{Ancestor Elitism Replacement Rule}
-Given a generation of individuals, $G_k$, and their offspring, $O_k$, AERR dictates that the next generation, $G_{k+1}$, is created as shown in \cref{alg:aesp}.
+\section{Ancestor Elitism Replacement Rule}
+In this section, we develop a new replacement rule, the Ancestor Elitism Replacement Rule (AERR). Given a generation of individuals, $G_k$, and their offspring, $O_k$, AERR dictates how the next generation $G_{k+1}$, is created. This procedure is shown in \cref{alg:aesp}.
 %
 \input{floats/aesp}
 %
