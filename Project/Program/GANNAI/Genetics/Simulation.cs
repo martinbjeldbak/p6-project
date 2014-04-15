@@ -9,8 +9,8 @@ namespace Genetics {
 
     public Population Population { get; private set; }
 
-    public readonly OffspringMerger offspringMerger;
-    public readonly int OffspringSelectionPolicy;
+    public readonly ReplacementRule offspringMerger;
+    public readonly int ReplacementRule;
 
     /// <summary>
     /// The number of individuals in a population
@@ -85,7 +85,7 @@ namespace Genetics {
       AllowSinglePointCrossover = allowSinglePointCrossover == 1 ? true : false;
       AllowTwoPointCrossover = allowTwoPointCrossover == 1 ? true : false;
       AllowUniformCrossover = allowUniformCrossover == 1 ? true : false;
-      OffspringSelectionPolicy = offspringSelectionPolicy;
+      ReplacementRule = offspringSelectionPolicy;
       InitialMutation = initialMutation;
       InitialSimilarity = initialSimilarity;
 
@@ -97,11 +97,13 @@ namespace Genetics {
       if (AllowUniformCrossover)
         allowedCrossoverMethods.Add(new UniformCrossover());
 
-      switch (OffspringSelectionPolicy) {
-        case 0: offspringMerger = new SimpleOffspringMerger(); break;
-        case 1: offspringMerger = new KPOffspringMerger(); break;
-        case 2: offspringMerger = new KPRIOffspringMerger(); break;
-      default: throw new Exception("Wrong offspring merge type: " + OffspringSelectionPolicy);
+      switch (ReplacementRule) {
+        case 0: offspringMerger = new NaiveReplacementRule(); break;
+        case 1: offspringMerger = new AncestorElitismReplacementRule(); break;
+        case 2: offspringMerger = new AncestorElitismRandomImmigrantsReplacementRule(); break;
+        case 3: offspringMerger = new SingleParentElitismReplacementRule(); break;
+        case 4: offspringMerger = new InProgressReplacementRule(); break;
+      default: throw new Exception("Wrong offspring merge type: " + ReplacementRule);
       }
 
       Game = game;

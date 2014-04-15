@@ -1,6 +1,7 @@
 ﻿using System;
 using MySql.Data.MySqlClient;
 using Utility;
+using System.Text;
 
 namespace Genetics {
   public class ObservationSaver {
@@ -27,7 +28,7 @@ namespace Genetics {
     }
 
     ~ObservationSaver() {
-      Log.Info("Destructing DB object, closing connection");
+      //Log.Info("Destructing DB object, closing connection");
       this.CloseDBConnection();
     }
 
@@ -35,19 +36,19 @@ namespace Genetics {
     /// Initialize the simulation instance in the Database.
     /// </summary>
     private void Initialize() {
-      Log.Info("Opening DB connection...");
+      //Log.Info("Opening DB connection...");
       this.OpenDBConnection();
 
-      Log.Info("Initializing iteration.");
-      Log.Info("Finding corresponding game...");
+      //Log.Info("Initializing iteration.");
+      //Log.Info("Finding corresponding game...");
       FindGameInDB(si.Game.Name());
-      Log.Info("Game id retrieved!");
+      //Log.Info("Game id retrieved!");
 
-      Log.Info("Inserting initial data...");
+      //Log.Info("Inserting initial data...");
       InsertConfigurationInDB(si);
-      Log.Info("Initial configuration, simulation, and population data inserted!");
+      //Log.Info("Initial configuration, simulation, and population data inserted!");
 
-      //Log.Info("Closing DB connection...");
+      ////Log.Info("Closing DB connection...");
       //this.CloseDBConnection();
     }
 
@@ -58,13 +59,13 @@ namespace Genetics {
       catch(MySqlException e) {
         switch(e.Number) {
         case 0: // Cannot connect to server.
-          Log.Error(e.Message);
+          //Log.Error(e.Message);
           throw new Exception(e.Message);
         case 1045:// Invalid username/password.
-          Log.Error(e.Message);
+          //Log.Error(e.Message);
           throw new Exception(e.Message);
         default:
-          Log.Error("Something unexpected went wrong while connecting to DB.");
+          //Log.Error("Something unexpected went wrong while connecting to DB.");
           throw new Exception("Something unexpected went wrong" +
           " while connecting to DB.");
         }
@@ -76,7 +77,7 @@ namespace Genetics {
         connection.Close();
       }
       catch(MySqlException e) {
-        Log.Error(e.Message);
+        //Log.Error(e.Message);
         throw new Exception(e.Message);
       }
     }
@@ -85,14 +86,14 @@ namespace Genetics {
     /// Saves the data of the Population.
     /// </summary>
     public void SavePopulation() {
-      //Log.Info("Opening DB connection...");
+      ////Log.Info("Opening DB connection...");
       //this.OpenDBConnection();
 
-      Log.Info("Inserting new population data...");
+      //Log.Info("Inserting new population data...");
       InsertPopulationInDB();
-      Log.Info("Population data inserted!");
+      //Log.Info("Population data inserted!");
 
-      //Log.Info("Closing DB connection...");
+      ////Log.Info("Closing DB connection...");
       //this.CloseDBConnection();
     }
 
@@ -104,9 +105,9 @@ namespace Genetics {
       query = String.Format("INSERT INTO gannai.simulation (configuration_id, started_at)"
         + " VALUES('{0}', '{1}')", confId, started_at);
       cmd = new MySqlCommand(query, connection);
-      Log.Info("Inserting simulation into database.");
+      //Log.Info("Inserting simulation into database.");
       cmd.ExecuteNonQuery();
-      Log.Info("Retrieving simulation id...");
+      //Log.Info("Retrieving simulation id...");
       simId = cmd.LastInsertedId;
     }
 
@@ -122,7 +123,7 @@ namespace Genetics {
       int uniform = si.AllowUniformCrossover ? 1 : 0;
       int singlepoint = si.AllowSinglePointCrossover ? 1 : 0;
       int twopoint = si.AllowTwoPointCrossover ? 1 : 0;
-      int mergetype = si.OffspringSelectionPolicy;
+      int mergetype = si.ReplacementRule;
       string initmu = si.InitialMutation.ToString(System.Globalization.CultureInfo.InvariantCulture);
       string initsim = si.InitialSimilarity.ToString(System.Globalization.CultureInfo.InvariantCulture);
 
@@ -136,8 +137,8 @@ namespace Genetics {
       int dbConfCount = int.Parse(cmd.ExecuteScalar() + "");
 
       if(dbConfCount == 1) {
-        Log.Info("Configuration already in database..");
-        Log.Info("Reusing configuration id..");
+        //Log.Info("Configuration already in database..");
+        //Log.Info("Reusing configuration id..");
         query = String.Format("SELECT id FROM gannai.configuration WHERE game_id = '{0}' "
         + "AND population_size = '{1}' AND mutation_rate = '{2}' AND crossover_breed_amount = '{3}' "
         + "AND mutate_after_crossover_amount = '{4}' AND uniform_crossover = '{5}' "
@@ -149,11 +150,11 @@ namespace Genetics {
         dataReader = cmd.ExecuteReader();
         dataReader.Read();
         confId = int.Parse(dataReader["id"] + "");
-        Log.Info("Configuration id found: " + confId);
+        //Log.Info("Configuration id found: " + confId);
         dataReader.Close();
       }
       else if(dbConfCount > 1) { //more than one row with same name
-        Log.Error("There is more than one configuration entry of a in the table!");
+        //Log.Error("There is more than one configuration entry of a in the table!");
         throw new Exception("There is more than one configuration entry of a in the table!");
       }
       else {
@@ -165,7 +166,7 @@ namespace Genetics {
 	, gameId, ps, mr, cba, maca, uniform, singlepoint, twopoint, mergetype, initmu, initsim);
         cmd = new MySqlCommand(query, connection);
         cmd.ExecuteNonQuery();
-        Log.Info("Retrieving configuration id...");
+        //Log.Info("Retrieving configuration id...");
         confId = cmd.LastInsertedId;
       }
       InsertSimulationInDB();
@@ -206,7 +207,7 @@ namespace Genetics {
       int dbGameCount = int.Parse(cmd.ExecuteScalar() + "");
 
       if(dbGameCount == 1) {
-        Log.Info("Game found. Retrieving id...");
+        //Log.Info("Game found. Retrieving id...");
         query = "SELECT id FROM gannai.game WHERE name = '" + name + "'";
         cmd = new MySqlCommand(query, connection);
         dataReader = cmd.ExecuteReader();
@@ -215,15 +216,15 @@ namespace Genetics {
         dataReader.Close();
       }
       else if(dbGameCount > 1) { 
-        Log.Info("There is more than one entry of the game in the table!");
+        //Log.Info("There is more than one entry of the game in the table!");
         throw new Exception("There is more than one entry of the game in the table!");
       }
       else {
-        Log.Info("Inserting new game...");
+        //Log.Info("Inserting new game...");
         query = "INSERT INTO gannai.game (name) VALUES('" + name + "')";
         cmd = new MySqlCommand(query, connection);
         cmd.ExecuteNonQuery();
-        Log.Info("New row inserted. Retrieving new id...");
+        //Log.Info("New row inserted. Retrieving new id...");
         query = "SELECT id FROM gannai.game WHERE name = '" + name + "'";
         cmd = new MySqlCommand(query, connection);
         dataReader = cmd.ExecuteReader();
@@ -231,6 +232,19 @@ namespace Genetics {
         gameId = int.Parse(dataReader["id"] + "");
         dataReader.Close();
       }
+    }
+
+    public void SaveBestBitstring(bool[] bitstring, double fitness) {
+        query = String.Format("UPDATE gannai.simulation SET best_fitness = '" + fitness.ToString(System.Globalization.CultureInfo.InvariantCulture) +
+            "', best_bitstring = '"+PrintBitstring(bitstring) + "' WHERE id = " + simId);
+        cmd = new MySqlCommand(query, connection);
+        cmd.ExecuteNonQuery();
+    }
+    private string PrintBitstring(bool[] bitstring) {
+        StringBuilder s = new StringBuilder(bitstring.Length);
+        for (int i = 0; i < bitstring.Length; i++)
+            s.Append(bitstring[i] ? "1" : "0");
+        return s.ToString();
     }
   }
 }
