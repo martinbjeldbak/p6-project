@@ -70,9 +70,11 @@
     <Compile Include="CrossoverMethod.cs" />
     <Compile Include="Neural network makers\LargeNeuralNetworkMaker.cs" />
     <Compile Include="OffspringMerger.cs" />
-    <Compile Include="OffspringMerger\KPRIOffspringMerger.cs" />
-    <Compile Include="OffspringMerger\KPOffspringMerger.cs" />
-    <Compile Include="OffspringMerger\SimpleOffspringMerger.cs" />
+    <Compile Include="Replacement Rules\AncestorElitismRandomImmigrantsReplacementRule.cs" />
+    <Compile Include="Replacement Rules\SingleParentElitismReplacementRule.cs" />
+    <Compile Include="Replacement Rules\InProgressReplacementRule.cs" />
+    <Compile Include="Replacement Rules\AncestorElitismReplacementRule.cs" />
+    <Compile Include="Replacement Rules\NaiveReplacementRule.cs" />
     <Compile Include="Rank methods\HalvingRankMethod.cs" />
     <Compile Include="Rank methods\LinearRankMethod.cs" />
     <Compile Include="RankMethod.cs" />
