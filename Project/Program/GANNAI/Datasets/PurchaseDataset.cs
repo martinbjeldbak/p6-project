@@ -11,7 +11,10 @@ namespace Datasets {
       string csv = Properties.Resources.purchase;
 
       DataSet.AddRange(ParseDataFromString(csv));
+      System.Console.WriteLine("Dataset: " + DataSet.Count);
+      
       CreateMappedDataset();
+      
     }
     
     #region implemented abstract members of Dataset
@@ -52,7 +55,12 @@ namespace Datasets {
     }
 
     protected override void CreateMappedDataset() {
+      int count = 0;
       foreach(List<string> row in DataSet) {
+        count++;
+        if (count % 500 != 0)
+          continue;
+        
         int columns = row.Count;
         Line data = new Line();
         MappedDataSet.Add(data);
@@ -84,6 +92,7 @@ namespace Datasets {
         // final output
         data.AddEntry(new LineEntry("cost", CostMap(row[24]), 24));
       }
+      System.Console.WriteLine("MappedDataset: " + MappedDataSet.Count);
     }
     #endregion
     
