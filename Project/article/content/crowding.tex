@@ -4,13 +4,13 @@ Many methods have been proposed to overcome the problem of gradually decreasing 
 \subsubsection{Replacement rules}
 A \emph{replacement rule} determines how a number of competing individuals are replaced by only a subset of themselves, e.g.\ when the individuals of the $i$th generation $G_i$, and their offspring $O_i$, compete to be selected for the next generation $G_{i+1}$. A commonly used replacement rule is to make $G_i$ contain the $n$ most fit individuals from $G_{i-1} \cup O_{i-1}$, where $\mid G_x\mid = n$ for all $x$, see~\cite{masterThesisGANN}. We will refer to this as the \emph{naive replacement rule}. It is easy to see that this method causes a low diversity over time. Since the best individuals are more likely to be selected for procreation, much of the offspring will have similar traits that yield a high fitness value, and thus be a part of the next generation, just like their parents. Naturally, this increases the chance of the same traits being carried on into the next generation.
 
-Another well known replacement rule is the probabilistic crowding replacement rule~\cite{Mengshoel_and_Goldberg:1999}
+Another well known replacement rule is the probabilistic crowding algorithm~\cite{Mengshoel_and_Goldberg:1999}
 %
 \[
   p_x = \frac{f(x)}{f(x)+f(y)}
 \]
 %
-where $p_x$ denotes the chance that individual $x$ replaces the individuals $\set{x, y}$, and $f(i)$ is the fitness of individual $i$. This rule can easily be generalized for larger family sizes. This replacement rule favours the most fit individuals to be selected.
+where $p_x$ denotes the chance that individual $x$ replaces individuals $\set{x, y}$, and $f(i)$ is the fitness of individual $i$. This rule can easily be generalized for larger family sizes. This replacement rule favours the most fit individuals to be selected.
 
 A replacement rule can favour more diverse individuals, for instance by dictating that for any $a$ individuals having produced $b$ offspring individuals, we only select $a$ individuals of these similar $a + b$ individuals for the next generation, instead of selecting all $a + b$ individuals.
 

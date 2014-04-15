@@ -1,13 +1,14 @@
 \section{Neural Network Trait Diversity}
-In the following, we will use the term individual and neural network interchangeably, since we represent an individual by a neural network.  Let $F = \set{f_1, f_2, \dots, f_n}$, denote the set of neural networks contained in a population, which all have the same architecture of $a$ input and $b$ output neurons. NNTD is calculated with respect to a number of random inputs $\set{R_1, R_2, \dots, R_m}$, where each $R_i$ for $1 \leq i \leq m$ is an $a$-tuple of real values chosen randomly. For each $R_i$, a Simpson's Diversity Index (SDI) is calculated. SDI is a diversity measure used in ecology to quantify the biodiversity of a habitat. NNTD is calculated as the average SDI for all $R_i$.
-To calculate SDI, the total number of neural networks $\lvert F \lvert$ is needed, as well as a distribution of neural networks into a set of species. We classify species of individuals using $S_i(R)$ as the set of neural networks belonging to the $i$th species with respect to input $R$.
+In the following, we present a diversity measure for GAs using neural networks, based on the Simpson index. We will thus use the term individual and neural network interchangeably. Let $F = \set{f_1, f_2, \dots, f_n}$ for $0 \leq j \leq n$ denote the set of neural networks contained in a population, which all have the same architecture of $a$ input and $b$ output neurons. Neural Network Trait Diversity (NNTD) is calculated with respect to a number of random inputs $\set{R_1, R_2, \dots, R_m}$, where each $R_i$ for $1 \leq i \leq m$ is an $a$-tuple of real values chosen randomly. For each $R_i$, a Simpson's Diversity Index (SDI) is calculated. SDI is a diversity measure used in ecology to quantify the biodiversity of a habitat~\cite{simpson1949measurement}. NNTD is calculated as the average SDI for all $R_i$.
 
-We distribute the neural networks into species based on which of their output neurons yield the highest value on input $R$. This means that for any neural network belonging to the species $S_i(R)$, the value of the $i$th output neuron will be greater than or equal to the value of any other output neuron given the input $R$.  This definition implies that the number of species equals the number of output neurons $b$. We distribute neural networks into a set of species as follows
+To calculate SDI, the total number of neural networks $\lvert F \lvert$ is needed, as well as a distribution of neural networks into a set of species. We classify species of individuals using $S_k(R_i)$ as the set of neural networks belonging to the $k$th species with respect to input $R_i$.
+
+We distribute the neural networks into species based on which one of their output neurons yields the highest value on input $R_i$. This means that for any neural network belonging to species $S_k(R_i)$, the value of the $k$th output neuron will be greater than or equal to the value of any other output neuron given input $R_i$.  This definition implies that the number of species equals the number of output neurons $b$, e.g.\ $1 \leq k \leq b$. We distribute neural networks into a set of species as follows
 %
 \begin{equation*}\label{eq:species}
-  S_i(R) = \setof{f_p}{\forall j \in \set{1, 2, \dots, b} \left(\sigma_{Rpi} \geq \sigma_{Rpj}\right)}
+  S_k(R_i) = \setof{f_j}{\forall l \in \set{1, 2, \dots, b} \left(\sigma_{kji} \geq \sigma_{lji}\right)}
 \end{equation*}
 %
-where $\sigma_{xyz} \in \set{0, 1}$ is the output of the $z$th output neuron in neural network $f_y$ on input $x$.
+where $\sigma_{xyz} \in \set{0, 1}$ is the output of the $x$th neuron in neural network $f_y$ on input $R_z$.
 
 One disadvantage of NNTD is that it relies on random inputs, which means that fewer random inputs implies less statistical significance.
