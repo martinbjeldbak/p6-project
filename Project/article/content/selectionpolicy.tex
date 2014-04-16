@@ -1,7 +1,36 @@
-\section{Ancestor Elitism Replacement Rule}
-In this section, we develop a new replacement rule, the Ancestor Elitism Replacement Rule (AERR). Given a generation of individuals, $G_k$, and their offspring, $O_k$, AERR dictates how the next generation $G_{k+1}$, is created. This procedure is shown in \cref{alg:aesp}.
+\section{The Replacement Rules}
+\todo{write this section}
+In this section we present a replacement rule which has shown to produce good results, and present our replacement rules. We will later compare the results of these replacement rules.
+
+\subsection{Someone's Replacement Rule}
+
+Someone's replacement rule is presented like this, and does the following\dots
+
+\subsection{Ancestor Elitism Replacement Rule}
+
+Ancestor Elitism Replacement Rule (AERR) lets parents compete against their offspring. Given a generation of individuals, $G_k$, and their offspring, $O_k$, AERR dictates how the next generation $G_{k+1}$, is created. This procedure is shown in \cref{alg:aesp}.
 %
 \input{floats/aesp}
 %
 In the algorithm, $i.\phi$ denotes the fitness of the individual $i$, $i.p_j$ denotes the $j$th parent of $i$, and $\rho$ denotes a random immigrant, which is a newly created individual with a random chromosome.
 Briefly explained, any individual from the offspring that has only a single parent will replace that parent only if it is more fit than its parent. If it has two parents and is more fit than both of them, it will replace them both by itself and a random immigrant.
+
+AERR is an explorative replacement rule.
+
+\subsection{Single Parent Elitism Replacement Rule}
+
+Single Parent Elitism Replacement Rule (SPERR). 
+
+If an offspring is created by one parent, then the offspring replaces the parent if it has a higher fitness. 
+
+If an offspring is created by two parents, then the offspring will compete against a randomly chosen parent, if it has a higher fitness, it will replace that parent.
+
+\emph{maybe a formula here\dots}
+
+SPE is an exploitative replacement rule.
+
+\subsection{Explore and Exploit}
+
+The reasoning behind this replacement rule is that it should give better results to be able to exploit the search space, when the diversity of the population falls below a threshold. When this happens, the individual switches it replacement rule to enforce exploration of the search space, in search of global optimum.
+
+We combine SPERR and AERR to to achieve an explorative and exploitative replacement rule.
