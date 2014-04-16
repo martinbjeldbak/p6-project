@@ -6,7 +6,7 @@
   }
   \begin{axis}[
       xlabel= Generation,
-      ylabel = {Average fitness},
+      ylabel = {Average of max fitness in generation},
       xmax = 2000,
       legend columns=3,
       legend style={%
@@ -20,10 +20,10 @@
 
     \addplot[no marks, color=skyblue]
     table[col sep=comma, x index=0, y index=2] {data/replacement_rule_2_snake.csv};
-    \addlegendentry{AESP}
+    \addlegendentry{AERR}
 
     \addplot[no marks]
     table[col sep=comma, x index=0, y index=2] {data/replacement_rule_3_snake.csv};
-    \addlegendentry{SPE}
+    \addlegendentry{SPERR}
   \end{axis}
 \end{tikzpicture}
