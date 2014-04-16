@@ -182,7 +182,7 @@ namespace Genetics {
         /// Measures the diversity.
         /// </summary>
         /// <returns>The diversity.</returns>
-        /// <param name="runs">Number of runs. Default is 1.</param>
+        /// <param name="runs">Number of runs.</param>
         public double MeasureDiversity(int runs = 100) {
             int outputSize = individuals.Get(0).neuralNetwork.GetNumberOfOutputs();
 

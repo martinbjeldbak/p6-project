@@ -70,7 +70,7 @@
     <Compile Include="CrossoverMethod.cs" />
     <Compile Include="Neural network makers\LargeNeuralNetworkMaker.cs" />
     <Compile Include="OffspringMerger.cs" />
-    <Compile Include="Replacement Rules\AncestorElitismRandomImmigrantsReplacementRule.cs" />
+    <Compile Include="Replacement Rules\AncestorElitismNoExtinctionReplacementRule.cs" />
     <Compile Include="Replacement Rules\SingleParentElitismReplacementRule.cs" />
     <Compile Include="Replacement Rules\InProgressReplacementRule.cs" />
     <Compile Include="Replacement Rules\AncestorElitismReplacementRule.cs" />
