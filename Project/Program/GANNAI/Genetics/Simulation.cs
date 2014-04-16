@@ -99,10 +99,10 @@ namespace Genetics {
 
       switch (ReplacementRule) {
         case 0: offspringMerger = new NaiveReplacementRule(); break;
-        case 1: offspringMerger = new AncestorElitismReplacementRule(); break;
-        case 2: offspringMerger = new AncestorElitismRandomImmigrantsReplacementRule(); break;
+        case 1: offspringMerger = new AncestorElitismNoExtinctionReplacementRule(); break;
+        case 2: offspringMerger = new AncestorElitismReplacementRule(); break;
         case 3: offspringMerger = new SingleParentElitismReplacementRule(); break;
-        case 4: offspringMerger = new InProgressReplacementRule(); break;
+        case 4: offspringMerger = new ExploreExploitReplacementRule(); break;
       default: throw new Exception("Wrong offspring merge type: " + ReplacementRule);
       }
 
