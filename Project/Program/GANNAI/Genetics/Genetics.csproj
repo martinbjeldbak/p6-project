@@ -72,7 +72,7 @@
     <Compile Include="OffspringMerger.cs" />
     <Compile Include="Replacement Rules\AncestorElitismNoExtinctionReplacementRule.cs" />
     <Compile Include="Replacement Rules\SingleParentElitismReplacementRule.cs" />
-    <Compile Include="Replacement Rules\InProgressReplacementRule.cs" />
+    <Compile Include="Replacement Rules\ExploreExploitReplacementRule.cs" />
     <Compile Include="Replacement Rules\AncestorElitismReplacementRule.cs" />
     <Compile Include="Replacement Rules\NaiveReplacementRule.cs" />
     <Compile Include="Rank methods\HalvingRankMethod.cs" />
