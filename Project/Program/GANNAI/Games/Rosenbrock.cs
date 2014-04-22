@@ -1,7 +1,5 @@
 ﻿using System;
 using Genetics;
-using Utility;
-//using System.Linq;
 
 namespace Games {
   public class Rosenbrock : AITrainableGame {
@@ -12,17 +10,30 @@ namespace Games {
     #region AITrainableGame implementation
 
     public double CalcFitness(AIPlayer aiplayer) {
-      double fitness;
+      double fitness = 0;
+      Random r = new Random();
+      int iterations = 10000;
 
-      for(int i = 0; i < 1000; i++) {
-        int x = RandomNum.RandomInt(0, i);
-        int y = RandomNum.RandomInt(0, i);
+      for(int i = 0; i < iterations; i++) {
+        double x = r.NextDouble();
+        double y = r.NextDouble();
 
-        int diff = 1 - Math.Abs(RosenbrockFunction(x, y) - aiplayer.GetStrongestOutputIndex(x, y));
-        fitness += diff;
+        double output = aiplayer.GetOutputs(new double[] { x, y })[0];
+
+        // The lower the difference of output, the better. Reward this.
+        fitness += 1 / Math.Abs(RosenbrockFunction(x, y) - output * 100);
       }
 
-      return fitness;
+      // Average of fitness over runs
+      return fitness / iterations;
+    }
+      
+    public int NumHidden() {
+      return 8;
+    }
+
+    public int BitsPerWeight() {
+      return 9;
     }
 
     public int NumInputs() {
@@ -47,7 +58,7 @@ namespace Games {
 
     #endregion
 
-    private int RosenbrockFunction(int x, int y) {
+    private double RosenbrockFunction(double x, double y) {
       return ((1 - x) * (1 - x)) + 100 * ((y - x * x) * (y - x * x));
     }
   }
