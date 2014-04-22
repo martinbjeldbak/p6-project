@@ -21,11 +21,9 @@ namespace Genetics {
         }
       }
 
-      //calc how much is inherited from each ancestor and save that result
-      double ancestor1Amount = (double)ancestor1bits / dna1.Bitstring.Length;
 
       //return the new DNA string
-      return new DNA(result, dna1, dna2, ancestor1Amount, 1.0 - ancestor1Amount);
+      return new DNA(result);
     }
   }
 }

@@ -27,13 +27,8 @@ namespace Genetics {
       for (int i = crossPoint; i < dna1.Bitstring.Length; i++)
         result[i] = right[i];
 
-      //calc how much is derived from each ancestor
-      double ancestor1amount = (double)crossPoint / dna1.Bitstring.Length;
-      if (left == dna2.Bitstring)
-        ancestor1amount = 1.0 - ancestor1amount;
-
       //return new DNA
-      return new DNA(result, dna1, dna2, ancestor1amount, 1.0 - ancestor1amount);
+      return new DNA(result);
     }
   }
 }

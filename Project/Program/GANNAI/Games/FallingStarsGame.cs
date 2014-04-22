@@ -94,6 +94,12 @@ namespace Games {
       return 3;
     }
 
+    public int NumHidden() {
+        return 10;
+    }
+    public int BitsPerWeight() {
+        return 9;
+    }
     /// <summary>
     /// Visualizes the game being played by the given AIPlayer, drawn on the given Form
     /// </summary>

@@ -66,7 +66,7 @@ namespace Genetics {
         }
       set {
         //use a new neural network maker which number of hidden neurons is based on number of inputs and outputs of the game. 
-        NeuralNetworkMaker = new LargeNeuralNetworkMaker(value);
+        NeuralNetworkMaker = new SimpleNNMaker(value);
         gameInstances = new AITrainableGame[PopulationSize];
         for (int i = 0; i < PopulationSize; i++ )
             gameInstances[i] = value.GetNewGameInstance();

@@ -238,6 +238,14 @@ namespace Games {
       return 4;
     }
 
+    public int NumHidden() {
+        return 5;
+    }
+
+    public int BitsPerWeight() {
+        return 9;
+    }
+
     /// <summary>
     /// Returns the name of the game as a string.
     /// </summary>
