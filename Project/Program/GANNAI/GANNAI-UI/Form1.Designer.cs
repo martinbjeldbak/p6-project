@@ -294,7 +294,8 @@
             "Single Parent Elitism",
             "Explore Exploit T30",
             "Explore Exploit T20",
-            "Explore Exploit T40"});
+            "Explore Exploit T40",
+            "Explore Exploit B30"});
             this.comboBox_replacementRule.Location = new System.Drawing.Point(350, 45);
             this.comboBox_replacementRule.Name = "comboBox_replacementRule";
             this.comboBox_replacementRule.Size = new System.Drawing.Size(171, 21);
