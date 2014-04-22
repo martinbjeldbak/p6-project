@@ -154,7 +154,8 @@ namespace GANNAIUI {
     }
 
     private void purchaseRadioButton_CheckedChanged(object sender, EventArgs e) {
-        game = new Purchase();
+      //game = new Purchase();
+      game = new Rosenbrock();
         GameChanged();
     }
 
