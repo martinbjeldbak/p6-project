@@ -7,8 +7,29 @@ using System.Windows.Forms;
 namespace Genetics {
   public interface AITrainableGame {
     double CalcFitness(AIPlayer aiplayer);
-    int NumInputs();
+    /// <summary>
+    /// The number of inputs the game will give an AIPlayer
+    /// </summary>
+    /// <returns></returns>
+      int NumInputs();
+
+      /// <summary>
+      /// The number of actions an AIPlayer can perform
+      /// </summary>
+      /// <returns></returns>
     int NumOutputs();
+
+      /// <summary>
+      /// The number of hidden neurons that should be used by an AIPlayer (neural network)
+      /// </summary>
+      /// <returns></returns>
+    int NumHidden();
+
+      /// <summary>
+      /// The number of bits to use to encode each weight in the neural network used by the AIPlayer
+      /// </summary>
+      /// <returns></returns>
+    int BitsPerWeight();
 
     /// <summary>
     /// Returns a new instance of the same game.

@@ -8,16 +8,17 @@ namespace Genetics {
   public class SimpleNNMaker : NNMaker {
 
     private int dnalength;
-    private int bitsPerWeight = 9;
+    private int bitsPerWeight;
     private int hiddenNeurons;
     private int inputs;
     private int outputs;
 
     public SimpleNNMaker(AITrainableGame game){
-      hiddenNeurons = (int)Math.Ceiling((game.NumInputs() + game.NumOutputs()) / 2.0);
-      dnalength = (game.NumInputs() * hiddenNeurons + hiddenNeurons * game.NumOutputs()) * bitsPerWeight;
-      inputs = game.NumInputs();
-      outputs = game.NumOutputs();
+        bitsPerWeight = game.BitsPerWeight();
+        inputs = game.NumInputs();
+        hiddenNeurons = game.NumHidden();
+        outputs = game.NumOutputs();
+        dnalength = (inputs * hiddenNeurons + hiddenNeurons * outputs) * bitsPerWeight;
     }
 
     public NeuralNetwork MakeNeuralNetwork(DNA dna) {

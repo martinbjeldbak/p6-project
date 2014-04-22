@@ -94,6 +94,13 @@ namespace Games {
       return 22;
     }
 
+    public int NumHidden() {
+        return 10;
+    }
+    public int BitsPerWeight() {
+        return 9;
+    }
+
     public AITrainableGame GetNewGameInstance() {
       return this;
     }

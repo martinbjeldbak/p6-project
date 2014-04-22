@@ -49,6 +49,7 @@
             this.textBox_populationSize = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
+            this.visualizeFromFileButton = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -217,11 +218,11 @@
             // visualizeButton
             // 
             this.visualizeButton.Enabled = false;
-            this.visualizeButton.Location = new System.Drawing.Point(567, 200);
+            this.visualizeButton.Location = new System.Drawing.Point(479, 200);
             this.visualizeButton.Name = "visualizeButton";
-            this.visualizeButton.Size = new System.Drawing.Size(75, 23);
+            this.visualizeButton.Size = new System.Drawing.Size(105, 23);
             this.visualizeButton.TabIndex = 9;
-            this.visualizeButton.Text = "Visualize";
+            this.visualizeButton.Text = "Visualize best";
             this.visualizeButton.UseVisualStyleBackColor = true;
             this.visualizeButton.Click += new System.EventHandler(this.visualizeButton_Click);
             // 
@@ -469,11 +470,22 @@
             this.progressBar1.Step = 1;
             this.progressBar1.TabIndex = 31;
             // 
+            // visualizeFromFileButton
+            // 
+            this.visualizeFromFileButton.Location = new System.Drawing.Point(590, 200);
+            this.visualizeFromFileButton.Name = "visualizeFromFileButton";
+            this.visualizeFromFileButton.Size = new System.Drawing.Size(133, 23);
+            this.visualizeFromFileButton.TabIndex = 32;
+            this.visualizeFromFileButton.Text = "Visualize from clipboard";
+            this.visualizeFromFileButton.UseVisualStyleBackColor = true;
+            this.visualizeFromFileButton.Click += new System.EventHandler(this.visualizeFromFile_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(741, 446);
+            this.Controls.Add(this.visualizeFromFileButton);
             this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.diversityLabel);
@@ -541,6 +553,7 @@
     private System.Windows.Forms.RadioButton bankruptcyRadioButton;
     private System.Windows.Forms.RadioButton purchaseRadioButton;
     private System.Windows.Forms.ComboBox comboBox_replacementRule;
+    private System.Windows.Forms.Button visualizeFromFileButton;
   }
 }
 
