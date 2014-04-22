@@ -10,8 +10,8 @@
       xmax = 2000,
       legend columns=3,
       legend style={%
-        at={(1,1.1)},
-        anchor=north east
+        at={(0,1.1)},
+        anchor=north west
       }
     ]
     \addplot[no marks,color=scarletred]
@@ -25,5 +25,9 @@
     \addplot[no marks]
     table[col sep=comma, x index=0, y index=2] {data/replacement_rule_3_snake.csv};
     \addlegendentry{SPERR}
+
+    \addplot[no marks, color=green]
+    table[col sep=comma, x index=0, y index=2] {data/replacement_rule_4_snake.csv};
+    \addlegendentry{Explore/exploit}
   \end{axis}
 \end{tikzpicture}
