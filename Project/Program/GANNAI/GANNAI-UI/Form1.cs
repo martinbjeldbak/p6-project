@@ -157,5 +157,7 @@ namespace GANNAIUI {
         game = new Purchase();
         GameChanged();
     }
+
+   
   }
 }

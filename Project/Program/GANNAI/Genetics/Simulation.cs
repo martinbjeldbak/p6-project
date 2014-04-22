@@ -102,7 +102,9 @@ namespace Genetics {
         case 1: offspringMerger = new AncestorElitismNoExtinctionReplacementRule(); break;
         case 2: offspringMerger = new AncestorElitismReplacementRule(); break;
         case 3: offspringMerger = new SingleParentElitismReplacementRule(); break;
-        case 4: offspringMerger = new ExploreExploitReplacementRule(); break;
+        case 4: offspringMerger = new ExploreExploitT30ReplacementRule(); break;
+        case 5: offspringMerger = new ExploreExploitT20ReplacementRule(); break;
+        case 6: offspringMerger = new ExploreExploitT40ReplacementRule(); break;
       default: throw new Exception("Wrong offspring merge type: " + ReplacementRule);
       }
 
