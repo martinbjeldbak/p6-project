@@ -23,6 +23,16 @@ namespace Utility {
     }
 
     /// <summary>
+    /// Randoms the double between min and max.
+    /// </summary>
+    /// <returns>A random double between min and max <see cref="System.Double"/>.</returns>
+    /// <param name="min">Minimum.</param>
+    /// <param name="max">Max.</param>
+    public static double RandomDoubleBetween(double min, double max) {
+      return random.NextDouble() * (max - min) + min;
+    }
+
+    /// <summary>
     /// Generates a random boolean value.
     /// </summary>
     /// <returns>A random boolean.</returns>

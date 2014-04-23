@@ -105,6 +105,7 @@ namespace Genetics {
         case 4: offspringMerger = new ExploreExploitT30ReplacementRule(); break;
         case 5: offspringMerger = new ExploreExploitT20ReplacementRule(); break;
         case 6: offspringMerger = new ExploreExploitT40ReplacementRule(); break;
+        case 7: offspringMerger = new ExploreExploitB30ReplacementRule(); break;
       default: throw new Exception("Wrong offspring merge type: " + ReplacementRule);
       }
 
