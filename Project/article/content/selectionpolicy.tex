@@ -1,24 +1,22 @@
-\section{The Replacement Rules}
-\todo{write this section}
-In this section we present a replacement rule which has shown to produce good results, and present our replacement rules. We will later compare the results of these replacement rules.
+\section{Replacement rule}\label{sec:replacementrules}
+\todo{This section is on hold, I have sent an email to Radu. --Martin}
+Before we evaluate the NNTD measure, we introduce widely used replacement rules and their algorithms; both traditional based on biology, and those guided by diversity on classification and approximation problems. Diversity-guided replacement rules will be implemented to utilize the NNTD measure.
 
-\subsection{Someone's Replacement Rule}
+The below replacement rules are steady state selection methods, requiring a generation $G_k$ and its offspring $O_k$ created by some combination of crossover and mutation, and return a new generation $G_{k+1}$.
 
-Someone's replacement rule is presented like this, and does the following\dots
+In the algorithms, $i.\varphi$ denotes the fitness of individual $i$, $i.p_j$ denotes the $j$th parent of individual $i$, and $\rho$ denotes a random immigrant, which is a newly created individual with a random chromosome.
+
+\subsection{Traditional selection}
+This replacement strategy i
 
 \subsection{Ancestor Elitism Replacement Rule}
-
-Ancestor Elitism Replacement Rule (AERR) lets parents compete against their offspring. Given a generation of individuals, $G_k$, and their offspring, $O_k$, AERR dictates how the next generation $G_{k+1}$, is created. This procedure is shown in \cref{alg:aesp}.
+Ancestor Elitism Replacement Rule (AERR) is an explorative replacement rule that lets parents compete against their offspring for a slot in the next generation. This procedure is shown in \cref{alg:aesp}.
 %
 \input{floats/aesp}
 %
-In the algorithm, $i.\phi$ denotes the fitness of the individual $i$, $i.p_j$ denotes the $j$th parent of $i$, and $\rho$ denotes a random immigrant, which is a newly created individual with a random chromosome.
-Briefly explained, any individual from the offspring that has only a single parent will replace that parent only if it is more fit than its parent. If it has two parents and is more fit than both of them, it will replace them both by itself and a random immigrant.
-
-AERR is an explorative replacement rule.
+Using this rule, any individual from the offspring that only has a single parent, e.g.\ it was created by mutation, will replace that parent only if it is more fit than its parent. If it has two parents and is more fit than both of them, it will replace them both by itself and a random immigrant.
 
 \subsection{Single Parent Elitism Replacement Rule}
-
 Single Parent Elitism Replacement Rule (SPERR). 
 
 If an offspring is created by one parent, then the offspring replaces the parent if it has a higher fitness. 
@@ -30,7 +28,6 @@ If an offspring is created by two parents, then the offspring will compete again
 SPE is an exploitative replacement rule.
 
 \subsection{Explore and Exploit}
-
 The reasoning behind this replacement rule is that it should give better results to be able to exploit the search space, when the diversity of the population falls below a threshold. When this happens, the individual switches it replacement rule to enforce exploration of the search space, in search of global optimum.
 
 We combine SPERR and AERR to to achieve an explorative and exploitative replacement rule.

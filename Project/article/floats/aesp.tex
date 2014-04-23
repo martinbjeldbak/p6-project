@@ -3,13 +3,13 @@
   \begin{algorithmic}[1]
   \Procedure{aerr}{$G_k, O_k$}
     \State $G_{k+1} \gets G_k$
-    \ForAll{$i \in O_k$}
+    \ForAll{offspring $i \in O_k$}
       \If {$i.\mathtt{num\_parents} = 1$}
-        \If {$i.\phi > i.p_1.\phi$}
+        \If {$i.\varphi > i.p_1.\varphi$}
           \State $G_{k+1} \gets \left(G_{k+1} \setminus \set{i.p_1}\right) \cup \set{i}$
         \EndIf
       \Else
-        \If {$i.\phi > \max\left(i.p_1.\phi, i.p_2.\phi\right)$}
+        \If {$i.\varphi > \max\left(i.p_1.\varphi, i.p_2.\varphi\right)$}
         \State $G_{k+1} \gets (G_{k+1} \setminus \{i.p_1, i.p_2\}) \cup \set{i} \cup \set{\rho}$
         \EndIf
       \EndIf
