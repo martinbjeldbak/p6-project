@@ -2,30 +2,38 @@
   \pgfplotsset{%
     grid=major,
     grid style={dashed,gray!30},
-    scale only axis
+    scale only axis,
+    y axis style/.style={%
+      yticklabel style=#1,
+      ylabel style=#1,
+      y axis line style=#1,
+      ytick style=#1
+    }
   }
   \begin{axis}[
       xlabel = {Diversity},
       ylabel = {Initial Mutation},
-      axis y line* = left,
+      ylabel style   = {rotate=180},
+      y axis style=scarletred!75!black,
+      axis y line* = right
       %x tick label style = {rotate=90, anchor=east}
   ]
-  \addplot[only marks, color=scarletred]
+  \addplot[only marks, mark=diamond*, color=scarletred]
     table[col sep=comma, x index=1, y index=0] {data/initial_mutation_average.csv};\label{Mutation}
 \end{axis}
 \begin{axis}[
     ylabel         = {Initial Similarity},
-    ylabel style   = {rotate=180},
-    axis y line*   = right,
+    axis y line*   = left,
     hide x axis,
-    legend columns=2,
+    legend columns = 2,
     legend style={%
-      at={(1,1.1)},
-      anchor=north east
-    }
+      at={(0,1.1)},
+      anchor=north west 
+    },
+    y axis style=skyblue!75!black
   ]
   \addlegendimage{/pgfplots/refstyle=Mutation}\addlegendentry{Mutation}
-  \addplot[only marks, color=skyblue]
+  \addplot[only marks, mark=otimes*, color=skyblue]
   table[col sep=comma, x index=1, y index=0] {data/initial_similarity_average.csv}; \addlegendentry{Similarity}
 \end{axis}
 \end{tikzpicture}

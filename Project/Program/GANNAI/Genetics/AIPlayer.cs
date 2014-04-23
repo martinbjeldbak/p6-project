@@ -104,8 +104,7 @@ namespace Genetics {
     public int CompareTo(object obj) {
       return fitness.CompareTo(((AIPlayer)obj).fitness);
     }
-
-
+      
     /// <summary>
     /// Returns the most similar AIPlayer from the list given, based on a comparison of the DNA origins 
     /// </summary>
