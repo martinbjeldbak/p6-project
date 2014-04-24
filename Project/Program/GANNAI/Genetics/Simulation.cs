@@ -13,6 +13,16 @@ namespace Genetics {
     public readonly int ReplacementRule;
 
     /// <summary>
+    /// Which index of diversity measure to use in replacement rules.
+    /// </summary>
+    public readonly int DiversityMeasure;
+
+    /// <summary>
+    /// The instance of this diversity measure to be used
+    /// </summary>
+    public readonly IDiversityMeasure diversityMeasure;
+
+    /// <summary>
     /// The number of individuals in a population
     /// </summary>
     public readonly int PopulationSize;
@@ -47,6 +57,9 @@ namespace Genetics {
     /// </summary>
     private List<CrossoverMethod> allowedCrossoverMethods =
       new List<CrossoverMethod>() { new SinglePointCrossover(), new TwoPointCrossover(), new UniformCrossover() };
+
+    private List<IDiversityMeasure> diversityMeasures =
+      new List<IDiversityMeasure>() { };
     
     ///Keeps track of which game instance to give to to the next thread asking for it.
     ///Only 'Population.Count' instances can run in parallel 
@@ -77,7 +90,7 @@ namespace Genetics {
 
     public Simulation(AITrainableGame game, int populationSize = 100, double crossOverBredAmount = 0.5, double mutateAfterCrossoverAmount = 0.1, 
       double mutationRate = 0.05, int allowSinglePointCrossover = 1, int allowTwoPointCrossover = 1, int allowUniformCrossover = 1,
-      int offspringSelectionPolicy = 0, double initialMutation = 0.0, double initialSimilarity = 0.0) {
+      int offspringSelectionPolicy = 0, double initialMutation = 0.0, double initialSimilarity = 0.0, int mainDiversityMeasure = 0) {
       PopulationSize = populationSize;
       CrossoverBredAmount = crossOverBredAmount;
       MutateAfterCrossoverAmount = mutateAfterCrossoverAmount;
@@ -88,6 +101,8 @@ namespace Genetics {
       ReplacementRule = offspringSelectionPolicy;
       InitialMutation = initialMutation;
       InitialSimilarity = initialSimilarity;
+      DiversityMeasure = mainDiversityMeasure;
+
 
       allowedCrossoverMethods = new List<CrossoverMethod>();
       if (AllowSinglePointCrossover)
@@ -108,6 +123,12 @@ namespace Genetics {
         case 7: offspringMerger = new ExploreExploitB30ReplacementRule(); break;
       default: throw new Exception("Wrong offspring merge type: " + ReplacementRule);
       }
+
+      switch(DiversityMeasure) {
+        case 0: diversityMeasure = new NNTD(); break;
+        default: throw new Exception("The desired diversity measure does not exist: " + DiversityMeasure);
+      }
+          
 
       Game = game;
       NeuralNetworkMaker = new SimpleNNMaker(game);
