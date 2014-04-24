@@ -5,9 +5,11 @@ using System.Linq;
 using System.Text;
 
 namespace Utility {
-  //Individuals in this list are guaranteed to be sorted according to fitness, such that the most fit individual is at index 0
+  //Individuals in this list are guaranteed to be sorted according to fitness,
+  such that the most fit individual is at index 0
   public class SortList<T> : IEnumerable<T> where T : IComparable {
-    List<T> list;
+    private List<T> list;
+
     public int Count {
       get { return list.Count; }
     }
@@ -59,6 +61,10 @@ namespace Utility {
     public void Crop(int num) {
       if (list.Count > num)
         list.RemoveRange(num, list.Count - num);
+    }
+
+    public T this[int i] {
+      get { return Get(i); }
     }
 
     IEnumerator<T> IEnumerable<T>.GetEnumerator() {
