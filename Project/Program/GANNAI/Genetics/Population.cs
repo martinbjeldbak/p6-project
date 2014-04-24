@@ -172,14 +172,26 @@ namespace Genetics {
             return result;
         }
 
+        public Dictionary<string, double> GetDiversityMeasurements(int runs = 100) {
+            Dictionary<string, double> measurementMap = new Dictionary<string, double>();
+
+            foreach(IDiversityMeasure divMeasure in Simulation.diversityMeasures) {
+                string name = divMeasure.Name();
+                double diversity = divMeasure.MeasureDiversity(individuals, runs);
+
+                measurementMap.Add(name, diversity);
+            }
+            return measurementMap;
+        }
+
         /// <summary>
         /// Measures the diversity.
         /// </summary>
         /// <returns>The diversity.</returns>
         /// <param name="runs">Number of runs.</param>
         public double MeasureDiversity(int runs = 100) {
-      //Simulation.offspringMerger.Merge(individuals, offspring, Simulation);
-      return Simulation.diversityMeasure.MeasureDiversity(individuals, runs);
+          //Simulation.offspringMerger.Merge(individuals, offspring, Simulation);
+          return Simulation.diversityMeasure.MeasureDiversity(individuals, runs);
     }
   }
 }
