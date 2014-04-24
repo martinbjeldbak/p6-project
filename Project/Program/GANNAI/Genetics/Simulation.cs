@@ -58,8 +58,8 @@ namespace Genetics {
     private List<CrossoverMethod> allowedCrossoverMethods =
       new List<CrossoverMethod>() { new SinglePointCrossover(), new TwoPointCrossover(), new UniformCrossover() };
 
-    private List<IDiversityMeasure> diversityMeasures =
-      new List<IDiversityMeasure>() { };
+    public  List<IDiversityMeasure> diversityMeasures =
+      new List<IDiversityMeasure>() { new NNTD(), new HammingDistance(), new Fitness() };
     
     ///Keeps track of which game instance to give to to the next thread asking for it.
     ///Only 'Population.Count' instances can run in parallel 
@@ -125,7 +125,9 @@ namespace Genetics {
       }
 
       switch(DiversityMeasure) {
-        case 0: diversityMeasure = new NNTD(); break;
+        case 0: diversityMeasure = diversityMeasures[0]; break;
+        case 1: diversityMeasure = diversityMeasures[1]; break;
+        case 2: diversityMeasure = diversityMeasures[2]; break;
         default: throw new Exception("The desired diversity measure does not exist: " + DiversityMeasure);
       }
           

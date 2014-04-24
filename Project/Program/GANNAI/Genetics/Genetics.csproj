@@ -91,6 +91,8 @@
     <Compile Include="ObservationSaver.cs" />
     <Compile Include="Diversity measures\NNTD.cs" />
     <Compile Include="IDiversityMeasure.cs" />
+    <Compile Include="Diversity measures\HammingDistance.cs" />
+    <Compile Include="Diversity measures\Fitness.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

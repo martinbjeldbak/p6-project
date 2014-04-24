@@ -1,14 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
+using System.Collections.Generic;
 using Utility;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace Genetics {
+  /// <summary>
+  /// A phenotypic diversity measure for a collection of neural networks, Neural Neural Network
+  /// Trait Diversity.
+  /// </summary>
   public class NNTD : IDiversityMeasure {
     #region IDiversityMeasure implementation
-
     public double MeasureDiversity(SortList<AIPlayer> individuals, int runs = 100) {
       int outputSize = individuals.Get(0).neuralNetwork.GetNumberOfOutputs();
 
@@ -45,9 +48,10 @@ namespace Genetics {
       return diversity / runs;
     }
 
+        public string Name() {
+            return "NNTD";
+        }
     #endregion
-
-
   }
 }
 

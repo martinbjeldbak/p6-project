@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Utility {
   //Individuals in this list are guaranteed to be sorted according to fitness,
-  such that the most fit individual is at index 0
+  // such that the most fit individual is at index 0
   public class SortList<T> : IEnumerable<T> where T : IComparable {
     private List<T> list;
 

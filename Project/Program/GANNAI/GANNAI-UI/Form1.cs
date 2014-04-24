@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -68,6 +69,12 @@ namespace GANNAIUI {
             visualizeButton.Enabled = true;
             generationCountLabel.Text = "Generation No: " + simulation.Population.Generation.ToString();
             diversityLabel.Text = "Diversity: " + simulation.Population.MeasureDiversity().ToString();
+
+                System.Console.WriteLine(simulation.Population.GetDiversityMeasurements().ToString());
+
+                foreach(KeyValuePair<string, double> entry in simulation.Population.GetDiversityMeasurements()) {
+                    Console.WriteLine(String.Format("{0}: {1}", entry.Key, entry.Value));
+                }
         }
     }
 
