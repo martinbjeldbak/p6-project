@@ -172,12 +172,12 @@ namespace Genetics {
             return result;
         }
 
-        public Dictionary<string, double> GetDiversityMeasurements(int runs = 100) {
+        public Dictionary<string, double> GetDiversityMeasurements() {
             Dictionary<string, double> measurementMap = new Dictionary<string, double>();
 
             foreach(IDiversityMeasure divMeasure in Simulation.diversityMeasures) {
                 string name = divMeasure.Name();
-                double diversity = divMeasure.MeasureDiversity(individuals, runs);
+                double diversity = divMeasure.MeasureDiversity(individuals);
 
                 measurementMap.Add(name, diversity);
             }
@@ -189,9 +189,9 @@ namespace Genetics {
         /// </summary>
         /// <returns>The diversity.</returns>
         /// <param name="runs">Number of runs.</param>
-        public double MeasureDiversity(int runs = 100) {
+        public double MeasureDiversity() {
           //Simulation.offspringMerger.Merge(individuals, offspring, Simulation);
-          return Simulation.diversityMeasure.MeasureDiversity(individuals, runs);
+          return Simulation.diversityMeasure.MeasureDiversity(individuals);
     }
   }
 }
