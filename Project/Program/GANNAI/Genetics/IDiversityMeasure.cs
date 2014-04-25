@@ -11,7 +11,7 @@ namespace Genetics {
         /// <param name="individuals">A list of individuals</param>
         /// <param name="runs">How many times to calculate the diversity,
         ///    to take variances into account.</param>
-        double MeasureDiversity(SortList<AIPlayer> individuals, int runs);
+        double MeasureDiversity(SortList<AIPlayer> individuals);
 
         string Name();
   }
