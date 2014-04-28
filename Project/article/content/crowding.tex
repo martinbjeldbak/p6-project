@@ -7,10 +7,10 @@ A \emph{replacement rule} determines how a number of competing individuals are r
 Another well known replacement rule is the probabilistic crowding algorithm~\cite{Mengshoel_and_Goldberg:1999}
 %
 \[
-  p_x = \frac{f\left(x\right)}{f\left(x\right)+f\left(y\right)}
+  p(x) = \frac{f\left(x\right)}{f\left(x\right)+f\left(y\right)}
 \]
 %
-where $p_x$ denotes the chance that individual $x$ replaces individuals $\set{x, y}$, and $f(i)$ is the fitness of individual $i$. This rule can easily be generalized for larger family sizes. This replacement rule favours the most fit individuals to be selected.
+where $p(x)$ denotes the chance that individual $x$ replaces individuals $\set{x, y}$, and $f(i)$ is the fitness of individual $i$. This rule can easily be generalized for larger family sizes. This replacement rule favours the most fit individuals to be selected.
 
 A replacement rule can favour more diverse individuals, for instance by dictating that for any $a$ individuals having produced $b$ offspring individuals, we only select $a$ individuals of these similar $a + b$ individuals for the next generation, instead of selecting all $a + b$ individuals.
 
