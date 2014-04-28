@@ -1,17 +1,16 @@
-\section{Neural Network Trait Diversity}
-In the following, we present a diversity measure for GAs using neural networks, based on the Simpson index. We will thus use the term individual and neural network interchangeably. Let $F = \set{f_1, f_2, \dots, f_n}$, where each $F_j$ for $0 \leq j \leq n$ denote the set of neural networks contained in a population, which all have the same architecture of $a$ input and $b$ output neurons. 
+\section{\di{}}
+In the following, we present a diversity measure for GAs using neural networks, based on the Simpsons Diversity Index (SDI). We will thus use the term individual and neural network interchangeably. Let $F = \set{f_1, f_2, \dots, f_n}$, where each $f_j$ for $0 \leq j \leq n$ denote the set of neural networks contained in a population, which all have the same architecture of $a$ input and $b$ output neurons. 
 
-Neural Network Trait Diversity (NNTD) is calculated with respect to a number of random inputs $\set{R_1, R_2, \dots, R_m}$, where each $R_i$ for $1 \leq i \leq m$ is an $a$-tuple of real values chosen randomly. For each sample $R_i$, a Simpson's Diversity Index (SDI) is calculated. SDI is a diversity measure used in ecology to quantify the biodiversity of a habitat~\cite{simpson1949measurement}. The SDI is calculated with 
+\di{} is calculated with respect to a number of random inputs $\set{R_1, R_2, \dots, R_m}$, where each $R_i$ for $1 \leq i \leq m$ is an $a$-tuple of real values chosen randomly. For each sample $R_i$, a SDI is calculated. SDI is a diversity measure used in ecology to quantify the biodiversity of a habitat~\cite{simpson1949measurement}. The SDI is calculated with
 
 \begin{equation*}\label{eq:sdi}
   D = 1 - \left(\frac{\sum{s (s - 1)}}{S (S - 1)}\right) 
 \end{equation*}
 
-where $s$ is the total number of individuals of a particular species, and $S$ is the total number of individuals of all species. $D$ is calculated $m$ times, and the average of the $m$ SDI values will define the NNTD. We classify species of individuals using $S_k(R_i)$ as the set of neural networks belonging to the $k$th species with respect to input $R_i$.
+where $s$ is the total number of individuals of a particular species, and $S$ is the total number of individuals of all species. $D$ is calculated $m$ times, and the average of the $m$ SDI values will define the \dia{}. We classify species of individuals using $S_k(R_i)$ as the set of neural networks belonging to the $k$th species with respect to input $R_i$.
 
 We distribute the neural networks into species based on which one of their output neurons yields the highest value on input $R_i$. %This means that for any neural network belonging to species $S_k(R_i)$, the value of the $k$th output neuron will be greater than or equal to the value of any other output neuron given input $R_i$.
 This definition implies that the number of species equals the number of output neurons $b$, e.g.\ $1 \leq k \leq b$. We distribute neural networks into a set of species as follows
-
 %
 \begin{equation*}\label{eq:species}
   S_k(R_i) = \setof{f_j}{\forall l \in \set{1, 2, \dots, b} \left(\sigma_{kji} \geq \sigma_{lji}\right)}
