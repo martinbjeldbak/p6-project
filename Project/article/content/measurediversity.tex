@@ -1,30 +1,53 @@
 \subsection{Measuring diversity}
 In GAs, a high diversity among the individuals is important. It is often argued that the weakness of GAs is the fall in diversity over generations, which can result in premature convergence~\cite{diaz2007empirical, 1266373,Zitzler00comparisonof}.
 
-Two types of diversity measures are widely used, namely genotypic and phenotypic~\cite{Nguyen:2006:ASPGP,1250187}.
-\emph{Genotypic diversity} is concerned with the differences in the individuals' encoding, while \emph{phenotypic diversity} is concerned with the individuals' behavioural differences, which is measured based on fitness values.
-Some diversity measures exists that are neither genotypic or phenotypic. For instance the \emph{Ancestral id}\cite{INSERT CITATION}%http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.124.1687&rep=rep1&type=pdf
-, which identifies similar individuals by looking at their ancestors. We will turn our look to only genotypic and phenotypic diversity measures, as these methods are widely used.
-
-
 \subsubsection{Genotypic diversity measures}
-\todo{Explain different genotypic diversity measures (hamming distance, levenshtein)}
-%THIS ARTICLE IS USEFUL HERE http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.124.1687&rep=rep1&type=pdf
+The genotypic diversity of a set of individuals is determined by how different their bit string are.
+It is only necessary to have a method for measuring the difference (distance) between any two bit strings.
+The diversity between a set of bit strings can then be expressed as the average distance between any two bit strings.
+Summation can also be used instead of averaging\cite{1250187}, which is merely a convenient optimization.
+
+The \emph{Hamming distance} between two bit strings $A$ and $B$ of equal lengths, is the number of indexes $i$, such that $A[i] \neq B[i]$\cite{1250187}.
+
+The \emph{Levenshtein distance} between two bit strings $A$ and $B$, is the number of bits that must be inserted, deleted or substituted to change $A$ into $B$\cite{1250187}.
+
+The Hamming distance between the two strings
+
+\begin{align}
+    01010101 \\
+    10101010
+\end{align}
+
+is 8. The Levenshtein distance is 2, because we can transform (1) into (2) by deleting the first bit and prepend a $0$.
 
 \subsubsection{Phenotypic diversity measures}
-\todo{Explain different fitness based diversity measures (unique fitness values, standard deviation)}
-%THIS ARTICLE IS USEFUL HERE http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.124.1687&rep=rep1&type=pdf
-A fitness based diversity measure has the advantage that fitness values are calculated for each individual created by a GA, thus it is associated with only limited additional computations\cite{Nguyen:2006:ASPGP}.
+\emph{Phenotypic diversity} is concerned with the individuals' behavioural differences, and can be calculated based on their fitness values\cite{1250187}.
+
+\emph{Phenotypes} are groupings of individual having the same fitness values. 
+The number of phenotypes can be used as a diversity measure, as well as the \emph{Standar deviation} expressed as
+
+\[\sqrt{\frac{\sum_{i=1}^N{(f_i-\bar{f})^2}}{N-1}}\]
+
+where $N$ is the population size and $f_i$ is the fitness of the $i$th individual\cite{1250187}.
+
+One advantage of fitness based diversity measures is that no extra computations are associated with calculating the fitness values , since they are already calculated by the GA to give the more fit individuals a higher chance to produce offspring.\cite{Nguyen:2006:ASPGP}.
+
+\subsubsection{Other measurements}
+Some diversity measures exists that are neither genotypic nor phenotypic. For instance the \emph{Ancestral ID}\cite{1250187} method, which assigns a unique ID to each individual in the initial population.
+Every mutated individual receives a new unique ID while every child gets the ID of one of its parents.
+The diversity is then based on the uniqueness of IDs in a population.
 
 \subsubsection{Our proposal}
-We think it is essential that a diversity measure reflects the difference in traits among individuals. Recall that we are only concerned with neural networks as individual. Since \emph{traits} is a rather vague term, we introduce a clear definition of traits among neural networks.
+We think it is essential that a diversity measure reflects the difference in traits among individuals.
+Recall that we are only concerned with neural networks as individual. 
+Since \emph{traits} is a rather vague term, we introduce a clear definition of traits among neural networks.
 
 \emph{Two neural networks have different traits, if they for some input produce different outputs}
 
 By trait diversity, we denote the differences in traits among neural networks.
 
 A fitness based diversity measure does not catch the trait diversity. Consider two artificial intelligent (AI) players for the cell phone game ``Snake''. Their fitness can be calculated based on how much food they collect before they die. One AI player may have traits that makes it good at avoiding death by not hitting any walls or its own body. Sometimes, by chance, it hits a piece of food. The other AI player may have traits that makes it good at searching for food. The two AI players can have the same fitness value, because they collect the same amount of food before they die, and still have completely different traits.
-Genotypic diversity measures does not catch the trait diversity either. This is becayse two individuals of different genotypes can yield the same output on any input. An example is the two neural networks in \cref{fig:entire-eqnetwork}. No matter what input they receive, their output will always be the same. They are genotypic diverse, but not trait diverse.
+Genotypic diversity measures does not catch the trait diversity either. This is because two individuals of different genotypes can yield the same output on any input. An example is the two neural networks in \cref{fig:entire-eqnetwork}. No matter what input they receive, their output will always be the same. They are genotypic diverse, but not trait diverse.
 
 %
 \input{floats/eqnetworks}
