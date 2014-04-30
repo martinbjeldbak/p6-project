@@ -13,10 +13,10 @@ where $\sigma_{xyz} \in \set{0, 1}$ is the output of the $x$th neuron in neural 
 We calculate the diversity $m$ times with \dia{} as
 %
 \begin{equation*}\label{eq:sdi}
-  D_i = 1 - \left(\frac{\sum_{j=1}^{k}S_j\left(R_i\right)\left(S_j\left(R_i\right) - 1\right)}{\lvert F\rvert \left(\lvert F\rvert - 1\right)}\right) 
+  D_i = 1 - \left(\frac{\sum_{j=1}^{k}\lvert S_j\left(R_i\right)\rvert\left(\lvert S_j\left(R_i\right)\rvert - 1\right)}{\lvert F\rvert \left(\lvert F\rvert - 1\right)}\right) 
 \end{equation*}
 %
-where $S_j$ is the total number of individuals of the $j$th species, with respect to random input $R_i$, and $k$ is the maximum number of species. $F$ denotes the total number of neural networks in the population. 
+where $\lvert S_j(R_i)\rvert$ is the total number of individuals of the $j$th species, with respect to random input $R_i$, and $k$ is the maximum number of species. $F$ denotes the total number of neural networks in the population. 
 
 The \dia{} $D$ (that is, the actual diversity) is calculated as the average of all $m$ $D_i$ values
 %
