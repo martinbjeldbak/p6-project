@@ -4,7 +4,7 @@ In the following, we present a diversity measure for GAs using neural networks, 
 Let $F = \set{f_1, f_2, \dots, f_n}$, where each $f_j$ for $0 \leq j \leq n$ denote the set of neural networks contained in a population, which all have the same architecture of $a$ input and $b$ output neurons. \dia{} is calculated with respect to a number of random inputs $\set{R_1, R_2, \dots, R_m}$, where each $R_i$ for $1 \leq i \leq m$ is an $a$-tuple of real values chosen randomly. For each sample $R_i$, a diversity is calculated. The calculation depends on a set of species, so we distribute the neural networks into species based on which of their output neurons yields the highest value on input $R_i$. This means that for any neural network belonging to species $S_k(R_i)$, the value of the $k$th output neuron will be greater than or equal to the value of any other output neuron given input $R_i$.% This definition implies that the number of species equals the number of output neurons $b$, e.g.\ $1 \leq k \leq b$. We distribute neural networks into a set of species as follows
 %
 \begin{equation*}\label{eq:species}
-  S_k(R_i) = \setof{f_j}{\forall l \in \set{1, 2, \dots, b} \left(\sigma_{kji} \geq \sigma_{lji}\right)}
+  S_k\left(R_i\right) = \setof{f_j}{\forall l \in \set{1, 2, \dots, b} \left(\sigma_{kji} \geq \sigma_{lji}\right)}
 \end{equation*}
 %
 
@@ -13,10 +13,10 @@ where $\sigma_{xyz} \in \set{0, 1}$ is the output of the $x$th neuron in neural 
 We calculate the diversity $m$ times with \dia{} as
 %
 \begin{equation*}\label{eq:sdi}
-  D_i = 1 - \left(\frac{\sum_{j=1}^{k}\left(\lvert S_j\left(R_i\right) \rvert^2 - \lvert S_j(R_i)\right\rvert)}{\lvert F\rvert^2 - \lvert F\rvert}\right) 
+  D_i = 1 - \left(\frac{\sum_{j=1}^{k}\lvert S_j\left(R_i\right)\rvert\left(\lvert S_j\left(R_i\right)\rvert - 1\right)}{\lvert F\rvert \left(\lvert F\rvert - 1\right)}\right) 
 \end{equation*}
 %
-where $S_j$ is the total number of individuals of the $j$th species, with respect to random input $R_i$, and $k$ is the maximum number of species. $F$ denotes the total number of neural networks in the population. 
+where $\lvert S_j(R_i)\rvert$ is the total number of individuals of the $j$th species, with respect to random input $R_i$, and $k$ is the maximum number of species. $F$ denotes the total number of neural networks in the population. 
 
 The \dia{} $D$ (that is, the actual diversity) is calculated as the average of all $m$ $D_i$ values
 %
