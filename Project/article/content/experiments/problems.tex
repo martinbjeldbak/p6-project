@@ -1,0 +1,6 @@
+\subsection{Problems}
+% Discrete: Iris
+% Discrete: Rosenbrock 
+
+% Continuous: Snake
+The continuous problem is the Snake game known from Nokia cell phones. This game is very similar to the artificial ant problem~\cite[p. 147--155]{koza1992genetic}. A snake has to traverse a square $10\times 10$ grid and search for a randomly positioned piece of food using a sensing function that's able to see the squares and their contents directly next to its head and above and below its head. Once the snake traverses into the square with food, the food disappears and the snake's length grows by one square. A new piece of food then spawns at a new random position. The snake has four actions to move around the grid, each of which takes one time unit: move up, down, left, and right. The game ends if the amount of time units exeeds \num{1000}, or if the snake collides into a wall.  Its fitness function is based upon the amount of food eaten.
