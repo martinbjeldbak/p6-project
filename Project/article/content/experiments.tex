@@ -2,11 +2,28 @@
 %In this section, we evaluate our proposed method of a better diversity measurement (NNTD) by using it to measure diversity of the replacement rules described in \cref{sec:replacementrules}. This is to compare each replacement rules' influence on diversity using NNTD.
 Three problems instances are used to evaluate our diversity measure. Two problems discrete, and one continuous. A standard implementation of GAs, ANNs, replacement policies, and diversity measures is used (see~\cite{mbm:kmc:ekoGA} for the authors' implementation details). 
 
-We collect \num{1000} independant runs over \num{51} generations for the discrete problems, and \num{1000} generations for the continuous problem.
+\subsection{Parameter settings}
 
-Each of the problems use the following parameter variables. Populations consist of \num{100} individuals, and upon creating a new population, rank-based selection is utilized on the current population $p$ to select individuals for crossover and mutation to create offspring. Half of the offspring is created from crossover between two selected parents in population $p$, the other half created solely by mutation of the individuals also in $p$. Of the individuals in $p$'s offspring belonging to the half created by crossover, there is a \perc{10} chance that the individual also will be selected for mutation. For each bit belonging to the individuals selected for mutation, there is a \perc{5} chance that that will be mutated. Of the bits to be mutated, each bit has a \perc{50} chance it will remain the same, and a \perc{50} chance to be inverted.
+\begin{table}
+  \centering
+  \begin{tabular}{l S}
+    \toprule
+    Parameter & {Specification} \\
+    \midrule
+    Number of runs & 1000 \\
+    Generations per run (continuous) & 2000 \\
+    Generations per run (discrete) & 51 \\
+    Population size & 100 \\
+    Selection method & {rank-based} \\
+    \bottomrule
+  \end{tabular}
+  \caption{GA parameters used throughout experimenting.}
+  \label{tab:gaparam}
+\end{table}
 
-What is interesting is the relative difference in diversity of the different methods.
+Three crossover methods are used: one-point crossover, two-point crossover, and uniform crossover. Upon creating a new population, there is an equal chance for each to be chosen.
+
+Half of the offspring is created from crossover between two selected parents in population $p$, the other half created solely by mutation of the individuals also in $p$. Of the individuals in $p$'s offspring belonging to the half created by crossover, there is a \perc{10} chance that the individual also will be selected for mutation. For each bit belonging to the individuals selected for mutation, there is a \perc{5} chance that that will be mutated. Of the bits to be mutated, each bit has a \perc{50} chance it will remain the same, and a \perc{50} chance to be inverted.
 
 \input{content/experiments/problems}
 \input{content/experiments/diversity}
