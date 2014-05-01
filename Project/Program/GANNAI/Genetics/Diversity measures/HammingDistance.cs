@@ -33,8 +33,8 @@ namespace Genetics {
             return 2 * hammingTotal / (double)(size * (size - 1));
         }
 
-        public string Name() {
-            return "Hamming distance";
+        public string Name {
+          get { return "Hamming distance"; }
         }
         #endregion
     }
