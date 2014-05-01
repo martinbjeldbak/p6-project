@@ -53,8 +53,8 @@ namespace Genetics {
             return diversity / runs;
         }
 
-        public string Name() {
-            return "NNTD";
+        public string Name {
+          get { return "NNTD"; }
         }
         #endregion
     }

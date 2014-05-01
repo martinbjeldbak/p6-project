@@ -176,10 +176,9 @@ namespace Genetics {
             Dictionary<string, double> measurementMap = new Dictionary<string, double>();
 
             foreach(IDiversityMeasure divMeasure in Simulation.diversityMeasures) {
-                string name = divMeasure.Name();
                 double diversity = divMeasure.MeasureDiversity(individuals);
 
-                measurementMap.Add(name, diversity);
+                measurementMap.Add(divMeasure.Name, diversity);
             }
             return measurementMap;
         }
@@ -192,6 +191,10 @@ namespace Genetics {
         public double MeasureDiversity() {
           //Simulation.offspringMerger.Merge(individuals, offspring, Simulation);
           return Simulation.diversityMeasure.MeasureDiversity(individuals);
-    }
+        }
+
+        public string MeasureDiversityMethod() {
+          return Simulation.diversityMeasure.Name;
+        }
   }
 }

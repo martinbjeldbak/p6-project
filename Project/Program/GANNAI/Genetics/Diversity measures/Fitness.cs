@@ -20,9 +20,10 @@ namespace Genetics {
             return fitnessValues.Distinct().Count() / (double)size;
         }
 
-        public string Name() {
-            return "Fitness-based";
+        public string Name {
+          get { return "Unique fitness"; }
         }
+
         #endregion
     }
 }
