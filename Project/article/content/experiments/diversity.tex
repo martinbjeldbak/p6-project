@@ -1,14 +1,14 @@
 \subsection{Diversity measurements}
-To test our NNTD method, we introduce two variables, both of which only have an effect during the very first generation of a population: initial similarity and initial mutation of a population. 
+To test our \dia{} method, we introduce two variables, both of which only have an effect during the very first generation of a population: initial similarity and initial mutation of a population. 
 
 Initial similarity describes how equal the individuals initially are. It can take on a range between \num{0} and \num{1}, where \num{0} means that all individuals are random, and \num{1} denotes that \perc{100} all individuals have the exact same genotype. With a value of \num{0.5}, one individual is cloned so that half of the population has the same genetic makeup and the other half is initialized to be completely random. A population with the value of \num{1} for initial similarity should have the lowest diversity, and a completely randomly initialize population (initial similarity of \num{0}) should have the highest diversity, since every individual is randomly chosen.
 
 Initial mutation requires an initial similarity set to \num{1}, e.g.\ the initial population consists of a single, cloned individual. This is due to the fact that mutating individuals already randomly initialized will not yield a different diversity of individuals. The initial mutation rate simply signifies the mutation percentage of all bits in every individual of the population. A population consisting of the same cloned individual with an initial mutation rate of \num{1} should have the highest diversity, since every bit in every, initially similar individual, will have a \perc{100} chance to be selected for mutation, resulting in a randomly initialized population.
 
-Experiments on NNTD using both of these two variables are shown in \cref{fig:initial-mutation-similarity}. Each point represents the average diversity measure of \num{100} runs at a variable intervals of \num{0.05}. As we can see by the chart, diversity increases as expected for both variables. Diversity is maximum at a value of \num{7.2} for a completely random population. To reach this maximum, it requires an initial mutation rate of a mere \perc{2} and an initial similarity of \perc{0}.
+Experiments on \dia{} using both of these two variables are shown in \cref{fig:initial-mutation-similarity}. Each point represents the average diversity measure of \num{100} runs at a variable intervals of \num{0.05}. As we can see by the chart, diversity increases as expected for both variables. Diversity is maximum at a value of \num{7.2} for a completely random population. To reach this maximum, it requires an initial mutation rate of a mere \perc{2} and an initial similarity of \perc{0}.
 
 \begin{figure}[htpb]
   \centering
   \inputresize{drawings/initial-mutation-similarity/graph}
-  \caption{Diversity measurements with NNTD, given increased ranges of initial similarity and initial mutation rates. Each point is the average diversity over \num{100} runs.}\label{fig:initial-mutation-similarity}
+  \caption{Diversity measurements with \dia{}, given increased ranges of initial similarity and initial mutation rates. Each point is the average diversity over \num{100} runs.}\label{fig:initial-mutation-similarity}
 \end{figure}
