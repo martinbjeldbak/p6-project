@@ -14,6 +14,6 @@ namespace Genetics {
         double MeasureDiversity(SortList<AIPlayer> individuals);
 
         string Name { get; }
-  }
+    }
 }
 
