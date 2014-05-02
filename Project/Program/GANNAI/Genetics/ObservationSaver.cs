@@ -193,13 +193,12 @@ namespace Genetics {
 
       query = String.Format("INSERT INTO gannai.population (simulation_id,"
         + " generation, min_fitness, max_fitness, avg_fitness, mean_fitness, simulated_at, diversity, diversity_main,"
-        + " diversity_hamming, diversity_levenshtein, diversity_nntd, diversity_fitness)"
-        + " VALUES('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}', '{11}', '{12}')",
+        + " diversity_hamming, diversity_nntd, diversity_fitness)"
+        + " VALUES('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}', '{11}')",
 	      simId, g, minFit, maxFit, avgFit, meanFit, simulated_at, diversity, diversity_main,
         divMeasures["Hamming distance"].ToString(CultureInfo.InvariantCulture),
-        divMeasures["Levenshtein"].ToString(CultureInfo.InvariantCulture),
         divMeasures["NNTD"].ToString(CultureInfo.InvariantCulture),
-        divMeasures["Unique fitness"].ToString(CultureInfo.InvariantCulture),
+        divMeasures["Unique fitness"].ToString(CultureInfo.InvariantCulture)
   );
       cmd = new MySqlCommand(query, connection);
       cmd.ExecuteNonQuery();
