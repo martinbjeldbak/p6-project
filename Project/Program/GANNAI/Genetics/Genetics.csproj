@@ -70,13 +70,13 @@
     <Compile Include="CrossoverMethod.cs" />
     <Compile Include="Diversity measures\Levenshtein.cs" />
     <Compile Include="OffspringMerger.cs" />
-    <Compile Include="Replacement Rules\AncestorElitismNoExtinctionReplacementRule.cs" />
+    <Compile Include="Replacement Rules\AncestorElitismReplacementRule.cs" />
     <Compile Include="Replacement Rules\ExploreExploitT20ReplacementRule.cs" />
     <Compile Include="Replacement Rules\ExploreExploitB30ReplacementRule.cs" />
     <Compile Include="Replacement Rules\ExploreExploitT40ReplacementRule.cs" />
     <Compile Include="Replacement Rules\SingleParentElitismReplacementRule.cs" />
     <Compile Include="Replacement Rules\ExploreExploitT30ReplacementRule.cs" />
-    <Compile Include="Replacement Rules\AncestorElitismReplacementRule.cs" />
+    <Compile Include="Replacement Rules\AncestorElitismNoExtinctionReplacementRule.cs" />
     <Compile Include="Replacement Rules\NaiveReplacementRule.cs" />
     <Compile Include="Rank methods\HalvingRankMethod.cs" />
     <Compile Include="Rank methods\LinearRankMethod.cs" />
