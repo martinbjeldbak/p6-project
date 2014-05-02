@@ -5,9 +5,9 @@ using Utility;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Genetics {
+namespace Genetics.DiversityMeasures {
     /// <summary>
-    /// A phenotypic diversity measure for a collection of neural networks, Neural Neural Network
+    /// A phenotypic diversity measure for a collection of neural networks, Neural Network
     /// Trait Diversity.
     /// </summary>
     public class NNTD : IDiversityMeasure {

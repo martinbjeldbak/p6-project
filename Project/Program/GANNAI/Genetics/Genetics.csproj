@@ -68,6 +68,7 @@
     <Compile Include="Crossover methods\TwoPointCrossover.cs" />
     <Compile Include="Crossover methods\UniformCrossover.cs" />
     <Compile Include="CrossoverMethod.cs" />
+    <Compile Include="Diversity measures\Levenshtein.cs" />
     <Compile Include="OffspringMerger.cs" />
     <Compile Include="Replacement Rules\AncestorElitismNoExtinctionReplacementRule.cs" />
     <Compile Include="Replacement Rules\ExploreExploitT20ReplacementRule.cs" />
@@ -115,7 +116,5 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Diversity measures\" />
-  </ItemGroup>
+  <ItemGroup />
 </Project>

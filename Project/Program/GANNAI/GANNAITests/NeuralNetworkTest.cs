@@ -153,6 +153,13 @@ namespace GANNAITests {
       throw new NotImplementedException();
     }
 
+    public int BitsPerWeight() {
+        return 9;
+    }
+    public int NumHidden() {
+        return 7;
+    }
+
     public int NumInputs() {
       return 7;
     }
