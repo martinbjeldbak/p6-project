@@ -11,7 +11,7 @@ namespace Games {
 
     public double CalcFitness(AIPlayer aiplayer) {
       double fitness = 0;
-      Random r = new Random();
+      Random r = new Random(78);
       int iterations = 10000;
 
       for(int i = 0; i < iterations; i++) {
