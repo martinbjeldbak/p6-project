@@ -1,8 +1,5 @@
 \subsection{Measuring diversity}
-In GAs, a high diversity among the individuals is important. It is often argued that the weakness of GAs is the fall in diversity over generations, which can result in premature convergence~\cite{diaz2007empirical, 1266373,Zitzler00comparisonof}.
-
-%add intro
-We begin this sections by summarising some key points regarding diversity measuring, and their differences. Afterwards, we present our own proposal for a diversity measure, and we clearly define what is will say to be diverse wiht our method. 
+We begin this section by summarising some key points regarding diversity measuring, and their differences. Afterwards, we present our own proposal for a diversity measure, and we clearly define what is will say to be diverse wiht our method. 
 
 \subsubsection{Genotypic diversity measures}
 The genotypic diversity of a set of individuals is determined by how different their bit strings are.
@@ -31,8 +28,8 @@ The number of phenotypes can be used as a diversity measure, as well as the \emp
 
 \[\sqrt{\frac{\sum_{i=1}^N{(f_i-\bar{f})^2}}{N-1}}\]
 
-where $N$ is the population size and $f_i$ is the fitness of the $i$th individual~\cite{1250187}.
-\todo{we must remind the reader what $\bar{f}$ means}
+where $N$ is the population size, $f_i$ is the fitness of the $i$th individual, and $\bar{f}$ is the average fitness in the given population ~\cite{1250187}.
+
 
 One advantage of fitness-based diversity measures is that no extra computations are associated with calculating the diversity, because the fitness values have already been calculated by the GA to asses how fit each individual is~\cite{Nguyen:2006:ASPGP}.
 
