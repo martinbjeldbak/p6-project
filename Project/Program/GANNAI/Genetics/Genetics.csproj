@@ -11,8 +11,6 @@
     <TargetFrameworkProfile>
     </TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
-    <ProductVersion>12.0.0</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <PlatformTarget>x86</PlatformTarget>
@@ -93,6 +91,7 @@
     <Compile Include="IDiversityMeasure.cs" />
     <Compile Include="Diversity measures\HammingDistance.cs" />
     <Compile Include="Diversity measures\Fitness.cs" />
+    <Compile Include="Diversity measures\StandardDeviation.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

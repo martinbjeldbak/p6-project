@@ -200,7 +200,7 @@ namespace Genetics {
         "0.0", // Levenshtein
         divMeasures["NNTD"].ToString(CultureInfo.InvariantCulture),
         divMeasures["Unique fitness"].ToString(CultureInfo.InvariantCulture),
-        "0.0" // Stddev
+        divMeasures["Standard deviation"].ToString(CultureInfo.InvariantCulture)
   );
       cmd = new MySqlCommand(query, connection);
       cmd.ExecuteNonQuery();
