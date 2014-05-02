@@ -13,7 +13,7 @@ namespace Genetics {
         ///    to take variances into account.</param>
         double MeasureDiversity(SortList<AIPlayer> individuals);
 
-        string Name();
+        string Name { get; }
   }
 }
 

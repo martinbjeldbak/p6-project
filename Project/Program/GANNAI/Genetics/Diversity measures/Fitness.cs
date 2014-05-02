@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 
-namespace Genetics {
+namespace Genetics.DiversityMeasures {
     /// <summary>
     /// Meausres diversity solely based on fitness. It is the number
     /// of unique fitness values in the population, devided by the size
@@ -20,9 +20,10 @@ namespace Genetics {
             return fitnessValues.Distinct().Count() / (double)size;
         }
 
-        public string Name() {
-            return "Fitness-based";
+        public string Name {
+          get { return "Unique fitness"; }
         }
+
         #endregion
     }
 }

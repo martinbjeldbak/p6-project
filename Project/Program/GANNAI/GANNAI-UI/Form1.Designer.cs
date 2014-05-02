@@ -289,12 +289,12 @@
             this.comboBox_replacementRule.FormattingEnabled = true;
             this.comboBox_replacementRule.Items.AddRange(new object[] {
             "Naive",
-            "Ancestor Elitism No Extinction",
-            "Ancestor",
+            "(bad)Ancestor Elitism No Extinction",
+            "Ancestor Elitism",
             "Single Parent Elitism",
-            "Explore Exploit T30",
-            "Explore Exploit T20",
-            "Explore Exploit T40",
+            "(bad)Explore Exploit T30",
+            "(bad)Explore Exploit T20",
+            "(bad)Explore Exploit T40",
             "Explore Exploit B30"});
             this.comboBox_replacementRule.Location = new System.Drawing.Point(350, 45);
             this.comboBox_replacementRule.Name = "comboBox_replacementRule";

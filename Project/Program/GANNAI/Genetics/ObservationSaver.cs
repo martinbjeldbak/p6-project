@@ -2,6 +2,7 @@
 using MySql.Data.MySqlClient;
 using Utility;
 using System.Text;
+using System.Globalization;
 
 namespace Genetics {
   public class ObservationSaver {
@@ -180,17 +181,27 @@ namespace Genetics {
     private void InsertPopulationInDB() {
       Population p = si.Population;
       int g = p.Generation;
-      string minFit = p.GetWorst().GetFitness().ToString(System.Globalization.CultureInfo.InvariantCulture);
-      string meanFit = p.GetMean().GetFitness().ToString(System.Globalization.CultureInfo.InvariantCulture);
-      string maxFit = p.GetBest().GetFitness().ToString(System.Globalization.CultureInfo.InvariantCulture);
-      string avgFit = p.GetAverage().ToString(System.Globalization.CultureInfo.InvariantCulture);
+      string minFit = p.GetWorst().GetFitness().ToString(CultureInfo.InvariantCulture);
+      string meanFit = p.GetMean().GetFitness().ToString(CultureInfo.InvariantCulture);
+      string maxFit = p.GetBest().GetFitness().ToString(CultureInfo.InvariantCulture);
+      string avgFit = p.GetAverage().ToString(CultureInfo.InvariantCulture);
       string simulated_at = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-      string diversity = p.MeasureDiversity().ToString(System.Globalization.CultureInfo.InvariantCulture);
+      string diversity = p.MeasureDiversity().ToString(CultureInfo.InvariantCulture);
+      string diversity_main = p.MeasureDiversityMethod();
+
+      System.Collections.Generic.Dictionary<string, double> divMeasures = p.GetDiversityMeasurements();
 
       query = String.Format("INSERT INTO gannai.population (simulation_id,"
-        + " generation, min_fitness, max_fitness, avg_fitness, mean_fitness, simulated_at, diversity)"
-        + " VALUES('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}')"
-	, simId, g, minFit, maxFit, avgFit, meanFit, simulated_at, diversity);
+        + " generation, min_fitness, max_fitness, avg_fitness, mean_fitness, simulated_at, diversity, diversity_main,"
+        + " diversity_hamming, diversity_levenshtein, diversity_nntd, diversity_fitness, diversity_stddev)"
+        + " VALUES('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}', '{11}', '{12}', '{13}')",
+	      simId, g, minFit, maxFit, avgFit, meanFit, simulated_at, diversity, diversity_main,
+        divMeasures["Hamming distance"].ToString(CultureInfo.InvariantCulture),
+        "0.0", // Levenshtein
+        divMeasures["NNTD"].ToString(CultureInfo.InvariantCulture),
+        divMeasures["Unique fitness"].ToString(CultureInfo.InvariantCulture),
+        divMeasures["Standard deviation"].ToString(CultureInfo.InvariantCulture)
+  );
       cmd = new MySqlCommand(query, connection);
       cmd.ExecuteNonQuery();
     }

@@ -23,21 +23,25 @@ We will refer to this as the \emph{Greedy replacement rule}.
 \subsubsection{Ancestor Elitism replacement rule}
 Ancestor Elitism is similar to $(\mu + \lambda)$ algorithms, but we developed independently of these algorithms~\cite[p. 34]{Luke2013Metaheuristics}.
 
-Initially, every individual from $G_i$ is put into $G_{i+1}$.
+The next generation $G_{i+1}$ is made from generation $G_i$ as follows:
+Every individual from $G_i$ is put into $G_{i+1}$.
 Any individual in $O_i$ who has only a single parent (made from mutation) and is more fit than its parent, will replace that parent in $G_{i+1}$.
 Any individual in $O_i$ who has two parents (made from crossover) and is more fit than both of its parents, will replace both parents in $G_{i+1}$ by itself and a random immigrant.
+Finally, the 50 \% least fit individuals in $G_{i+1}$ is replaced by random immigrants.
+
 
 \subsubsection{Single Parent Elitism replacement rule}
 Single Parent Elitism is similar to Restricted Tournament Selection, but was developed indepentdently of this method~\cite[p. 132]{Luke2013Metaheuristics}.
 
-Initially, every individual from $G_i$ is put into $G_{i+1}$.
+$G_{i+1}$ is made from $G_i$ as follows:
+Every individual from $G_i$ is put into $G_{i+1}$.
 Any individual in $O_i$ who has only a single parent (made from mutation) and is more fit than its parent, will replace that parent in $G_{i+1}$.
 Any individual in $O_i$ who has two parents (made from crossover), and is more fit than a random of its two parents, will replace its parent in $G_{i+1}$ by itself.
 
 \subsubsection{Mass Extinction Explore Exploit replacement rule}
 Inspired by the changes between exploration and exploitation phases used by Ursem\cite{ursem2002diversity}, we introduce the following replacement rule, which we will refer to as the \emph{Mass Extinction Explore Exploit} (MEEE) replacement rule.
-The MEEE replacement rule will perform a mass extinction when the diversity drops below a threshold.
-The generation $G_{i+1}$ is created as follows:
+The MEEE replacement rule performs a mass extinction when the diversity drops below a threshold.
+$G_{i+1}$ is made from $G_i$ as follows:
 
 If $d(G_i) < \alpha$, replace the $\frac{n}{2}$ least fit individuals from $G_i$ by random immigrants, where $n = \lvert G_i \rvert$.
 Use the \emph{Single Parent Elitism} replacement rule on $(G_i, O_i)$.

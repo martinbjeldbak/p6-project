@@ -6,18 +6,16 @@ using Utility;
 
 namespace Genetics {
 
-    /// <summary>
-    /// Inserts an offspring individual into the population using the following rules:
-    /// If made by two parents, and it performs better than them both, it replaces
-    /// both of them and inserts a random immigrant.
-    /// If made by only a single parent, it replaces that parent if it performs better.
-    /// Additional, after every iteration, the least fit half of the population is removed
-    /// and replaced by random immigrants.
-    /// </summary>
-  public class AncestorElitismReplacementRule : ReplacementRule {
+  /// <summary>
+  /// Inserts an offspring individual into the population using the following rules:
+  /// If made by two parents, and it performs better than them both, it replaces
+  /// both of them and inserts a random immigrant.
+  /// If made by only a single parent, it replaces that parent if it performs better.
+  /// </summary>
+  public class AncestorElitismNoExtinctionReplacementRule : ReplacementRule {
     public void Merge(SortList<AIPlayer> individuals, List<AIPlayer> offspring, Simulation simulation) {
 
-      //If having only a single parent, replace it if better
+      //If having only single parent, replace it if better
       foreach (AIPlayer o in offspring) {
         if (o.Parent2 == null) {
           for (int i = 0; i < individuals.Count; i++) {
@@ -51,12 +49,6 @@ namespace Genetics {
             individuals.Add(randomImmagrant);
           }
         }
-      }
-      individuals.Crop(individuals.Count / 2);
-      while (individuals.Count < simulation.PopulationSize){
-        AIPlayer randomImmagrant = new AIPlayer(simulation.NeuralNetworkMaker);
-        randomImmagrant.CalcFitness(simulation.Game);
-        individuals.Add(randomImmagrant);
       }
     }
   }
