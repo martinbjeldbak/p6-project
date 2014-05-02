@@ -70,11 +70,11 @@ namespace GANNAIUI {
             generationCountLabel.Text = "Generation No: " + simulation.Population.Generation.ToString();
             diversityLabel.Text = "Diversity: " + simulation.Population.MeasureDiversity().ToString();
 
-                System.Console.WriteLine(simulation.Population.GetDiversityMeasurements().ToString());
+                //System.Console.WriteLine(simulation.Population.GetDiversityMeasurements().ToString());
 
-                foreach(KeyValuePair<string, double> entry in simulation.Population.GetDiversityMeasurements()) {
-                    Console.WriteLine(String.Format("{0}: {1}", entry.Key, entry.Value));
-                }
+                //foreach(KeyValuePair<string, double> entry in simulation.Population.GetDiversityMeasurements()) {
+                //    Console.WriteLine(String.Format("{0}: {1}", entry.Key, entry.Value));
+                //}
         }
     }
 
