@@ -16,4 +16,3 @@ namespace Genetics {
         string Name { get; }
     }
 }
-

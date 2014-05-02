@@ -59,7 +59,7 @@ namespace Genetics {
       new List<CrossoverMethod>() { new SinglePointCrossover(), new TwoPointCrossover(), new UniformCrossover() };
 
     public  List<IDiversityMeasure> diversityMeasures =
-            new List<IDiversityMeasure>() { new DiversityMeasures.NNTD(), new DiversityMeasures.HammingDistance(), new DiversityMeasures.Fitness(), new DiversityMeasures.Levenshtein() };
+            new List<IDiversityMeasure>() { new DiversityMeasures.NNTD(), new DiversityMeasures.HammingDistance(), new DiversityMeasures.Fitness() };
     
     ///Keeps track of which game instance to give to to the next thread asking for it.
     ///Only 'Population.Count' instances can run in parallel 
@@ -124,14 +124,8 @@ namespace Genetics {
       default: throw new Exception("Wrong offspring merge type: " + ReplacementRule);
       }
 
-      switch(DiversityMeasure) {
-        case 0: diversityMeasure = diversityMeasures[0]; break;
-        case 1: diversityMeasure = diversityMeasures[1]; break;
-        case 2: diversityMeasure = diversityMeasures[2]; break;
-        default: throw new Exception("The desired diversity measure does not exist: " + DiversityMeasure);
-      }
-          
-
+      diversityMeasure = diversityMeasures[0];
+        
       Game = game;
       NeuralNetworkMaker = new SimpleNNMaker(game);
     }
