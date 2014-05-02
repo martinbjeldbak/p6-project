@@ -70,6 +70,7 @@
     <Compile Include="ConfigurationParserTest.cs" />
     <Compile Include="RankMethodTest.cs" />
     <Compile Include="DNATests.cs" />
+    <Compile Include="LevenshteinTest.cs" />
     <Compile Include="SortListTest.cs" />
     <Compile Include="GeneticsTests.cs" />
     <Compile Include="NeuralNetworkTest.cs" />
