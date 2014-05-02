@@ -59,7 +59,7 @@ namespace Genetics {
       new List<CrossoverMethod>() { new SinglePointCrossover(), new TwoPointCrossover(), new UniformCrossover() };
 
     public  List<IDiversityMeasure> diversityMeasures =
-      new List<IDiversityMeasure>() { new DiversityMeasures.NNTD(), new DiversityMeasures.HammingDistance(), new DiversityMeasures.Fitness(), new DiversityMeasures.Levenshtein(), new DiversityMeasures.StandardDeviation() };
+            new List<IDiversityMeasure>() { new DiversityMeasures.NNTD(), new DiversityMeasures.HammingDistance(), new DiversityMeasures.Fitness(), new DiversityMeasures.Levenshtein() };
     
     ///Keeps track of which game instance to give to to the next thread asking for it.
     ///Only 'Population.Count' instances can run in parallel 
