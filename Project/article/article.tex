@@ -8,7 +8,6 @@
 \interdisplaylinepenalty=2500
 \usepackage[nocompress]{cite}
 \usepackage{graphicx}
-%\usepackage{algorithm, algorithmicx}
 \usepackage{algorithm}
 \usepackage[noend]{algpseudocode}
 \algrenewcommand\algorithmicindent{0.8em}%
@@ -53,12 +52,10 @@
 \newcommand{\inputresize}[1]{\correctlyresize{\linewidth}{\input{#1}}}
 \newcommand{\inputresizeto}[2]{\correctlyresize{#1}{\input{#2}}}
 
-
 \definecolor{scarletred}{rgb}{0.937,0.161,0.161}
 \definecolor{skyblue}{rgb}{0.447,0.624,0.812}
 \begin{document}
 
-%\title{Procreation in Genetic Artificial Neural Networks}
 \title{Measuring Diversity in Steady State Genetic Algorithms using Artificial Neural Networks}
 
 %\author{%
@@ -93,5 +90,8 @@
 
 
 % Appendices can be added with \appendix[Proof of Khazens's equation]
+\clearpage
+\appendix
+\input{content/appendices}
 
 \end{document}
