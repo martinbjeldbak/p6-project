@@ -1,9 +1,9 @@
-\section{Diversity measures}
+\subsection{Diversity measures}
 In GAs, high diversity among individuals is important. It is often argued that the weakness of GAs is the fall in diversity over generations, which often results in premature convergence~\cite{diaz2007empirical, 1266373,Zitzler00comparisonof}.
 
 Here, we summarise key points regarding well-known diversity measures. Afterwards, we present our own proposal for a diversity measure (\dia), and we clearly define what diversity means with this method.
 
-\subsection{Genotypic diversity measures}
+\subsubsection{Genotypic diversity measures}
 The genotypic diversity of a set of individuals is determined by how different their genetic structures are. To measure this type of diversity, methods to compute the distance between any two individuals' encoded bit strings are required.
 
 The diversity between a set of bit strings can then be expressed as the average distance between any two bit strings. Summation can also be used instead of averaging, which is merely a convenient optimization.
@@ -21,19 +21,11 @@ is 8 when using Hamming distance. The Levenshtein distance is 2, because transfo
 
 As concluded by~\cite{Darwen00doesextra}, constantly high genetic diversity does not guarantee better solutions, requiring other diversity measures to also be explored.
 
-\subsection{Phenotypic diversity measures}
+\subsubsection{Phenotypic diversity measures}
 \emph{Phenotypic diversity} is concerned with the individuals' behavioural differences, and can be calculated based on their fitness values. Such diversity measures include computing the standard deviation of fitness values, the average number of unique fitness values in a population, and entropy-based methods (see~\cite{1250187, 1266373}).
 
 One advantage of fitness-based diversity measures is that no extra computations are associated with calculating the diversity, because the fitness values already have been calculated by the GA to access how fit each individual is~\cite{Nguyen:2006:ASPGP}.
 
-\subsection{Other measurements}
+\subsubsection{Other measurements}
 Some diversity measures exist that are neither genotypic nor phenotypic. For instance the \emph{Ancestral ID} method, which assigns a unique ID to each individual in the initial population. Every mutated individual receives a new unique ID while every child gets the ID of one of its parents. The diversity is then based on the uniqueness of IDs in a population~\cite{1250187}.
 
-\subsection{Our proposal}
-We believe it is essential that a diversity measure reflects the difference in traits among individuals, and that to the best of our knowledge, no current genotypic or phenotypic measures reflect this. Recall that we are only concerned with neural networks as individuals. Since a \emph{trait} is a rather vague term, we introduce a clear definition of traits among neural networks: ``\emph{two neural networks have different traits if they for some input produce different outputs}''. By this definition, we denote the difference in traits among neural networks.
-
-Fitness-based diversity measure do not catch this trait diversity. Consider two artificial intelligent (AI) players for the cell phone game ``Snake''. Their fitness can be calculated based on how much food they collect before they die. One AI player may have traits that makes it good at avoiding death by not hitting any walls or its own body. Sometimes, by chance, it hits a piece of food. The other AI player may have traits that makes it good at searching for food. The two AI players can have the same fitness value, because they collect the same amount of food before they die, yet still have completely different traits. Genotypic diversity measures do not catch the trait diversity either. This is because two individuals of different genotypes can yield the same output on any input. An example of this are the two neural networks shown in \cref{fig:entire-eqnetwork}. No matter what input they receive, their output will always be the same. They are genotypically very diverse (Hamming distance of 6), but are not trait diverse.
-%
-\input{floats/eqnetworks}
-%
-To the best of our knowledge, no diversity measure exists that catches our definition of trait diversity. In the following, we propose a method for measuring trait diversity which we call \emph{\di{}} (\dia). \dia{} aims to reflect the diversity of different traits among individuals. 
