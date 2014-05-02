@@ -9,13 +9,12 @@ namespace Genetics.DiversityMeasures {
         #region IDiversityMeasure implementation
 
         public double MeasureDiversity(Utility.SortList<AIPlayer> individuals) {
-            double avgFitness = individuals.Aggregate(0.0, (of, i) => of += i.GetFitness()) / individuals.Count;
+            double avgFitness = individuals.Average(i => i.GetFitness()) ;
 
             double fitDiff = 0.0;
 
             foreach(AIPlayer p in individuals) {
                 double fit = p.GetFitness();
-
                 fitDiff += (fit - avgFitness) * (fit - avgFitness);
             }
 
