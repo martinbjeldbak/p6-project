@@ -35,7 +35,7 @@ namespace Genetics.DiversityMeasures {
         /// <param name="s">One bit string</param>
         /// <param name="t">Another bit string</param>
         /// <returns>The Levenshtein distance</returns>
-        int LevenshteinDistance(bool[] s, bool[] t) {
+        public int LevenshteinDistance(bool[] s, bool[] t) {
             // degenerate cases
             if (s == t) return 0;
             if (s.Length == 0) return t.Length;
@@ -71,6 +71,7 @@ namespace Genetics.DiversityMeasures {
 
             return v1[t.Length];
         }
+
     }
 }
 
