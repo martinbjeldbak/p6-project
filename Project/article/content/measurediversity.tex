@@ -1,11 +1,11 @@
-\subsection{Measuring diversity}
-We begin this section by summarising some key points regarding diversity measuring, and their differences. Afterwards, we present our own proposal for a diversity measure, and we clearly define what is will say to be diverse wiht our method. 
+\section{Diversity measures}
 
-\subsubsection{Genotypic diversity measures}
-The genotypic diversity of a set of individuals is determined by how different their bit strings are.
-To measure this kind of diversity, you just need a method to compute the difference (distance) between any two bit strings.
-The diversity between a set of bit strings can then be expressed as the average distance between any two bit strings.
-Summation can also be used instead of averaging, which is merely a convenient optimization.
+Here, we summarise key points regarding well-known diversity measures. Afterwards, we present our own proposal for a diversity measure (\dia), and we clearly define what diversity means with this method.
+
+\subsection{Genotypic diversity measures}
+The genotypic diversity of a set of individuals is determined by how different their genetic structures are. To measure this type of diversity, methods to compute the distance between any two bit strings are required.
+
+The diversity between a set of bit strings can then be expressed as the average distance between any two bit strings. Summation can also be used instead of averaging, which is merely a convenient optimization.
 
 The \emph{Hamming distance} between two bit strings $A$ and $B$ of equal lengths, is the number of indexes $i$, such that $A[i] \neq B[i]$.
 
@@ -14,31 +14,31 @@ The \emph{Levenshtein distance} between two bit strings $A$ and $B$, is the numb
 The Hamming distance between the two strings
 %
 \begin{align}
-    01010101 \\
-    10101010
+&01010101\label{eq:bit1} \\
+&10101010\label{eq:bit2}
 \end{align}
 %
-is 8. The Levenshtein distance is 2, because we can transform (1) into (2) by deleting the first bit and prepending a $0$~\cite{1250187}.
+is 8. the Levenshtein distance is 2, because we can transform \cref{eq:bit1} into \cref{eq:bit2} by deleting the first bit and prepending a $0$~\cite{1250187}.
 
-\subsubsection{Phenotypic diversity measures}
+\subsection{Phenotypic diversity measures}
 \emph{Phenotypic diversity} is concerned with the individuals' behavioural differences, and can be calculated based on their fitness values.
 
 \emph{Phenotypes} are groupings of individual having the same fitness values. 
 The number of phenotypes can be used as a diversity measure, as well as the \emph{Standard deviation} expressed as
-
+%
 \[\sqrt{\frac{\sum_{i=1}^N{(f_i-\bar{f})^2}}{N-1}}\]
+%
 
 where $N$ is the population size, $f_i$ is the fitness of the $i$th individual, and $\bar{f}$ is the average fitness in the given population ~\cite{1250187}.
 
-
 One advantage of fitness-based diversity measures is that no extra computations are associated with calculating the diversity, because the fitness values have already been calculated by the GA to asses how fit each individual is~\cite{Nguyen:2006:ASPGP}.
 
-\subsubsection{Other measurements}
+\subsection{Other measurements}
 Some diversity measures exist that are neither genotypic nor phenotypic. For instance the \emph{Ancestral ID} method, which assigns a unique ID to each individual in the initial population.
 Every mutated individual receives a new unique ID while every child gets the ID of one of its parents.
 The diversity is then based on the uniqueness of IDs in a population~\cite{1250187}.
 
-\subsubsection{Our proposal}
+\subsection{Our proposal}
 We believe it is essential that a diversity measure reflects the difference in traits among individuals.
 Recall that we are only concerned with neural networks as individuals. 
 Since \emph{traits} is a rather vague term, we introduce a clear definition of traits among neural networks: ``\emph{two neural networks have different traits, if they for some input produce different outputs}''. By this trait diversity, we denote the difference in traits among neural networks.
