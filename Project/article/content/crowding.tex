@@ -1,12 +1,13 @@
 \subsection{Crowding}
-Many methods have been proposed to overcome the problem of gradually decreasing diversity through generations. These methods include inserting random immigrants (randomly initialized individuals)~\cite{Cobb93geneticalgorithms}, using complex population structures to lower the gene flow, and the use of special selection procedures~\cite{ursem2002diversity}. The latter is known as crowding. How a particular crowding method works is commonly described by a replacement rule.
+%Many methods have been proposed to overcome the problem of gradually decreasing diversity through generations. 
+Methods to overcome decreasing diversity, include inserting random immigrants (randomly initialized individuals)~\cite{Cobb93geneticalgorithms}, using complex population structures to lower the gene flow, and the use of special selection procedures~\cite{ursem2002diversity}. The latter is known as crowding~\cite{DeJong:1975:ABC:907087}. How a particular crowding method works is commonly described by a replacement rule.
+
 The replacement rule determines which individuals of the $i$th generation $G_i$,
 and their offspring $O_i$ is selected to form the the next generation $G_{i+1}$.
 
 \subsubsection{Greedy replacement rule}
 Common descriptions of GA's, that do not try to account for premature convergence,
-are often making the generation $G_i$ from the $n$ most fit individuals from $G_{i-1} \cup O_{i-1}$,
-where $\lvert G_x \rvert = n$ for all $x$\cite{ma.sterThesisGANN}.
+are often making the generation $G_i$ from the $n$ most fit individuals from $G_{i-1} \cup O_{i-1}$, where $\lvert G_x \rvert = n$ for all $x$~\cite{masterThesisGANN}.
 We will refer to this as the \emph{Greedy replacement rule}.
 
 %\subsubsection{Probabilistic crowding replacement rule}
@@ -20,7 +21,9 @@ We will refer to this as the \emph{Greedy replacement rule}.
 %To avoid that these $2+y$ similar individuals are all selected for the next generation $G_{i+1}$, the probabilistic crowding %replacement rule can be used to select only $y$ of these individuals to survive, in an attempt to maintain a higher diversity.
 
 \subsubsection{Ancestor Elitism replacement rule}
-$G_{i+1}$ is made from $G_i$ as follows:
+Ancestor Elitism is similar to $(\mu + \lambda)$ and Generation Gap algorithms, but it was developed independently of these algorithms~\cite[p. 34, p. 50]{Luke2013Metaheuristics}.
+
+The next generation $G_{i+1}$ is made from generation $G_i$ as follows:
 Every individual from $G_i$ is put into $G_{i+1}$.
 Any individual in $O_i$ who has only a single parent (made from mutation) and is more fit than its parent, will replace that parent in $G_{i+1}$.
 Any individual in $O_i$ who has two parents (made from crossover) and is more fit than both of its parents, will replace both parents in $G_{i+1}$ by itself and a random immigrant.
@@ -28,6 +31,8 @@ Finally, the 50 \% least fit individuals in $G_{i+1}$ is replaced by random immi
 
 
 \subsubsection{Single Parent Elitism replacement rule}
+Single Parent Elitism is similar to Restricted Tournament Selection, but was developed indepentdently of this method~\cite[p. 132]{Luke2013Metaheuristics}.
+
 $G_{i+1}$ is made from $G_i$ as follows:
 Every individual from $G_i$ is put into $G_{i+1}$.
 Any individual in $O_i$ who has only a single parent (made from mutation) and is more fit than its parent, will replace that parent in $G_{i+1}$.

@@ -1,7 +1,6 @@
 \section{Diversity measures}
 In GAs, high diversity among individuals is important. It is often argued that the weakness of GAs is the fall in diversity over generations, which often results in premature convergence~\cite{diaz2007empirical, 1266373,Zitzler00comparisonof}.
 
-%add intro
 Here, we summarise key points regarding well-known diversity measures. Afterwards, we present our own proposal for a diversity measure (\dia), and we clearly define what diversity means with this method.
 
 \subsection{Genotypic diversity measures}
@@ -25,7 +24,7 @@ As concluded by~\cite{Darwen00doesextra}, constantly high genetic diversity does
 \subsection{Phenotypic diversity measures}
 \emph{Phenotypic diversity} is concerned with the individuals' behavioural differences, and can be calculated based on their fitness values. Such diversity measures include computing the standard deviation of fitness values, the average number of unique fitness values in a population, and entropy-based methods (see~\cite{1250187, 1266373}).
 
-One advantage of fitness-based diversity measures is that no extra computations are associated with calculating the diversity, as the fitness values already have been calculated by the GA to access how fit each individual is~\cite{Nguyen:2006:ASPGP}.
+One advantage of fitness-based diversity measures is that no extra computations are associated with calculating the diversity, because the fitness values already have been calculated by the GA to access how fit each individual is~\cite{Nguyen:2006:ASPGP}.
 
 \subsection{Other measurements}
 Some diversity measures exist that are neither genotypic nor phenotypic. For instance the \emph{Ancestral ID} method, which assigns a unique ID to each individual in the initial population. Every mutated individual receives a new unique ID while every child gets the ID of one of its parents. The diversity is then based on the uniqueness of IDs in a population~\cite{1250187}.
