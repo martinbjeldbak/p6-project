@@ -21,10 +21,9 @@ namespace Games {
         double output = aiplayer.GetOutputs(new double[] { x, y })[0];
 
         // The lower the difference of output, the better. Reward this.
-        fitness += 1 / Math.Abs(RosenbrockFunction(x, y) - output * 100);
+          fitness += 1 / (1 + Math.Abs(RosenbrockFunction(x, y) - output * 2500));
       }
 
-      // Average of fitness over runs
       return fitness / iterations;
     }
       
