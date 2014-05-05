@@ -121,9 +121,9 @@
             this.purchaseRadioButton.AutoSize = true;
             this.purchaseRadioButton.Location = new System.Drawing.Point(42, 68);
             this.purchaseRadioButton.Name = "purchaseRadioButton";
-            this.purchaseRadioButton.Size = new System.Drawing.Size(70, 17);
+            this.purchaseRadioButton.Size = new System.Drawing.Size(83, 17);
             this.purchaseRadioButton.TabIndex = 6;
-            this.purchaseRadioButton.Text = "Purchase";
+            this.purchaseRadioButton.Text = "Rosenbrock";
             this.purchaseRadioButton.UseVisualStyleBackColor = true;
             this.purchaseRadioButton.CheckedChanged += new System.EventHandler(this.purchaseRadioButton_CheckedChanged);
             // 
