@@ -1,14 +1,14 @@
 \subsection{Diversity measures}
-In GAs, high diversity among individuals is important. It is often argued that the weakness of GAs is the fall in diversity over generations, which often results in premature convergence~\cite{diaz2007empirical, 1266373,Zitzler00comparisonof}.
+It is often argued that the weakness of GAs is the fall in diversity over generations, which often results in premature convergence~\cite{diaz2007empirical, 1266373,Zitzler00comparisonof}.
 
-Here, we summarise key points regarding well-known diversity measures. Afterwards, we present our own proposal for a diversity measure (\dia), and we clearly define what diversity means with this method.
+Here, we summarise key points regarding well-known diversity measures. %Afterwards, we present our own proposal for a diversity measure (\dia), and we clearly define what diversity means with this method.
 
 \subsubsection{Genotypic diversity measures}
 The genotypic diversity of a set of individuals is determined by how different their genetic structures are. To measure this type of diversity, methods to compute the distance between any two individuals' encoded bit strings are required.
 
 The diversity between a set of bit strings can then be expressed as the average distance between any two bit strings. Summation can also be used instead of averaging, which is merely a convenient optimization.
 
-The \emph{Hamming distance} between two bit strings $A$ and $B$ of equal lengths is the number of indexes $i$, such that $A[i] \neq B[i]$.
+The \emph{Hamming distance} between two bit strings $A$ and $B$ of equal length is the number of indexes $i$, such that $A[i] \neq B[i]$.
 
 Another way to measure genotypic diversity, is using the \emph{Levenshtein distance} between two bit strings $A$ and $B$. It is then the number of bits that must be inserted, deleted or substituted to change $A$ into $B$. For example, the Hamming distance and Levenshtein distances between between the following two strings
 %
