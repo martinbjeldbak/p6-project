@@ -1,25 +1,26 @@
 \begin{abstract}
-This paper presents \dia, a phenotypic diversity measurement for neural network representations of genetic programs. It it an extension of the Simpsons Diversity Index known from ecology.
+This paper presents \dia, a phenotypic diversity measurement for neural network representations of genetic programs. It is an extension of the Simpsons Diversity Index known from ecology.
 
 %Motivation:
 %Why do we care about the problem and the results?
-Avoiding low diversity in a genetic algorithm's population is crucial for finding a global optimal solution. When diversity is overlooked, premature convergence is achieved. This most likely leads to local optimal solutions.
+Avoiding low diversity in a genetic algorithm's population is crucial for finding a global optimum. When diversity is overlooked, premature convergence is the consequence. This most likely leads to local optimum.
 
 %Problem statement:
 %What problem are you trying to solve?
+\todo{should we keep the following section?}
 Another factor, which is important for maintaining a high diversity is how individuals are replaced in the population. We present a method in which we maintain high diversity and use our own replacement rule, which contributes to a high diversity, without being too slow in the search for the optimum.
 
 %Approach:
 %How did you go about solving or making progress on the problem?
-Many studies have been conducted in this field of research, and we compare our method against other results, which aimed to solve the same problem.\citpls
+Many studies have been conducted in this field of research, and we compare our method against other results, which aimed to solve the same problem.
 
 %Results:
 %What's the answer? 
-Succesful or failure?
+Our results show that\dots (Succesful or failure?)
 
 %Conclusions:
 %What are the implications of your answer?
-What are the implications of our answer?
+This leads to\dots (What are the implications of our answer?)
 
 %Neural networks are often used as individuals within populations of genetic algorithms. Many operators exist to transition a population from one generation to the next. The drawback with many of these methods is that only the offspring of a population are selected to form the next generation, resulting in a fraction of the population being bred on -- individuals with highest fitness. This causes the individuals to share the same traits and possibly collect around local minima. We develop a new operator for offspring selection that attempts to maximize diversity in a population and hence be more effective at finding the global maximum. It only selects the offspring if it has a higher fitness than either of its parents. If this is the case, both parents are replaced with the individual and a random immigrant individual is introduced. If its fitness is lower, both parents survive.
 

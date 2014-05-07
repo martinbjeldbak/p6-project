@@ -3,10 +3,10 @@
 Methods to overcome decreasing diversity, include inserting random immigrants (randomly initialized individuals)~\cite{Cobb93geneticalgorithms}, using complex population structures to lower the gene flow, and the use of special selection procedures~\cite{ursem2002diversity}. The latter is known as crowding~\cite{DeJong:1975:ABC:907087}. How a particular crowding method works is commonly described by a replacement rule.
 
 The replacement rule determines which individuals of the $i$th generation $G_i$,
-and their offspring $O_i$ is selected to form the the next generation $G_{i+1}$.
+and their offspring $O_i$ are selected to form the the next generation $G_{i+1}$.
 
 \subsubsection{Greedy replacement rule}
-Common descriptions of GA's, that do not try to account for premature convergence,
+Common descriptions of GAs, that do not try to account for premature convergence,
 are often making the generation $G_i$ from the $n$ most fit individuals from $G_{i-1} \cup O_{i-1}$, where $\lvert G_x \rvert = n$ for all $x$~\cite{masterThesisGANN}.
 We will refer to this as the \emph{Greedy replacement rule}.
 
@@ -36,10 +36,10 @@ Single Parent Elitism is similar to Restricted Tournament Selection, but was dev
 $G_{i+1}$ is made from $G_i$ as follows:
 Every individual from $G_i$ is put into $G_{i+1}$.
 Any individual in $O_i$ who has only a single parent (made from mutation) and is more fit than its parent, will replace that parent in $G_{i+1}$.
-Any individual in $O_i$ who has two parents (made from crossover), and is more fit than a random of its two parents, will replace its parent in $G_{i+1}$ by itself.
+Any individual in $O_i$ who has two parents (made from crossover), and is more fit than a randomly chosen parent, will replace its parent in $G_{i+1}$ by itself.
 
 \subsubsection{Mass Extinction Explore Exploit replacement rule}
-Inspired by the changes between exploration and exploitation phases used by Ursem\cite{ursem2002diversity}, we introduce the following replacement rule, which we will refer to as the \emph{Mass Extinction Explore Exploit} (MEEE) replacement rule.
+Inspired by the changes between exploration and exploitation phases used by Ursem~\cite{ursem2002diversity}, we introduce the following replacement rule, which we will refer to as the \emph{Mass Extinction Explore Exploit} (MEEE) replacement rule.
 The MEEE replacement rule performs a mass extinction when the diversity drops below a threshold.
 $G_{i+1}$ is made from $G_i$ as follows:
 
