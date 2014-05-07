@@ -1,0 +1,24 @@
+\begin{tikzpicture}
+  \pgfplotsset{%
+    grid=major,
+    grid style={dashed,gray!30},
+    scale only axis,
+  }
+  \begin{axis}[
+      ylabel = {Diversity},
+      xlabel = {Initial Mutation},
+      legend columns = 3,
+      legend style={%
+        at={(0,1.1)},
+        anchor=north west 
+      },
+    ]
+    \addplot[smooth, no markers, color=maroon]
+    table[col sep=comma, y index=1, x index=0] {data/initial_mutation_leaf.csv};
+  \addplot[smooth, no markers, color=navy]
+    table[col sep=comma, y index=2, x index=0] {data/initial_mutation_leaf.csv};
+  \addplot[smooth, no markers, color=blue]
+    table[col sep=comma, y index=3, x index=0] {data/initial_mutation_leaf.csv};
+    \legend{Fitness, Hamm.\ dist., \dia}
+\end{axis}
+\end{tikzpicture}
