@@ -1,6 +1,6 @@
 \section{Experiments}
 %In this section, we evaluate our proposed method of a better diversity measurement (NNTD) by using it to measure diversity of the replacement rules described in \cref{sec:replacementrules}. This is to compare each replacement rules' influence on diversity using NNTD.
-Three problems instances are used to evaluate our diversity measure. Two problems discrete, and one continuous. A standard implementation of GAs, ANNs, replacement policies, and diversity measures is used (see~\cite{mbm:kmc:ekoGA} for the authors' implementation details). 
+Three problem instances are used to evaluate our diversity measure. Two problems discrete, and one continuous. A standard implementation of GAs, ANNs, replacement policies, and diversity measures is used (see~\cite{mbm:kmc:ekoGA} for the authors' implementation details). 
 
 \subsection{Parameter settings}
 
@@ -21,9 +21,10 @@ Three problems instances are used to evaluate our diversity measure. Two problem
   \label{tab:gaparam}
 \end{table}
 
-Three crossover methods are used: one-point crossover, two-point crossover, and uniform crossover. Upon creating a new population, there is an equal chance for each to be chosen.
-
-Half of the offspring is created from crossover between two selected parents in population $p$, the other half created solely by mutation of the individuals also in $p$. Of the individuals in $p$'s offspring belonging to the half created by crossover, there is a \perc{10} chance that the individual also will be selected for mutation. For each bit belonging to the individuals selected for mutation, there is a \perc{5} chance that that will be mutated. Of the bits to be mutated, each bit has a \perc{50} chance it will remain the same, and a \perc{50} chance to be inverted.
+We use a population size of 100. For each iteration, 100 new offspring individuals are created. Half of the offspring is cloned from a random parent, found using rank-based selection, and then mutated. The other half is made by performing crossover between two random parents, also using rank-based selection.
+Three crossover methods are used: one-point crossover, two-point crossover, and uniform crossover. When a new individual is created using crossover, there is an equal chance for any of the crossover methods to be used. 
+Each offspring individual created by crossover, has a \perc{10} chance to be mutated.
+When mutating an individual, each bit in its bit string has a \perc{5} chance to be assigned a random boolean value.
 
 \input{content/experiments/problems}
 \input{content/experiments/diversity}
