@@ -16,41 +16,67 @@ namespace Genetics.DiversityMeasures {
             this.runs = runs;
         }
 
+        /// <summary>
+        /// Returns the specie of the given array of values.
+        /// For instance, specie 13 is returned (1101 in binary), if the values on indexes
+        /// 1, 2, and 4 is greater than or equal to any other value
+        /// </summary>
+        /// <param name="outputs">values </param>
+        /// <returns>The specie as a decimal value in the range [1, 2^n-1]</returns>
+        public int CalcSpecie(double[] values){
+            List<int> indexes = new List<int>();
+            double max = double.NegativeInfinity;
+            for (int i = 0; i < values.Length; i++) {
+                if (values[i] > max) {
+                    indexes.Clear();
+                    indexes.Add(i);
+                    max = values[i];
+                }
+                else if (values[i] == max)
+                    indexes.Add(i);
+            }
+            int specie = 0;
+            for (int i = 0; i < indexes.Count; i++)
+                specie += 1 << indexes[i];
+            return specie;
+        }
+
         #region IDiversityMeasure implementation
         public double MeasureDiversity(SortList<AIPlayer> individuals) {
             int outputSize = individuals.Get(0).neuralNetwork.GetNumberOfOutputs();
 
-            double[] diversities = new double[runs];
+            double diversity = 0;
 
             for (int j = 0; j < runs; j++) {
-                int[] outputCount = new int[outputSize];
                 double[] randInputs = new double[individuals.Get(0).neuralNetwork.GetNumberOfInputs()];
                 for (int i = 0; i < randInputs.Length; i++)
                     randInputs[i] = RandomNum.RandomDouble();
 
-                Parallel.For(0, individuals.Count, i => {
-                    AIPlayer a = individuals.Get(i);
-                    outputCount[a.GetStrongestOutputIndex(randInputs)]++;
-                    double[] outputs = a.GetOutputs(randInputs);
-                });
-
-                double numerator = 0.0;
-                int totalOrganisms = 0;
-                for (int i = 0; i < outputSize; i++) {
-                    numerator += outputCount[i] * (outputCount[i] - 1);
-                    totalOrganisms += outputCount[i];
+                //We use a dictionary to keep track of the size of each specie we encounter
+                Dictionary<int, int> counters = new Dictionary<int, int>();
+                for (int l = 0; l < individuals.Count; l++){
+                    int specie = CalcSpecie(individuals.Get(l).GetOutputs(randInputs));
+                    if (counters.Keys.Contains(specie))
+                        counters[specie]++;
+                    else
+                        counters.Add(specie, 1);
                 }
 
-                int s = individuals.Count;
-                double demoninator = totalOrganisms * (totalOrganisms - 1);
-                diversities[j] = 1.0 - numerator / demoninator;
+                //Use simpsons diversity
+                diversity += CalcSimpsonsDiversity(counters);
             }
 
-            double diversity = 0.0;
-            for (int i = 0; i < runs; i++)
-                diversity += diversities[i];
-
             return diversity / runs;
+        }
+
+        public double CalcSimpsonsDiversity(Dictionary<int, int> counters) {
+            double numerator = 0;
+            int total = 0;
+            foreach (KeyValuePair<int, int> a in counters){
+                numerator += a.Value * (a.Value-1);
+                total += a.Value;
+            }
+            return 1 - numerator / (total * (total - 1));
         }
 
         public string Name {
