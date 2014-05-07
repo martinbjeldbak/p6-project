@@ -1,6 +1,9 @@
 \section{Experiments}
 %In this section, we evaluate our proposed method of a better diversity measurement (NNTD) by using it to measure diversity of the replacement rules described in \cref{sec:replacementrules}. This is to compare each replacement rules' influence on diversity using NNTD.
-Three problem instances are used to evaluate our diversity measure. Two problems discrete, and one continuous. A standard implementation of GAs, ANNs, replacement policies, and diversity measures is used (see~\cite{mbm:kmc:ekoGA} for the authors' implementation details). 
+
+We perform our experiments on two different discrete problems, chosen based on their different characteristics.
+The first problem is a classification problem over the Leaf dataset.
+The second problem is making an AI player for the game Snake, which was found on many of the first cell phones.
 
 \subsection{Parameter settings}
 
@@ -25,9 +28,8 @@ We use a population size of 100. For each iteration, 100 new offspring individua
 Three crossover methods are used: one-point crossover, two-point crossover, and uniform crossover. When a new individual is created using crossover, there is an equal chance for any of the crossover methods to be used. 
 Each offspring individual created by crossover, has a \perc{10} chance to be mutated.
 When mutating an individual, each bit in its bit string has a \perc{5} chance to be assigned a random boolean value.
+For specific implementation details, see~\cite{mbm:kmc:ekoGA}.
 
 \input{content/experiments/problems}
 \input{content/experiments/diversity}
 \input{content/experiments/aesp}
-
-\todo{Make sure to mention we have used \dia{} as the diversity measure for Explore-exploit}
