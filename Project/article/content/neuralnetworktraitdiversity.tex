@@ -32,4 +32,9 @@ The \dia{} $D$ (that is, the actual diversity) is calculated as the average of a
 %
 \[D =\frac{\sum_{i=1}^m{D_i}}{m}\]
 %
-The species classification implies that a single network can only be part of one species per input. One disadvantage of \dia{} is that it relies on random inputs, which means that fewer random inputs implies less statistical significance.
+The definition of species implies that a single network can actually be part of all species for each input.
+This happens if the value of all output neurons is the same.
+One disadvantage of \dia{} is that it relies on random inputs, which means that fewer random inputs implies less statistical significance.
+Due to the nature of \dia, it is not suitable for continuous problems.
+Consider for instance a neural network used for approximating any function $f$, having only a single output neuron.
+Since \dia defines species based on the output neuron with the highest value, and we in this case only have a single output neuron, all neural networks will belong to the same specie, and hence we get a diversity of 0.  
