@@ -1,0 +1,26 @@
+\begin{tikzpicture}
+  \pgfplotsset{%
+    %grid=major, % show grid aligned on major ticks
+    grid style={dashed,gray!30}, % draw grid behind plot
+    %scale only axis,
+  }
+\begin{axis}[
+    ylabel         = {Fitness},
+    xlabel         = {Generation},
+    legend columns = 2,
+    legend style={%
+      at={(0,1.2)},
+      anchor=north west 
+    },
+  ]
+  \addplot[smooth, no markers, color=navy]
+    table[col sep=comma, x index=0, y index=4] {data/replacementrule_game/greedy_leaf.csv};
+  \addplot[smooth, no markers, color=blue]
+    table[col sep=comma, x index=0, y index=4] {data/replacementrule_game/aerr_leaf.csv};
+  \addplot[smooth, no markers, color=aqua]
+    table[col sep=comma, x index=0, y index=4] {data/replacementrule_game/sperr_leaf.csv};
+  \addplot[smooth, no markers, color=teal]
+    table[col sep=comma, x index=0, y index=4] {data/replacementrule_game/eerr_leaf.csv};
+  \legend{Greedy, Ancestor Elitism, Single Parent Elitism, Explore Exploit}
+\end{axis}
+\end{tikzpicture}

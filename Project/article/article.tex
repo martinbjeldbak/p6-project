@@ -20,7 +20,6 @@
 \usepackage{tikz}
 \usetikzlibrary{positioning}
 \usepackage{pgfplots}
-\pgfplotsset{compat=newest}
 \usepackage{cleveref}
 \usepackage{mathtools}
 \usepackage[activate={true,nocompatibility},final,tracking=true,kerning=true,spacing=true,factor=1100,stretch=10,shrink=10]{microtype}
@@ -29,6 +28,20 @@
 % tracking=true, kerning=true, spacing=true - activate these techniques
 % factor=1100 - add 10% to the protrusion amount (default is 1000)
 % stretch=10, shrink=10 - reduce stretchability/shrinkability (default is 20/20)
+%
+\definecolor{maroon}{HTML}{85144B}
+\definecolor{navy}{HTML}{001F3F}
+\definecolor{blue}{HTML}{0074D9}
+\definecolor{aqua}{HTML}{7FDBFF}
+\definecolor{teal}{HTML}{39CCCC}
+
+\pgfplotsset{%
+    compat=newest,
+    grid=major,
+    grid style={dashed,gray!30},
+    scale only axis,
+    legend style={draw=none}
+  }
 
 \usepackage[locale=US]{siunitx}
 \newcommand{\perc}[1]{\SI{#1}{\percent}}
