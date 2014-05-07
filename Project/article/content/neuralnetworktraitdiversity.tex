@@ -13,7 +13,10 @@ In the following, we propose a method for measuring trait diversity, which we ca
 
 Let $F = \set{f_1, f_2, \dots, f_n}$, where each $f_j$ for $0 \leq j \leq n$ denote the set of neural networks contained in a population, which all have the same architecture of $a$ input and $b$ output neurons. \dia{} is calculated with respect to a number of random inputs $\set{R_1, R_2, \dots, R_m}$, where each $R_i$ for $1 \leq i \leq m$ is an $a$-tuple of real values chosen randomly. For each sample $R_i$, a diversity is calculated. The calculation depends on a set of species, so we distribute the neural networks into species based on which of their output neurons yields the highest value on input $R_i$. 
 
-In a population where each individual has $b$ output neurons, the total number of available species is $2^b - 1$. We represent the number of species in binary, and toggle each bit corresponding to those output neurons, which result in the highest output given input $R_i$. As an example; assume that we have a neural network with six output neurons. If the second output neuron has the highest output, then that neural network is placed in species $S_{000010}$. If another individual has multiple output neurons giving the highest output, say the first and third output neuron, then that neural network will be placed in species $S_{000101}$. If a third neural network has all of its output neurons give the same result, then that neural network is placed in $S_{111111}$. Any species that is empty, does not count as a species in the diversity measurement.
+We represent the number of species in binary, and toggle the $i$th bit if 
+\[\forall o \in O\; \lvert\; o_i \geq o_j\]
+where $O$ contains all output neurons, and $o$ is a single output neuron, then $o_i$ results in a greater than or equal result to any other output neuron, given input $R_i$.
+In a population where each individual has $b$ output neurons, the total number of available species is $2^b - 1$.  As an example; assume that we have a neural network with six output neurons. If the second output neuron has the highest output, then that neural network is placed in species $S_2$, because the toggled bits correspond to \mathtt{000010}. If another individual has multiple output neurons giving the highest output, say the first and third output neuron, then that neural network will be placed in species $S_5$, because the toggled bits correspond to \mathtt{000101}. If a third neural network has all of its output neurons give the same result, then that neural network is placed in $S_{63}$, because the toggled bits correspond to \mathtt{111111}. Any species that is empty, does not count as a species in the diversity measurement.
 
 % This means that for any neural network belonging to species $S_k(R_i)$, the bits in $k$, which are 1 are the output neurons with greater than or equal the value of any other output neuron given input $R_i$.% This definition implies that the number of species equals the number of output neurons $b$, e.g.\ $1 \leq k \leq b$. We distribute neural networks into a set of species as follows
 
@@ -25,13 +28,13 @@ In a population where each individual has $b$ output neurons, the total number o
 
 %where $\sigma_{xyz} \in \set{0, 1}$ is the output of the $x$th neuron in neural network $f_y$ on input $R_z$.
 
-Before we calculate the diversity, we flatten the set of species so that we have a set ranging from $0 \dots k$, where $k$ is the total number of non-empty species. The diversity is calculated $m$ times with \dia{} as
+The diversity is calculated $m$ times with \dia{} as
 %
 \begin{equation*}\label{eq:sdi}
   D_i = 1 - \left(\frac{\sum_{j=1}^{k}\lvert S_j\left(R_i\right)\rvert\left(\lvert S_j\left(R_i\right)\rvert - 1\right)}{\lvert F\rvert \left(\lvert F\rvert - 1\right)}\right) 
 \end{equation*}
 %
-where $\lvert S_j(R_i)\rvert$ is the total number of individuals of the $j$th species, with respect to random input $R_i$. %, and $k$ is the number of non-empty species. 
+where $\lvert S_j(R_i)\rvert$ is the total number of individuals of the $j$th species, and $k$ is the total number of non-empty species, with respect to random input $R_i$. %, and $k$ is the number of non-empty species. 
 $F$ denotes the total number of neural networks in the population. 
 
 The \dia{} $D$ (that is, the actual diversity) is calculated as the average of all $m$ $D_i$ values
