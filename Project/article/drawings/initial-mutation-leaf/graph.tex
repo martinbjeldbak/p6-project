@@ -14,11 +14,11 @@
       },
     ]
     \addplot[smooth, no markers, color=maroon]
-    table[col sep=comma, y index=1, x index=0] {data/initial_mutation_leaf.csv};
-  \addplot[smooth, no markers, color=navy]
-    table[col sep=comma, y index=2, x index=0] {data/initial_mutation_leaf.csv};
-  \addplot[smooth, no markers, color=blue]
-    table[col sep=comma, y index=3, x index=0] {data/initial_mutation_leaf.csv};
+      table[col sep=comma, y index=1, x index=0] {data/initial_mutation_leaf.csv};
+    \addplot[smooth, no markers, color=navy]
+      table[col sep=comma, y index=2, x index=0] {data/initial_mutation_leaf.csv};
+    \addplot[smooth, no markers, color=blue]
+      table[col sep=comma, y index=3, x index=0] {data/initial_mutation_leaf.csv};
     \legend{Fitness, Hamm.\ dist., \dia}
-\end{axis}
+  \end{axis}
 \end{tikzpicture}
