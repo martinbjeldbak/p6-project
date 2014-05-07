@@ -68,6 +68,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ConfigurationParserTest.cs" />
+    <Compile Include="NNTDTest.cs" />
     <Compile Include="RankMethodTest.cs" />
     <Compile Include="DNATests.cs" />
     <Compile Include="LevenshteinTest.cs" />
