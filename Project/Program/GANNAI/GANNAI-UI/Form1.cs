@@ -160,8 +160,7 @@ namespace GANNAIUI {
         GameChanged();
     }
 
-    private void purchaseRadioButton_CheckedChanged(object sender, EventArgs e) {
-      //game = new Purchase();
+    private void rosenbrockRadioButton_CheckedChanged(object sender, EventArgs e) {
       game = new Rosenbrock();
         GameChanged();
     }
@@ -183,6 +182,16 @@ namespace GANNAIUI {
             AIPlayer aip = new AIPlayer(new DNA(Clipboard.GetText()), nnMaker);
             game.Visualize(aip, form);
         }
+    }
+
+    private void purchaseRadioButton_CheckedChanged(object sender, EventArgs e) {
+        game = new Purchase();
+        GameChanged();
+    }
+
+    private void XORRadioButton_CheckedChanged(object sender, EventArgs e) {
+        game = new XOR();
+        GameChanged();
     }
 
    

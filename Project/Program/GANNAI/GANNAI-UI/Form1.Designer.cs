@@ -13,6 +13,8 @@
             this.IncomeRadioButton = new System.Windows.Forms.RadioButton();
             this.goButton = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.radioButton2 = new System.Windows.Forms.RadioButton();
+            this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.purchaseRadioButton = new System.Windows.Forms.RadioButton();
             this.bankruptcyRadioButton = new System.Windows.Forms.RadioButton();
             this.leafRadioButton = new System.Windows.Forms.RadioButton();
@@ -102,6 +104,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.radioButton2);
+            this.groupBox1.Controls.Add(this.radioButton1);
             this.groupBox1.Controls.Add(this.purchaseRadioButton);
             this.groupBox1.Controls.Add(this.bankruptcyRadioButton);
             this.groupBox1.Controls.Add(this.leafRadioButton);
@@ -116,6 +120,28 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Select game";
             // 
+            // radioButton2
+            // 
+            this.radioButton2.AutoSize = true;
+            this.radioButton2.Location = new System.Drawing.Point(290, 68);
+            this.radioButton2.Name = "radioButton2";
+            this.radioButton2.Size = new System.Drawing.Size(77, 17);
+            this.radioButton2.TabIndex = 8;
+            this.radioButton2.Text = "XOR (8 bit)";
+            this.radioButton2.UseVisualStyleBackColor = true;
+            this.radioButton2.CheckedChanged += new System.EventHandler(this.XORRadioButton_CheckedChanged);
+            // 
+            // radioButton1
+            // 
+            this.radioButton1.AutoSize = true;
+            this.radioButton1.Location = new System.Drawing.Point(152, 68);
+            this.radioButton1.Name = "radioButton1";
+            this.radioButton1.Size = new System.Drawing.Size(70, 17);
+            this.radioButton1.TabIndex = 7;
+            this.radioButton1.Text = "Purchase";
+            this.radioButton1.UseVisualStyleBackColor = true;
+            this.radioButton1.CheckedChanged += new System.EventHandler(this.purchaseRadioButton_CheckedChanged);
+            // 
             // purchaseRadioButton
             // 
             this.purchaseRadioButton.AutoSize = true;
@@ -125,7 +151,7 @@
             this.purchaseRadioButton.TabIndex = 6;
             this.purchaseRadioButton.Text = "Rosenbrock";
             this.purchaseRadioButton.UseVisualStyleBackColor = true;
-            this.purchaseRadioButton.CheckedChanged += new System.EventHandler(this.purchaseRadioButton_CheckedChanged);
+            this.purchaseRadioButton.CheckedChanged += new System.EventHandler(this.rosenbrockRadioButton_CheckedChanged);
             // 
             // bankruptcyRadioButton
             // 
@@ -555,6 +581,8 @@
     private System.Windows.Forms.RadioButton purchaseRadioButton;
     private System.Windows.Forms.ComboBox comboBox_replacementRule;
     private System.Windows.Forms.Button visualizeFromFileButton;
+    private System.Windows.Forms.RadioButton radioButton2;
+    private System.Windows.Forms.RadioButton radioButton1;
   }
 }
 
