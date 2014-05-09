@@ -83,7 +83,7 @@ namespace Games {
     }
 
     public string Name() {
-      return "Iris classification";
+      return "XOR";
     }
     #endregion
   }
