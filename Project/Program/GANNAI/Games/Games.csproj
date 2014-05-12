@@ -50,6 +50,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="XOR.cs" />
     <Compile Include="SnakeGame.cs" />
     <Compile Include="FallingStarsGame.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

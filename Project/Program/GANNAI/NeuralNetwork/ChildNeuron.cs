@@ -15,7 +15,7 @@ namespace ArtificialNeuralNetwork {
     /// The activation function (sigmoid).
     /// </summary>
     /// <returns> The output after applying the sigmoid function
-    /// to the sum of the inputs given.</returns>
+    /// to the sum of the inputs given. This value is in the range [0.0-1.0]</returns>
     /// <param name="sumInputs">The sum of inputs into a specific neuron.</param>
     private double ActivationFunction(double sumInputs) {
       return 1.0 / (1.0 + Math.Exp(-sumInputs));

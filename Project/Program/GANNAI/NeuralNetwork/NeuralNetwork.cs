@@ -157,12 +157,12 @@ namespace ArtificialNeuralNetwork {
       for(int i = 0; i < hiddenNeurons.Count; i++)
         hiddenNeurons[i].Calculate();
         
-      double[] output = new double[outputNeurons.Count];
+      double[] outputs = new double[outputNeurons.Count];
       for(int i = 0; i < outputNeurons.Count; i++) {
         outputNeurons[i].Calculate();
-        output[i] = outputNeurons[i].Value;
+        outputs[i] = outputNeurons[i].Value;
       }
-      return output;
+      return outputs;
     }
 
     public int GetNumberOfOutputs(){
@@ -171,6 +171,31 @@ namespace ArtificialNeuralNetwork {
 
     public int GetNumberOfInputs(){
       return inputNeurons.Count;
+    }
+
+    public bool[] GetOutputBinary() {
+        for (int i = 0; i < hiddenNeurons.Count; i++)
+            hiddenNeurons[i].Calculate();
+
+        bool[] outputs = new bool[outputNeurons.Count];
+        for (int i = 0; i < outputNeurons.Count; i++) {
+            outputNeurons[i].Calculate();
+            outputs[i] = outputNeurons[i].Value >= 0.5;
+        }
+        return outputs;
+    }
+
+      /// <summary>
+      /// Sets the input vector using a binary format
+      /// </summary>
+      /// <param name="inputs"></param>
+    public void SetInputBinary(bool[] inputs) {
+        if (inputNeurons.Count != inputs.Length)
+            throw new Exception("Size of input doesn't match number of input neurons."
+              + "Excepted " + inputNeurons.Count + " inputs, but got " + inputs.Length + "."
+            );
+        for (int i = 0; i < inputs.Length; i++)
+            inputNeurons[i].SetValue(inputs[i] ? 1 : 0);
     }
   }
 }
