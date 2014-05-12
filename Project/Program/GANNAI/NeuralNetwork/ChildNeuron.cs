@@ -15,6 +15,8 @@ namespace ArtificialNeuralNetwork {
             this.Threshold = threshold;
         }
 
+        public ChildNeuron() { }
+
         /// <summary>
         /// The activation function (sigmoid).
         /// </summary>
