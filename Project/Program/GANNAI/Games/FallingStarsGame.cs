@@ -100,6 +100,9 @@ namespace Games {
     public int BitsPerWeight() {
         return 9;
     }
+    public int BitsPerThreshold() {
+        return 0;
+    }
     /// <summary>
     /// Visualizes the game being played by the given AIPlayer, drawn on the given Form
     /// </summary>

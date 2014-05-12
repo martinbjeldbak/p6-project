@@ -81,7 +81,7 @@ namespace ArtificialNeuralNetwork {
             for(int i = 0; i < hdn; i++)
                 AddHidden(new ChildNeuron(thresholds[i]));
             for(int i = 0; i < oup; i++)
-                AddOutput(new ChildNeuron(thresholds[hdn - 1 + i]));
+                AddOutput(new ChildNeuron(thresholds[hdn + i]));
         }
 
         /// <summary>
