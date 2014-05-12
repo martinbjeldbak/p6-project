@@ -43,6 +43,10 @@ namespace Games {
       return 1;
     }
 
+    public int BitsPerThreshold() {
+        return 0;
+    }
+
     public AITrainableGame GetNewGameInstance() {
       return new Rosenbrock();
     }
