@@ -58,7 +58,10 @@ namespace ArtificialNeuralNetwork {
         /// <param name="inp">Number of input neurons to be built.</param>
         /// <param name="hdn">Number of hidden neurons to be built.</param>
         /// <param name="oup">Number of output neurons to be built.</param>
-        private void InitiateNetwork(int inp, int hdn, int oup, double[] thresholds = new double[hdn + oup]) {
+        private void InitiateNetwork(int inp, int hdn, int oup, double[] thresholds = null) {
+            if(thresholds == null)
+                thresholds = new double[hdn + oup];
+
             inputNeurons = new List<InputNeuron>();
             hiddenNeurons = new List<ChildNeuron>();
             outputNeurons = new List<ChildNeuron>();
