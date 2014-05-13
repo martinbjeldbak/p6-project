@@ -67,7 +67,8 @@ namespace ArtificialNeuralNetwork {
             foreach(Connection c in inputs) {
                 result += c.from.Value * c.weight;
             }
-            Value = ActivationFunction(result);
+            double activatedResult = ActivationFunction(result);
+            Value = activatedResult >= Threshold ? activatedResult : 0;
         }
     }
 }

@@ -31,6 +31,12 @@ namespace Genetics {
       /// <returns></returns>
     int BitsPerWeight();
 
+      /// <summary>
+      /// The number of bits used to encode the threshold of hidden and output neurons
+      /// </summary>
+      /// <returns></returns>
+    int BitsPerThreshold();
+
     /// <summary>
     /// Returns a new instance of the same game.
     /// This can be used to run more game instances in parallel.
@@ -45,5 +51,6 @@ namespace Genetics {
     void Visualize(AIPlayer aiplayer, Form form);
 
     string Name();
+
   }
 }

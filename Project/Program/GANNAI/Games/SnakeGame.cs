@@ -245,6 +245,9 @@ namespace Games {
     public int BitsPerWeight() {
         return 9;
     }
+    public int BitsPerThreshold() {
+        return 0;
+    }
 
     /// <summary>
     /// Returns the name of the game as a string.

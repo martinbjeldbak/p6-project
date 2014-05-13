@@ -168,6 +168,10 @@ namespace GANNAITests {
       return 8;
     }
 
+    public int BitsPerThreshold() {
+        return 0;
+    }
+
     public void Visualize(AIPlayer aiplayer, System.Windows.Forms.Form form) {
       throw new NotImplementedException();
     }

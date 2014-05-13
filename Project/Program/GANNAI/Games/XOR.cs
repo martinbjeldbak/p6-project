@@ -69,10 +69,13 @@ namespace Games {
       return bits;
     }
     public int NumHidden() {
-        return (int)Math.Ceiling((double)bits*3/2);
+        return bits*2;
     }
     public int BitsPerWeight() {
         return 9;
+    }
+    public int BitsPerThreshold() {
+        return 2;
     }
     public AITrainableGame GetNewGameInstance() {
       return this;
