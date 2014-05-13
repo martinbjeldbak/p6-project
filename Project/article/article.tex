@@ -22,6 +22,8 @@
 \usepackage{pgfplots}
 \usepackage{cleveref}
 \usepackage{mathtools}
+\usepackage{dblfloatfix}
+\usepackage{fixltx2e}
 \usepackage{nag}
 \usepackage[activate={true,nocompatibility},final,tracking=true,kerning=true,spacing=true,factor=1100,stretch=10,shrink=10]{microtype}
 % activate={true,nocompatibility} - activate protrusion and expansion
@@ -63,6 +65,7 @@
     grid=major,
     grid style={dashed,gray!30},
     scale only axis,
+    table/col sep=comma,
     initial-mut/.style={%
       ylabel = {Diversity},
       xlabel = {Initial Mutation},
