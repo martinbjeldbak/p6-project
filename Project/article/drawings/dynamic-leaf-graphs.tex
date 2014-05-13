@@ -1,0 +1,60 @@
+\begin{figure*}
+  \centering
+  \begin{subfigure}[b]{0.33\textwidth}
+    \begin{tikzpicture}
+      \begin{axis}[
+          dynamic,
+          dynamic-root,
+          legend to name=leafDynamic,
+          title={\dia{}},
+        ]
+        \addplot[smooth, color=navy]
+        table[x index=0, y index=3] {data/replacementrule_game/greedy_leaf.csv};
+        \addplot[smooth, color=blue]
+        table[x index=0, y index=3] {data/replacementrule_game/aerr_leaf.csv};
+        \addplot[smooth, color=aqua]
+        table[x index=0, y index=3] {data/replacementrule_game/sperr_leaf.csv};
+        \addplot[smooth, color=teal]
+        table[x index=0, y index=3] {data/replacementrule_game/eerr_leaf.csv};
+      \end{axis}
+    \end{tikzpicture}
+  \end{subfigure}%
+  ~
+  \begin{subfigure}[b]{0.33\textwidth}
+    \begin{tikzpicture}
+      \begin{axis}[
+          dynamic,
+          title=Fitness-based,
+        ]
+        \addplot[smooth, color=navy]
+        table[x index=0, y index=1] {data/replacementrule_game/greedy_leaf.csv};
+        \addplot[smooth, color=blue]
+        table[x index=0, y index=1] {data/replacementrule_game/aerr_leaf.csv};
+        \addplot[smooth, color=aqua]
+        table[x index=0, y index=1] {data/replacementrule_game/sperr_leaf.csv};
+        \addplot[smooth, color=teal]
+        table[x index=0, y index=1] {data/replacementrule_game/eerr_leaf.csv};
+      \end{axis}
+    \end{tikzpicture}
+  \end{subfigure}%
+  ~
+  \begin{subfigure}[b]{0.33\textwidth}
+    \begin{tikzpicture}
+      \begin{axis}[
+          dynamic,
+          title  = Hamming distance,
+        ]
+        \addplot[smooth, color=navy]
+        table[x index=0, y index=2] {data/replacementrule_game/greedy_leaf.csv};
+        \addplot[smooth, color=blue]
+        table[x index=0, y index=2] {data/replacementrule_game/aerr_leaf.csv};
+        \addplot[smooth, color=aqua]
+        table[x index=0, y index=2] {data/replacementrule_game/sperr_leaf.csv};
+        \addplot[smooth, color=teal]
+        table[x index=0, y index=2] {data/replacementrule_game/eerr_leaf.csv};
+      \end{axis}
+    \end{tikzpicture}
+  \end{subfigure}
+  \ref{leafDynamic}
+  \caption{Average over \num{100} runs for each diversity measure on the leaf data set.}\label{fig:dynamic-leaf}
+\end{figure*}
