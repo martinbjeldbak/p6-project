@@ -22,6 +22,7 @@
 \usepackage{pgfplots}
 \usepackage{cleveref}
 \usepackage{mathtools}
+\usepackage{nag}
 \usepackage[activate={true,nocompatibility},final,tracking=true,kerning=true,spacing=true,factor=1100,stretch=10,shrink=10]{microtype}
 % activate={true,nocompatibility} - activate protrusion and expansion
 % final - enable microtype; use ``draft'' to disable
@@ -34,14 +35,6 @@
 \definecolor{blue}{HTML}{0074D9}
 \definecolor{aqua}{HTML}{7FDBFF}
 \definecolor{teal}{HTML}{39CCCC}
-
-\pgfplotsset{%
-    compat=newest,
-    grid=major,
-    grid style={dashed,gray!30},
-    scale only axis,
-    legend style={draw=none}
-  }
 
 \usepackage[locale=US]{siunitx}
 \newcommand{\perc}[1]{\SI{#1}{\percent}}
@@ -64,6 +57,34 @@
 \newcommand{\correctlyresize}[2]{\resizebox{#1}{!}{#2}}
 \newcommand{\inputresize}[1]{\correctlyresize{\linewidth}{\input{#1}}}
 \newcommand{\inputresizeto}[2]{\correctlyresize{#1}{\input{#2}}}
+
+\pgfplotsset{%
+    compat=newest,
+    grid=major,
+    grid style={dashed,gray!30},
+    scale only axis,
+    initial-mut/.style={%
+      ylabel = {Diversity},
+      xlabel = {Initial Mutation},
+    },
+    initial-sim/.style={%
+      ylabel = {Diversity},
+      xlabel = {Initial Similarity},
+    },
+    initial-mut-sim-root/.style={%
+      legend columns=-1,
+      legend entries={Fitness-based, Hammming distance, \dia{}},
+    },
+    initial-sim-root/.style={%
+      initial-mut-sim-root,
+      initial-sim,
+    },
+    initial-mut-root/.style={%
+      initial-mut-sim-root,
+      initial-mut,
+    },
+  }
+
 \begin{document}
 
 \title{Measuring Diversity in Steady State Genetic Algorithms using Artificial Neural Networks}
