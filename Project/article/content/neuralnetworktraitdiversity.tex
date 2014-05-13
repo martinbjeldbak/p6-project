@@ -17,27 +17,13 @@ If $b_nb_{n-1}\dots b_1$ is the binary representation of a number $i$,
 we define the species $S_i$ to contain any neural network satisfying:
 %
 \[
-  \forall o_j\forall o_k \in O \left(\left(b_j=1\right) \rightarrow \left(o_j \geq o_k\right)\right)
-\]
-%
-\[
-  \forall o_j\forall o_k \in O \left(\left(b_j \wedge 1\right) \rightarrow \left(o_j \geq o_k\right)\right)
+  \forall o_j\forall o_k \in O \left(b_j \rightarrow \left(o_j \geq o_k\right)\right)
 \]
 %
 where $O$ is the set of all output neurons.
 In a population where each individual has $b$ output neurons, the total number of species is $2^b - 1$.  As an example, assume that we have a neural network with six output neurons. If the third output neuron has the highest output, then that neural network is placed in species $S_4$, because the bits set to 1 correspond to \texttt{000100} (4 in binary). If another individual has multiple output neurons giving the highest output, say the first and third output neuron, then that neural network will be placed in species $S_5$ (\texttt{000101}, 5 in binary). If a third neural network has all of its output neurons give the same result, then that neural network is placed in $S_{63}$. Any species that is empty, does not count as a species in the diversity measurement.
 
-% This means that for any neural network belonging to species $S_k(R_i)$, the bits in $k$, which are 1 are the output neurons with greater than or equal the value of any other output neuron given input $R_i$.% This definition implies that the number of species equals the number of output neurons $b$, e.g.\ $1 \leq k \leq b$. We distribute neural networks into a set of species as follows
-
-%
-%\begin{equation*}\label{eq:species}
-%  S_k\left(R_i\right) = \setof{f_j}{\forall l \in \set{1, 2, \dots, b} \left(\sigma_{kji} \geq \sigma_{lji}\right)}
-%\end{equation*}
-%
-
-%where $\sigma_{xyz} \in \set{0, 1}$ is the output of the $x$th neuron in neural network $f_y$ on input $R_z$.
-
-The diversity is calculated $m$ times with \dia{} as
+Diversity is then defined by
 %
 \begin{equation*}\label{eq:sdi}
   D_i = 1 - \left(\frac{\sum_{j=1}^{k}\lvert S_j\left(R_i\right)\rvert\left(\lvert S_j\left(R_i\right)\rvert - 1\right)}{\lvert F\rvert \left(\lvert F\rvert - 1\right)}\right) 
@@ -46,7 +32,7 @@ The diversity is calculated $m$ times with \dia{} as
 where $\lvert S_j(R_i)\rvert$ is the total number of individuals of the $j$th species, and $k$ is the total number of non-empty species, with respect to random input $R_i$. %, and $k$ is the number of non-empty species. 
 $F$ denotes the total number of neural networks in the population. 
 
-The \dia{} $D$ (that is, the actual diversity) is calculated as the average of all $m$ $D_i$ values
+The \dia{} $D$ (that is, the actual diversity) is then calculated as the average of all $m$ $D_i$ values by
 %
 \[D =\frac{\sum_{i=1}^m{D_i}}{m}\]
 %
