@@ -1,15 +1,15 @@
 \section{Preliminaries}
 \label{sec:preliminaries}
 
-In the following sections we assume that the reader is familiar with neural networks and genetic algorithms (GAs). Otherwise, see \cref{ap:ann-ga} for explanations of these. 
+Here we present the needed background knowledge to understand the work explained in the following sections. We begin with an introduction to artificial neural networks, followed by an introduction to genetic algorithms (GAs). 
 
-In GAs, a high diversity among the individuals is important. It is often argued that the weakness of GAs is the fall in diversity over generations, which can result in premature convergence~\cite{diaz2007empirical, 1266373,Zitzler00comparisonof}.
-
-We begin by presenting crowding methods, which use special selection procedures to overcome a decreasing diversity. Next, we introduce different methods of measuring diversity, and finish this section by explaining our own proposal for measuring diversity.
+In GAs, a high diversity among the individuals is important. It is often argued that the weakness of GAs is the fall in diversity over generations, which can result in premature convergence~\cite{diaz2007empirical, 1266373,Zitzler00comparisonof}. After presenting neural networks and GAs,  we present methods used to overcome a decreasing diversity. Methods like crowding and use of special selection procedures are presented. Next, we introduce different methods of measuring diversity.
 
 %We begin by presenting methods which propose solutions to overcome the decreasing nature of diversity in the populations.
 
 %In this section we present the structure of artificial neural networks and concept of genetic algorithms. Furthermore, we introduce the concept of diversity measurement for genetic algorithms.
 
+\input{content/artificialneuralnetwork}
+\input{content/geneticalgorithm}
 \input{content/crowding}
 \input{content/measurediversity}
