@@ -127,16 +127,17 @@ namespace Genetics {
 
     /// <summary>
     /// Calculates a double from a sequence of bits on the DNA string.
-    /// A value is returned in the range [-1, 1].
+    /// A value is returned in the range [-5, 5].
     /// More bits adds more precision.
-    /// The index of the starting point must have a value less than the index of the ending point
     /// </summary>
-    /// <param name="from">the index of the starting point</param>
-    /// <param name="to">the index of the ending point</param>
+    /// <param name="from">the index of the first bit in the sequence</param>
+    /// <param name="to">the index of the last bit in the sequence</param>
     /// <returns></returns>
     public double CalcDouble(int from, int to)
     {
-        double maxVal = Math.Pow(to - from, 2) - 1;
+        if (from == to)
+            return Bitstring[from] ? 1 : -1;
+        double maxVal = Math.Pow(2, to - from) - 1;
         int factor = Bitstring[from] ? -1 : 1;
         int result = 0;
         for (int i = 0; i < to - from; i++)
@@ -144,7 +145,7 @@ namespace Genetics {
             if (Bitstring[to - i])
                 result += 1 << i;
         }
-        return (factor * result) / maxVal;
+        return (factor * result) / maxVal * 5;
     }
   }
 }
