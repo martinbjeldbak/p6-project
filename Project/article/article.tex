@@ -40,17 +40,20 @@
 \definecolor{aqua}{HTML}{7FDBFF}
 \definecolor{teal}{HTML}{39CCCC}
 
-\usepackage[locale=US]{siunitx}
-\newcommand{\perc}[1]{\SI{#1}{\percent}}
-\newcommand{\di}{Simpsons Diversity Index NN}
-\newcommand{\dia}{SDINN}
-\newcommand{\fit}{\phi}
+\usepackage[
+  locale=UK,
+  zero-decimal-to-integer % do not show .0 on whole numbers
+]{siunitx}
 %\sisetup{group-separator = {,},
 %         per-mode = symbol,
 %         inter-unit-product = \ensuremath{\cdot},
 %         number-unit-product = \text{ },
 %         binary-units = true}
-
+%
+\newcommand{\perc}[1]{\SI{#1}{\percent}}
+\newcommand{\di}{Simpsons Diversity Index NN}
+\newcommand{\dia}{SDINN}
+\newcommand{\fit}{\phi}
 
 \newcommand{\mail}[1]{\href{mailto:#1}{#1}}
 \newcommand{\var}[1]{\ensuremath{\mathit{#1}}}
@@ -64,16 +67,28 @@
 
 \pgfplotsset{%
     compat=newest,
-    grid=major,
-    grid style={dashed,gray!30},
-    scale only axis,
+    %grid=major,
+    %grid style={dashed,gray!30},
+    %scale only axis,
     table/col sep=comma,
-    initial-mut/.style={%
+    width=\linewidth,
+    x-tick-siunitx/.style={%
+      xticklabel = \pgfmathparse{\tick*1}\num{\pgfmathresult},
+    },
+    y-tick-siunitx/.style={%
+      yticklabel = \pgfmathparse{\tick*1}\num{\pgfmathresult},
+    },
+    y-div/.style={%
+      x-tick-siunitx,
+      y-tick-siunitx,
       ylabel = {Diversity},
+    },
+    initial-mut/.style={%
+      y-div,
       xlabel = {Initial Mutation},
     },
     initial-sim/.style={%
-      ylabel = {Diversity},
+      y-div,
       xlabel = {Initial Similarity},
     },
     initial-mut-sim-root/.style={%
@@ -87,6 +102,15 @@
     initial-mut-root/.style={%
       initial-mut-sim-root,
       initial-mut,
+    },
+    dynamic-root/.style={%
+      legend columns=-1,
+      legend entries={Greedy, Ancestor Elitism, Single Parent Elitism, Explore-Exploit},
+    },
+    dynamic/.style={%
+      y-div,
+      xlabel = {Generation},
+      each nth point=5,
     },
   }
 
