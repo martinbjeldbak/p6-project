@@ -8,12 +8,12 @@
             legend to name=initMutMeasures,
             title=Leaf,
           ]
-          \addplot[smooth, no markers, color=maroon]
-          table[col sep=comma, y index=1, x index=0] {data/initial_mutation_leaf.csv};
-          \addplot[smooth, no markers, color=navy]
-          table[col sep=comma, y index=2, x index=0] {data/initial_mutation_leaf.csv};
-          \addplot[smooth, no markers, color=blue]
-          table[col sep=comma, y index=3, x index=0] {data/initial_mutation_leaf.csv};
+          \addplot[mark=*, color=maroon] % Fitness-based
+          table[y index=1, x index=0] {data/initial_mutation_leaf.csv};
+          \addplot[mark=square*, color=navy] % Hamming
+          table[y index=2, x index=0] {data/initial_mutation_leaf.csv};
+          \addplot[mark=triangle*, color=blue] % NNTD
+          table[y index=3, x index=0] {data/initial_mutation_leaf.csv};
         \end{axis}
       \end{tikzpicture}
     }
@@ -26,12 +26,12 @@
             initial-mut, 
             title  = Snake,
           ]
-          \addplot[smooth, no markers, color=maroon]
-          table[col sep=comma, y index=1, x index=0] {data/initial_mutation_snake.csv};
-          \addplot[smooth, no markers, color=navy]
-          table[col sep=comma, y index=2, x index=0] {data/initial_mutation_snake.csv};
-          \addplot[smooth, no markers, color=blue]
-          table[col sep=comma, y index=3, x index=0] {data/initial_mutation_snake.csv};
+          \addplot[mark=*, color=maroon]
+          table[y index=1, x index=0] {data/initial_mutation_snake.csv};
+          \addplot[mark=square*, color=navy]
+          table[y index=2, x index=0] {data/initial_mutation_snake.csv};
+          \addplot[mark=triangle*, color=blue]
+          table[y index=3, x index=0] {data/initial_mutation_snake.csv};
         \end{axis}
       \end{tikzpicture}
     }
@@ -44,16 +44,16 @@
             initial-mut, 
             title  = XOR,
           ]
-          \addplot[smooth, no markers, color=maroon]
-          table[col sep=comma, y index=1, x index=0] {data/initial_mutation_xor.csv};
-          \addplot[smooth, no markers, color=navy]
-          table[col sep=comma, y index=2, x index=0] {data/initial_mutation_xor.csv};
-          \addplot[smooth, no markers, color=blue]
-          table[col sep=comma, y index=3, x index=0] {data/initial_mutation_xor.csv};
+          \addplot[mark=*, color=maroon]
+          table[y index=1, x index=0] {data/initial_mutation_xor.csv};
+          \addplot[mark=square*, color=navy]
+          table[y index=2, x index=0] {data/initial_mutation_xor.csv};
+          \addplot[mark=triangle*, color=blue]
+          table[y index=3, x index=0] {data/initial_mutation_xor.csv};
         \end{axis}
       \end{tikzpicture}
     }
   \end{subfigure}
   \ref{initMutMeasures}
-  \caption{Average over \num{100} runs for each diversity measure on data sets over intervals of initial mutation.}
+  \caption{Average over \num{100} runs for each diversity measure on data sets over intervals of initial mutation.}\label{fig:initial-mutation}
 \end{figure*}
