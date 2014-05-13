@@ -1,4 +1,5 @@
 \subsection{Problems}
+\label{sec:problems}
 We hereby explain the three discrete problems we perform our experiments on.
 
 \subsubsection{XOR}
@@ -29,7 +30,7 @@ We use a neural network to play a game of Snake in a $10\times10$ grid with an i
 We have defined the fitness of a neural network to be $f + \frac{f}{s/1000}$,
 where $f$ is the amount of food it collects and $s$ is the total number of steps the snake is alive.
 The game is constrained such that the snake can only change its direction $90\deg$ / step.
-The neural network has 6 input neurons, receiving the following information:
+The neural network has 6 input neurons, each receiving a bit of information about the game state:
 \begin{enumerate}
 \item $\{-1, 0, 1\}$ Whether the food is to the left, vertically aligned, or to the right of the snake head.
 \item $\{-1, 0, 1\}$ Whether the food is above, horizontally aligned, or below the snake head.
