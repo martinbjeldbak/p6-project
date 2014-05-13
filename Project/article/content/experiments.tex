@@ -1,9 +1,16 @@
 \section{Experiments}
-In this section, we evaluate our proposed method of a better diversity measurement (NNTD) by using it to measure diversity of the replacement rules described in \cref{sec:replacementrules}. This is to compare each replacement rules' influence on diversity using NNTD.
+In this section, we evaluate our proposed diversity measurement (\dia) by using it to measure diversity of a population in two different environments.
 
-We perform our experiments on two different discrete problems, chosen based on their different characteristics.
-The first problem is a classification problem over the Leaf dataset.
-The second problem is making an AI player for the game Snake, which was found on many of the first cell phones.
+In the static environment the GA will not iterate.
+We create an initial population using a constrain $c$, and a significance $\alpha$.
+We choose $c$ such that we have an intuition about how the behavioural diversity of individuals will be dependent on $\alpha$.
+By experiments, we will see if it is likely that \dia{} catches this dependency.
+
+In the dynamic environment, we create a random initial population, and perform 2000 iterations using each of the 
+replacement rules described in \cref{sec:replacementrules}.
+We hope to find it likely that the diversities returned by \dia more intuitively follow the expected behavioural diversity for each replacement rule, compared to the other diversity measures.
+
+All experiments are performed on three different discrete problems, which we describe in \cref{sec:problems}.
 
 \subsection{Parameter settings}
 
