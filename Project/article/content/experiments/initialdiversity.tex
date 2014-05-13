@@ -1,13 +1,21 @@
 \subsection{Initial diversity measurements}
 Two controlled experiments are run on the genetics of individuals in the very first generation of a population to evaluate how each measure grasps the diversity in a population. This generation is vital, because on initializing, it is possible to exactly define the distribution of individuals. These two experiments involve defining how similar the initial population is, and how much mutation to apply. We introduce two variables to control these factors.
 
+\subsubsection{First experiment}
 Initial similarity describes how equal the individuals initially are. It can range between \num{0} and \num{1}, where \num{0} means that all individuals are random, and \num{1} denotes that \perc{100} of all individuals have the exact same genotype. With a value of \num{0.5}, one individual is cloned so that half of the population has the same genetic makeup, and the other half is initialized to be completely random. By intuition, a population initialized with the value of \num{1} for initial similarity should have the absolute lowest diversity, and a completely randomly initialize population (initial similarity of \num{0}) should have the highest diversity, since every individual is created from a random bit string.
 
+\subsubsection{Second experiment}
 Initial mutation requires an initial similarity set to \num{1}, e.g.\ the initial population consists of a single, cloned individual. This is due to the fact that mutating individuals already randomly initialized will not yield a different diversity of individuals -- they will be just as random. The initial mutation rate defines the mutation percentage of all bits in every individual of the population. A population with an initial mutation rate of \num{1} should have the highest diversity, since every bit in every, initially similar individual, will have a \perc{100} chance to be selected for mutation, resulting in a randomly initialized population. When a bit is selected for mutation, there is a \perc{50} chance it will be flipped.
 
-Results of different intervals between 
+\subsubsection{Results}
+Experiments run with initial similarity and initial mutation between 0 and 1 are shown in \cref{fig:initial-similarity} and \cref{fig:initial-mutation}, respectively.
 
-Experiments on \dia{} using both of these two variables are shown in \cref{fig:initial-mutation-similarity}. Each point represents the average diversity measure of \num{100} runs at a variable intervals of \num{0.05}. As we can see by the chart, diversity increases as expected for both variables. Diversity is maximum at a value of \num{7.2} for a completely random population. To reach this maximum, it requires an initial mutation rate of a mere \perc{2} and an initial similarity of \perc{0}.
+By intuition, we expect increasing initial similarity will result in lower diversity, and increasing initial mutation will result in greater diversity. Maximum diversity should be seen at the lowest value of initial similarity, and the highest value of initial mutation. This is due to the fact that many alike individuals will behave similarly and thus have a negative impact on high diversity.
+
 
 \input{drawings/initial-similarity-graphs}
 \input{drawings/initial-mutation-graphs}
+
+\input{drawings/dynamic-leaf-graphs}
+\input{drawings/dynamic-xor-graphs}
+\input{drawings/dynamic-snake-graphs}
