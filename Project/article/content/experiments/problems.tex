@@ -9,15 +9,17 @@ For each instance, we determine how many bits the neural network calculates corr
 The fitness is the defined as the average number of bits calculated correct.
 Fitness values will thus lie in the range $[0-8]$.
 Since the XOR between two random bits will be evenly distributed between 0 and 1,
-randomly guessing will ideally yield a fitness of 4.
-The network has 16 input neurons, 16 hidden neurons, 8 output neurons, 9 bits per weight, and 2 bits to encode a threshold for each hidden and output neuron. Any output neuron $i$ represents the XOR between the input neuron $i$ and $i+8$. 
-We always use the same random seed for generating the 1000 problem instances.
+randomly guessing a solution to the 8-bit XOR problem, is expected to yield a fitness of 4.
+The network has 16 input neurons, 16 hidden neurons, 8 output neurons, 2 bits per weight, and 1 bit per bias for each hidden and output neuron.
+Any output neuron $i$ represents the XOR between the two input neurons $i$ and $i+8$. 
+We have used as few neurons and bits to represent weights and biases as possible, while still being able to verify that the maximum fitness value of 8 is achievable.
+The same random seed is always used for generating the 1000 problem instances.
 
 \subsubsection{Leaf classification}
 We use a neural network to classify the Leaf data set~\cite{Bache+Lichman:2013, leafdataset}.
 The neural network is given 16 properties about an unknown leaf and has to decide which of 40 types of leaves it is.
 Fitness is evaluated based on how many instances out of the entire data set the neural network correctly classifies.
-The implementation consists of 16 input neurons, 10 hidden and 40 output neurons. The output neuron with the highest value decides the classification. Each weight is encoded by 9 bits and neurons have no threshold.
+The implementation consists of 16 input neurons, 10 hidden and 40 output neurons. The output neuron with the highest value decides the classification. Each weight is encoded by 9 bits and neurons have no bias.
 
 \subsubsection{Snake}
 Snake is a game found on old Nokia cell phones, where you are moving a snake around a grid to pick up pieces of food.
@@ -38,7 +40,7 @@ where $f$ is the amount of food it collects and $s$ is the total number of steps
   \item \set{0, 1} If the snake dies if its next move is left
 \end{enumerate}
 4 output neurons are used. The neuron with the highest value determines whether to move the snake right, left, up, or down.
-The neural network uses 5 hidden neurons, 9 bits per weight and no threshold on neurons.
+The neural network uses 5 hidden neurons, 9 bits per weight and neurons have no bias.
 For every game of Snake, we always use the same random seed to decide the positions where pieces of food will spawn.
 
 \subsubsection{Criteria for selection}
