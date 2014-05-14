@@ -9,10 +9,10 @@ namespace ArtificialNeuralNetwork {
     /// Child neuron used for hidden and output neurons.
     /// </summary>
     public class ChildNeuron : Neuron {
-        public double Threshold { get; private set; }
+        public double Bias { get; private set; }
 
         public ChildNeuron(double threshold) {
-            this.Threshold = threshold;
+            this.Bias = threshold;
         }
 
         public ChildNeuron() { }
@@ -67,8 +67,8 @@ namespace ArtificialNeuralNetwork {
             foreach(Connection c in inputs) {
                 result += c.from.Value * c.weight;
             }
-            double activatedResult = ActivationFunction(result);
-            Value = activatedResult >= Threshold ? activatedResult : 0;
+            result += Bias;
+            Value = ActivationFunction(result);
         }
     }
 }

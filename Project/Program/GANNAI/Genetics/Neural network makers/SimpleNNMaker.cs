@@ -19,7 +19,7 @@ namespace Genetics {
         inputs = game.NumInputs();
         hidden = game.NumHidden();
         outputs = game.NumOutputs();
-        bitsPerThreshold = game.BitsPerThreshold();
+        bitsPerThreshold = game.BitsPerBias();
         dnalength = (inputs * hidden + hidden * outputs) * bitsPerWeight + (hidden + outputs) * bitsPerThreshold;
     }
 

@@ -35,7 +35,7 @@ namespace Genetics {
       /// The number of bits used to encode the threshold of hidden and output neurons
       /// </summary>
       /// <returns></returns>
-    int BitsPerThreshold();
+    int BitsPerBias();
 
     /// <summary>
     /// Returns a new instance of the same game.

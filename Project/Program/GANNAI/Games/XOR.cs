@@ -44,23 +44,6 @@ namespace Games {
       return fitness / runs;
     }
 
-      /// <summary>
-      /// Increments a bitstrings decimal value by 1. E.g., 000->001, 010->011, 111->000
-      /// </summary>
-      /// <param name="bitstring"></param>
-      /// <returns></returns>
-    private void increment(ref bool[] bitstring) {
-        //make next bit string configuration
-        int flagIndex = 0;
-        while (bitstring[flagIndex] && flagIndex < bits) {
-            bitstring[flagIndex] = false;
-            flagIndex++;
-        }
-        if (flagIndex < bits) { //to avoid overflow when going from 1111->0000
-            bitstring[flagIndex] = true;
-        }
-    }
-
     public int NumInputs() {
       return bits*2;
     }
@@ -72,10 +55,10 @@ namespace Games {
         return bits*2;
     }
     public int BitsPerWeight() {
-        return 9;
-    }
-    public int BitsPerThreshold() {
         return 2;
+    }
+    public int BitsPerBias() {
+        return 1;
     }
     public AITrainableGame GetNewGameInstance() {
       return this;
