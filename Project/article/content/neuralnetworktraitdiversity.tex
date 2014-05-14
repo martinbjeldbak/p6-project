@@ -4,26 +4,26 @@ In the following, we propose a method for measuring trait diversity, which we ca
 \subsection{Algorithm}
 \dia{} is based on Simpsons Diversity Index (SDI), which is a diversity measure used in ecology to quantifiy the biodiversity of a habitat~\cite{simpson1949measurement}. We modify SDI to work with neural network. We will thus use the term individual and neural network interchangeably.
 
-Let $F = \set{f_1, f_2, \dots, f_n}$, where each $f_j$ for $0 \leq j \leq n$ denote the set of neural networks contained in a population, which all have the same architecture of $x$ input and $y$ output neurons. \dia{} is calculated with respect to a number of random inputs $\set{R_1, R_2, \dots, R_m}$, where each $R_i$ for $1 \leq i \leq m$ is an $x$-tuple of real values chosen randomly. For each sample $R_i$, a diversity is calculated. The calculation depends on a set of species, so we distribute the neural networks into species based on which of their output neurons yields the highest value on input $R_i$. 
+Let $F = \set{f_1, f_2, \dots, f_n}$, where each $f_j$ for $0 \leq j \leq n$ denote the set of neural networks contained in a population, which all have the same architecture of $x$ input and $y$ output neurons. \dia{} is calculated with respect to a number of random inputs $R = \set{r_1, r_2, \dots, r_m}$, where each $r_i$ for $1 \leq i \leq m$ is an $x$-tuple of real values chosen randomly. For each sample $r_i$, a Simpson diversity index is calculated. The calculation depends on a set of species, so we distribute the neural networks into species based on which of their output neurons yields the highest value on input $r_i$. 
 
 If $b_nb_{n-1}\dots b_1$ is the binary representation of a number $i$,
-we define the species $S_i(r)$ to contain any neural network $f$ that given $r$ as input satisfies:
+we define the species $S_i(r)$ to contain any neural network $f \in F$ that given $r \in R$ as input satisfies
 %
 \[
-  \forall j,k \in \{1,2,\dots,y\} \left(b_j \rightarrow \left(o_j \geq o_k\right)\right)
+  \forall j,k \in \set{1,2,\dots,y} \left(b_j \rightarrow \left(o_j \geq o_k\right)\right)
 \]
 %
-where $O_l$ is the value of the $l$'th output neuron of $f$, and $y$ is the number of output neurons in $f$.
+where $o_l$ is the value of the $l$th output neuron of neural network $f$.
 
 In a population where each individual has $y$ output neurons, the total number of species is $2^y - 1$.  As an example, assume that we have a neural network with six output neurons. If the third output neuron has the highest output, then that neural network is placed in species $S_4$, because the bits set to 1 correspond to \texttt{000100} (4 in binary). If another individual has multiple output neurons giving the highest output, say the first and third output neuron, then that neural network will be placed in species $S_5$ (\texttt{000101}, 5 in binary). If a third neural network has all of its output neurons give the same result, then that neural network is placed in $S_{63}$. Any species that is empty, does not count as a species in the diversity measurement.
 
 Diversity is then defined by
 %
 \begin{equation*}\label{eq:sdi}
-  D_i = 1 - \left(\frac{\sum_{j=1}^{k}\lvert S_j\left(R_i\right)\rvert\left(\lvert S_j\left(R_i\right)\rvert - 1\right)}{\lvert F\rvert \left(\lvert F\rvert - 1\right)}\right) 
+  D_i = 1 - \left(\frac{\sum_{j=1}^{k}\lvert S_j\left(r_i\right)\rvert\left(\lvert S_j\left(r_i\right)\rvert - 1\right)}{\lvert F\rvert \left(\lvert F\rvert - 1\right)}\right) 
 \end{equation*}
 %
-where $\lvert S_j(R_i)\rvert$ is the total number of individuals of the $j$th species, and $k$ is the total number of non-empty species, with respect to random input $R_i$. %, and $k$ is the number of non-empty species. 
+where $\lvert S_j\left(r_i\right)\rvert$ is the total number of individuals of the $j$th species, and $k$ is the total number of non-empty species, with respect to random input $r_i$. %, and $k$ is the number of non-empty species. 
 $F$ denotes the total number of neural networks in the population. 
 
 The \dia{} $D$ (that is, the actual diversity) is then calculated as the average of all $m$ $D_i$ values by
@@ -32,4 +32,4 @@ The \dia{} $D$ (that is, the actual diversity) is then calculated as the average
 D =\frac{\sum_{i=1}^m{D_i}}{m}
 \]
 %
-The definition of species implies that a single network can actually be part of all species for each input. This happens if the value of all output neurons is the same. One disadvantage of \dia{} is that it relies on random inputs, which means that fewer random inputs implies less statistical significance. Due to the nature of \dia, it is not suitable for continuous problems. Consider for instance a neural network used for approximating any function $f$, having only a single output neuron. Since \dia{} defines species based on the output neuron with the highest value, and we in this case only have a single output neuron, all neural networks will belong to the same species, and hence we get a diversity of 0.  
+The definition of species implies that a single network can actually be part of all species for each input. This happens if the value of all output neurons is the same. One disadvantage of \dia{} is that it relies on random inputs, which means that fewer random inputs implies less statistical significance. Due to the nature of \dia, it is not suitable for continuous problems. Consider for instance a neural network used for approximating any function $\sigma$, having only a single output neuron. Since \dia{} defines species based on the output neuron with the highest value, and we in this case only have a single output neuron, all neural networks will belong to the same species, and hence we get a diversity of 0.  
