@@ -8,13 +8,13 @@
           legend to name=leafDynamic,
           title={\dia{}},
         ]
-        \addplot[smooth, color=navy]
-        table[x index=0, y index=3] {data/replacementrule_game/greedy_leaf.csv};
-        \addplot[smooth, color=blue]
+        \addplot[mark=*, smooth, color=black]
+        table[ x index=0, y index=3] {data/replacementrule_game/greedy_leaf.csv};
+        \addplot[mark=square*, smooth, color=blue]
         table[x index=0, y index=3] {data/replacementrule_game/aerr_leaf.csv};
-        \addplot[smooth, color=aqua]
+        \addplot[mark=triangle*, smooth, color=red]
         table[x index=0, y index=3] {data/replacementrule_game/sperr_leaf.csv};
-        \addplot[smooth, color=teal]
+        \addplot[smooth, color=green]
         table[x index=0, y index=3] {data/replacementrule_game/eerr_leaf.csv};
       \end{axis}
     \end{tikzpicture}
@@ -26,13 +26,13 @@
           dynamic,
           title=Fitness-based,
         ]
-        \addplot[smooth, color=navy]
+        \addplot[mark=*, smooth, color=black]
         table[x index=0, y index=1] {data/replacementrule_game/greedy_leaf.csv};
-        \addplot[smooth, color=blue]
+        \addplot[mark=square*, smooth, color=blue]
         table[x index=0, y index=1] {data/replacementrule_game/aerr_leaf.csv};
-        \addplot[smooth, color=aqua]
+        \addplot[mark=triangle*, smooth, color=red]
         table[x index=0, y index=1] {data/replacementrule_game/sperr_leaf.csv};
-        \addplot[smooth, color=teal]
+        \addplot[mark=diamond*, smooth, color=green]
         table[x index=0, y index=1] {data/replacementrule_game/eerr_leaf.csv};
       \end{axis}
     \end{tikzpicture}
@@ -44,13 +44,13 @@
           dynamic,
           title  = Hamming distance,
         ]
-        \addplot[smooth, color=navy]
+        \addplot[mark=*, smooth, color=black]
         table[x index=0, y index=2] {data/replacementrule_game/greedy_leaf.csv};
-        \addplot[smooth, color=blue]
+        \addplot[mark=square*, smooth, color=blue]
         table[x index=0, y index=2] {data/replacementrule_game/aerr_leaf.csv};
-        \addplot[smooth, color=aqua]
+        \addplot[mark=triangle*, smooth, color=red]
         table[x index=0, y index=2] {data/replacementrule_game/sperr_leaf.csv};
-        \addplot[smooth, color=teal]
+        \addplot[mark=diamond*, smooth, color=green]
         table[x index=0, y index=2] {data/replacementrule_game/eerr_leaf.csv};
       \end{axis}
     \end{tikzpicture}
@@ -61,13 +61,13 @@
       \begin{axis}[
           fitness
         ]
-        \addplot[smooth, color=navy]
+        \addplot[mark=*, smooth, color=black]
         table[x index=0, y index=4] {data/replacementrule_game/greedy_leaf.csv};
-        \addplot[smooth, color=blue]
+        \addplot[mark=square*, smooth, color=blue]
         table[x index=0, y index=4] {data/replacementrule_game/aerr_leaf.csv};
-        \addplot[smooth, color=aqua]
+        \addplot[mark=triangle*, smooth, color=red]
         table[x index=0, y index=4] {data/replacementrule_game/sperr_leaf.csv};
-        \addplot[smooth, color=teal]
+        \addplot[mark=diamond*, smooth, color=green]
         table[x index=0, y index=4] {data/replacementrule_game/eerr_leaf.csv};
       \end{axis}
     \end{tikzpicture}
