@@ -47,7 +47,7 @@ namespace Games {
     public int BitsPerWeight() {
         return 9;
     }
-    public int BitsPerThreshold() {
+    public int BitsPerBias() {
         return 0;
     }
     public AITrainableGame GetNewGameInstance() {

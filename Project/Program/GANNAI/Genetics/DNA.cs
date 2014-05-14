@@ -145,7 +145,15 @@ namespace Genetics {
             if (Bitstring[to - i])
                 result += 1 << i;
         }
-        return (factor * result) / maxVal * 5;
+
+        //apply sign bit
+        result *= factor;
+
+        //normalize to range [-1, 1]
+        double normalized = result / maxVal;
+
+        //transform to range [-5, 5] which is where sigmoid is not changing
+        return normalized * 5;
     }
   }
 }

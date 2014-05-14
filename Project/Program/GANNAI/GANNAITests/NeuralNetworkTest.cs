@@ -168,7 +168,7 @@ namespace GANNAITests {
       return 8;
     }
 
-    public int BitsPerThreshold() {
+    public int BitsPerBias() {
         return 0;
     }
 

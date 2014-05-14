@@ -43,7 +43,7 @@ namespace Games {
       return 1;
     }
 
-    public int BitsPerThreshold() {
+    public int BitsPerBias() {
         return 0;
     }
 
