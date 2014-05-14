@@ -17,7 +17,7 @@ Another way to measure genotypic diversity, is using the \emph{Levenshtein dista
 &10101010\label{eq:bit2}
 \end{align}
 %
-is 8 when using Hamming distance. The Levenshtein distance is 2, because transforming \cref{eq:bit1} into \cref{eq:bit2} is done by deleting the first bit and prepending a $0$~\cite{1250187}, totalling 2 operations. Because computing the Levenshtein distance requires $\operatorname{O}\left(n^2\right)$ time, where $n$ is the length the encoded neural networks' bit strings, it is too computationally expensive for even the smallest populations.
+is 8 when using Hamming distance. The Levenshtein distance is 2, because transforming \cref{eq:bit1} into \cref{eq:bit2} is done by deleting the first bit and prepending a $0$~\cite{1250187}, totalling 2 operations. Because computing the Levenshtein distance has a complexity of \bigO{n^2}, where $n$ is the length the encoded neural networks' bit strings, it is too computationally expensive for even the smallest populations.
 
 As concluded by~\cite{Darwen00doesextra}, constantly high genetic diversity does not guarantee better solutions, requiring other diversity measures to also be explored.
 
