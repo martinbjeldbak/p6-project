@@ -13,13 +13,13 @@ Often, a neural network is decoded from the chromosome. A neural network takes a
 The bit string is interpreted determines how these calculations are carried out.
 If the problem in question is addition of two integers, the neural network will be given the two integers $a$ and $b$ as input, and output a single value, which ideally should be $a+b$.
 
-Two individuals may have completely different strategies. 
-Individuals in a GA procreates to form offspring. Offspring individuals may have a strategy with traits from both of its parent.
-Hopefully, the offspring contains traits from both parents, which combined is a better strategy for solving the particular problem in question. The fitness of an individual indicates how well its strategy solves the problem.
+Two individuals may solve a problem completely different. 
+Individuals in a GA procreates to form offspring.
+The solution an offspring individual propose will typically combine traits from both its parents.
+Hopefully, the combination of these traits will be a better solution to the particular problem in question.
+The fitness of an individual indicates how well it solves the problem.
 
 A diverse set of individuals in the population is crucial to identify the combination of traits that work best. 
 If diversity is not maintained, only a local optimum of the available traits in the population will be explored, and a global optimum might never be found~\cite{ursem2002diversity}.
-
-
 
 %Many existing methods which aim to increase diversity, require a lot of computational power \citpls{}. We will develop a method that is computationally inexpensive, yet maintains a high diversity in a population. Common methods for measuring the phenotypic diversity of a population only take into account the fitness of each individual \citpls{}. We develop a method for measuring phenotypic diversity that takes into account the different traits among individuals. 

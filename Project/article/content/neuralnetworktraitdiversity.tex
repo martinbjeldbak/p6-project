@@ -1,7 +1,15 @@
 \section{\di{}}
-We believe it is essential that a diversity measure reflects the difference in traits among individuals. To the best of our knowledge, no current genotypic or phenotypic measures reflect this. Recall, that we are only concerned with neural networks as individuals. Since a \emph{trait} is a rather vague term, we introduce a clear definition of traits among neural networks: ``\emph{two neural networks have different traits if they for some input produce different outputs}''. By this definition, we denote the difference in traits among neural networks.
+We believe it is essential that a diversity measure reflects the difference in traits among individuals. To the best of our knowledge, no current genotypic or phenotypic measures reflect this. Recall, that we are only concerned with neural networks as individuals. Since a \emph{trait} is a rather vague term, we introduce a clear definition of traits among neural networks: ``\emph{two neural networks have different traits if they for some input produce different outputs}''.
+We will now argue why we think that neither fitness-based nor genotypic diversity measures catch this trait diversity. 
 
-Fitness-based diversity measures do not catch this trait diversity. Consider two artificial intelligent (AI) players for the cell phone game ``Snake''. Their fitness can be calculated based on how much food they collect before they die. One AI player may have traits that makes it good at avoiding death by not hitting any walls or its own body. Sometimes, by chance, it hits a piece of food. The other AI player may have traits that makes it good at searching for food. The two AI players can have the same fitness value, because they collect the same amount of food before they die, yet still have completely different traits. Genotypic diversity measures do not catch the trait diversity either. This is because two individuals of different genotypes can yield the same output on any input. An example of this are the two neural networks shown in \cref{fig:entire-eqnetwork}. No matter what input they receive, their output will always be the same. They are genotypically very diverse (Hamming distance of 6), but are not trait diverse.
+Consider two individuals who try to find the highest peak on an elevation map, where the fitness of each individual is based on the height of the peak they return.
+The two individuals might have completely different strategies causing them to get stuck on two different mountains.
+If both mountains happen to have the same height, the two individuals will have the same fitness, and hence a fitness-based diversity measure will return a low diversity, even though the two individuals have different traits.
+
+Two individuals of different genotypes can be equivalent, which means they yield the same output on any input.
+An example of such two neural networks is shown in \cref{fig:entire-eqnetwork}.
+No matter what input they receive, their output will always be the same.
+They are genotypically very diverse (Hamming distance of 6), but not trait diverse at all.
 %
 \input{floats/eqnetworks}
 %
