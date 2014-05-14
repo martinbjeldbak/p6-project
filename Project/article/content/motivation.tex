@@ -3,13 +3,23 @@ A greedy strategy is one where each step taken is the step that looks most promi
 If a mountain climber wants to climb to the highest spot in The Himalayas, a greedy strategy is to move in any direction he think is the best, as long as he climbs up, and never backs down.
 Using this strategy, he is definitely able to climb up somewhere, but once he reaches a mountain top, he might discover an even greater mountain he could not see before. Unfortunately, his strategy is to never back down, so now he is stuck at what we call a local optimum. What he wanted was the global optimum - the highest mountain of all.
  
-Genetic algorithms (GA) can be used to search for a global optimum. A genetic algorithm manages a number of individuals, which constitute a population. Each of these individuals represent a strategy to solve the problem, e.g. a greedy strategy like in the hill climbing example. Two individuals may have completely different strategies. 
-Individuals in a GA procreates to form offspring. Offspring individuals may have a strategy with traits from both of its parent.
-Hopefully, the offspring contains traits from both parents, which combined is a better strategy for solving the particular problem in question. The fitness of an individual indicates how well its strategy solves the problem.
+Genetic algorithms (GA) can be used to search for a global optimum in many types of problems, e.g. optimization problems.
+A genetic algorithm manages a number of individuals, which constitute a population.
+Each of these individuals represents a proposed solution to solve the problem.
+Individuals are conceptually just a chromosome with different genes on it.
+In a GA, individuals are represented internally as a bit string.
+There are many ways in which the bit string can be interpreted to form a solution to the problem in question.
+Often, a neural network is decoded from the chromosome. A neural network takes a number of inputs, does some internal calculations, and yields a number of outputs.
+The bit string is interpreted determines how these calculations are carried out.
+If the problem in question is addition of two integers, the neural network will be given the two integers $a$ and $b$ as input, and output a single value, which ideally should be $a+b$.
+
+Two individuals may solve a problem completely different. 
+Individuals in a GA procreates to form offspring.
+The solution an offspring individual propose will typically combine traits from both its parents.
+Hopefully, the combination of these traits will be a better solution to the particular problem in question.
+The fitness of an individual indicates how well it solves the problem.
 
 A diverse set of individuals in the population is crucial to identify the combination of traits that work best. 
 If diversity is not maintained, only a local optimum of the available traits in the population will be explored, and a global optimum might never be found~\cite{ursem2002diversity}.
-
-
 
 %Many existing methods which aim to increase diversity, require a lot of computational power \citpls{}. We will develop a method that is computationally inexpensive, yet maintains a high diversity in a population. Common methods for measuring the phenotypic diversity of a population only take into account the fitness of each individual \citpls{}. We develop a method for measuring phenotypic diversity that takes into account the different traits among individuals. 
