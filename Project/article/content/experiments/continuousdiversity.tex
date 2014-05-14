@@ -1,10 +1,21 @@
 \subsection{Continuous Diversity}
 \label{sec:continuousdiversity}
 
-We performed experiments to see how the diversity would change on three problems with four different replacement rules. We measured the average diversity of \num{100} runs of \num{2000} iterations. Each run initializes an entirely new population, and each population goes through \num{2000} iterations of procreation in the search for optimal solutions. After each iteration the diversity of the population is measured. We then took the average diversity of the \num{100} runs. These numbers shows us how the diversity is progressing with the different replacement rules for the different problems.
+Our main goal with the experiments we perform, is to see how the diversity progresses throughout the many iterations a GA goes through. Furthermore, we must see if there are any significant differences between different diversity measures and replacement rules. To measure the diversity we use fitness-based measurement, Hamming distance, and our own \dia{} after each iteration. The replacement rules are Greedy Replacement, Ancestor Elitism, Single Parent Elitism, and Explore-Exploit. We run the experiments four times, one with each of the replacement rules.
+
+We measured the average diversity of \num{100} runs of \num{2000} iterations. Each run initializes an entirely new population, and each population goes through \num{2000} iterations of procreation in the search for optimal solutions. After each iteration the diversity of the population is measured. We then take the average diversity of the \num{100} runs. %These numbers show us how the diversity is progressing with the different replacement rules for the different problems.
 
 %how much did we do it
-We use the average of the \num{100} runs, because we have randomness in our system. Each new population is initialized randomly. By taking the average we belive that we get a better picture of how the progression in diversity looks like.
+We use the average of the \num{100} runs, because we have randomness in our system. Each new population is initialized randomly. By taking the average we belive that we get a better picture of how the diversity is progressing.
+
+\subsubsection{Results}
+The results are presented through figures \emph{s} to \emph{s+2}. The experiments performed on the data we call Leaf is presented in \emph{s}, the XOR experiments are presented in \emph{s+1}, and the data we call Snake is presented in \emph{s+2}.
+
+\paragraph{Results of Leaf} dsdsds
+
+\paragraph{Results of XOR} dsds
+
+\paragraph{Results of Snake} dsds
 
 %what were the results
 In figure \emph{something} we see that bla bla\dots
