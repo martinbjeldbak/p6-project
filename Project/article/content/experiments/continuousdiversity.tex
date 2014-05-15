@@ -3,7 +3,7 @@
 
 Our main goal with the experiments we perform, is to see how the diversity progresses throughout the many iterations a GA goes through. Furthermore, we must see if there are any significant differences between different diversity measures and replacement rules. To measure the diversity we use fitness-based measurement, Hamming distance, and our own \dia{} after each iteration (we will use iteration and generation interchangeably). The replacement rules are Greedy Replacement, Ancestor Elitism, Single Parent Elitism, and Explore-Exploit. We run the experiments four times, one with each of the replacement rules.
 
-We measured the average diversity of \num{100} runs of \num{2000} iterations. Each run initializes an entirely new population, and each population goes through \num{2000} iterations of procreation in the search for optimal solutions. After each iteration the diversity of the population is measured. We then take the average diversity of the \num{100} runs. %These numbers show us how the diversity is progressing with the different replacement rules for the different problems.
+We measured the average diversity of \num{100} runs of \num{2000} iterations. Each run initializes an entirely new population, and each population goes through \num{2000} iterations of procreation in the search for optimal solutions. After each iteration the diversity of the population is measured. We then take the average diversity of the \num{100} runs. We made one exception, as we only ran \num{500} iterations on the Leaf dataset, because it is a small set.%These numbers show us how the diversity is progressing with the different replacement rules for the different problems.
 
 %how much did we do it
 We use the average of the \num{100} runs, because we have randomness in our system. Each new population is initialized randomly. By taking the average we belive that we get a better picture of how the diversity is progressing.
@@ -15,11 +15,13 @@ The results are presented through figures \ref{fig:dynamic-leaf} to \ref{fig:dyn
 
 The \dia{} and Hamming distance measures look very similar. We can argue that \dia{} better illustrates how diverse the traits of the individuals are, as with the Hamming distance we do not see the diversity rise over \num{0.5}. 
 
-\paragraph{Results of XOR} xor
+\paragraph{Results of XOR} The results presented in \cref{fig:dynamic-xor} have very similar curves in all three graphs. It is important to be aware of how \dia{} and the Hamming distance are a constant apart for each replacement rule. For this experiment, the fitness-based measaurement has a high fitness-based diversity compared to the other two experiments with the two other problems. This means that for this experiment, the fitness-based measurement is closer to \dia{} than the Hamming distance, as it is for the other results.
 
-\paragraph{Results of Snake} snake
+\paragraph{Results of Snake} The results shown in \cref{fig:dynamic-snake}, once again show the constant differnce between \dia{} and the Hamming distance. The fitness-based measure is very irregular when it comes to Ancestor Elitism. Here the graph falls and rises before it stabilises.For these results, the fitness-based measurement is closer to the Hamming distance results.
 
 \paragraph{The big picture} If we compare the graphs (\cref{fig:dynamic-leaf} to \cref{fig:dynamic-snake}) for all three experiments, we see that one graph stands out from the others in each of the experiments. The fitness-based graphs have some irregular curves, which are not easily explained. We can argue that the fitness-based diversity measure does not represent the actual diversity very acurately. Earlier, we explained that multiple individuals can have the same fitness, but in fact behave very differently. It is clear that this fact is not captured by the fitness-based measure. This measure is simple and does not need any extra computations, but it is not suitable for every problem. 
+
+Another fact that is clear from the three experiments, is that \dia{} and the Hamming distance do not vary much between the different problems. Each replacement rule is always around the same interval for \dia{} and Hamming distance. The fitness-based is much more dependent on the problem, as its results are not regular. Each graph illustrating the fitness-based measurement is different from the others.
 
 The experiments explained above, show that there might be a correspondance between the phenotypic (\dia{}) diversity measure and the genotypic (Hamming distance) diversity measure. If we take a closer look at the graphs illustrating \dia{} and the Hamming distance, we can see that they are scaled with a constant compared to each other. The Hamming distance is always below the \dia{} measurement. So, the \dia{} shows the differences in the behaviour, and the Hamming distance shows the difference in the genetic make-up.  
 
