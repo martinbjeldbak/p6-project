@@ -98,7 +98,6 @@
     },
     scatter/@post marker code/.code={}
   },
-  mark end,
   x-tick-siunitx/.style={%
     xticklabel = \pgfmathparse{\tick*1}\num{\pgfmathresult},
   },
@@ -133,11 +132,13 @@
     legend entries={Greedy, Ancestor Elitism, Single Parent Elitism, Explore-Exploit},
   },
   dynamic/.style={%
+    mark end,
     y-div,
     xlabel = {Generation},
     each nth point=5,
   },
   fitness/.style={%
+    mark end,
     x-tick-siunitx,
     y-tick-siunitx,
     ylabel = {Fitness},
