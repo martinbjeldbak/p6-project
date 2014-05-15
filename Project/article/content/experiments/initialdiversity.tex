@@ -14,8 +14,11 @@ By intuition, we expect increasing initial similarity will result in lower diver
 
 
 \input{drawings/initial-similarity-graphs}
+
+% Init sim results
+The results of various initial similarity values shown in \cref{fig:initial-similarity} play along with our intuition. For each of the data sets, each diversity measure's diversity output gradually falls upon increasing the amount of similar individuals in the population. Interestingly enough, at an initial similarity of 0, \dia{} outputs the maxiumum possible diversity, whereas Hamming distance outputs a diversity that is only half of its maximum. It seems that \dia{} captures the chaotic nature of a completely random population better than the other two measures, with a larger fall in diversity over time.
+
 \input{drawings/initial-mutation-graphs}
 
-\input{drawings/dynamic-leaf-graphs}
-\input{drawings/dynamic-xor-graphs}
-\input{drawings/dynamic-snake-graphs}
+% Init mut results
+By changing the initial mutation in a population with the results shown in \cref{fig:inital-mutation}, we notice a larger difference between diversity measures. At an initial mutation rate of a mere \perc{1}, \dia{} reaches maximum diversity compared to the other two measures. This is due to the fact that when only a few bits are flipped in the individuals, Hamming distance and fitness-based diversity measure won't capture the fact that this bit could be a sign bit, a high-order bit, or another behaviourally vital bit. Hamming distance does not capture this due to being genotypic, and fitness-based also lacks an ability to capture this change, because an increasingly random population does not necessarily mean a change in fitness.
