@@ -1,0 +1,13 @@
+\section{Conclusion}\label{sec:conclusion}
+
+We have performed experiments to test our own diversity measure, which we call \di{} (\dia{}). We experimented and compared the results of \dia{} against two other widely used diversity measures, the Hamming distance and the fitness-based diversity measure. These experiments are discussed in \cref{sec:experiments}. We did the testing with four different replacement rules, the Greedy replacement rule, Ancestor Elitism, Single Parent Elitism, and Explore-Exploit. These replacement rules are explained in \cref{sec:replacementrules}.
+
+We argue that fitness-based diversity measurements are much less useful, because they do not explicitly say something about the difference of two individuals with the same fitness. It is possible for two different individuals to have the same fitness, but have very different behaviour. Our experiments confirm that fitness-based measures are unreliable. In the \cref{sec:experiments} we argue and see that this type of measure is very irregular.
+
+When it comes to \dia{}, which is a phenotypic measure, and the Hamming distance, which is a genotypic measure, we see something interesting. It is clear to see that these two measures follow each other in a manner. There might be some constant factor between these two, which signals a correspondance between the phenotype and the genotypes of individuals in GAs.
+
+It is also important to be aware of that fact that the Hamming distance measure never exceeds \num{0.5} diversity. This is due to the fact that the chromosome of the individuals is a randomly generated bit string. This means that there is a high possibility that half of the bit string is similar to other bit strings. This also shows that \dia{} (a phenotypic measure) has an advantage over a genotypic measure. 
+
+Based on our experiments and observations, we can conclude that we have succeeded in creating a diversity measure that better reflects different traits among individuals of a population.
+
+Furthermore, it is clear to see that the replacement rule with the best outcome of fitness values, is the Explore-Exploit, which actively uses the diversity measure. One can once again argue, that it is important to have a diversity measure that can capture the concept of a population being diverse as good as possible. We have found that \dia{} best captures a diverse population by looking at the behaviour of the individuals.
