@@ -1,9 +1,14 @@
 \section{Experiments}
 In this section, we evaluate our proposed diversity measurement (\dia) by using it to measure diversity of a population in two different environments.
 
-In the static environment the GA will not iterate. We create an initial population using a constrain $c$, and a significance $\alpha$. We choose $c$ such that we have an intuition about how the behavioural diversity of individuals will be dependent on $\alpha$. By experiments, we will see if it is likely that \dia{} catches this dependency.
+In the first environment, which we will refer to as the static environment, the GA will not iterate.
+For three maximization problems we introduce in \cref{sec:problems}, we create an initial population using a constrain $c$, and a significance $\alpha$. We choose $c$ such that we have an intuition about how the behavioural diversity of individuals will be dependent on $\alpha$. By experiments, we will see if it is likely that \dia{} catches this dependency.
 
-In the dynamic environment, we create a random initial population, and perform 2000 iterations for two larger data sets, and 500 iterations on the smaller data set using each of the  replacement rules described in \cref{sec:replacementrules}. We hope to find it likely that the diversities returned by \dia{} more intuitively follow the expected behavioural diversity for each replacement rule, compared to the other diversity measures.
+In the second environment, which we will refer to as the dynamic environment, we will let the GA run for a number of iterations on each of the three problems. 
+For each problem, we will run the GA using each of the four replacement rules introduced in \cref{sec:replacementrules}.
+During all of the tests, we will measure the diversity using each of the diversity measures described in \cref{sec:diversitymeasures}, as well as \dia.
+
+We hope to see that the diversities returned by \dia{} better match the expected behavioural differences than any of the other diversity measures.
 
 %All experiments are performed on three different discrete problems, which we describe in \cref{sec:problems}.
 \subsection{Parameter settings}
@@ -26,7 +31,9 @@ In the dynamic environment, we create a random initial population, and perform 2
   \label{tab:gaparam}
 \end{table}
 
-We use a population size of 100. For each iteration, 100 new offspring individuals are created. Half of the offspring is cloned from a random parent, found using rank-based selection, and then mutated. The other half is made by performing crossover between two random parents, also using rank-based selection. Three crossover methods are used: one-point crossover, two-point crossover, and uniform crossover. When a new individual is created using crossover, there is an equal chance for any of the crossover methods to be used. Each offspring individual created by crossover, has a \perc{10} chance to be mutated. When mutating an individual, each bit in its bit string has a \perc{5} chance to be assigned a random boolean value. For specific implementation details, we refer to the source code~\cite{mbm:kmc:ekoGA}.
+We use a population size of 100. For each iteration, 100 new offspring individuals are created. Half of the offsprings are cloned from a random parent. These are found by using a rank-based selection, and then mutated. The other half is made by performing crossover between two random parents, also using rank-based selection. These settings are presented in \cref{tab:gaparam}.
+
+Three crossover methods are used: one-point crossover, two-point crossover, and uniform crossover. When a new individual is created using crossover, there is an equal chance for any of the crossover methods to be used. Each offspring created by crossover, has a \perc{10} chance to be mutated. When mutating an individual, each bit in its bit string has a \perc{5} chance to be assigned a random boolean value. For specific implementation details, we refer to the source code~\cite{mbm:kmc:ekoGA}.
 
 \input{content/experiments/problems}
 \input{content/experiments/initialdiversity}
