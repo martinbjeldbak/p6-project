@@ -18,25 +18,15 @@ We expect to see an increase in the different of behaviour, as a result of the m
 
 \subsubsection{Results}
 Experiments run with initial similarity and initial mutation between 0 and 1 are shown in \cref{fig:initial-similarity} and \cref{fig:initial-mutation}, respectively.
-
-
+%
 \input{drawings/initial-similarity-graphs}
-
+%
 % Init sim results
-The results of various initial similarity values shown in \cref{fig:initial-similarity} play along with our intuition.
-For each of the data sets, each diversity measure's diversity output gradually falls upon increasing the amount of similar individuals in the population. Interestingly enough, at an initial similarity of 0, \dia{} outputs the maximum possible diversity, whereas Hamming distance outputs a diversity that is only half of its maximum. It seems that \dia{} captures the chaotic nature of a completely random population better than the other two measures, with a larger fall in diversity over time.
+The results of various initial similarity values shown in \cref{fig:initial-similarity} play along with our intuition. For each of the data sets, each diversity measure's diversity output gradually falls upon increasing the amount of similar individuals in the population. Interestingly enough, at an initial similarity of 0, we expect all diversity measures to output maximum diversity.Here, \dia{} outputs the maximum possible diversity of 1, whereas Hamming distance outputs a diversity that is only half of its maximum. It seems that \dia{} captures the chaotic nature of a completely random population better than the other two measures, with a larger fall in diversity over time. One could naively assume that you could just double Hamming distance's diversity, but it is actually possible for the Hamming distance measure to output 1 if each bit in two individuals is different.
 
 \input{drawings/initial-mutation-graphs}
 
 % Init mut results
-By changing the initial mutation in a population with the results shown in \cref{fig:inital-mutation}, we notice a larger difference between diversity measures. At an initial mutation rate of a mere \perc{1}, \dia{} takes a great leap compared to the other two measures.
-For Hamming distance, it is obvious that changing only a few bits in the genotypes will only cause a small change in diversity.
-This is because Hamming distance measures diversity based on genotypes.
+By changing the initial mutation in a population with the results shown in \cref{fig:initial-mutation}, we notice a larger difference between diversity measures. At an initial mutation rate of a mere \perc{1}, \dia{} takes a great leap compared to the other two measures. For Hamming distance, it is obvious that changing only a few bits in the genotypes will only cause a small change in diversity. This is because Hamming distance measures diversity based on genotypes.
 
-For the fitness-based diversity measure, it must be noted that the fitness values are dependent on the particular problem in question and how one chooses to define the fitness function.
-Consider for instance the problem of making an AI for the game Snake.
-We have experienced that if we define the fitness only in terms of how many pieces of food a snake collects,
-then about $98 \%$ of all random individuals gets a fitness of $0$.
-This is the reason why we chose a fitness function that also takes into account the number of steps a snake is alive.
-Despite yielding more diverse fitness values, it also increased the fitness values obtained after just 100 iterations notably.
-This does not mean that a fitness function cannot reflect behavioural differences, but it shows that how one defines the fitness function is crucial if one wishes to catch the behavioural differences of individuals.
+For the fitness-based diversity measure, it must be noted that the fitness values are dependent on the particular problem in question and how one chooses to define the fitness function. Consider for instance the problem of making an AI for the game Snake. We have experienced that if we define the fitness only in terms of how many pieces of food a snake collects, then about \perc{98} of all random individuals get a fitness of 0. This is the reason why we chose a fitness function that also takes into account the number of steps a snake is alive. Despite yielding more diverse fitness values, it also increased the fitness values obtained after just 100 iterations notably. This does not mean that a fitness function cannot reflect behavioural differences, but it shows that how one defines the fitness function is crucial if one wishes to catch the behavioural differences of individuals.
