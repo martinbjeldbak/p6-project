@@ -1,17 +1,16 @@
 \subsection{Problems}
 \label{sec:problems}
-We hereby explain the three discrete problems we perform our experiments on.
+We hereby explain the three discrete problems we perform our experiments on. In this section we use the terms neural network and individual interchangeably.
 
 \subsubsection{XOR}
 We use a neural network to approximate the XOR between two 8-bit strings.
-To evaluate fitness of a neural network, we choose 1000 random instances of two 8-bit strings.
-For each instance, we determine how many bits the neural network calculates correct.
-The fitness is the defined as the average number of bits calculated correct.
-Fitness values will thus lie in the range $[0-8]$.
-Since the XOR between two random bits will be evenly distributed between 0 and 1,
-randomly guessing a solution to the 8-bit XOR problem, is expected to yield a fitness of 4.
-The network has 16 input neurons, 16 hidden neurons, 8 output neurons, 2 bits per weight, and 1 bit per bias for each hidden and output neuron.
-Any output neuron $i$ represents the XOR between the two input neurons $i$ and $i+8$. 
+To evaluate the fitness of an individual solving this problem, we calculate the XOR of \num{1000} random two 8-bit strings.
+For each instance, we determine how many bits the individual calculates correctly.
+The fitness is then defined as the average number of bits correctly calculated.
+Fitness values will thus lie in the range $[0$--$8]$, because the XOR between two random bits will be evenly distributed between 0 and 1. This means that a random guess of the solution to the 8-bit XOR problem, is expected to yield a fitness of 4.
+
+The network has 16 input neurons, 16 hidden neurons, 8 output neurons, 2 bits per weight, and 1 bit per bias for each hidden and output neuron. We represent the two 8-bit strings as being side by side. So, any output neuron $i$ represents the XOR between the two input neurons $i$ and $i+8$. 
+
 We have used as few neurons and bits to represent weights and biases as possible, while still being able to verify that the maximum fitness value of 8 is achievable.
 The same random seed is always used for generating the 1000 problem instances.
 
@@ -24,28 +23,29 @@ The implementation consists of 16 input neurons, 10 hidden and 40 output neurons
 \subsubsection{Snake}
 Snake is a game found on old Nokia cell phones, where you are moving a snake around a grid to pick up pieces of food.
 Every time a piece of food is collected, both the length of the snake and your score increases by 1.
-You loose if the snake head hits its body or one of the edges of the grid.
+You lose if the snake head hits its body or one of the edges of the grid.
 At all times, the grid contains only a single piece of food.
-The game becomes harder as the length of the snake increases, and as the snake is constantly moving, it becomes hard to not trap yourself.
+The game becomes harder as the length of the snake increases, and as the snake is constantly moving the challenge in not trapping oneself gets tougher.
 
 We use a neural network to play a game of Snake in a $10\times10$ grid with an initial snake length of 5 units.
-We have defined the fitness of a neural network to be $f + \frac{f}{s/1000}$,
-where $f$ is the amount of food it collects and $s$ is the total number of steps the snake is alive. The game is constrained such that the snake can only change its direction \SI{90}{\degree} per step. The neural network has 6 input neurons, each receiving a bit of information about the game state:
+We have defined the fitness of a neural network to be 
+\[f + \frac{f}{s/1000}\]
+where $f$ is the amount of food it collects, and $s$ is the total number of steps the snake is alive. The game is constrained such that the snake can only change its direction \SI{90}{\degree} per step. The neural network has 6 input neurons, each receiving a bit of information about the game state:
 \begin{enumerate}
-  \item \set{-1, 0, 1} Whether food is to the left, vertically aligned, or to the right of the snake head.
-  \item \set{-1, 0, 1} Whether food is above, horizontally aligned, or below the snake head.
-  \item \set{0, 1} If the snake dies if its next move is up
-  \item \set{0, 1} If the snake dies if its next move is down
-  \item \set{0, 1} If the snake dies if its next move is right 
-  \item \set{0, 1} If the snake dies if its next move is left
+  \item \{$-1, 0, 1$\} whether food is to the left, vertically aligned, or to the right of the snake head.
+  \item \{$-1, 0, 1$\} whether food is above, horizontally aligned, or below the snake head.
+  \item \{$0, 1$\} if the snake dies, if its next move is up
+  \item \{$0, 1$\} if the snake dies, if its next move is down
+  \item \{$0, 1$\} if the snake dies, if its next move is right 
+  \item \{$0, 1$\} if the snake dies, if its next move is left
 \end{enumerate}
-4 output neurons are used. The neuron with the highest value determines whether to move the snake right, left, up, or down.
+The neural network has 4 output neurons, one for each direction to choose. The neuron with the highest value determines which direction the snake moves.
 The neural network uses 5 hidden neurons, 9 bits per weight and neurons have no bias.
 For every game of Snake, we always use the same random seed to decide the positions where pieces of food will spawn.
 
 \subsubsection{Criteria for selection}
 The XOR function is interesting since it is the simplest boolean function that is not linearly separable.
-This fact has made it quite popular in NN research communities\cite{masterThesisGANN}.
+This fact has made it quite popular in neural network research communities\cite{masterThesisGANN}.
 A classification problem like Leaf is interesting because it is radically different from the XOR problem.
 XOR is a simple and well defined function, whereas classifying leaves is more complex and depends on observations in nature, which may contain noise.
 The Snake game differs in that it is an agent decision problem, where not just a single, but a sequence of decisions determines the outcome, where each decision changes the intermediate state.
