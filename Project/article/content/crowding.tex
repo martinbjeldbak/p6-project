@@ -7,8 +7,7 @@ and their offspring $O_i$ are selected to form the the next generation $G_{i+1}$
 
 \subsubsection{Greedy}
 Common descriptions of GAs, that do not try to account for premature convergence,
-are often making the generation $G_i$ from the $n$ most fit individuals from $G_{i-1} \cup O_{i-1}$, where $\lvert G_x \rvert = n$ for all $x$~\cite{masterThesisGANN}.
-We will refer to this as the \emph{Greedy replacement rule}.
+are often making the generation $G_i$ from the $n$ most fit individuals from $G_{i-1} \cup O_{i-1}$, where $\lvert G_x \rvert = n$ for all $x$. We will refer to this as the \emph{Greedy replacement rule}~\cite{masterThesisGANN}.
 
 %\subsubsection{Probabilistic crowding replacement rule}
 %The \emph{probabilistic crowding replacement rule}~\cite{Mengshoel_and_Goldberg:1999} can be described by the formula:
@@ -23,28 +22,18 @@ We will refer to this as the \emph{Greedy replacement rule}.
 \subsubsection{Ancestor Elitism}
 Ancestor Elitism is similar to $(\mu + \lambda)$ and Generation Gap algorithms, but it was developed independently of these algorithms~\cite[p. 34, p. 50]{Luke2013Metaheuristics}.
 
-The next generation $G_{i+1}$ is made from generation $G_i$ as follows:
-Every individual from $G_i$ is put into $G_{i+1}$.
-Any individual in $O_i$ who has only a single parent (made from mutation) and is more fit than its parent, will replace that parent in $G_{i+1}$.
-Any individual in $O_i$ who has two parents (made from crossover) and is more fit than both of its parents, will replace both parents in $G_{i+1}$ by itself and a random immigrant.
-Finally, the 50 \% least fit individuals in $G_{i+1}$ is replaced by random immigrants.
-
+The next generation $G_{i+1}$ is made from generation $G_i$ as follows: every individual from $G_i$ is put into $G_{i+1}$. Any individual in $O_i$ who has only a single parent (made from mutation) and is more fit than its parent, will replace that parent in $G_{i+1}$. Any individual in $O_i$ who has two parents (made from crossover) and is more fit than both of its parents, will replace both parents in $G_{i+1}$ by itself and a random immigrant. Finally, the 50 \% least fit individuals in $G_{i+1}$ is replaced by random immigrants.
 
 \subsubsection{Single Parent Elitism}
-Single Parent Elitism is similar to Restricted Tournament Selection, but was developed indepentdently of this method~\cite[p. 132]{Luke2013Metaheuristics}.
+Single Parent Elitism is similar to Restricted Tournament Selection, but was developed independently of this method~\cite[p.\ 132]{Luke2013Metaheuristics}.
 
-$G_{i+1}$ is made from $G_i$ as follows:
-Every individual from $G_i$ is put into $G_{i+1}$.
-Any individual in $O_i$ who has only a single parent (made from mutation) and is more fit than its parent, will replace that parent in $G_{i+1}$.
+$G_{i+1}$ is made from $G_i$ as follows: every individual from $G_i$ is put into $G_{i+1}$. Any individual in $O_i$ who has only a single parent (made from mutation) and is more fit than its parent, will replace that parent in $G_{i+1}$.
 Any individual in $O_i$ who has two parents (made from crossover), and is more fit than a randomly chosen parent, will replace its parent in $G_{i+1}$ by itself.
 
 \subsubsection{Mass Extinction Explore Exploit}
-Inspired by the changes between exploration and exploitation phases used by Ursem~\cite{ursem2002diversity}, we introduce the following replacement rule, which we will refer to as the \emph{Mass Extinction Explore Exploit} (MEEE) replacement rule.
-The MEEE replacement rule performs a mass extinction when the diversity drops below a threshold.
-$G_{i+1}$ is made from $G_i$ as follows:
+Inspired by the changes between exploration and exploitation phases used by Ursem~\cite{ursem2002diversity}, we introduce the following replacement rule, which we will refer to as the \emph{Mass Extinction Explore Exploit} (MEEE) replacement rule. The MEEE replacement rule performs a mass extinction when the diversity drops below a threshold. $G_{i+1}$ is made from $G_i$ as follows:
 
-If $d(G_i) < \alpha$, replace the $\frac{n}{2}$ least fit individuals from $G_i$ by random immigrants, where $n = \lvert G_i \rvert$.
-Use the \emph{Single Parent Elitism} replacement rule on $(G_i, O_i)$.
+If $d(G_i) < \alpha$, replace the $\frac{n}{2}$ least fit individuals from $G_i$ by random immigrants, where $n = \lvert G_i \rvert$. Use the \emph{Single Parent Elitism} replacement rule on $(G_i, O_i)$.
 
 Where $d(G)$ denotes the diversity of a generation, and $\alpha$ is a threshold. 
 
