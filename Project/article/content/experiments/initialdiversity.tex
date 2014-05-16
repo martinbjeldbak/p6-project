@@ -3,7 +3,7 @@ We perform two different static experiments, which differ in the way they constr
 
 \subsubsection{Initial similarity}
 In this test, we introduce the variable \emph{initial similarity}, which is a real value in the range $[0,1]$.
-When making an initial population, an initial similarity of $\alpha$ means that $\alpha$ individuals have the exact same genotype, and $(1-\alpha)$ individuals are completely random.
+When making an initial population, an initial similarity of $\alpha$ means that $\alpha$ of the individuals in the population will have the exact same genotype, and $(1-\alpha)$ of the individuals are completely random.
 An initial similarity of \num{1} means that all genotypes are the same, and hence the behaviour of all individuals are the same as well. In this case, we will expect the lowest diversity possible.
 As initial similarity increases, more genotypes will be identical, and hence more individuals will behave the same.
 We therefore expect the diversity to decrease as initial similarity is increased.
@@ -13,9 +13,8 @@ An initial similarity of \num{0} means that all genotypes are random, and hence 
 In this test, we introduce the variable \emph{initial mutation}, which is a real value in the range $[0,1]$.
 When making an initial population, an initial mutation of $\alpha$ affects the population in the following way.
 A random genotype is created and given to every individual in the population, such that all individuals have an identical, randomly chosen genotype.
-Now, the bit string of each individual is mutated. Each bit will by probability $\alpha$ be set to a random boolean value. 
-Each bit is with chance $\alpha$ set to a random value.
-We expect to see that an increase in the mutation of bit strings also causes an increase in different behaviour. 
+Now, the bit string of each individual is mutated. Each bit will with probability $\alpha$ be set to a random boolean value. 
+We expect to see an increase in the different of behaviour, as a result of the mutation of bit strings. 
 
 \subsubsection{Results}
 Experiments run with initial similarity and initial mutation between 0 and 1 are shown in \cref{fig:initial-similarity} and \cref{fig:initial-mutation}, respectively.
@@ -33,7 +32,8 @@ For each of the data sets, each diversity measure's diversity output gradually f
 By changing the initial mutation in a population with the results shown in \cref{fig:inital-mutation}, we notice a larger difference between diversity measures. At an initial mutation rate of a mere \perc{1}, \dia{} takes a great leap compared to the other two measures.
 For Hamming distance, it is obvious that changing only a few bits in the genotypes will only cause a small change in diversity.
 This is because Hamming distance measures diversity based on genotypes.
-For the fitness-based diversity measure, is must be noted that the fitness values are dependent on the particular problem in question and how one chooses to define the fitness function.
+
+For the fitness-based diversity measure, it must be noted that the fitness values are dependent on the particular problem in question and how one chooses to define the fitness function.
 Consider for instance the problem of making an AI for the game Snake.
 We have experienced that if we define the fitness only in terms of how many pieces of food a snake collects,
 then about $98 \%$ of all random individuals gets a fitness of $0$.
