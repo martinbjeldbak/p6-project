@@ -1,0 +1,101 @@
+\newcommand{\perc}[1]{\SI{#1}{\percent}}
+\newcommand{\di}{Neural Network Trait Diversity}
+\newcommand{\dia}{NNTD}
+\newcommand{\fit}{\phi}
+
+\newcommand{\mail}[1]{\href{mailto:#1}{#1}}
+\newcommand{\var}[1]{\ensuremath{\mathit{#1}}}
+\newcommand{\citpls}[1]{\footnote{\textcolor{red}{ Citation needed here.}}}
+\newcommand{\set}[1]{\ensuremath{\left\{ #1 \right\}}}
+\newcommand{\setof}[2]{\ensuremath{\left\{ #1 \mid #2 \right\}}}
+\newcommand{\bigO}[1]{\ensuremath{\operatorname{O}\left(#1\right)}}
+
+\newcommand{\correctlyresize}[2]{\resizebox{#1}{!}{#2}}
+\newcommand{\inputresize}[1]{\correctlyresize{\linewidth}{\input{#1}}}
+\newcommand{\inputresizeto}[2]{\correctlyresize{#1}{\input{#2}}}
+
+\definecolor{maroon}{HTML}{85144B}
+\definecolor{navy}{HTML}{001F3F}
+\definecolor{blue}{HTML}{0074D9}
+\definecolor{aqua}{HTML}{7FDBFF}
+\definecolor{teal}{HTML}{39CCCC} 
+\definecolor{red}{HTML}{FF4136}
+\definecolor{blue}{HTML}{0074D9}
+\definecolor{black}{HTML}{111111}
+\definecolor{purple}{HTML}{B10DC9}
+\definecolor{green}{HTML}{2ECC40}
+
+\sisetup{
+  locale=UK,
+  zero-decimal-to-integer % do not show .0 on whole numbers
+}
+
+\pgfplotsset{%
+  compat=newest,
+    %grid=major,
+    %grid style={dashed,gray!30},
+    %scale only axis,
+  table/col sep=comma,
+  width=\linewidth,
+  mark end/.style={%
+    % From: https://tex.stackexchange.com/questions/116690/pgfplots-marks-mandatory-for-1st-and-last-point
+    scatter,
+    scatter src=x,
+    scatter/@pre marker code/.code={%
+      \pgfmathtruncatemacro\usemark{%
+        (\coordindex==(1))
+      }
+      \ifnum\usemark=0
+      \pgfplotsset{mark=none}
+      \fi
+    },
+    scatter/@post marker code/.code={}
+  },
+  x-tick-siunitx/.style={%
+    xticklabel = \pgfmathparse{\tick*1}\num{\pgfmathresult},
+  },
+  y-tick-siunitx/.style={%
+    yticklabel = \pgfmathparse{\tick*1}\num{\pgfmathresult},
+  },
+  y-div/.style={%
+    x-tick-siunitx,
+    y-tick-siunitx,
+    ylabel = {Diversity},
+  },
+  initial-mut/.style={%
+    y-div,
+    xlabel = {Initial Mutation},
+  },
+  initial-sim/.style={%
+    y-div,
+    xlabel = {Initial Similarity},
+  },
+  initial-mut-sim-root/.style={%
+    legend columns=-1,
+    legend entries={Fitness-based, Hammming distance, \dia{}},
+  },
+  initial-sim-root/.style={%
+    initial-mut-sim-root,
+  },
+  initial-mut-root/.style={%
+    initial-mut-sim-root,
+  },
+  dynamic-root/.style={%
+    legend columns=-1,
+    legend entries={Greedy, Ancestor Elitism, Single Parent Elitism, Explore-Exploit},
+  },
+  dynamic/.style={%
+    mark end,
+    y-div,
+    xlabel = {Generation},
+    each nth point=5,
+  },
+  fitness/.style={%
+    mark end,
+    x-tick-siunitx,
+    y-tick-siunitx,
+    ylabel = {Fitness},
+    xlabel = {Generation},
+    %title  = Fitness,
+  },
+}
