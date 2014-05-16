@@ -26,7 +26,9 @@ In the dynamic environment, we create a random initial population, and perform 2
   \label{tab:gaparam}
 \end{table}
 
-We use a population size of 100. For each iteration, 100 new offspring individuals are created. Half of the offspring is cloned from a random parent, found using rank-based selection, and then mutated. The other half is made by performing crossover between two random parents, also using rank-based selection. Three crossover methods are used: one-point crossover, two-point crossover, and uniform crossover. When a new individual is created using crossover, there is an equal chance for any of the crossover methods to be used. Each offspring individual created by crossover, has a \perc{10} chance to be mutated. When mutating an individual, each bit in its bit string has a \perc{5} chance to be assigned a random boolean value. For specific implementation details, we refer to the source code~\cite{mbm:kmc:ekoGA}.
+We use a population size of 100. For each iteration, 100 new offspring individuals are created. Half of the offsprings are cloned from a random parent. These are found by using a rank-based selection, and then mutated. The other half is made by performing crossover between two random parents, also using rank-based selection. These settings are presented in \cref{tab:gaparam}.
+
+Three crossover methods are used: one-point crossover, two-point crossover, and uniform crossover. When a new individual is created using crossover, there is an equal chance for any of the crossover methods to be used. Each offspring created by crossover, has a \perc{10} chance to be mutated. When mutating an individual, each bit in its bit string has a \perc{5} chance to be assigned a random boolean value. For specific implementation details, we refer to the source code~\cite{mbm:kmc:ekoGA}.
 
 \input{content/experiments/problems}
 \input{content/experiments/initialdiversity}
