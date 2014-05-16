@@ -6,7 +6,7 @@ In the following, we propose a method for measuring trait diversity, which we ca
 
 Let $F = \set{f_1, f_2, \dots, f_n}$, where each $f_j$ for $0 \leq j \leq n$ denote the set of neural networks contained in a population, which all have the same architecture of $x$ input and $y$ output neurons. \dia{} is calculated with respect to a number of random inputs $R = \set{r_1, r_2, \dots, r_m}$, where each $r_i$ for $1 \leq i \leq m$ is an $x$-tuple of real values chosen randomly. For each sample $r_i$, a Simpson diversity index is calculated. The calculation depends on a set of species, so we distribute the neural networks into species based on which of their output neurons yields the highest value on input $r_i$. 
 
-If $b_nb_{n-1}\dots b_1$ is the binary representation of a number $i$,
+Let $b_{n}b_{n-1}\dots b_1$ be the binary representation of a number $i$,
 we define the species $S_i(r)$ to contain any neural network $f \in F$ that given $r \in R$ as input satisfies
 %
 \[
