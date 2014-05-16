@@ -1,6 +1,7 @@
 \begin{figure*}
   \centering
   \begin{subfigure}[b]{0.25\textwidth}
+    \batchmode
     \begin{tikzpicture}
       \begin{axis}[
           dynamic,
@@ -14,13 +15,15 @@
         table[x index=0, y index=3] {data/replacementrule_game/aerr_leaf.csv};
         \addplot[mark=triangle*, smooth, color=red]
         table[x index=0, y index=3] {data/replacementrule_game/sperr_leaf.csv};
-        \addplot[smooth, color=green]
+        \addplot[mark=diamond*, smooth, color=green]
         table[x index=0, y index=3] {data/replacementrule_game/eerr_leaf.csv};
       \end{axis}
     \end{tikzpicture}
+    \scrollmode
   \end{subfigure}%
   ~
   \begin{subfigure}[b]{0.25\textwidth}
+    \batchmode
     \begin{tikzpicture}
       \begin{axis}[
           dynamic,
@@ -36,9 +39,11 @@
         table[x index=0, y index=1] {data/replacementrule_game/eerr_leaf.csv};
       \end{axis}
     \end{tikzpicture}
+    \scrollmode
   \end{subfigure}%
   ~
   \begin{subfigure}[b]{0.25\textwidth}
+    \batchmode
     \begin{tikzpicture}
       \begin{axis}[
           dynamic,
@@ -54,9 +59,11 @@
         table[x index=0, y index=2] {data/replacementrule_game/eerr_leaf.csv};
       \end{axis}
     \end{tikzpicture}
+    \scrollmode
   \end{subfigure}%
   ~
   \begin{subfigure}[b]{0.25\textwidth}
+    \batchmode
     \begin{tikzpicture}
       \begin{axis}[
           fitness
@@ -71,6 +78,7 @@
         table[x index=0, y index=4] {data/replacementrule_game/eerr_leaf.csv};
       \end{axis}
     \end{tikzpicture}
+    \scrollmode
   \end{subfigure}
   \ref{leafDynamic}
   \caption{Average over \num{100} runs for each diversity measure on the leaf data set.}\label{fig:dynamic-leaf}
