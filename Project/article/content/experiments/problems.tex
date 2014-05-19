@@ -1,6 +1,7 @@
-\subsection{Problems}
+\subsection{Problems under study}
 \label{sec:problems}
-We hereby explain the three discrete problems we perform our experiments on. In this section we use the terms neural network and individual interchangeably.
+We hereby explain the three discrete problems we perform our experiments on. 
+The XOR function is interesting since it is the simplest boolean function that is not linearly separable. This fact has made it quite popular in neural network research communities\cite{masterThesisGANN}. A classification problem like Leaf is interesting because it is radically different from the XOR problem. XOR is a simple and well defined function, whereas classifying leaves is more complex and depends on observations in nature, which may contain noise. The Snake game differs in that it is an agent decision problem, where not just a single, but a sequence of decisions determines the outcome, where each decision changes the intermediate state.
 
 \subsubsection{XOR}
 We use a neural network to approximate the XOR between two 8-bit strings.
@@ -44,6 +45,3 @@ where $f$ is the amount of collected food, and $s$ is the total number of steps 
 The neural network has 4 output neurons, one for each direction to choose. The neuron with the highest value determines which direction the snake moves.
 The neural network uses 5 hidden neurons, 9 bits per weight and neurons have no bias.
 For every game of Snake, we always use the same random seed to decide the positions where pieces of food will spawn.
-
-\subsubsection{Criteria for selection}
-The XOR function is interesting since it is the simplest boolean function that is not linearly separable. This fact has made it quite popular in neural network research communities\cite{masterThesisGANN}. A classification problem like Leaf is interesting because it is radically different from the XOR problem. XOR is a simple and well defined function, whereas classifying leaves is more complex and depends on observations in nature, which may contain noise. The Snake game differs in that it is an agent decision problem, where not just a single, but a sequence of decisions determines the outcome, where each decision changes the intermediate state.
