@@ -2,7 +2,7 @@
 We perform two different static experiments, which differ in the way they constrain the initially generated population. 
 
 \subsubsection{Initial similarity}
-In this test, we introduce the variable \emph{initial similarity}, which is a real value in the range $[0,1]$.
+In the first test, we introduce the variable \emph{initial similarity}, which is a real value in the range $[0,1]$.
 When making an initial population, an initial similarity of $\alpha$ means that $\alpha$ of the individuals in the population will have the exact same genotype, and $(1-\alpha)$ of the individuals are completely random.
 An initial similarity of \num{1} means that all genotypes are the same, and hence the behaviour of all individuals are the same as well. In this case, we will expect the lowest diversity possible.
 As initial similarity increases, more genotypes will be identical, and hence more individuals will behave the same.
@@ -10,7 +10,7 @@ We therefore expect the diversity to decrease as initial similarity is increased
 An initial similarity of \num{0} means that all genotypes are random, and hence we will expect the most diverse behaviour among individuals to be found here.
 
 \subsubsection{Initial mutation}
-In this test, we introduce the variable \emph{initial mutation}, which is a real value in the range $[0,1]$.
+In second test, we introduce the variable \emph{initial mutation}, which is a real value in the range $[0,1]$.
 When making an initial population, an initial mutation of $\alpha$ affects the population in the following way.
 A random genotype is created and given to every individual in the population, such that all individuals have an identical, randomly chosen genotype.
 Now, the bit string of each individual is mutated. Each bit will with probability $\alpha$ be set to a random boolean value. 
