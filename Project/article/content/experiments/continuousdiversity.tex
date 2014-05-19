@@ -1,7 +1,7 @@
 \subsection{Continuous Diversity}\label{sec:continuousdiversity}
 Our main goal with the experiments we perform is to see how diversity progresses throughout the many iterations a GA goes through. Furthermore, we must see if there are any significant differences between different diversity measures and replacement rules. To measure diversity, we use the fitness-based measurement, Hamming distance, and our own measure \dia, after each iteration (we will use iteration and generation interchangeably). The four replacement rules are Greedy Replacement, Ancestor Elitism, Single Parent Elitism, and Explore-Exploit. We run the experiments four times, one with each of the replacement rules.
 
-We measured the average diversity of \num{100} runs over \num{2000} iterations, meaning each run initializes an entirely new population, and each population goes through \num{2000} iterations of procreation in the search for optimal solutions. After each iteration, diversity of the population is measured for each diversity measure. We then take the average diversity for each generation of the \num{100} runs. We made one exception, as we only ran \num{500} iterations on the Leaf dataset, because it is a smaller set consisting of only \num{340} instances.%These numbers show us how the diversity is progressing with the different replacement rules for the different problems.
+We measured the average diversity of \num{100} runs over \num{2000} iterations, meaning each run initializes an entirely new population, and each population goes through \num{2000} iterations of procreation in the search for optimal solutions. After each iteration, diversity of the population is measured for each diversity measure. We then take the average diversity for each generation of the \num{100} runs. We made one exception, as we only ran \num{500} iterations on the Leaf dataset, because it is a smaller set consisting of only \num{340} instances. We saw no improvement in the population beyond this number of iterations, so there was no reason to continue for \num{1500} extra iterations. %These numbers show us how the diversity is progressing with the different replacement rules for the different problems.
 
 %how much did we do it
 %We use the average of the \num{100} runs, because we have randomness in our system. Each new population is initialized randomly. By taking the average we believe that we get a better picture of how the diversity is progressing.
@@ -19,7 +19,7 @@ The results are presented through figures \ref{fig:dynamic-leaf} to \ref{fig:dyn
 
 \input{drawings/dynamic-xor-graphs}
 
-\paragraph{Results of Snake} The results shown in \cref{fig:dynamic-snake}, once again show a constant difference between the \dia{} and Hamming distance measures. The fitness-based measure is again very irregular, this time for the ancestor elitism replacement rule. Here, the plot falls and rises before it stabilises. For this data set, the fitness-based measurements are closer to Hamming distance -- another interesting observation.
+\paragraph{Results of Snake} The results shown in \cref{fig:dynamic-snake}, once again show a constant difference between the \dia{} and Hamming distance measures. The fitness-based measure is again very irregular, this time for the ancestor elitism replacement rule. Here, the plot falls and rises before it stabilises. For this data set, the fitness-based measurements are closer to Hamming distance --- another interesting observation.
 
 \input{drawings/dynamic-snake-graphs}
 
