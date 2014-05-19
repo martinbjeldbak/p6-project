@@ -1,8 +1,10 @@
 \section{Conclusion}\label{sec:conclusion}
+We argue that fitness-based diversity measurements are much less useful for catching behavioural differences, since two different individuals can have the same fitness, and yet very different behaviour.
 
-We have performed experiments to test our own diversity measure, which we call \di{} (\dia{}). We experimented and compared the results of \dia{} against two other widely used diversity measures, the Hamming distance and the fitness-based diversity measure. These experiments are discussed in \cref{sec:experiments}. We did the testing with four different replacement rules, the Greedy replacement rule, Ancestor Elitism, Single Parent Elitism, and Explore-Exploit. These replacement rules are explained in \cref{sec:replacementrules}.
-
-We argue that fitness-based diversity measurements are much less useful for catching behavioural differences, since two different individuals can have the same fitness, and yet very different behaviour. Our experiments confirm that fitness-based diversity measures are unpredictable.
+We have performed a number of experiments to test our own diversity measure, which we call \di{} (\dia{}).
+The results we obtained using \dia{}, Hamming distance and the fitness-based diversity measure has been compared.
+For each diversity measure, we performed a test using each of the four replacement rules, the Greedy replacement rule, Ancestor Elitism, Single Parent Elitism, and Explore-Exploit.
+These experiments indicates that fitness-based diversity measures are unpredictable.
 
 When it comes to \dia{}, which is a phenotypic measure, and the Hamming distance, which is a genotypic measure, we see something interesting. It seems like these two measures follow each other in a manner. This only holds for tests performed in a dynamic environment though. 
 In real world applications, like those investigated in the dynamic tests, there might be some constant factor between Hamming distance and \dia{}.
@@ -15,4 +17,4 @@ A hamming distance above \num{0.5} is indeed possible, but neither during static
 
 Based on our experiments and observations, we can conclude that it is reasonable to believe that we have succeeded in creating a diversity measure that better reflects different traits among individuals of a population.
 
-Furthermore, it is clear to see that the replacement rule with the best outcome of fitness values, is the Explore-Exploit, which actively uses a diversity measure. Fore those type of replacement rules, it is important to have a diversity measure that can capture the concept of a population being diverse. We have found that \dia{} seems to better catch different behaviour of the individuals.
+Furthermore, it is clear to see that the replacement rule with the best outcome of fitness values, is the Explore-Exploit, which actively uses a diversity measure. For those type of replacement rules, it is important to have a diversity measure that can capture the concept of a population being diverse. We have found that \dia{} seems to better catch different behaviour of the individuals.
