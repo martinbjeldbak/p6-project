@@ -2,7 +2,7 @@
 We perform two different static experiments, which differ in the way they constrain the initially generated population. 
 
 \subsubsection{Initial similarity}
-In this test, we introduce the variable \emph{initial similarity}, which is a real value in the range $[0,1]$.
+In the first test, we introduce the variable \emph{initial similarity}, which is a real value in the range $[0,1]$.
 When making an initial population, an initial similarity of $\alpha$ means that $\alpha$ of the individuals in the population will have the exact same genotype, and $(1-\alpha)$ of the individuals are completely random.
 An initial similarity of \num{1} means that all genotypes are the same, and hence the behaviour of all individuals are the same as well. In this case, we will expect the lowest diversity possible.
 As initial similarity increases, more genotypes will be identical, and hence more individuals will behave the same.
@@ -10,7 +10,7 @@ We therefore expect the diversity to decrease as initial similarity is increased
 An initial similarity of \num{0} means that all genotypes are random, and hence we will expect the most diverse behaviour among individuals to be found here.
 
 \subsubsection{Initial mutation}
-In this test, we introduce the variable \emph{initial mutation}, which is a real value in the range $[0,1]$.
+In second test, we introduce the variable \emph{initial mutation}, which is a real value in the range $[0,1]$.
 When making an initial population, an initial mutation of $\alpha$ affects the population in the following way.
 A random genotype is created and given to every individual in the population, such that all individuals have an identical, randomly chosen genotype.
 Now, the bit string of each individual is mutated. Each bit will with probability $\alpha$ be set to a random boolean value. 
@@ -22,7 +22,7 @@ Experiments run with initial similarity and initial mutation between 0 and 1 are
 \input{drawings/initial-similarity-graphs}
 %
 % Init sim results
-The results of various initial similarity values shown in \cref{fig:initial-similarity} play along with our intuition. For each of the data sets, each diversity measure's diversity output gradually falls upon increasing the amount of similar individuals in the population. Interestingly enough, at an initial similarity of 0, we expect all diversity measures to output maximum diversity.Here, \dia{} outputs the maximum possible diversity of 1, whereas Hamming distance outputs a diversity that is only half of its maximum. It seems that \dia{} captures the chaotic nature of a completely random population better than the other two measures, with a larger fall in diversity over time. One could naively assume that you could just double Hamming distance's diversity, but it is actually possible for the Hamming distance measure to output 1 if each bit in two individuals is different.
+The results of various initial similarity values shown in \cref{fig:initial-similarity} play along with our intuition. For each of the data sets, each diversity measure's diversity output gradually falls upon increasing the amount of similar individuals in the population. Interestingly enough, at an initial similarity of 0, we expect all diversity measures to output maximum diversity. Here, \dia{} outputs the maximum possible diversity of 1, whereas Hamming distance outputs a diversity that is only half of its maximum. It seems that \dia{} captures the chaotic nature of a completely random population better than the other two measures, with a larger fall in diversity over time. One could naively assume that you could just double Hamming distance's diversity, but it is actually possible for the Hamming distance measure to output 1 if each bit in two individuals is different.
 
 \input{drawings/initial-mutation-graphs}
 
