@@ -1,7 +1,13 @@
 \section{Future work}\label{sec:futurework}
-Much research has already been done on determining how the tweaking of different parameters in a genetic algorithm (GA) affects the fitness values achieved, as well as undesirable convergence. Our diversity measure, \di{} (\dia{}), is a new tool for investigating the impact on behavioural differences when tweaking the parameters of a GA.
-From our experiments, we saw that the Explore-Exploit replacement rule produced the most fit individuals for all test cases.
-Many other replacement rule exist that switch between exploration and exploitation phases based on changes in diversity.
-It is unknown whether these replacement rules will produce more fit individuals by using \dia{} as a diversity measure.
+The number of random inputs used for \dia{} will surely affect the reliability of the diversity returned.
+It was beyond the scope of this article, but indeed crucial to determine how the amount of random inputs can be chosen to produce a reliable result.
+Despite the amount of random inputs used, it is also interesting to investigate how each random input should be chosen.
+We chose to assign a random value $v$ to an input neuron $x$ based on the probability that $x$ receives $v$ in a real application.
+However, other methods can also be used for determining these random values.
+The impact of other methods can be investigated in the future. 
 
-\dia{} is not limited to be used in GAs only. In fact, it can be used anywhere where one wants to measure the behavioural differences between two or more neural networks. The many possible applications of \dia{} still have to be uncovered.
+We have shown how \dia{} can be used to measure the diversity among neural networks for discrete problems.
+In the future, we would find it interesting to investigate how the concepts of \dia{} can be applied to continuous problems as well.
+One of our ideas is to split each output neuron $o_i$ into a set of new output neurons $O_i$, and a set of ranges $R_i$, such that no ranges in $R_i$ overlap. 
+The value of each output neuron $O_i$ is then defined to be $1$ if the value of $o_i$ is in the range $R_i$ and 0 otherwise.
+Experiments must be performed to reason about how these ranges should be chosen, as well as the number of ranges used.
