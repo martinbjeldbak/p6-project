@@ -1,26 +1,24 @@
 \begin{abstract}
-We propose a method we call \di (\dia), which we have developed for measuring phenotypic diversity among neural networks in genetic algorithms. It is an extension of the Simpsons Diversity Index known from ecology.
+
+We propose a method we call \di{} (\dia{}), which we have developed for measuring phenotypic diversity among neural networks in genetic algorithms. It is an extension of the Simpsons Diversity Index known from ecology.
 
 %Motivation:
 %Why do we care about the problem and the results?
-Avoiding low diversity in a genetic algorithm's population is crucial for finding a global optimum. When diversity is overlooked, premature convergence is the consequence. This most likely leads to local optimum.
-In order to analyse methods aimed to maintain a high diversity, a diversity measure is needed.
-The diversity measure must reliably reflect the particular type
-of diversity one aims to keep high.
-Many existing diversity measures exist.
-Two popular measures are based on the distance between the encoding of individuals and the distinct fitness values among individuals, known as the Hamming distance and unique fitness, respectively.
+Avoiding low diversity in a genetic algorithm's population is crucial for finding a global optimum. When diversity is overlooked, premature convergence is the consequence, which might lead to local optimum.
+Experiments are conducted with \dia{} and two other well-known diversity measures, fitness-based diversity measurement and the Hamming distance, which is a genotypic diversity measure.
+We argue why both of these measures have weaknesses, which we try to overcome using \dia.
+%Two popular measures are based on the distance between the encoding of individuals and the distinct fitness values among individuals, known as the Hamming distance and unique fitness, respectively.
 
 %Approach:
 %How did you go about solving or making progress on the problem?
-We argue why both of these measures have weaknesses, which we try to overcome using \dia.
 
 %Results:
 %What's the answer? 
-Our results show that\dots (Succesful or failure?)
+Our results show that the fitness-based measure is unpredictable, because the data shows irregular spikes when the experiments where performed. \dia{} and the Hamming distance showed a stabil progression in measuring the diversity. The data shows some form of correspondance between these two measures.
 
 %Conclusions:
 %What are the implications of your answer?
-This leads to\dots (What are the implications of our answer?)
+Interestingly, the experiments show that there might be a link between the genetic make-up of an individual and its actual behaviour. %leads to\dots (What are the implications of our answer?)
 
 %Neural networks are often used as individuals within populations of genetic algorithms. Many operators exist to transition a population from one generation to the next. The drawback with many of these methods is that only the offspring of a population are selected to form the next generation, resulting in a fraction of the population being bred on -- individuals with highest fitness. This causes the individuals to share the same traits and possibly collect around local minima. We develop a new operator for offspring selection that attempts to maximize diversity in a population and hence be more effective at finding the global maximum. It only selects the offspring if it has a higher fitness than either of its parents. If this is the case, both parents are replaced with the individual and a random immigrant individual is introduced. If its fitness is lower, both parents survive.
 
