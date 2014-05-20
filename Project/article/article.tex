@@ -4,15 +4,10 @@
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage[english]{babel}
-\usepackage[cmex10]{amsmath}
-\interdisplaylinepenalty=2500
+\usepackage{xfrac} % inline fractions
+\usepackage{amsmath}
 \usepackage[nocompress]{cite}
 \usepackage{graphicx}
-\usepackage{algorithm}
-\usepackage[noend]{algpseudocode}
-\algrenewcommand\algorithmicindent{0.8em}%
-\usepackage[colorinlistoftodos]{todonotes}
-\presetkeys{todonotes}{inline}{}
 \usepackage{caption}
 \usepackage{subcaption}
 \usepackage{booktabs}
@@ -38,36 +33,39 @@
 
 \input{macros}
 
-\setcounter{secnumdepth}{2}
+\newcommand{\aau}{%
+  \begin{affiliation}
+    Department of Computer Science \\
+    Aalborg University, Denmark
+  \end{affiliation} \\
+}
+
+\setcounter{secnumdepth}{2} % only label down 2 section levels (5 and 5.1)
 \setlength{\footskip}{70pt}
 \pagestyle{plain}
-
-\begin{document}
 
 \title{Measuring Diversity in Steady State Genetic Algorithms using Artificial Neural Networks}
 
 \author{%
   Kent Munthe Caspersen \\
+  \aau
   \email{kcasp11@student.aau.dk}
   \and
   Elias Khazen Obeid \\
+  \aau
   \email{eobeid11@student.aau.dk}
   \and
   Martin Bjeldbak Madsen \\
+  \aau
   \email{mbma11@student.aau.dk} 
   \and
   Radu Mardare \\
+  \aau
   \email{mardare@cs.aau.dk} \\
-  \begin{affiliation}
-    Department of Computer Science\\
-    Aalborg University\\
-    9220 Aalborg
-  \end{affiliation}
 }
 
+\begin{document}
 \maketitle
-
-%\listoftodos
 
 \input{content/abstract}
 \thispagestyle{plain}
