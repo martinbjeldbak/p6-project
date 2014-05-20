@@ -1,0 +1,65 @@
+Theory of Science - REVIEW FORM
+-----------------------------------------------------------------
+Fill in all the following fields and return the form to the
+lecturer (srba@cs.aau.dk) as a plain text document.
+
+
+Paper number:
+
+Title of the paper:
+
+Authors:
+
+
+A few lines summary of the paper's contribution:
+
+
+
+
+
+
+
+Overall evaluation score (choose one numeric value from below):
+
+5 - excellent paper, publishable at a workshop/conference
+4 - very good paper, perhaps among one/two of the best papers of this semester 
+3 - good paper, a typical paper of this semester
+2 - ok paper, perhaps below average but still with some contribution 
+1 - weak paper, perhaps on the border between passing and failing 
+0 - poor paper, for sure failing 
+
+Justification of your evaluation in words:
+(Important to fill in, mention both the strong and weak sides of the paper.)
+
+
+
+
+
+
+
+
+Confidence of the reviewer(s):
+
+4 - I am (almost) an expert in this area
+3 - I have high confidence in my judgment
+2 - I have medium confidence in my judgment
+1 - I have some confidence in my judgment
+0 - I have almost no confidence but some review is still better than nothing
+
+
+Give numeric scores 1 to 9 for  the following points
+(1 - bad , 5 - average, 9 - excellent).
+
+Title:
+Abstract:
+Introduction:
+Conclusion:
+Presentation/readability of the paper:
+Originality of the studied problem(s):
+New contribution of the paper:
+Overall clarity: 
+
+Any other remarks you want to share 
+with the authors (e.g. typos, recommendations, etc.):
+
+--------------------
