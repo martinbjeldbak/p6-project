@@ -33,10 +33,10 @@ where $f$ is the amount of collected food, and $s$ is the total number of steps 
 \begin{enumerate}
   \item \set{-1, 0, 1} whether food is to the left, vertically aligned, or to the right of the snake's head.
   \item \set{-1, 0, 1} whether food is above, horizontally aligned, or below the snake's head.
-  \item \set{0, 1} if the snake dies, if its next move is up
-  \item \set{0, 1} if the snake dies, if its next move is down
-  \item \set{0, 1} if the snake dies, if its next move is right 
-  \item \set{0, 1} if the snake dies, if its next move is left
+  \item \set{0, 1} whether the snake dies, if its next move is up
+  \item \set{0, 1} whether the snake dies, if its next move is down
+  \item \set{0, 1} whether the snake dies, if its next move is right 
+  \item \set{0, 1} whether the snake dies, if its next move is left
 \end{enumerate}
 The neural network has 4 output neurons, one for each direction to choose. The neuron with the highest value determines which direction the snake moves.
 The neural network uses 5 hidden neurons, 9 bits per weight and neurons have no bias.

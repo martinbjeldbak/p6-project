@@ -10,7 +10,7 @@ are often making the generation \generation{i} from the $n$ most fit individuals
 
 %\subsubsection{Probabilistic crowding replacement rule}
 %The \emph{probabilistic crowding replacement rule}~\cite{Mengshoel_and_Goldberg:1999} can be described by the formula:
-%
+
 %\[
 %  p(x) = \frac{f\left(x\right)}{f\left(x\right)+f\left(y\right)}
 %\]
@@ -32,7 +32,7 @@ Any individual in $O_i$ who has two parents (made from crossover), and is more f
 \subsubsection{Mass Extinction Explore Exploit}
 Inspired by the changes between exploration and exploitation phases used by Ursem~\cite{ursem2002diversity}, we introduce the following replacement rule, which we will refer to as the \emph{Mass Extinction Explore Exploit} (MEEE) replacement rule. The MEEE replacement rule performs a mass extinction when the diversity drops below a threshold. \generation{i+1} is made from \generation{i} as follows
 
-If $d\left(\generation{i}\right) < \alpha$, replace the $\sfrac{n}{2}$ least fit individuals from \generation{i} by random immigrants, where $n = \generationl{i}$. Use the \emph{Single Parent Elitism} replacement rule on $\left(\generation{i}, \offspring{i}\right)$.
+If $d\left(\generation{i}\right) < \alpha$, replace the $\tfrac{n}{2}$ least fit individuals from \generation{i} by random immigrants, where $n = \generationl{i}$. Use the \emph{Single Parent Elitism} replacement rule on $\left(\generation{i}, \offspring{i}\right)$.
 
 Where $d\left(\gen\right)$ denotes the diversity of a generation, and $\alpha$ is a threshold. 
 
