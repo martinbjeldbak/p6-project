@@ -9,9 +9,15 @@ As we have discussed, neural networks are ideal for decision making and hence ar
 % Uncommented this paragraph friday 2014-3-21, as it just says what a NN is? -Martin
 %Each possible input an individual can get will be received through an input neuron. Likewise, each possible action an individual can perform is formulated through the output neurons. The network is constructed with connections between neurons with associated weights. These weights are used to calculate an action given the actual input.
 
-We represent each neuron and weight of any given neural network as a single bit string of a fixed length. Each weight is encoded with $n$ bits. Each bit string is concatenated with the next, to form one large bit string containing the entire encoding for the network.
-
-The bit string is constructed in an ordered manner, such that the first $n$ bits represent the weight for the first connection between the first input neuron and the first hidden neuron, the next $n$ bits represent the weight for the connection between the first input neuron to the second hidden neuron, and so forth. It is this large bit string that is manipulated by different GA operators. From now on, we will refer to the bit string encoding of a neural network as its \emph{chromosome}.
+When using a GA, all individuals are neural networks with the same architecture.
+That is, the neural networks differ only in their weights between neurons and the bias of each neuron.
+Each individual is therefore represented only in terms of the weights and biases.
+For each GA, any weight and bias is encoded with a fixed number of bits $n$ and $m$, respectively.
+The bit string is constructed in an ordered manner, such that the first $n$ bits represent the weight for the first connection between the first input neuron and the first hidden neuron, the next $n$ bits represent the weight for the connection between the first input neuron to the second hidden neuron, and so forth. \cref{fig:entire-eqnetwork} shows an example of two neural networks and the bit string that encodes each of them.
+If biases are used by the GA, these comes after all the encoded weights.
+They are ordered such that the first $m$ bits encodes the bias of the first neuron, the next $m$ bits encodes the bias of the second neuron, and so forth.
+In this way, we encode a neural network, which is manipulated by different GA operators.
+From now on, we will refer to the bit string encoding of a neural network as the individual's \emph{chromosome}.
 
 % ALso removed this friday 2014-3-21, no need to reference it twice. Possibly if there was an example on how to encode the network in the example?
 %An illustration of neural networks is presented in \cref{fig:ann}, and should give a good idea of how the bit string is concatenated.
