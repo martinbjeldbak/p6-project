@@ -31,11 +31,11 @@ $G_{i+1}$ is made from $G_i$ as follows: every individual from $G_i$ is put into
 Any individual in $O_i$ who has two parents (made from crossover), and is more fit than a randomly chosen parent, will replace its parent in $G_{i+1}$ by itself.
 
 \subsubsection{Mass Extinction Explore Exploit}
-Inspired by the changes between exploration and exploitation phases used by Ursem~\cite{ursem2002diversity}, we introduce the following replacement rule, which we will refer to as the \emph{Mass Extinction Explore Exploit} (MEEE) replacement rule. The MEEE replacement rule performs a mass extinction when the diversity drops below a threshold. $G_{i+1}$ is made from $G_i$ as follows:
+Inspired by the changes between exploration and exploitation phases used by Ursem~\cite{ursem2002diversity}, we introduce the following replacement rule, which we will refer to as the \emph{Mass Extinction Explore Exploit} (MEEE) replacement rule. The MEEE replacement rule performs a mass extinction when the diversity drops below a threshold. $G_{i+1}$ is made from $G_i$ as follows
 
-If $d(G_i) < \alpha$, replace the $\frac{n}{2}$ least fit individuals from $G_i$ by random immigrants, where $n = \lvert G_i \rvert$. Use the \emph{Single Parent Elitism} replacement rule on $(G_i, O_i)$.
+If $d\left(G_i\right) < \alpha$, replace the $\frac{n}{2}$ least fit individuals from $G_i$ by random immigrants, where $n = \lvert G_i \rvert$. Use the \emph{Single Parent Elitism} replacement rule on $\left(G_i, O_i\right)$.
 
-Where $d(G)$ denotes the diversity of a generation, and $\alpha$ is a threshold. 
+Where $d\left(G\right)$ denotes the diversity of a generation, and $\alpha$ is a threshold. 
 
 
 %\paragraph{Roulette wheel selection}
