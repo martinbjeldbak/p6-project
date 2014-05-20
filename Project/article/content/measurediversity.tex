@@ -18,9 +18,9 @@ Another way to measure genotypic diversity, is by using the \emph{Levenshtein di
 &10101010\label{eq:bit2}
 \end{align}
 %
-is 8 when using Hamming distance, and 2 if using the Levenshtein distance, because transforming \cref{eq:bit1} into \cref{eq:bit2} is done by deleting the first bit and prepending a $0$~\cite{1250187}, totalling 2 operations. Complexity of computing the Levenshtein distance between two individuals is $\bigO{\bitstringl^2}$ and $\bigO{\bitstringl}$ for Hamming distance, where \bitstringl{} is the length of each neural network's bit string.
+is 8 when using Hamming distance, and 2 if using the Levenshtein distance, because transforming \cref{eq:bit1} into \cref{eq:bit2} is done by deleting the first bit and prepending a $0$~\cite{1250187}, totalling 2 operations. Complexity of computing the Levenshtein distance between two individuals is \bigO{\bitstringl^2} and \bigO{\bitstringl} for Hamming distance, where \bitstringl{} is the length of each neural network's bit string.
 
-At first glance, these complexities aren't worrying. But in a GA with a population size of \indsetl{} individuals, where \indset{} is the set of all neural networks (the population), computing the average Hamming and Levenshtein distances between all individuals in the population takes $\bigO{\indsetl^2 \bitstringl}$ and $\bigO{\indsetl^2 \bitstringl^2}$ time, respectively. 
+At first glance, these complexities aren't worrying. But in a GA with a population size of \indsetl{} individuals, where \indset{} is the set of all neural networks (the population), computing the average Hamming and Levenshtein distances between all individuals in the population takes $\bigO{\indsetl^2 \cdot \bitstringl}$ and $\bigO{\indsetl^2 \cdot \bitstringl^2}$ time, respectively. 
 
 As concluded by~\cite{Darwen00doesextra}, constant high genetic diversity does not guarantee better solutions, requiring other diversity measures to also be explored.
 
