@@ -23,13 +23,13 @@ In a population where each individual has $\nnoutsetl$ output neurons, the total
 Diversity for random input $\ran_i$ is then defined by
 %
 \begin{equation*}\label{eq:sdi}
-  D_i = 1 - \frac{\sum_{q \in \nemptyspeciesf{i}}\lvert\speciesiq{q}{r_i}\rvert\left(\lvert\speciesiq{q}{r_i}\rvert - 1\right)}{\indsetl\left(\indsetl - 1\right)}
+  D_i = 1 - \frac{\sum_{q \in \nemptyspeciesf{i}}\left(\lvert\speciesiq{q}{r_i}\rvert\left(\lvert\speciesiq{q}{r_i}\rvert - 1\right)\right)}{\indsetl\left(\indsetl - 1\right)}
 \end{equation*}
 %
-where \nemptyspeciesf{i} is the set of non-empty species with respect to random input $\ran_i$, and \indset{} denotes the total number individuals in the population. The \dia{} $D$ (that is, the actual diversity) is then calculated as the average of all \ransetl{} $D_i$ values by
+where \nemptyspeciesf{i} is the set of non-empty species with respect to random input $\ran_i$, and \indset{} denotes set of all individuals in the population. The \dia{} $D$ (that is, the actual diversity) is then calculated as the average of all \ransetl{} $D_i$ values by
 %
 \[
-  D =\frac{\sum_{i=1}^{\ransetl}{D_i}}{\ransetl}
+  D =\frac{\sum_{j=1}^{\ransetl}{D_j}}{\ransetl}
 \]
 %
 One disadvantage of \dia{} is that it relies on random inputs, meaning that fewer random inputs implies less statistical significance. Due to the nature of \dia, it is not suitable for continuous problems. Consider for instance two neural networks $\ind_1$ and $\ind_2$, used for approximating a function $g$, where $\ind_1$ and $\ind_2$ both have only a single output neuron. To tell how different $\ind_1$ and $\ind_2$ behave, it is necessary to distinguish between different values of each neural network's output neuron. Since \dia{} defines species based on the output neuron with the highest value, and we in this case only have a single output neuron in $\ind_1$ and $\ind_2$, the two neural networks will always belong to the same species, yielding a diversity of 0.  
