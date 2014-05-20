@@ -9,6 +9,7 @@
 \newcommand{\set}[1]{\ensuremath{\left\{ #1 \right\}}}
 \newcommand{\setof}[2]{\ensuremath{\left\{ #1 \mid #2 \right\}}}
 \newcommand{\bigO}[1]{\ensuremath{\operatorname{O}\left(#1\right)}}
+\newcommand{\bigT}[1]{\ensuremath{\theta\left(#1\right)}}
 
 \newcommand{\correctlyresize}[2]{\resizebox{#1}{!}{#2}}
 \newcommand{\inputresize}[1]{\correctlyresize{\linewidth}{\input{#1}}}
@@ -19,16 +20,27 @@
 \newcommand{\ind}{\ensuremath{f}} % an individual
 \newcommand{\indset}{\ensuremath{F}} % set of neural networks (population)
 \newcommand{\indsetl}{\ensuremath{\sizeof{\indset}}}
+
 \newcommand{\ran}{\ensuremath{r}} % a random input
 \newcommand{\ranset}{\ensuremath{R}} % set of random inputs 
 \newcommand{\ransetl}{\ensuremath{\sizeof{\ranset}}}
-\newcommand{\nnoutset}{\ensuremath{O}}
+
+\newcommand{\nnout}{\ensuremath{o}} % an output neuron
+\newcommand{\nnoutset}{\ensuremath{O}} % set of output neurons
 \newcommand{\nnoutsetl}{\ensuremath{\sizeof{\nnoutset}}}
-\newcommand{\nnout}{\ensuremath{o}}
-\newcommand{\nnin}{\ensuremath{i}}
-\newcommand{\nninset}{\ensuremath{I}}
+
+\newcommand{\nnind}{\ensuremath{i}} % an input neuron
+\newcommand{\nninset}{\ensuremath{I}} % set of input neuraons
 \newcommand{\nninsetl}{\ensuremath{\sizeof{\nninset}}}
-\newcommand{\timet}{\ensuremath{t}}
+
+\newcommand{\bucketset}{\ensuremath{S}} % set of species
+\newcommand{\bucketsetl}{\ensuremath{\sizeof{\bucketset}}}
+\newcommand{\species}{\ensuremath{\bucketset}} % set of species (S)
+\newcommand{\speciesf}[1]{\ensuremath{\species\left(#1\right)}} % set of species
+\newcommand{\speciesi}[2]{\ensuremath{\species_{#1}\left(#2\right)}} % set of species
+
+\newcommand{\bitstringl}{\ensuremath{l}} % length of a bit string
+\newcommand{\timet}{\ensuremath{t}} % the time t for a neural network
 
 \definecolor{maroon}{HTML}{85144B}
 \definecolor{navy}{HTML}{001F3F}
