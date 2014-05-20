@@ -6,15 +6,22 @@ The results we obtained using \dia{}, Hamming distance and the fitness-based div
 For each diversity measure, we performed a test using each of the four replacement rules, the Greedy replacement rule, Ancestor Elitism, Single Parent Elitism, and Explore-Exploit.
 These experiments indicates that fitness-based diversity measures are unpredictable.
 
-When it comes to \dia{}, which is a phenotypic measure, and the Hamming distance, which is a genotypic measure, we see something interesting. It seems like these two measures follow each other in a manner. This only holds for tests performed in a dynamic environment though. 
+When it comes to \dia{}, which is a phenotypic measure, and the Hamming distance, which is a genotypic measure, we see something interesting. It seems like these two measures follow each other in a manner.
+This only holds for tests performed in a dynamic environment though. 
 In real world applications, like those investigated in the dynamic tests, there might be some constant factor between Hamming distance and \dia{}.
 
 From tests performed in a static environment, we saw that even a slight mutation among the chromosomes of identical individuals caused a major peak in \dia{}, but only a small change in Hamming distance.
-We think it makes sense that even a small change in an individual's genotype can cause a significant change in its behaviour. Consider for instance a single bit that changes. This bit could be a sign bit that causes a significant change to the neural network's behaviour, or it could cause no change at all. The Hamming distance neglect this fact and focuses only on how the genotype is represented by a bit string.
-
+We think it makes sense that even a small change in an individual's genotype can cause a significant change in its behaviour. Consider for instance changing just single bit of a long bit string. This bit could be a sign bit that causes a significant change to the neural network's behaviour, or it could cause no change at all.
+The Hamming distance neglect this fact and produces the same diversity measure regardless of whether the bit caused a behavioural change of the individual or not.
 It is also important to be aware of the fact that the Hamming distance measure never exceeded a diversity of \num{0.5} during our tests, which is obviously due to the fact that two random bits have the probability \num{0.5} of being identical.
 A hamming distance above \num{0.5} is indeed possible, but neither during static nor dynamic tests, did this happen. 
 
 Based on our experiments and observations, we can conclude that it is reasonable to believe that we have succeeded in creating a diversity measure that better reflects different traits among individuals of a population.
 
-Furthermore, it is clear to see that the replacement rule with the best outcome of fitness values, is the Explore-Exploit, which actively uses a diversity measure. For those type of replacement rules, it is important to have a diversity measure that can capture the concept of a population being diverse. We have found that \dia{} seems to better catch different behaviour of the individuals.
+It is interesting, that for each of the three problems under study, the Explore-Exploit replacement rule produced the best fitness values. Furthermore, it was the only replacement rule for which it seems that performing more iterations would yield even greater fitness values. 
+The Explore-Exploit replacement rule actively uses a diversity measure.
+Therefore, it is important to have a diversity measure that can capture the concept of a population being diverse.
+We have found that \dia{} seems to better catch different behaviour of the individuals, which may be more favourable compared to measuring diversity based on genotypes or fitness values.
+
+The complexity of the fitness-based diversity measure is indeed cheaper than that of \dia{} and Hamming distance.
+Which of \dia{} and Hamming distance that has the lowest complexity depends on the population size and how many random inputs one chooses to use for \dia{}. If the number of random inputs is just a constant times the population size, the two diversity measures will have the same complexity, asymptotically speaking.
