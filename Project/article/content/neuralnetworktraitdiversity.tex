@@ -2,40 +2,34 @@
 In the following, we propose a method for measuring trait diversity, which we call \emph{\di{}} (\dia). \dia{} aims to reflect the diversity of different traits among individuals. 
 
 \subsection{Algorithm}
-\dia{} is based on Simpsons Diversity Index (SDI), which is a diversity measure used in ecology to quantify the biodiversity of a habitat~\cite{simpson1949measurement}. We modify SDI to work with neural network. We will thus use the term individual and neural network interchangeably.
+\dia{} is based on Simpsons Diversity Index (SDI), which is a diversity measure used in ecology to quantify the biodiversity of a habitat~\cite{simpson1949measurement}. We apply SDI on a species classification method we define for neural networks. We will thus use the term individual and neural network interchangeably.
 
-Let $F = \set{f_1, f_2, \dots, f_n}$, where each $f_q$ for $0 \leq q \leq n$ denote the set of neural networks contained in a population, which all have the same architecture of $x$ input and $y$ output neurons. \dia{} is calculated with respect to a number of random inputs $R = \set{r_1, r_2, \dots, r_m}$, where each $r_i$ for $1 \leq i \leq m$ is an $x$-tuple of input values for the neural networks chosen randomly.
-Since one will typically be interested in how different the neural networks behave in the environment they are intended to operate in, the random value for each input neuron should be chosen according to the range used in that environment. 
-For each input $r_i$, SDI is calculated with respect to that input. 
-To calculate SDI, a distribution of neural network into species is needed. 
-We do this based on which of their output neurons yields the highest value on input $r_i$. 
+Let $\indset = \set{\ind_1, \ind_2, \dots, \ind_n}$ denote the set of neural networks contained in a population, all with the same architecture of \nninsetl{} input and \nnoutsetl{} output neurons. \dia{} is calculated with respect to a number of random inputs $\ranset = \set{\ran_1, \ran_2, \dots, \ran_m}$, where each $\ran_q$ for $1 \leq q \leq m$ is an \nninsetl-tuple of input values for the neural networks chosen randomly. Since one will typically be interested in how different the neural networks behave in the environment they are intended to operate in, the random value for each input neuron should be chosen according to the range used in that environment.  For each input $\ran_x$, SDI is calculated with respect to that input.  To calculate SDI, a distribution of neural network into species is needed. We do this based on which of their output neurons yield the highest value on input $\ran_x$. 
 
 Let $b_{n}b_{n-1}\dots b_1$ be the binary representation of a number $i$,
-we define the species $S_i(r)$ to contain any neural network $f \in F$ that given $r \in R$ as input satisfies
+then we define the species \speciesi{i}{\ran} to contain any individual $\nnind \in \nninset$, that given $\ran \in \ranset$ as input satisfies
 %
 \[
-  \forall j, h \in \set{1,2,\dots,y} \left(b_j \rightarrow \left(o_j \geq o_h\right)\right)
+  \forall j, h \in \set{1, 2, \dots, \nnoutsetl} \left(b_j \rightarrow \left(\nnout_j \geq \nnout_h\right)\right)
 \]
 %
-where $o_l$ is the value of the $l$th output neuron of neural network $f$.
+where $\nnout_k$ is the value of the $k$th output neuron of neural network \ind.
 
-In a population where each individual has $y$ output neurons, the total number of species is $2^y - 1$.  As an example, assume that we have a neural network with six output neurons. If the third output neuron has the highest output, then that neural network is placed in species $S_4$, because the bits set to 1 correspond to \texttt{000100} (4 in binary). If another individual has multiple output neurons giving the highest output, say the first and third output neuron, then that neural network will be placed in species $S_5$ (\texttt{000101}, 5 in binary). If a third neural network has all of its output neurons give the same result, then that neural network is placed in $S_{63}$. Any species that is empty, does not count as a species in the diversity measurement.
+In a population where each individual has $\nnoutsetl$ output neurons, the total number of possible species is $2^{\nnoutsetl} - 1$.  As an example, assume that we have a neural network with six output neurons. If the third output neuron has the highest output, then that neural network is placed in species $\species_4$, because the bits set to 1 correspond to \texttt{000100} (4 in binary). If another individual has multiple output neurons giving the highest output, say the first and third output neuron, then that neural network will be placed in species $\species_5$ (\texttt{000101}, 5 in binary). If a third neural network has all of its output neurons give equal values, then that neural network is placed in $\species_{63}$. Any species that is empty, does not count as a species in the diversity measurement, defined by
+\begin{equation*}\label{eq:nonemptyspecies}
+  \nemptyspeciesf{i} = \setof{\speciesi{j}{\ran_i}}{\speciesi{j}{\ran_i} \neq \emptyset}
+\end{equation*}
 
-Diversity is then defined by
+Diversity for random input $\ran_i$ is then defined by
 %
 \begin{equation*}\label{eq:sdi}
-  D_i = 1 - \left(\frac{\sum_{j=1}^{k}\lvert S_j\left(r_i\right)\rvert\left(\lvert S_j\left(r_i\right)\rvert - 1\right)}{\lvert F\rvert \left(\lvert F\rvert - 1\right)}\right) 
+  D_i = 1 - \frac{\sum_{q \in \nemptyspeciesf{i}}\lvert\speciesiq{q}{r_i}\rvert\left(\lvert\speciesiq{q}{r_i}\rvert - 1\right)}{\indsetl\left(\indsetl - 1\right)}
 \end{equation*}
 %
-where $\lvert S_j\left(r_i\right)\rvert$ is the total number of individuals of the $j$th species, and $k$ is the total number of non-empty species, with respect to random input $r_i$. %, and $k$ is the number of non-empty species. 
-$F$ denotes the total number of neural networks in the population. 
-
-The \dia{} $D$ (that is, the actual diversity) is then calculated as the average of all $m$ $D_i$ values by
+where \nemptyspeciesf{i} is the set of non-empty species with respect to random input $\ran_i$, and \indset{} denotes the total number individuals in the population. The \dia{} $D$ (that is, the actual diversity) is then calculated as the average of all \ransetl{} $D_i$ values by
 %
 \[
-D =\frac{\sum_{i=1}^m{D_i}}{m}
+  D =\frac{\sum_{i=1}^{\ransetl}{D_i}}{\ransetl}
 \]
 %
-which has a complexity of \bigO{m k + y n}, where $m$ is the amount random inputs ($\lvert R \rvert$), $k$ is the number of non-empty species, $y$ is the amount of output neurons, and $n$ is the amount of neural networks in the population ($\lvert F\rvert$).
-
-One disadvantage of \dia{} is that it relies on random inputs, meaning that fewer random inputs implies less statistical significance. Due to the nature of \dia, it is not suitable for continuous problems. Consider for instance two neural networks $f_1$ and $f_2$, used for approximating a function $g$, where $f_1$ and $f_2$ both have only a single output neuron. To tell how different $f_1$ and $f_2$ behave, it is necessary to distinguish between different values of each neural network's output neuron. Since \dia{} defines species based on the output neuron with the highest value, and we in this case only have a single output neuron in $f_1$ and $f_2$, the two neural networks will always belong to the same species, yielding a diversity of 0.  
+One disadvantage of \dia{} is that it relies on random inputs, meaning that fewer random inputs implies less statistical significance. Due to the nature of \dia, it is not suitable for continuous problems. Consider for instance two neural networks $\ind_1$ and $\ind_2$, used for approximating a function $g$, where $\ind_1$ and $\ind_2$ both have only a single output neuron. To tell how different $\ind_1$ and $\ind_2$ behave, it is necessary to distinguish between different values of each neural network's output neuron. Since \dia{} defines species based on the output neuron with the highest value, and we in this case only have a single output neuron in $\ind_1$ and $\ind_2$, the two neural networks will always belong to the same species, yielding a diversity of 0.  
