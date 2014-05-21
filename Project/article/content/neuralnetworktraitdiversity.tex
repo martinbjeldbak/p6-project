@@ -2,7 +2,7 @@
 In the following, we propose a method for measuring trait diversity, which we call \emph{\di{}} (\dia). \dia{} aims to reflect the diversity of different traits among individuals. 
 
 \subsection{Algorithm}
-\dia{} is based on Simpsons Diversity Index (SDI), which is a diversity measure used in ecology to quantify the biodiversity of a habitat~\cite{simpson1949measurement}. We apply SDI on a species classification method we define for neural networks. We will thus use the term individual and neural network interchangeably.
+\dia{} is based on Simpsons Diversity Index (SDI), which is a diversity measure used in ecology to quantify the biodiversity of a habitat~\cite{simpson1949measurement}. We apply SDI on a species classification method, which we define for neural networks. We will thus use the term individual and neural network interchangeably.
 
 Let $\indset = \set{\ind_1, \ind_2, \dots, \ind_n}$ denote the set of neural networks contained in a population, all with the same architecture of \nninsetl{} input and \nnoutsetl{} output neurons. \dia{} is calculated with respect to a number of random inputs $\ranset = \set{\ran_1, \ran_2, \dots, \ran_m}$, where each $\ran_x$ for $1 \leq x \leq m$ is an \nninsetl-tuple of randomly chosen input values - one for each input neuron in the neural network architecture used.
 Since one is typically interested in how different the neural networks behave in the environment they are intended to operate in, we propose that a random value for each input neuron is chosen according to the probability of receiving that value as input in the intended environment. For each input $\ran_x$, SDI is calculated with respect to that input.
@@ -17,9 +17,9 @@ then we define the species \speciesi{i}{\ran} to contain any individual $\nnind 
 \]
 %
 where $\nnout_k$ is the value of the $k$th output neuron of neural network \ind.
-
 In a population where each individual has $\nnoutsetl$ output neurons, the total number of possible species is $2^{\nnoutsetl} - 1$.  As an example, assume that we have a neural network with six output neurons. If the third output neuron has the highest output, then that neural network is placed in species $\species_4$, because the bits set to 1 correspond to \texttt{000100} (4 in binary). If another individual has multiple output neurons giving the highest output, say the first and third output neuron, then that neural network will be placed in species $\species_5$ (\texttt{000101}, 5 in binary). If a third neural network has all of its output neurons give equal values, then that neural network is placed in $\species_{63}$.
-Since we only want to be concerned with non-empty species, we define this as a set, which is also defined with respect to a random input:
+
+Since we only want to be concerned with non-empty species, we define this as a set, which is also defined with respect to a random input
 \begin{equation*}\label{eq:nonemptyspecies}
   \nemptyspeciesf{x} = \setof{\speciesi{i}{\ran_x}}{\speciesi{i}{\ran_x} \neq \emptyset}
 \end{equation*}
@@ -30,10 +30,12 @@ Diversity for random input $\ran_x$ is then defined by
   D_x = 1 - \frac{\sum_{q \in \nemptyspeciesf{x}}\left(\lvert\speciesiq{q}{r_x}\rvert\left(\lvert\speciesiq{q}{r_x}\rvert - 1\right)\right)}{\indsetl\left(\indsetl - 1\right)}
 \end{equation*}
 %
-where \nemptyspeciesf{x} is the set of non-empty species with respect to random input $\ran_x$, and \indset{} denotes set of all individuals in the population. The \dia{} $D$ (that is, the actual diversity) is then calculated as the average of all \ransetl{} $D_x$ values by
+where \nemptyspeciesf{x} is the set of non-empty species with respect to random input $\ran_x$, and \indset{} denotes the set of all individuals in the population. The \dia{} $D$ (that is, the actual diversity) is then calculated as the average of all \ransetl{} $D_x$ values by
 %
 \[
   D =\frac{\sum_{x=1}^{\ransetl}{D_x}}{\ransetl}
 \]
 %
-One disadvantage of \dia{} is that it relies on random inputs, meaning that fewer random inputs implies less statistical significance. Due to the nature of \dia, it is not suitable for continuous problems. Consider for instance two neural networks $\ind_1$ and $\ind_2$, used for approximating a function $g$, where $\ind_1$ and $\ind_2$ both have only a single output neuron. To tell how different $\ind_1$ and $\ind_2$ behave, it is necessary to distinguish between different values of each neural network's output neuron. Since \dia{} defines species based on the output neuron with the highest value, and we in this case only have a single output neuron in $\ind_1$ and $\ind_2$, the two neural networks will always belong to the same species, yielding a diversity of 0.  
+One disadvantage of \dia{} is that it relies on random inputs, meaning that fewer random inputs implies less statistical significance. 
+
+Due to the nature of \dia, it is not suitable for continuous problems. Consider for instance two neural networks $\ind_1$ and $\ind_2$, used for approximating a function $g$, where $\ind_1$ and $\ind_2$ both have only a single output neuron. To tell how different $\ind_1$ and $\ind_2$ behave, it is necessary to distinguish between different values of each neural network's output neuron. Since \dia{} defines species based on the output neuron with the highest value, and we in this case only have a single output neuron in $\ind_1$ and $\ind_2$, the two neural networks will always belong to the same species, yielding a diversity of 0.  
