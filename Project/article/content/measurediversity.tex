@@ -20,18 +20,19 @@ As shown in \cref{fig:entire-eqnetwork}, two networks of different genotypes may
 %
 is 8 when using Hamming distance, and 2 when using Levenshtein distance, because transforming \cref{eq:bit1} into \cref{eq:bit2} is done by deleting the first bit and prepending a $0$, totalling 2 operations~\cite{1250187}.
 
-The complexity of calculating $h_{ij}$, where $h_{ij}$ is the Hamming distance between two neural networks $\ind_i, \ind_j \in \indset$, and \indset{} is the set of neural networks is \bigO{\bitstringl}, linear in the length of an encoded network's bit string $l$. To compute the Hamming distance for all $\ind \in \indset$ achieves a complexity of \bigO{\indsetl^2 \cdot \bitstringl}. 
+We define \indset{} to be the set of neural networks. The complexity of calculating $h_{ij}$, where $h_{ij}$ is the Hamming distance between two neural networks $\ind_i, \ind_j \in \indset$ is \bigO{\bitstringl}, which is linear in the length of an encoded network's bit string $l$. To compute the Hamming distance for all $\ind \in \indset$ achieves a complexity of \bigO{\indsetl^2 \cdot \bitstringl}. 
 
-The complexity of calculating $v_{ij}$, where $v_{ij}$ is the Levenshtein distance between the two neural networks $\ind_i, \ind_j$ is \bigO{\bitstringl^2}. To compute this between all individuals in \indset{}, a complexity of \bigO{\indsetl^2 \cdot \bitstringl^2} is achieved.
+The complexity of calculating $v_{ij}$, where $v_{ij}$ is the Levenshtein distance between two neural networks $\ind_i, \ind_j \in \indset$ is \bigO{\bitstringl^2}. To compute this between all individuals in \indset{}, a complexity of \bigO{\indsetl^2 \cdot \bitstringl^2} is achieved.
 
-Unfortunately, using Levenshtein distance does not catch the fact that sequences of bits can have been moved as in the example from \cref{fig:entire-eqnetwork}. To catch this, even more complex measures must be used. Also, as concluded by~\cite{Darwen00doesextra}, constant, high genetic diversity does not guarantee better solutions, again requiring other diversity measures to also be explored.
+%Unfortunately, using Levenshtein distance does not catch the fact that sequences of bits can have been moved as in the example from \cref{fig:entire-eqnetwork}. To catch this, even more complex measures must be used. 
+Experiments show that a constant, high genetic diversity does not guarantee better solutions~\cite{Darwen00doesextra}. This leads to that fact that other diversity measures must be explored.
 
 \subsubsection{Phenotypic diversity measures}
 A \emph{phenotypic diversity} is concerned with the individuals' behavioural differences, and can be calculated based on their fitness values. Such diversity measures include computing the standard deviation of fitness values, the average number of unique fitness values in a population, and entropy-based methods (see~\cite{1250187, 1266373}).
 
 One advantage of fitness-based diversity measures is that no extra computations are associated with calculating the diversity, because the fitness values already have been calculated by the GA to assess how fit each individual is~\cite{Nguyen:2006:ASPGP}.
 
-Taking the precomputation of fitness values into account gives these diversity measures and advantage when it comes to complexity. To calculate the number of distinct individuals, we can use a hash table. If we assume it unlikely to have a clash between hash values and choose to ignore this, we can achieve a complexity linear in the size of the population, or \bigO{\indsetl}, for fitness-based diversity measures.
+Taking the precomputation of fitness values into account gives these diversity measures an advantage when it comes to complexity. To calculate the number of distinct individuals, we can use a hash table. If we assume it unlikely to have a clash between hash values and choose to ignore this, we can achieve a complexity linear in the size of the population, or \bigO{\indsetl}, for fitness-based diversity measures.
 
 \subsubsection{Other measurements}
 Some diversity measures exist that are neither genotypic nor phenotypic. For instance the \emph{Ancestral ID} method, which assigns a unique ID to each individual in the initial population. Every mutated individual receives a new unique ID while every child gets the ID of one of its parents. The diversity is then based on the uniqueness of IDs in a population~\cite{1250187}.
