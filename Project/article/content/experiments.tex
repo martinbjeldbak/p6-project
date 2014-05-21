@@ -1,7 +1,7 @@
 \section{Experiments}\label{sec:experiments}
 In this section, we evaluate our proposed diversity measurement (\dia) by using it to measure diversity of a population in two different environments.
 
-In the first environment, which we refer to as the static environment, the GA dos not iterate.
+In the first environment, which we refer to as the static environment, the GA does not iterate.
 For the three maximization problems introduced in \cref{sec:problems}, we create an initial population using a constrain $c$, and a significance $\alpha$. We choose $c$ such that we have an intuition about how the behavioural diversity of individuals are dependent on $\alpha$. By experiments, we see if it is likely that \dia{} catches this dependency.
 
 In the second environment, which we refer to as the dynamic environment, the GA runs for a number of iterations on each of the three problems. 
@@ -31,7 +31,7 @@ By these experiments we can conclude whether the diversities returned by \dia{} 
   \label{tab:gaparam}
 \end{table}
 
-We use a population size of 100 individuals. For each iteration, 100 new offspring individuals are created. Half of the offsprings are cloned from a random parent. These are found by using a rank-based selection, and then mutated. The other half is made by performing crossover between two random parents, also using rank-based selection. These settings are presented in \cref{tab:gaparam}.
+We use a population size of \num{100} individuals. For each iteration, \num{100} new offspring individuals are created. Half of the offsprings are cloned from a random parent. These are found by using a rank-based selection, and then mutated. The other half is made by performing crossover between two random parents, also using rank-based selection. These settings are presented in \cref{tab:gaparam}.
 
 Three crossover methods are used: one-point crossover, two-point crossover, and uniform crossover. When a new individual is created using crossover, there is an equal chance for any of the crossover methods to be used. Each offspring created by crossover, has a \perc{10} chance to be mutated. When mutating an individual, each bit in its bit string has a \perc{5} chance to be assigned a random boolean value. For specific implementation details, we refer to the source code~\cite{mbm:kmc:ekoGA}.
 
