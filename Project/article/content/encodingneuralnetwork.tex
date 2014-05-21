@@ -14,9 +14,9 @@ That is, the neural networks differ only in their weights between neurons and th
 Each individual is therefore represented only in terms of the weights and biases.
 For each GA, any weight and bias is encoded with a fixed number of bits $n$ and $m$, respectively.
 The bit string is constructed in an ordered manner, such that the first $n$ bits represent the weight for the first connection between the first input neuron and the first hidden neuron, the next $n$ bits represent the weight for the connection between the first input neuron to the second hidden neuron, and so forth. \cref{fig:entire-eqnetwork} shows an example of two neural networks and the bit string that encodes each of them.
-If biases are used by the GA, these comes after all the encoded weights.
-They are ordered such that the first $m$ bits encodes the bias of the first neuron, the next $m$ bits encodes the bias of the second neuron, and so forth.
-In this way, we encode a neural network, which is manipulated by different GA operators.
+If biases are used by the GA, these come after all the encoded weights.
+They are ordered such that the first $m$ bits encode the bias of the first neuron, the next $m$ bits encode the bias of the second neuron, and so forth.
+In this way we encode a neural network, which is manipulated by different GA operators.
 From now on, we will refer to the bit string encoding of a neural network as the individual's \emph{chromosome}.
 
 % ALso removed this friday 2014-3-21, no need to reference it twice. Possibly if there was an example on how to encode the network in the example?
