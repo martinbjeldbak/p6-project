@@ -12,9 +12,9 @@ We do this based on which of their output neurons yield the highest value on inp
 Let $b_{n}b_{n-1}\dots b_1$ be the binary representation of a number $i$,
 then we define the species \speciesi{i}{\ran} to contain any individual $\nnind \in \nninset$, that given $\ran \in \ranset$ as input satisfies
 %
-\[
+\begin{equation}\label{eq:nntdbucket}
   \forall j, h \in \set{1, 2, \dots, \nnoutsetl} \left(b_j \rightarrow \left(\nnout_j \geq \nnout_h\right)\right)
-\]
+\end{equation}
 %
 where $\nnout_k$ is the value of the $k$th output neuron of neural network \ind.
 
@@ -26,14 +26,26 @@ Since we only want to be concerned with non-empty species, we define this as a s
 
 Diversity for random input $\ran_x$ is then defined by
 %
-\begin{equation*}\label{eq:sdi}
-  D_x = 1 - \frac{\sum_{q \in \nemptyspeciesf{x}}\left(\lvert\speciesiq{q}{r_x}\rvert\left(\lvert\speciesiq{q}{r_x}\rvert - 1\right)\right)}{\indsetl\left(\indsetl - 1\right)}
+\begin{equation*}\label{eq:nntd}
+  D_x = 1 - \frac{\sum_{q \in \nemptyspeciesf{x}}\left(\sizeof{\speciesiq{q}{r_x}}\left(\sizeof{\speciesiq{q}{r_x}} - 1\right)\right)}{\indsetl\left(\indsetl - 1\right)}
 \end{equation*}
 %
 where \nemptyspeciesf{x} is the set of non-empty species with respect to random input $\ran_x$, and \indset{} denotes set of all individuals in the population. The \dia{} $D$ (that is, the actual diversity) is then calculated as the average of all \ransetl{} $D_x$ values by
 %
-\[
+\begin{equation}\label{eq:nntdavg}
   D =\frac{\sum_{x=1}^{\ransetl}{D_x}}{\ransetl}
-\]
+\end{equation}
 %
 One disadvantage of \dia{} is that it relies on random inputs, meaning that fewer random inputs implies less statistical significance. Due to the nature of \dia, it is not suitable for continuous problems. Consider for instance two neural networks $\ind_1$ and $\ind_2$, used for approximating a function $g$, where $\ind_1$ and $\ind_2$ both have only a single output neuron. To tell how different $\ind_1$ and $\ind_2$ behave, it is necessary to distinguish between different values of each neural network's output neuron. Since \dia{} defines species based on the output neuron with the highest value, and we in this case only have a single output neuron in $\ind_1$ and $\ind_2$, the two neural networks will always belong to the same species, yielding a diversity of 0.  
+
+\subsection{Complexity}
+Computations associated with \dia{} are split into two halves. The first half distributes neural networks into a number of buckets (species) for each random input corresponding to \cref{eq:nntdbucket}. These buckets are then used in the second half, where SDI is calculated for each random input, corresponding to \cref{eq:nntdavg}
+
+The first part of computation is carried out as follows: for each random input $\ran \in \ranset$, every neural network $\ind \in \indset$ must calculate an output for based on random input \ran. Each output neuron $\nnout \in \nnoutset$ belonging to \ind{} is now considered once to calculate the particular species \ind{} belongs to. The complexity of the first part is thus $\bigO{\ransetl \cdot \indsetl \cdot \left(\timet + \nnoutsetl\right)}$, where \timet{} is the time required to calculate the output of a neural network given any input. When calculating the output of a neural network, every neuron in the network must be considered. Therefore, \timet{} is an upper bound of \nnoutsetl. This allows us to reduce the complexity to $\bigO{\ransetl \cdot \indsetl \cdot \timet}$, for the first half of \dia.
+
+In the second part, we note that SDI considers every bucket once for every random input, and hence this part has complexity $\bigO{\ransetl\cdot\nemptyspeciessetl}$, where \nemptyspeciesset{} is the largest set of non-empty buckets for all random inputs \ranset. Since the each neural network is put in only one bucket, \indsetl{} is an upper bound of \nemptyspeciessetl, yielding the complexity $\bigO{\ransetl\cdot\indsetl}$ for the second half.
+
+Combining both halves results in a total complexity of $\bigO{\ransetl \cdot \indsetl \cdot \timet + \ransetl \cdot \indsetl}$, which is $\bigO{\ransetl\cdot\indsetl\cdot\timet}$.
+
+\subsection{Complexity comparison}
+The fitness-based diversity measure is definitely the cheapest to calculate. We can ease the comparison of the complexity $\bigO{\ransetl\cdot\indsetl\cdot\timet}$ of \dia{} to the complexity \bigO{\indsetl^2 \cdot \bitstringl} of Hamming distance, by removing the common factor \indsetl. Additionally , we can make an assumption about how the length of a bit string \bitstringl{} is related to the value \timet, which is the work required to calculate the output of a neural network given any input. Let $\sizeof{E}$ denote the number of edges in a neural network. Since each weight must be considered when the output of a neural network is calculated, $\timet${} is at least $|E|$. Additionally, some constant time will be spend applying the activation function. In the worst case, each neuron has only a single input edge. In that case, the activation function will be applied $\sizeof{E}$ times, and just contribute as a constant factor to $\timet$. Therefore, we have that $\timet = \bigT{\sizeof{E}}$. If we assume that $\sizeof{E} = \bigT{\bitstringl}$, we also get that $\timet = \bigT{\bitstringl}$. This assumption is reasonable because the number of edges in a neural network is an upper bound of the number of neurons. With this assumption, we can simplify the complexity comparison of \dia{} and Hamming distance, to a comparison of the complexities $\bigO{\ransetl}$ and \bigO{\indsetl}, respectively. In this manner, we can conclude, that the complexity of \dia{} and Hamming distance is asymptotically the same, whenever $\ransetl = c \cdot \indsetl$. That is, whenever the number of random inputs chosen for \dia{} is just a constant times the population size.
