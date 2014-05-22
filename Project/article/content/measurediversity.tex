@@ -20,9 +20,9 @@ As shown in \cref{fig:entire-eqnetwork}, two networks of different genotypes may
 %
 is 8 when using Hamming distance, and 2 when using Levenshtein distance, because transforming \cref{eq:bit1} into \cref{eq:bit2} is done by deleting the first bit and prepending a $0$, totalling 2 operations~\cite{1250187}.
 
-We define \indset{} to be the set of neural networks. The complexity of calculating $h_{ij}$, where $h_{ij}$ is the Hamming distance between two neural networks $\ind_i, \ind_j \in \indset$ is \bigO{\bitstringl}, which is linear in the length of an encoded network's bit string $l$. To compute the Hamming distance for all $\ind \in \indset$ achieves a complexity of \bigO{\indsetl^2 \cdot \bitstringl}. 
+If we define \indset{} to be a set of neural networks, the complexity of calculating $h_{ij}$, where $h_{ij}$ is the Hamming distance between two neural networks $\ind_i, \ind_j \in \indset$ is \bigO{\bitstringl}, which is linear in the length of an encoded network's bit string $l$. The complexity of computing Hamming distance for all $\ind \in \indset$ is thus \bigO{\indsetl^2 \cdot \bitstringl}. 
 
-The complexity of calculating $v_{ij}$, where $v_{ij}$ is the Levenshtein distance between two neural networks $\ind_i, \ind_j \in \indset$ is \bigO{\bitstringl^2}. To compute this between all individuals in \indset{}, a complexity of \bigO{\indsetl^2 \cdot \bitstringl^2} is achieved.
+The complexity of calculating $v_{ij}$, where $v_{ij}$ is the Levenshtein distance between two neural networks $\ind_i, \ind_j \in \indset$ is \bigO{\bitstringl^2}\cite{Freeman:2006:CLN:1220835.1220895}. Therefore, computing the Levenshtein distance between all individuals in \indset{} yields the complexity \bigO{\indsetl^2 \cdot \bitstringl^2}.
 
 \subsubsection{Phenotypic diversity measures}
 A \emph{phenotypic diversity} is concerned with the individuals' behavioural differences, and can be calculated based on their fitness values. Such diversity measures include computing the standard deviation of fitness values, the average number of unique fitness values in a population, and entropy-based methods (see~\cite{1250187, 1266373}).
