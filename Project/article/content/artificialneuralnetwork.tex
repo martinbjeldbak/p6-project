@@ -1,21 +1,21 @@
 \subsection{Artificial Neural Network}
-An artificial neural network is a finite directed graph that, from the outside, can be seen as a black box, which given the values $x_1, x_2, \dots, x_n$, outputs the values $y_1, y_2, \dots, y_m$. With the right internal structure, a neural network can be used for a variety of purposes, e.g.\ face recognition, where the intensities of different pixels in an image are used as input, and a single output value $y_1$ is produced, where $y_1 = 1$ if the image was of a face and $0$ if not. We now describe the structure and inner workings of neural networks to understand how these output values are calculated based on input values.
+An artificial neural network is a finite directed graph that, from the outside, can be seen as a black box, which given the values $x_1, x_2, \dots, x_n$ outputs the values $y_1, y_2, \dots, y_m$. With the right internal structure, a neural network can be used for a variety of purposes, e.g.\ face recognition, where the intensities of different pixels in an image are used as input, and a single output value $y_1$ is produced, where $y_1 = 1$ if the image was of a face and $0$ if not. We now describe the structure and inner workings of neural networks to understand how these output values are calculated based on input values.
 
 \subsubsection{Neurons}
-Nodes in the graph of a neural network are called neurons. Three classes of neurons exist: input, hidden, and output. Each input neuron receives one of the input values $x_1, x_2, \dots, x_n$ and forward the same value. Hidden and output neurons take a number of values as input from edges exiting other neurons, applies a weight to each value, sums them, and then applies a function to produce a single output value. The function applied is called the transfer function, and is the same for all hidden and output neurons in the network. This is recursively expressed by 
+Nodes in the graph of a neural network are called neurons. Three types of neurons exist: input, hidden, and output. Each input neuron receives one of the input values $x_1, x_2, \dots, x_n$ and forward the same value to each neuron in the first hidden layer. Hidden and output neurons take a number of values as input from edges exiting other neurons, applies a weight to each value, sums them, and then applies a function to produce a single output value. The function applied is called the transfer function, and is the same for all hidden and output neurons in the network. The output value of neuron $i$ is recursively expressed by 
 % Note: bias/threshold is not defined below, add if needed
 \begin{equation*}\label{eq:weightcalc}
   y_i =
   \begin{cases}
     \var{x}_i                     & \text{if } i \text{ is an input neuron} \\
-    \theta\left(\sum_{j=1}^n w_{ji} y_{j} \right) & \text{otherwise} %- \theta_i \right)
+    \theta\left(\sum_{j=1}^n w_{ji} y_{j}\right) & \text{otherwise}
   \end{cases}
 \end{equation*}
 %
-where $x_i$ is the $i$th input, $n$ is the amount of neurons, $y_i$ is the output value of neuron $i$, $w_{ji}$ is the weight of the edge from neuron $j$ to $i$ ($0$ if no connection exists), and $\theta$ is the transfer function, typically defined to be the sigmoid function:
+where $x_i$ is the $i$th input, $n$ is the amount of neurons, $y_i$ is the output value of neuron $i$, $w_{ji}$ is the weight of the edge from neuron $j$ to $i$ ($0$ if no connection exists), and $\theta$ is the transfer function, typically defined to be the sigmoid function
 %
 \begin{equation*}
-  \theta(t) = \frac{1}{1+e^{-t}}
+  \theta\left(t\right) = \frac{1}{1+e^{-t}}
 \end{equation*}
 %
 In a feed-forward network, neurons are placed in one or more layers in an acyclic directed graph, where each neuron in layer $i$ is connected to every neuron in layer $i + 1$. The value(s) output by the last layer, or the output layer, becomes the output of the neural network. \Cref{fig:ann} illustrates the generic graph structure of a feed-forward neural network with a single hidden layer.
@@ -27,11 +27,7 @@ In a feed-forward network, neurons are placed in one or more layers in an acycli
   \label{fig:ann}
 \end{figure}
 %
-
-If a neuron is given the value $0$ on all of its inputs, most transfer functions will only allow that neuron to output $0$ as well.
-This is not desirable for all applications, and is often overcome by giving each neuron a bias value.
-The bias value of a neuron is added to the sum of inputs it receives, before finally applying the transfer function.
-Thus, if a neuron receives only $0$'s as input, it will output the value obtained by applying the transfer function to its bias value.
+If a neuron is given the value $0$ on all of its inputs, most transfer functions will only allow that neuron to output $0$ as well. This is not desirable for all applications, and is often overcome by giving each neuron a bias value. The bias value of a neuron is added to the sum of inputs it receives, before finally applying the transfer function. Thus, if a neuron receives only $0$'s as input, it will output the value obtained by applying the transfer function to its bias value.
 
 \subsubsection{Training a Neural Network}
 Any application of a neural network requires a suitable number of layers, neurons, and weights between neurons, to adequately solve a given problem. How many hidden neurons and layers to have is a highly debated subject, see \cite{sarle1997}.

@@ -1,29 +1,15 @@
 \begin{abstract}
+We propose a phenotypic diversity measurement in genetic algorithms with neural networks as individuals, called \di{} (\dia{}). It is an extension of Simpsons Diversity Index, known from ecology.
 
-  We propose a method, which we call \di{} (\dia{}). \dia{} was developed for measuring phenotypic diversity among neural networks in genetic algorithms. It is an extension of the Simpsons Diversity Index known from ecology.
+Avoiding low diversity in a genetic algorithm's population is crucial for finding a global optimum. When diversity is overlooked, premature convergence is the consequence, possibly leading to a local optimum.
 
-%Motivation:
-%Why do we care about the problem and the results?
-Avoiding low diversity in a genetic algorithm's population is crucial for finding a global optimum. When diversity is overlooked, premature convergence is the consequence, which might lead to local optimum.
+Experiments are conducted to compare \dia{} to the genotypic diversity measure of Hamming distance, and a phenotypic fitness-based diversity measure. We argue why both of these measures have weaknesses that \dia{} overcomes.
 
-Experiments are conducted with \dia{} and two other well-known diversity measures, Hamming distance, which is a genotypic diversity measure, and fitness-based diversity measure.
-We argue why both of these measures have weaknesses, which we try to overcome using \dia.
-%Two popular measures are based on the distance between the encoding of individuals and the distinct fitness values among individuals, known as the Hamming distance and unique fitness, respectively.
+%Results: What's the answer? 
+Our experiments show that \dia{} consistently mirrors the intuition of how diversity in populations develop for various replacement rules, better than that of the Hamming distance and fitness-based diversity measurement methods, which seem less predictable.
 
-%Approach:
-%How did you go about solving or making progress on the problem?
+%Old as of: 220514 14.34 Our results show that the fitness-based measure is unpredictable because the data shows irregular spikes in our experiments. \dia{} and the Hamming distance measure showed a stabile progression in measuring the diversity. The data shows some form of correspondance between these two measures.
 
-%Results:
-%What's the answer? 
-Our results show that the fitness-based measure is unpredictable, because the data shows irregular spikes when the experiments where performed. \dia{} and the Hamming distance showed a stabil progression in measuring the diversity. The data shows some form of correspondance between these two measures.
-
-%Conclusions:
-%What are the implications of your answer?
-Interestingly, the experiments show that there might be a link between the genetic make-up of an individual and its actual behaviour. %leads to\dots (What are the implications of our answer?)
-
-%Neural networks are often used as individuals within populations of genetic algorithms. Many operators exist to transition a population from one generation to the next. The drawback with many of these methods is that only the offspring of a population are selected to form the next generation, resulting in a fraction of the population being bred on -- individuals with highest fitness. This causes the individuals to share the same traits and possibly collect around local minima. We develop a new operator for offspring selection that attempts to maximize diversity in a population and hence be more effective at finding the global maximum. It only selects the offspring if it has a higher fitness than either of its parents. If this is the case, both parents are replaced with the individual and a random immigrant individual is introduced. If its fitness is lower, both parents survive.
-
-%To evaluate our offspring selection policy, we also develop a method to evaluate diversity of a population consisting of neural networks with outputs that can be classified into species, or bins. This is done by repeatedly giving all individuals in a population the same, random inputs and classifying them by which of their outputs is largest, then evaluating the diversity using Simpson's Diversity Index known from ecology.%
-
-%Our experiments show how well our selection policy compares to crowding and other methods\ldots (we have only just started running experiments)
+%Conclusions: What are the implications of your answer?
+Interestingly, the experiments also show that there might be a connection between the genetic construction of an individual and its phenotypic behaviour.
 \end{abstract}
