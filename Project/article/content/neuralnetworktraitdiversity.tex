@@ -5,9 +5,7 @@ In the following we propose a method for measuring trait diversity, which we cal
 \dia{} is based on Simpsons Diversity Index (SDI), which is a diversity measure used in ecology to quantify the biodiversity of a habitat~\cite{simpson1949measurement}.
 
 Let $\indset = \set{\ind_1, \ind_2, \dots, \ind_n}$ denote the set of neural networks contained in a population, all with the same architecture of \nninsetl{} input and \nnoutsetl{} output neurons. \dia{} is calculated with respect to a number of random inputs $\ranset = \set{\ran_1, \ran_2, \dots, \ran_m}$, where each $\ran_x$ for $1 \leq x \leq m$ is an \nninsetl-tuple of randomly chosen input values - one for each input neuron in the neural network architecture used.
-Since one is typically interested in how different the neural networks behave in the environment they are intended to operate in, we propose that a random value for each input neuron is chosen according to the probability of receiving that value as input in the intended environment. For each input $\ran_x$, SDI is calculated with respect to that input.
-Calculating SDI requires a distribution of individuals into a number of species.
-We now define how each neural network is assigned to a single species given an input $\ran_x$. 
+Since one is typically interested in how different the neural networks behave in the environment they are intended to operate in, we suggest that a random value for each input neuron is chosen according to the probability of receiving that value as input in the intended environment. For each input $\ran_x$, SDI is calculated with respect to that input. Calculating SDI requires a distribution of individuals into a number of species. We now define how each neural network is assigned to a single species given an input $\ran_x$. 
 
 Let $b_{n}b_{n-1}\dots b_1$ be the binary representation of a number $i$.
 We define the species \speciesi{i}{\ran} to contain any individual $\ind \in \indset$, that given $\ran \in \ranset$ as input satisfies
