@@ -9,7 +9,7 @@ The genotypic diversity of a set of individuals is determined by how different t
 
 The diversity between a set of bit strings can then be expressed as the average distance between any two bit strings. Summation can also be used instead of averaging, which is merely a convenient optimization.
 
-The \emph{Hamming distance} between two bit strings $A$ and $B$ of equal length is the number of indexes $i$, such that $A[i] \neq B[i]$. The \emph{Levenshtein distance} between these two bit strings is the number of bits that must be inserted, deleted or substituted to change $A$ into $B$.
+The \emph{Hamming distance} between two bit strings $A$ and $B$ of equal length is the number of indexes $i$, such that $A[i] \neq B[i]$. The \emph{Levenshtein distance} between these two bit strings is the number of bits that must be inserted, deleted, or substituted to change $A$ into $B$.
 
 As shown in \cref{fig:entire-eqnetwork}, two networks of different genotypes may have the exact same behaviour. One can argue that the two genotypes shown in \cref{fig:entire-eqnetwork} are in fact not that different, since only two bits are different in each substring. The Levenshtein distance measure catches this intuition better than Hamming distance. For example, the distance between between the bit strings
 %
