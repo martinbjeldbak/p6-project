@@ -1,12 +1,12 @@
 \subsection{Crowding}\label{sec:replacementrules}
 %Many methods have been proposed to overcome the problem of gradually decreasing diversity through generations. 
-Methods to overcome decreasing diversity, include inserting random immigrants (randomly initialized individuals)~\cite{Cobb93geneticalgorithms}, using complex population structures to lower the gene flow, and the use of special selection procedures~\cite{ursem2002diversity}. The latter is known as crowding~\cite{DeJong:1975:ABC:907087}. How a particular crowding method works is commonly described by a replacement rule.
+Methods to overcome decreasing diversity in a population include inserting random immigrants (randomly initialized individuals)~\cite{Cobb93geneticalgorithms}, using complex population structures to lower the gene flow, and the use of special selection procedures~\cite{ursem2002diversity, DeJong:1975:ABC:907087}, known as crowding. How a particular crowding method works is commonly described by a replacement rule.
 
-The replacement rule determines which individuals of the $i$th generation \generation{i}, and their offspring $\offspring{i}$ are selected to form the next generation \generation{i+1}.
+The replacement rule determines which individuals of the $i$th generation \generation{i}, and their offspring \offspring{i} are selected to form the next generation \generation{i+1}.
 
 \subsubsection{Greedy}
-Common descriptions of GAs, that do not try to account for premature convergence,
-are often making the generation \generation{i} from the $n$ most fit individuals from $\generation{i-1} \cup \offspring{i-1}$, where $n$ is a fixed population size. We will refer to this as the \emph{Greedy replacement rule}~\cite{masterThesisGANN}.
+Common descriptions of GAs that do not try to account for premature convergence,
+construct generation \generation{i} from the $n$ most fit individuals from $\generation{i-1} \cup \offspring{i-1}$, where $n$ is a fixed population size. We will refer to this as the \emph{Greedy replacement rule}~\cite{masterThesisGANN}.
 
 %\subsubsection{Probabilistic crowding replacement rule}
 %The \emph{probabilistic crowding replacement rule}~\cite{Mengshoel_and_Goldberg:1999} can be described by the formula:
@@ -19,18 +19,17 @@ are often making the generation \generation{i} from the $n$ most fit individuals
 %To avoid that these $2+y$ similar individuals are all selected for the next generation $G_{i+1}$, the probabilistic crowding %replacement rule can be used to select only $y$ of these individuals to survive, in an attempt to maintain a higher diversity.
 
 \subsubsection{Ancestor Elitism}
-Ancestor Elitism is similar to $(\mu + \lambda)$ and Generation Gap algorithms, but we developed it independently of these algorithms~\cite[p. 34, p. 50]{Luke2013Metaheuristics}.
+The ancestor elitism replacement rule is similar to $\left(\mu + \lambda\right)$ and generation gap algorithms, but we developed it independently of these algorithms~\cite[p.\ 34, p.\ 50]{Luke2013Metaheuristics}.
 
-The next generation \generation{i+1} is made from generation \generation{i} as follows: every individual from \generation{i} is put into \generation{i+1}. Any individual in \offspring{i} who has only a single parent (made from mutation) and is more fit than its parent, will replace that parent in \generation{i+1}. Any individual in \offspring{i} who has two parents (made from crossover) and is more fit than both of its parents, will replace both parents in \generation{i+1} by itself and a random immigrant. Finally, the \perc{50} least fit individuals in \generation{i+1} is replaced by random immigrants.
+Generation \generation{i+1} is made from generation \generation{i} as follows: every individual from \generation{i} is put into \generation{i+1}. Any offspring individual in \offspring{i} who only has a single parent (made from mutation) and is more fit than its parent, will replace that parent in \generation{i+1}. Any individual in \offspring{i} who has two parents (made from crossover) and is more fit than both of its parents, will replace both parents in \generation{i+1} by itself and a random immigrant. Finally, the \perc{50} least fit individuals in \generation{i+1} are replaced by random immigrants.
 
 \subsubsection{Single Parent Elitism}
 Single Parent Elitism is similar to Restricted Tournament Selection, but we developed it independently of that method~\cite[p.\ 132]{Luke2013Metaheuristics}.
 
-$\generation{i+1}$ is made from $\generation{i}$ as follows: every individual from $\generation{i}$ is put into $\generation{i+1}$. Any individual in $\offspring{i}$ who has only a single parent (made from mutation) and is more fit than its parent, will replace that parent in $\generation{i+1}$.
-Any individual in $O_i$ who has two parents (made from crossover), and is more fit than a randomly chosen parent, will replace its parent in $G_{i+1}$ by itself.
+\generation{i+1} is made from \generation{i} as follows: every individual from \generation{i} is put into \generation{i+1}. Any individual in \offspring{i} who only has a single parent (made from mutation) and is more fit than its parent, will replace that parent in \generation{i+1}. Any individual in \offspring{i} who has two parents (made from crossover), and is more fit than a randomly chosen parent, will replace its parent in \generation{i+1} by itself.
 
 \subsubsection{Mass Extinction Explore Exploit}
-Inspired by the changes between exploration and exploitation phases used by Ursem~\cite{ursem2002diversity}, we introduce the following replacement rule, which we will refer to as the \emph{Mass Extinction Explore Exploit} (MEEE) replacement rule. The MEEE replacement rule is equivalent to Single Parent Elitism except that it additionally performs a mass extinction when the diversity drops below a threshold: In any generation \generation{i}, if $d\left(\generation{i}\right) < \alpha$, we replace the $\tfrac{n}{2}$ least fit individuals from \generation{i} by random immigrants, where $n = \generationl{i}$, $d\left(\gen\right)$ denotes the diversity of a generation, and $\alpha$ is a threshold. Then \emph{Single Parent Elitism} replacement rule is performed on $\left(\generation{i}, \offspring{i}\right)$.
+Inspired by the changes between exploration and exploitation phases used by Ursem~\cite{ursem2002diversity}, we introduce the following replacement rule, which we will refer to as the \emph{Mass Extinction Explore Exploit} (MEEE) replacement rule. The MEEE replacement rule is equivalent to Single Parent Elitism, except that it additionally performs a mass extinction when the diversity drops below a threshold. In any generation \generation{i}, if $d\left(\generation{i}\right) < \alpha$, we replace the $\tfrac{n}{2}$ least fit individuals from \generation{i} by random immigrants, where $n = \generationl{i}$, $d\left(\gen\right)$ denotes the diversity of a generation, and $\alpha$ is a threshold ratio. Then \emph{Single Parent Elitism} replacement rule is performed on $\left(\generation{i}, \offspring{i}\right)$.
 
 %\paragraph{Roulette wheel selection}
 %Also known as fitness proportionate selection, uses the fitness value of each individual to associate a probability of being selected to procreate. The probabilities are calculated to give the most fit individual the largest probability to be selected. We define $\fit_i$ to be the fitness of individual $i$, and the probability for selection is then calculated by $p_i = \frac{\fit_i}{\Phi}$, where $\Phi = \sum_{j=1}^{I} \fit_j$, and $I$ is the total number of individuals~\cite{tang1996genetic, koza1992genetic}. Using this method, the most fit individuals have the highest probability to be selected, while the least fit individuals have the lowest probability.
