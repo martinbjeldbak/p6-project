@@ -24,9 +24,6 @@ We define \indset{} to be the set of neural networks. The complexity of calculat
 
 The complexity of calculating $v_{ij}$, where $v_{ij}$ is the Levenshtein distance between two neural networks $\ind_i, \ind_j \in \indset$ is \bigO{\bitstringl^2}. To compute this between all individuals in \indset{}, a complexity of \bigO{\indsetl^2 \cdot \bitstringl^2} is achieved.
 
-%Unfortunately, using Levenshtein distance does not catch the fact that sequences of bits can have been moved as in the example from \cref{fig:entire-eqnetwork}. To catch this, even more complex measures must be used. 
-Experiments show that a constant, high genetic diversity does not guarantee better solutions~\cite{Darwen00doesextra}. This leads to that fact that other diversity measures must be explored.
-
 \subsubsection{Phenotypic diversity measures}
 A \emph{phenotypic diversity} is concerned with the individuals' behavioural differences, and can be calculated based on their fitness values. Such diversity measures include computing the standard deviation of fitness values, the average number of unique fitness values in a population, and entropy-based methods (see~\cite{1250187, 1266373}).
 
