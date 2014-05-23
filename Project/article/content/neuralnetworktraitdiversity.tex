@@ -13,9 +13,9 @@ We define the species \speciesi{i}{\ran} to contain any individual $\ind \in \in
   \forall j, h \in \set{1, 2, \dots, m} \left(b_j \rightarrow \left(\nnout_j \geq \nnout_h\right)\right)
 \end{equation}
 %
-where $\nnout_k \in \nnoutset$ is the value of the $k$th output neuron of neural network \ind. As an example, assume that we have a neural network with six output neurons. If the third output neuron has the highest output when given $r_x$ as input, the neural network will belong to species $\species_4$, because the \texttt{1}s in \texttt{00100} (the binary representation of 4) matches the indices of the output neurons with the highest value. If multiple output neurons have the highest value, say the first and third output neuron, the neural network will belong to species $\species_5$ since \texttt{000101} in binary is 5 in decimal. If all output neurons have the same value, the neural network belongs to species $\species_{63}$ since \texttt{111111} in binary is 63 in decimal.
+where $\nnout_k \in \nnoutset$ is the value of the $k$th output neuron of neural network \ind. As an example, assume that we have a neural network with six output neurons. If the third output neuron has the highest output when given $r_x$ as input, the neural network will belong to species $\species_4$, because the \texttt{1}s in \texttt{000100} (the binary representation of 4) matches the indices of the output neurons with the highest value. If multiple output neurons have the highest value, say the first and third output neuron, the neural network will belong to species $\species_5$ since \texttt{000101} in binary is 5 in decimal. If all output neurons have the same value, the neural network belongs to species $\species_{63}$ since \texttt{111111} in binary is 63 in decimal.
 
-Since we only want to be concerned with non-empty species, we define this as a set, which is also defined with respect to a random input
+Since we only are be concerned with non-empty species, we define this as a set, also defined with respect to a random input
 \begin{equation*}\label{eq:nonemptyspecies}
   \nemptyspeciesf{x} = \setof{\speciesi{i}{\ran_x}}{\speciesi{i}{\ran_x} \neq \emptyset}
 \end{equation*}
