@@ -2,11 +2,10 @@
 Genetic algorithms are optimization algorithms, which imitate the process of natural selection in the search of a global optimum.
 
 \subsubsection{Individuals and chromosomes}
-GAs maintain a list of \emph{individuals}, which together form a \emph{population}. Each individual represents a possible solution to the optimization problem in question and has a fitness value, which denotes how adequately the individual can solve the optimization problem. An individual is encoded by its \emph{chromosome}, which is typically represented by a bit string. We refer to the individuals' chromosomes and bit strings, synonymously. Therefore, using a GA requires a way of decoding an individuals chromosome into a solution to the optimization problem.
+GAs maintain a list of \emph{individuals}, which together form a \emph{population}. Each individual represents a possible solution to the optimization problem in question and has a fitness value, denoting how adequately the individual can solve the optimization problem. An individual is encoded by its \emph{chromosome}, which is typically represented by a bit string. We refer to the individuals' chromosomes and bit strings synonymously. Therefore, using a GA requires a way of decoding an individuals chromosome into a solution to the optimization problem.
 
 The population used by a GA typically has a fixed number of individuals, each initialized with a random chromosome when the GA is run. That is, the bit string representing the chromosome is initialized with random bits. As the GA iterates, new individuals are made by combining and modifying chromosomes from existing individuals of the population. In steady state GAs, some of the new individuals will replace older individuals according to some replacement rule. In contrast, a generational GA will choose only from offspring when forming the next generation~\cite{fogarty, Syswerda:1989:UCG:645512.657265, Whitley:1989:GAS:93126.93169}. We will focus on steady state GAs, using the term \emph{generation} \generation{n} to denote the content of the population after $n - 1$ iterations.
 
-\subsubsection{Individuals}
 Individuals in GAs have a set of traits and behaviours which define each individual. They can take on any form of data structure, as long as they wholly represent a possible solution to the problem. 
 
 \input{content/encodingneuralnetwork}
@@ -18,7 +17,7 @@ Individuals in GAs have a set of traits and behaviours which define each individ
 %A genetic algorithm manages a collection of many individuals, known as a population. Individuals in the first population are usually initialized randomly with a fixed population size. The goal for these individuals is to solve a problem optimally. Each individual in the population has a fitness level that defines the individual's ability to solve a given problem.
 %Initially, there are no generations. Creating a new population from a previous population increases the amount of generations by one, hopefully yielding a net increase in average fitness.
 
-\subsubsection{Crossovers and mutations}
+\subsubsection{Crossover and mutation}
 In natural evolution, a pair of individuals come together to produce one or more new children, each having genes from both of its parents. In GAs, the process of procreation is done by performing a \emph{crossover} of the two parent individuals' chromosomes. Parts of each parent's bit strings are used to create the child individual.
 
 \emph{Mutations} can also occur randomly at any point in time upon creating a child individual. If genes are encoded as bit strings, then a mutation arbitrarily toggles one or more bits. This ensures that new genes, not previously present in the population, can be formed.
