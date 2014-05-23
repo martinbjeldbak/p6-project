@@ -1,13 +1,13 @@
 \section{Conclusion}\label{sec:conclusion}
-We have argued that fitness-based diversity measurements do not always catch behavioural differences, since two different individuals can have the same fitness, and yet behave differently.
+We have argued why fitness-based diversity measurements do not always catch behavioural differences, since two different individuals can have the same fitness, and yet behave differently.
 The opposite is the case for genotypic diversity measures, for instance Hamming distance.
-Here we have shown how two individuals of different genotypes can have the exact same behaviour.
+Here, we have shown how two individuals of different genotypes can have the exact same behaviour.
 
 We have performed and compared a number of experiments to test our own diversity measure, which we call \di{} (\dia{}).
-For each diversity measure, we performed a test using each of the four replacement rules, the Greedy replacement rule, Ancestor Elitism, Single Parent Elitism, and MEEE.
+For each diversity measure, we performed a test using each of the four replacement rules, the Greedy replacement rule, Ancestor Elitism, Single Parent Elitism, and MEEE\@.
 These experiments indicate that fitness-based diversity measures are unpredictable.
 
-When it comes to \dia{}, which is a phenotypic measure, and Hamming distance, which is a genotypic measure, we observe something interesting. It seems like these two measures follow each other in a manner.
+When it comes to \dia{}, which is a phenotypic measure, and Hamming distance, which is a genotypic measure, we observe something interesting. It as if these two measures follow each other in a manner.
 This only holds for tests performed in a dynamic environment though. 
 In real world applications, like those investigated in the dynamic tests, there might be some connection between Hamming distance and \dia{}.
 
@@ -17,12 +17,11 @@ Hamming distance neglects this fact and produces the same diversity measure rega
 It is also important to be aware of the fact that the Hamming distance measure never exceeded a diversity of \num{0.5} during our tests, which is obvious, due to the fact that two random bits have the probability \num{0.5} of being identical.
 A Hamming distance above \num{0.5} is indeed possible, but neither during static nor dynamic tests, did this happen. 
 
-Based on our experiments and observations, we can conclude that it is reasonable to believe that we have succeeded in creating a diversity measure that better reflects different traits among individuals of a population.
+Based on our experiments and observations, we can conclude that it is reasonable to believe that we have succeeded in creating a diversity measure that better reflects different traits among individuals of a population. We have found that \dia{} seems to better catch different behaviour of the individuals compared to Hamming distance and fitness-based diversity measures for all of the problem sets.
 
 It is interesting, that for each of the three problems under study, the MEEE replacement rule produced the best fitness values. Furthermore, it was the only replacement rule for which it seems that performing more iterations would yield even greater fitness values. 
 The MEEE replacement rule actively uses a diversity measure.
 Therefore, it is important to have a diversity measure that can capture the concept of a population being diverse.
 
-We have found that \dia{} seems to better catch different behaviour of the individuals compared to the two other measures in the data sets we used, which may be more favourable compared to measuring diversity based on genotypes or fitness values.
 
-The complexity of the fitness-based diversity measure is indeed cheaper than that of \dia{} and Hamming distance, yet also yielding the most stochastic results. Comparing the complexity of \dia{} and Hamming distance depends on the population size and how many random inputs one chooses to use for \dia{}. If the number of random inputs is just a constant times the population size, the two diversity measures will have the same complexity, asymptotically speaking.
+The complexity of the fitness-based diversity measure is indeed cheaper than that of \dia{} and Hamming distance, yet also yielding the most stochastic results. Comparing the complexity of \dia{} and Hamming distance depends on the population size and how many random inputs one chooses to use for \dia{}. If the number of random inputs is just a constant times the population size, the two diversity measures will asymptotically have the same complexity.
