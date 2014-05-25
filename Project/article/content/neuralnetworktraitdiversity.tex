@@ -2,39 +2,31 @@
 In the following, we propose a method for measuring trait diversity, which we call \emph{\di{}} (\dia). \dia{} aims to reflect the diversity of different traits among individuals. 
 
 \subsection{Algorithm}
-\dia{} is based on Simpsons Diversity Index (SDI), which is a diversity measure used in ecology to quantify the biodiversity of a habitat~\cite{simpson1949measurement}. SDI is the probability that two randomly chosen individuals belong to different species\cite{Venturi2007182}.
+\dia{} is based on Simpsons Diversity Index (SDI), which is a diversity measure used in ecology to quantify the biodiversity of a habitat~\cite{simpson1949measurement}. SDI is the probability that two randomly chosen samples belong to different species\cite{Venturi2007182}. So, to calculate a SDI, we must define a method for distributing the individuals (neural networks) of a population into a number of species.
 
-Let $\indset = \set{\ind_1, \ind_2, \dots, \ind_a}$ denote the set of neural networks contained in a population, all with the same architecture of $n$ input and $m$ output neurons. \dia{} is calculated with respect to a number of random inputs $\ranset = \set{\ran_1, \ran_2, \dots, \ran_b}$, where each $\ran_k$ for $1 \leq k \leq b$ is an $n$-tuple of randomly chosen input values---one for each input neuron in the neural network architecture used. Since one is typically interested in how different the neural networks behave in the environment they are intended to operate in, we suggest that a random value for each input neuron is chosen according to the probability of receiving that value as input in the intended environment. For each input $\ran_x$, SDI is calculated with respect to that input. Calculating SDI requires a distribution of individuals into a number of species. We now define how each neural network is assigned to a single species given an input $\ran_x$. 
-
-Let $b_{m}b_{m-1}\dots b_1$ be the binary representation of a number $i$.
-We define the species \speciesi{i}{\ran} to contain any individual $\ind \in \indset$, that given $\ran \in \ranset$ as input satisfies
+Let $\indset = \set{\ind_1, \ind_2, \dots, \ind_a}$ denote the set of neural networks contained in a population, all with the same architecture of $n$ input and $m$ output neurons, and let $\ran$ be random input for the neural networks. That is, $\ran$ is an $n$-tuple. If $b_{m}b_{m-1}\dots b_1$ is the binary representation of a number $i$,
+we define the species \speciesi{i}{\ran} to contain any individual $\ind \in \indset$, that given $\ran$ as input satisfies
 %
 \begin{equation}\label{eq:nntdbucket}
   \forall j, h \in \set{1, 2, \dots, m} \left(b_j \rightarrow \left(\nnout_j \geq \nnout_h\right)\right)
 \end{equation}
 %
-where $\nnout_k \in \nnoutset$ is the value of the $k$th output neuron of neural network \ind. As an example, assume that we have a neural network with six output neurons. If the third output neuron has the highest output when given $r_x$ as input, the neural network will belong to species $\species_4$, because the \texttt{1}s in \texttt{000100} (the binary representation of 4) matches the indices of the output neurons with the highest value. If multiple output neurons have the highest value, say the first and third output neuron, the neural network will belong to species $\species_5$ since \texttt{000101} in binary is 5 in decimal. If all output neurons have the same value, the neural network belongs to species $\species_{63}$ since \texttt{111111} in binary is 63 in decimal.
+where $\nnout_k \in \nnoutset$ is the value of the $k$th output neuron of neural network \ind. As an example, assume that we have a neural network with six output neurons. If the third output neuron has the highest output when given $\ran$ as input, the neural network will belong to species $\species_4$, because the \texttt{1}s in \texttt{000100} (the binary representation of 4) matches the indices of the output neurons with the highest value. If multiple output neurons have the highest value, say the first and third output neuron, the neural network will belong to species $\species_5$ since \texttt{000101} in binary is 5 in decimal. If all output neurons have the same value, the neural network belongs to species $\species_{63}$ since \texttt{111111} in binary is 63 in decimal.
+Once each individual is assigned a single species, we calculate an SDI given $\ran$ by inserting into the formula for SDI\cite{Venturi2007182}
 
-Since we only are be concerned with non-empty species, we define this as a set, also defined with respect to a random input
-\begin{equation*}\label{eq:nonemptyspecies}
-  \nemptyspeciesf{x} = \setof{\speciesi{i}{\ran_x}}{\speciesi{i}{\ran_x} \neq \emptyset}
-\end{equation*}
-
-Diversity for random input $\ran_x$ is then defined using the formula for SDI\cite{Venturi2007182}
 %
 \begin{equation*}\label{eq:nntd}
   D_x = 1 - \frac{\sum_{q \in \nemptyspeciesf{x}}\left(\sizeof{q}\left(\sizeof{q} - 1\right)\right)}{\indsetl\left(\indsetl - 1\right)}
 \end{equation*}
 %
-
-The \dia{} $D$ (that is, the actual diversity) is then calculated as the average of all $D_x$ values
+The \dia{} $D$ (the actual diversity) is calculated as the average SDI given a number of random inputs $\ranset = \set{\ran_1, \ran_2, \cdots, \ran_x}$
 %
 \begin{equation}\label{eq:nntdavg}
   D =\frac{\sum_{x=1}^{\ransetl}{D_x}}{\ransetl}
 \end{equation}
 %
-One disadvantage of \dia{} is that it relies on random inputs, which means that fewer random inputs implies less statistical significance. 
 
+One disadvantage of \dia{} is that it relies on random inputs, which means that fewer random inputs implies less statistical significance. Also, the choice of random inputs might affect the calculated \dia. We suggest that each random input is chosen according to the probability of a neural network receiving that input in the intended application. 
 Due to the nature of \dia, it is not suitable for continuous problems. Consider for instance two neural networks $\ind_1$ and $\ind_2$, used for approximating a function $g$, where $\ind_1$ and $\ind_2$ both have only a single output neuron. To tell how different $\ind_1$ and $\ind_2$ behave, it is necessary to distinguish between different values of each neural network's output neuron. Since \dia{} defines species based on the output neuron with the highest value, and we in this case only have a single output neuron in $\ind_1$ and $\ind_2$, the two neural networks will always belong to the same species $\speciesi{1}{r}$ for all $r \in \ranset$, yielding a diversity of 0.  
 
 \subsection{Complexity}
