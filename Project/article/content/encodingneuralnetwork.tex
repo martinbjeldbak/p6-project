@@ -14,9 +14,14 @@ Thus, neural networks differ only in their weights between neurons and the bias 
 We limit the weights and biases of any neural network to lie in the range $[-5,5]$.
 This is because we use the sigmoid activation function, for which the value $f(x)$ changes only a little when $x \leq -5$ and $x  \geq 5$. If a weight or bias of a neural network is encoded by the $u$ bits $b_1 b_2 \cdots b_u$, we decode its real value using the formula
 \[
-w = 5\frac{b_1(1-2b_u)2^0 b_2(1-2b_u)2^1 \cdots b_{u-1}(1-2b_u)2^{u-2}}{2^u-1}
+w = (b_12^0 + b_22^1 + \cdots + b_{u-1}2^{u-2})(1-2b_u)\frac{5}{2^u-1}
 \]
-The first $u-1$ bits each represent an increasing sequence of powers of two, and the final bit $u$ negates the entire value if set. The value is finally normalized to the range $[-5, 5]$.
+%\[
+%unsigned = b_12^0 + b_22^1 + \cdots + b_{u-1}2^{u-2}\\
+%signed = unsigned(1-2b_{u})\\
+%weight = 5\frac{signed}{2^u-1}\\
+%\]
+The first $u-1$ bits represent an increasing sequence of powers of two. The last bit $b_u$ negates the entire value if set (by the factor $(1-2b_u)$). The value is finally normalized to the range $[-5, 5]$ (by the factor $\frac{5}{2^u-1}$).
 The number of bits $u$ used to encode a weight or bias is dependent on the problem in question.
 If two chromosomes have different bit strings, we say that they have different genotypes. If the neural network they encode produces a different output for some input, we say they have different phenotypes.
 % ALso removed this friday 2014-3-21, no need to reference it twice. Possibly if there was an example on how to encode the network in the example?
