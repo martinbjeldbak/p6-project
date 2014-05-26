@@ -1,33 +1,33 @@
 \subsection{Diversity measures}
 \label{sec:diversitymeasures}
-It is often argued that the weakness of GAs is the fall in diversity over generations, often resulting in premature convergence~\cite{diaz2007empirical, 1266373,Zitzler00comparisonof}. Here, we summarise key points regarding genotypic and phenotypic diversity measures. %Afterwards, we present our own proposal for a diversity measure (\dia), and we clearly define what diversity means with this method.
+It is often argued that the weakness of GAs is the fall in diversity over generations, often resulting in premature convergence~\cite{diaz2007empirical, 1266373,Zitzler00comparisonof}. Therefore, it is important to measure diversity and be able to act accordingly to maintain a desired diversity.
+% Here, we summarise key points regarding genotypic and phenotypic diversity measures. %Afterwards, we present our own proposal for a diversity measure (\dia), and we clearly define what diversity means with this method.
 
 \subsubsection{Genotypic diversity measures}
-The genotypic diversity of a set of individuals is determined by how different their genetic structures are. To measure this type of diversity, methods to compute the distance between any two individuals' encoded bit strings are often used as diversity measures.
+To measure genotypic diversity, methods to compute the distance between any two individuals' encoded bit strings are often used as diversity measures. The diversity between a set of bit strings can then be expressed as the average distance between any two bit strings. Summation can also be used instead of averaging, which is merely a convenient optimization.
 
-The diversity between a set of bit strings can then be expressed as the average distance between any two bit strings. Summation can also be used instead of averaging, which is merely a convenient optimization.
-
-Two common methods exist to measure genotypic diversity. The \emph{Hamming distance} between two bit strings $A$ and $B$ of equal length is the number of indexes $i$, such that $A[i] \neq B[i]$. The \emph{Levenshtein distance} between these two bit strings is the number of bits that must be inserted, deleted, or substituted to change $A$ into $B$.
-
-As shown in \cref{fig:entire-eqnetwork}, two networks of different genotypes may have the exact same behaviour. One can argue that the two genotypes shown in \cref{fig:entire-eqnetwork} are in fact not that different, since only two bits are different in each substring. The Levenshtein distance measure catches this intuition better than Hamming distance. For example, the distance between between the bit strings
+Genotypic diversity can be measured using methods such as \emph{Hamming distance} and \emph{Levenshtein distance}. Hamming distance between two bit strings $A$ and $B$ of equal length is the number of indices $i$, such that $A[i] \neq B[i]$. The Levenshtein between these two bit strings is the number of bits that must be inserted, deleted, or substituted to change $A$ into $B$. To compare these two measures consider the following example 
+%As shown in \cref{fig:entire-eqnetwork}, two networks of different genotypes may have the exact same behaviour. One can argue that the two genotypes shown in \cref{fig:entire-eqnetwork} are in fact not that different, since only two bits are different in each substring.
+%To show that Levenshtein distance catches the intuition of  better than Hamming distance. For example, the distance between between the bit strings
 %
 \begin{align}
   &01010101\label{eq:bit1} \\
   &10101010\label{eq:bit2}
 \end{align}
 %
-is 8 when using Hamming distance, and 2 when using Levenshtein distance, because transforming~\ref{eq:bit1} into~\ref{eq:bit2} is done by deleting the first bit and prepending a $0$, totalling 2 operations~\cite{1250187}.
+where the difference is 8 when using Hamming distance, because all eight bits differ, and 2 when using Levenshtein distance, because transforming~(\ref{eq:bit1}) into~(\ref{eq:bit2}) is done by deleting the first bit and prepending a $0$, totalling 2 operations~\cite{1250187}.
 
-If we define \indset{} to be a set of neural networks, the complexity of calculating $h_{ij}$, where $h_{ij}$ is the Hamming distance between two neural networks $\ind_i, \ind_j \in \indset$, is \bigO{\bitstringl}, linear in the length of an encoded network's bit string $l$. The complexity of computing Hamming distance for all $\ind \in \indset$ is thus \bigO{\indsetl^2 \cdot \bitstringl}. 
+If we define \indset{} to be a set of neural networks, the complexity of calculating $h_{ij}$, where $h_{ij}$ is the Hamming distance between all pairs of neural networks $\ind_i, \ind_j \in \indset$, is \bigO{\bitstringl}, linear in the length of an encoded network's bit string $l$. The complexity of computing Hamming distance for all $\ind \in \indset$ is thus \bigO{\indsetl^2 \cdot \bitstringl}. 
 
-The complexity of calculating $v_{ij}$, where $v_{ij}$ is the Levenshtein distance between two neural networks $\ind_i, \ind_j \in \indset$ is \bigO{\bitstringl^2}\cite{Freeman:2006:CLN:1220835.1220895}. Therefore, computing the Levenshtein distance between all individuals in \indset{} yields the complexity \bigO{\indsetl^2 \cdot \bitstringl^2}.
+The complexity of calculating $v_{ij}$, where $v_{ij}$ is the Levenshtein distance between all pairs of neural networks $\ind_i, \ind_j \in \indset$ is \bigO{\bitstringl^2}\cite{Freeman:2006:CLN:1220835.1220895}. Therefore, computing the Levenshtein distance between all individuals in \indset{} yields the complexity \bigO{\indsetl^2 \cdot \bitstringl^2}.
 
 \subsubsection{Phenotypic diversity measures}
-A \emph{phenotypic diversity} measure is concerned with the individuals' behavioural differences, and can be calculated based on their fitness values. Such diversity measures include computing the standard deviation of fitness values, the average number of unique fitness values in a population, and entropy-based methods, see~\cite{1250187, 1266373}.
+%A \emph{phenotypic diversity} measure is concerned with the individuals' behavioural differences, and can be calculated based on their fitness values. 
+Phenotypic diversity measures include computing the standard deviation of fitness values, the average number of unique fitness values in a population, and entropy-based methods, see~\cite{1250187, 1266373}.
 
-One advantage of fitness-based diversity measures is that no extra computations are associated with calculating the diversity, because the fitness values already have been calculated by the GA to assess how fit each individual is~\cite{Nguyen:2006:ASPGP}.
+One advantage of fitness-based diversity measures is that no extra computations are associated with calculating the diversity, because the fitness values have already been calculated by the GA to assess how fit each individual is~\cite{Nguyen:2006:ASPGP}.
 
-Taking the precomputation of fitness values into account gives these diversity measures an advantage when it comes to complexity. To calculate the number of distinct individuals, we can use a hash table. If we assume it unlikely to have a clash between hash values and choose to ignore this, we can achieve a complexity linear in the size of the population, or \bigO{\indsetl}, for fitness-based diversity measures.
+Taking the precomputation of fitness values into account gives these diversity measures an advantage when it comes to complexity. To calculate the number of distinct individuals, we can use a hash table. If we assume it unlikely to have a clash between hash values and choose to ignore this, we can achieve a complexity of \bigO{\indsetl}, linear in the size of the population.
 
 \subsubsection{Other measurements}
 Some diversity measures exist that are neither genotypic nor phenotypic. For instance the \emph{Ancestral ID} method, which assigns a unique ID to each individual in the initial population. Every mutated individual receives a new unique ID while every child gets the ID of one of its parents. The diversity is then based on the uniqueness of IDs in a population~\cite{1250187}.
