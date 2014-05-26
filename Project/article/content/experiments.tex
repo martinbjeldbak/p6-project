@@ -1,14 +1,31 @@
 \section{Experiments}\label{sec:experiments}
-In this section, we evaluate our proposed diversity measurement (\dia) by using it to measure diversity of a population in two different environments.
+In this section, we evaluate our diversity measurement (\dia) by using it to measure diversity of a population in two different environments.
 
 In the first environment, which we refer to as the static environment, the GA does not iterate.
-For the three maximization problems introduced in \cref{sec:problems}, we create an initial population using a constrain $c$, and a significance $\alpha$. We choose $c$ such that we have an intuition about how the behavioural diversity of individuals are dependent on $\alpha$. By experimenting, we see if it is likely that \dia{} catches this dependency.
+For the three maximization problems introduced in \cref{sec:problems}, we create an initial population using a constraint $c$, and a significance $\alpha$. We choose $c$ such that we have an intuition about how the trait diversity of individuals are dependent on $\alpha$. By experimenting, we see if it is likely that \dia{} catches this dependency.
 
 In the second environment, which we refer to as the dynamic environment, the GA runs for a number of iterations on each of the three problems. 
 For each problem, we perform a test using each of the four replacement rules introduced in \cref{sec:replacementrules}.
 During all of the tests, we measure the diversity using \dia{} as well as each of the diversity measures described in \cref{sec:diversitymeasures}.
 
-By these experiments we can conclude whether the diversities returned by \dia{} better match the expected behavioural differences of the test cases, compared to the other diversity measures.
+By these experiments we can conclude whether the diversities returned by \dia{} better match the expected trait differences of the test cases, compared to the other diversity measures.
+
+\subsection{Encoding an individual}
+For each GA, any weight and bias is encoded with a fixed number of bits $q$ and $w$, respectively. The bit string is constructed in an ordered manner, such that the first $q$ bits represent the weight of the connection between the first input neuron and the first hidden neuron, the next $q$ bits represent the weight of the connection between the first input neuron and the second hidden neuron, and so forth. \Cref{fig:entire-eqnetwork} shows an example of two neural networks and the bit string that encodes each of them. If biases are used by the GA, these are encoded right after the weights, and ordered such that the first $w$ bits encode the bias of the first neuron, the next $w$ bits encode the bias of the second neuron, and so forth. 
+
+We limit the weights and biases of any neural network to lie in the range $[-5,5]$.
+This is because we use the sigmoid activation function, for which the value $f(x)$ changes only a little when $5 \leq x \leq -5$. If a weight or bias of a neural network is encoded by the $u$ bits $b_u b_{u-1} \cdots b_1$, we decode its real value using the formula
+\[
+w = (b_12^0 + b_22^1 + \cdots + b_{u-1}2^{u-2})(1-2b_u)\frac{5}{2^u-1}
+\]
+%\[
+%unsigned = b_12^0 + b_22^1 + \cdots + b_{u-1}2^{u-2}\\
+%signed = unsigned(1-2b_{u})\\
+%weight = 5\frac{signed}{2^u-1}\\
+%\]
+The first $u-1$ bits represent an increasing sequence of powers of two. The last bit $b_u$ negates the entire value if set (by the factor $(1-2b_u)$). The value is finally normalized to the range $[-5, 5]$ (by the factor $\frac{5}{2^u-1}$). The number of bits $u$ used to encode a weight or bias is dependent on the problem in question.
+
+%If we encode a weight or a bias with a single bit, we decode the bit to either \num{5} or \num{-5}, whether or not the bit is set.
 
 %All experiments are performed on three different discrete problems, which we describe in \cref{sec:problems}.
 \subsection{Parameter settings}
@@ -31,7 +48,7 @@ By these experiments we can conclude whether the diversities returned by \dia{} 
   \label{tab:gaparam}
 \end{table}
 
-We use a population size of \num{100} individuals. For each iteration, \num{100} new offspring individuals are created. Half of the offspring is cloned from a random parent. These are found by using a rank-based selection, and then mutated. The other half is made by performing crossover between two random parents, also using rank-based selection. These settings are presented in \cref{tab:gaparam}.
+We use a population size of \num{100} individuals. For each iteration, \num{100} offspring individuals are created. Half of the offspring is cloned from a random parent. The parents are chosen by using a rank-based selection, and then mutated. Rank-based selection orders individuals according to their fitness, and assigns probability of selection to each individual equal to their order, such that the most fit individual has the best chance of getting selected. The other half is made by performing crossover between two random parents, also using rank-based selection. These settings are presented in \cref{tab:gaparam}.
 
 Three crossover methods are used: one-point crossover, two-point crossover, and uniform crossover. When a new individual is chosen for creation using crossover, there is an equal chance for any of the crossover methods to be used. Each offspring created by crossover has a \perc{10} chance to be mutated. When mutating an individual, each bit in its bit string has a \perc{5} chance to be assigned a random boolean value. For specific implementation details, we refer to the source code~\cite{mbm:kmc:ekoGA}.
 

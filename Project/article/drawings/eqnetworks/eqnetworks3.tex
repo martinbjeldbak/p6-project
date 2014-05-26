@@ -6,13 +6,13 @@
     },
   ]
   \node[neuron] (i1) {};
-  \node[neuron] (h1) [below left of=i1]  {};
+  \node[neuron] (h1) [above right of=i1]  {};
   \node[neuron] (h2) [below right of=i1] {};
   \node[neuron] (o1) [below right of=h1] {};
 
   % Input and output arrows 
-  \draw[->, thick] ++(0, 1) -- (i1);
-  \draw[->, thick] (o1) -- ++(0, -1);
+  \draw[->, thick] ++(-1, 0) -- (i1);
+  \draw[->, thick] (o1) -- ++(1, 0);
 
   % Edges between nodes
   \path[->, thick]
@@ -21,5 +21,5 @@
   (h1) edge node [above] {3} (o1)
   (h2) edge node [above] {7} (o1);
 
-  \node[right = 0.25cm of h2] () {$\mathtt{0010}\; \mathtt{0100}\; \mathtt{0011}\; \mathtt{0111}$};
+  \node[below= 0.25cm of h2] () {$\mathtt{0010}\; \mathtt{0100}\; \mathtt{0011}\; \mathtt{0111}$};
 \end{tikzpicture}
