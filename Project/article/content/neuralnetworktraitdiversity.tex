@@ -2,24 +2,22 @@
 In the following, we propose a method for measuring trait diversity, which we call \emph{\di{}} (\dia). \dia{} aims to reflect the diversity of different traits among individuals. 
 
 \subsection{Algorithm}
-\dia{} is based on Simpsons Diversity Index (SDI), which is a diversity measure used in ecology to quantify the biodiversity of a habitat~\cite{simpson1949measurement}. SDI is the probability that two randomly chosen samples belong to different species\cite{Venturi2007182}. So, to calculate a SDI, we must define a method for distributing the individuals (neural networks) of a population into a number of species.
+\dia{} is based on Simpsons Diversity Index (SDI), which is a diversity measure used in ecology to quantify the biodiversity of a habitat~\cite{simpson1949measurement}. SDI is the probability that two randomly chosen samples belong to different species\cite{Venturi2007182}. To calculate SDI, we must define a method for distributing the individuals (neural networks) of a population into a number of species.
 
-Let $\indset = \set{\ind_1, \ind_2, \dots, \ind_a}$ denote the set of neural networks contained in a population, all with the same architecture of $n$ input and $m$ output neurons, and let $\ran$ be random input for the neural networks. That is, $\ran$ is an $n$-tuple. If $b_{m}b_{m-1}\dots b_1$ is the binary representation of a number $i$,
-we define the species \speciesi{i}{\ran} to contain any individual $\ind \in \indset$, that given $\ran$ as input satisfies
+Let $\indset = \set{\ind_1, \ind_2, \dots, \ind_a}$ be the set of neural networks contained in a population, all with the same architecture of $n$ input and $m$ output neurons, and let \ran{} be any random input for the neural networks. \ran{} must then be an $n$-tuple of values. If $b_{m}b_{m-1}\dots b_1$ is the binary representation of a number $i$, we define the species \speciesi{i}{\ran} to contain any individual $\ind \in \indset$, that given $\ran$ as input satisfies
 %
 \begin{equation}\label{eq:nntdbucket}
   \forall j, h \in \set{1, 2, \dots, m} \left(b_j \rightarrow \left(\nnout_j \geq \nnout_h\right)\right)
 \end{equation}
 %
 where $\nnout_k \in \nnoutset$ is the value of the $k$th output neuron of neural network \ind. As an example, assume that we have a neural network with six output neurons. If the third output neuron has the highest output when given $\ran$ as input, the neural network will belong to species $\species_4$, because the \texttt{1}s in \texttt{000100} (the binary representation of 4) matches the indices of the output neurons with the highest value. If multiple output neurons have the highest value, say the first and third output neuron, the neural network will belong to species $\species_5$ since \texttt{000101} in binary is 5 in decimal. If all output neurons have the same value, the neural network belongs to species $\species_{63}$ since \texttt{111111} in binary is 63 in decimal.
-Once each individual is assigned a single species, we calculate an SDI given $\ran$ by inserting into the formula for SDI\cite{Venturi2007182}
-
+Once each individual is assigned a single species, we calculate SDI given $\ran$ by inserting into the formula for SDI\cite{Venturi2007182}
 %
 \begin{equation*}\label{eq:nntd}
   D_x = 1 - \frac{\sum_{q \in \nemptyspeciesf{x}}\left(\sizeof{q}\left(\sizeof{q} - 1\right)\right)}{\indsetl\left(\indsetl - 1\right)}
 \end{equation*}
 %
-The \dia{} $D$ (the actual diversity) is calculated as the average SDI given a number of random inputs $\ranset = \set{\ran_1, \ran_2, \cdots, \ran_x}$
+where $Q_x = \set{\speciesi{1}{\ran_x}, \speciesi{2}{\ran_x}, \dots, \speciesi{2^{m}-1}{\ran_i}}$ is the set of species for random input $r_i$. The \dia{} $D$ (the actual diversity) is calculated as the average SDI given a number of random inputs $\ranset = \set{\ran_1, \ran_2, \cdots, \ran_x}$
 %
 \begin{equation}\label{eq:nntdavg}
   D =\frac{\sum_{x=1}^{\ransetl}{D_x}}{\ransetl}
@@ -43,6 +41,6 @@ Out of all diversity measures, the linear complexity of fitness-based measures i
 
 Comparing the complexities of Hamming distance and \dia{} allows some interesting reductions and assumptions. Upon comparison, we can remove the common factor \indset{} in both of two complexities $\bigO{\ransetl\cdot\indsetl\cdot\timet}$ of \dia{} and \bigO{\indsetl^2 \cdot \bitstringl} of Hamming distance resulting in $\bigO{\ransetl \cdot t}$ and $\bigO{\indsetl \cdot l}$, respectively. 
 
-Additionally, we can make an assumption about how the length of a bit string \bitstringl{} is related to the value \timet, which is the number of steps required to calculate the output of a neural network given an arbitrary input. Let $E$ denote the set of edges in a neural network. Each weight must be considered only once when the output of a neural network is calculated. Applying the transfer function one time can be considered a constant amount of work. In the extreme case, every neuron will only have a single input connection, hence the transfer function will be calculated at most $|E|$ times. Therefore, we have that $\timet = \bigT{\card{E}}$. If we assume that $\card{E} = \bigT{\bitstringl}$, we also get that $\timet = \bigT{\bitstringl}$. This assumption is reasonable, since it is fulfilled if the weight of each edge is separately encoded in the bit string. With this assumption, we can simplify the complexity comparison of \dia{} and Hamming distance to a comparison of the complexities \bigO{\ransetl} and \bigO{\indsetl}, respectively.
+Additionally, we can make an assumption about how the length of a bit string \bitstringl{} is related to the value \timet, which is the number of steps required to calculate the output of a neural network given an arbitrary input. Let $E$ denote the set of edges in a neural network. Each weight must be considered only once when the output of a neural network is calculated. Applying the activation function one time can be considered a constant amount of work. In the extreme case, every neuron will only have a single input connection, hence the activation function will be calculated at most $|E|$ times. Therefore, we have that $\timet = \bigT{\card{E}}$. If we assume that $\card{E} = \bigT{\bitstringl}$, we also get that $\timet = \bigT{\bitstringl}$. This assumption is reasonable, since it is fulfilled if the weight of each edge is separately encoded in the bit string. With this assumption, we can simplify the complexity comparison of \dia{} and Hamming distance to a comparison of the complexities \bigO{\ransetl} and \bigO{\indsetl}, respectively.
 
 In this manner, we can conclude that the complexities of \dia{} and Hamming distance are asymptotically the same, whenever $\ransetl = c \cdot \indsetl$ for some constant $c$. That is, whenever the number of random inputs chosen for \dia{} is a constant times the population size.
