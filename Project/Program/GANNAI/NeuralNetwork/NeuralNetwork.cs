@@ -31,11 +31,11 @@ namespace ArtificialNeuralNetwork {
             AddConnections();
         }
 
-        public NeuralNetwork(int inp, int hdn, int oup, double[] weights, double[] thresholds) {
-            if(thresholds.Length != hdn + oup)
-                throw new Exception("The amount of thresholds (" + thresholds.Length + ") needs to equal " + hdn + oup);
+        public NeuralNetwork(int inp, int hdn, int oup, double[] weights, double[] biases) {
+            if(biases.Length != hdn + oup)
+                throw new Exception("The amount of biases (" + biases.Length + ") needs to equal " + hdn + oup);
                 
-            InitiateNetwork(inp, hdn, oup, thresholds);
+            InitiateNetwork(inp, hdn, oup, biases);
             AddConnections(weights);
         }
 
@@ -58,9 +58,9 @@ namespace ArtificialNeuralNetwork {
         /// <param name="inp">Number of input neurons to be built.</param>
         /// <param name="hdn">Number of hidden neurons to be built.</param>
         /// <param name="oup">Number of output neurons to be built.</param>
-        private void InitiateNetwork(int inp, int hdn, int oup, double[] thresholds = null) {
-            if(thresholds == null)
-                thresholds = new double[hdn + oup];
+        private void InitiateNetwork(int inp, int hdn, int oup, double[] biases = null) {
+            if(biases == null)
+                biases = new double[hdn + oup];
 
             inputNeurons = new List<InputNeuron>();
             hiddenNeurons = new List<ChildNeuron>();
@@ -79,9 +79,9 @@ namespace ArtificialNeuralNetwork {
             for(int i = 0; i < inp; i++)
                 AddInput(new InputNeuron());
             for(int i = 0; i < hdn; i++)
-                AddHidden(new ChildNeuron(thresholds[i]));
+                AddHidden(new ChildNeuron(biases[i]));
             for(int i = 0; i < oup; i++)
-                AddOutput(new ChildNeuron(thresholds[hdn + i]));
+                AddOutput(new ChildNeuron(biases[hdn + i]));
         }
 
         /// <summary>

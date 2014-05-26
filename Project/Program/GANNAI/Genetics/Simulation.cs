@@ -28,7 +28,7 @@ namespace Genetics {
     public readonly int PopulationSize;
 
     /// <summary>
-    /// The chance of each single bit to be inverted when mutating a DNA string
+    /// The chance of each single bit to be inverted when mutating a chromosome string
     /// </summary>
     public readonly double MutationRate;
 

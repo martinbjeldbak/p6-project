@@ -63,7 +63,7 @@ namespace GANNAIUI {
                 StartTraining(iterations);
                 progressBar1.Value = (int)(((confParser.getProgress() * (i+1)) / runs) * 100);
                 if (saveToDBButton.Checked)
-                    obs.SaveBestBitstring(simulation.GetBest().DNA.Bitstring, simulation.GetBest().GetFitness());
+                    obs.SaveBestBitstring(simulation.GetBest().Chromosome.Bitstring, simulation.GetBest().GetFitness());
             }
             PrintFitnessValues();
             visualizeButton.Enabled = true;
@@ -174,12 +174,12 @@ namespace GANNAIUI {
             return;
         }
         NNMaker nnMaker = new SimpleNNMaker(game);
-        if (bitstring.Length != nnMaker.DNALength())
-            MessageBox.Show("Clipboard text has length "+bitstring.Length+", required bitstring length is "+nnMaker.DNALength());
+        if (bitstring.Length != nnMaker.ChromosomeLength())
+            MessageBox.Show("Clipboard text has length "+bitstring.Length+", required bitstring length is "+nnMaker.ChromosomeLength());
         else if (bitstring.Any(p => (p != '0' && p != '1')))
             MessageBox.Show("Clipboard text does not only contain 0's and 1's");
         else{
-            AIPlayer aip = new AIPlayer(new DNA(Clipboard.GetText()), nnMaker);
+            AIPlayer aip = new AIPlayer(new Chromosome(Clipboard.GetText()), nnMaker);
             game.Visualize(aip, form);
         }
     }

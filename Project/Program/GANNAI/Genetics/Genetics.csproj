@@ -83,7 +83,7 @@
     <Compile Include="RankMethod.cs" />
     <Compile Include="Simulation.cs" />
     <Compile Include="Neural network makers\SimpleNNMaker.cs" />
-    <Compile Include="DNA.cs" />
+    <Compile Include="Chromosome.cs" />
     <Compile Include="NNMaker.cs" />
     <Compile Include="Population.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

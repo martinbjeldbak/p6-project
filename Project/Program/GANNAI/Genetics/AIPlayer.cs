@@ -12,38 +12,38 @@ namespace Genetics {
     
     public NeuralNetwork neuralNetwork { get; private set; }
     public readonly AIPlayer Parent1, Parent2;
-    public DNA DNA { get; private set; }
+    public Chromosome Chromosome { get; private set; }
     private double fitness;
 
     /// <summary>
-    /// Makes a new individual with a random DNA
+    /// Makes a new individual with a random chromosome
     /// </summary>
-    /// <param name="random">true if DNA string should be random, false if no DNA string should be made</param>
+    /// <param name="random">true if chromosome string should be random, false if no chromosome string should be made</param>
     public AIPlayer(NNMaker neuralNetworkMaker) {
-      DNA = new DNA(neuralNetworkMaker.DNALength());
-      neuralNetwork = neuralNetworkMaker.MakeNeuralNetwork(DNA);
+      Chromosome = new Chromosome(neuralNetworkMaker.ChromosomeLength());
+      neuralNetwork = neuralNetworkMaker.MakeNeuralNetwork(Chromosome);
       fitness = -1;
     }
 
     /// <summary>
-    /// Sets a predefined DNA for the AIPlayer
+    /// Sets a predefined chromosome for the AIPlayer
     /// </summary>
-    /// <param name="dna"></param>
-    public AIPlayer(DNA dna, NNMaker neuralNetworkMaker) {
-      neuralNetwork = neuralNetworkMaker.MakeNeuralNetwork(dna);
-      DNA = dna;
+    /// <param name="chromosome"></param>
+    public AIPlayer(Chromosome chromosome, NNMaker neuralNetworkMaker) {
+      neuralNetwork = neuralNetworkMaker.MakeNeuralNetwork(chromosome);
+      Chromosome = chromosome;
       fitness = -1;
     }
 
     /// <summary>
-    /// Sets a predefined DNA for the AIPlayer
+    /// Sets a predefined chromosome for the AIPlayer
     /// </summary>
-    /// <param name="dna"></param>
-    public AIPlayer(DNA dna, AIPlayer parent1, AIPlayer parent2, NNMaker neuralNetworkMaker) {
+    /// <param name="chromosome"></param>
+    public AIPlayer(Chromosome chromosome, AIPlayer parent1, AIPlayer parent2, NNMaker neuralNetworkMaker) {
       Parent1 = parent1;
       Parent2 = parent2;
-      neuralNetwork = neuralNetworkMaker.MakeNeuralNetwork(dna);
-      DNA = dna;
+      neuralNetwork = neuralNetworkMaker.MakeNeuralNetwork(chromosome);
+      Chromosome = chromosome;
       fitness = -1;
     }
 

@@ -6,24 +6,24 @@ using Utility;
 
 namespace Genetics {
   public class UniformCrossover : CrossoverMethod{
-    public override DNA Cross(DNA dna1, DNA dna2) {
-      if (dna1.Bitstring.Length != dna2.Bitstring.Length)
+    public override Chromosome Cross(Chromosome chromosome1, Chromosome chromosome2) {
+      if (chromosome1.Bitstring.Length != chromosome2.Bitstring.Length)
         throw new Exception("The two bitstrings must have same length to be crossed");
-      bool[] result = new bool[dna1.Bitstring.Length];
+      bool[] result = new bool[chromosome1.Bitstring.Length];
       int ancestor1bits = 0;
-      for (int i = 0; i < dna1.Bitstring.Length; i++){
+      for (int i = 0; i < chromosome1.Bitstring.Length; i++){
         if (RandomNum.RandomBool()) {
-          result[i] = dna1.Bitstring[i];
+          result[i] = chromosome1.Bitstring[i];
           ancestor1bits++;
         }
         else {
-          result[i] = dna2.Bitstring[i];
+          result[i] = chromosome2.Bitstring[i];
         }
       }
 
 
-      //return the new DNA string
-      return new DNA(result);
+      //return the new chromosome string
+      return new Chromosome(result);
     }
   }
 }

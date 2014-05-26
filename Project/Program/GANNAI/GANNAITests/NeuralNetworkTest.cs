@@ -9,12 +9,12 @@ namespace GANNAITests {
   public class ArtificialNeuralNetworkTest {
 
     [Test()]
-    public void TestOutputOnDNA() {
+    public void TestOutputOnChromosome() {
       AITrainableGame game = new GameWith7Inputs8Outputs();
 
       NNMaker nnMaker = new SimpleNNMaker(game);
-      DNA dna = new DNA(nnMaker.DNALength());
-      NeuralNetwork neuralNetwork = nnMaker.MakeNeuralNetwork(dna);
+      Chromosome chromosome = new Chromosome(nnMaker.ChromosomeLength());
+      NeuralNetwork neuralNetwork = nnMaker.MakeNeuralNetwork(chromosome);
 
       double[] input = new double[7];
       double[] lastInput = new double[7];

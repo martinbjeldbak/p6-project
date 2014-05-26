@@ -62,25 +62,25 @@ namespace Genetics {
             List<AIPlayer> newlyBred = new List<AIPlayer>();
             for (int i = 0; i < mutations; i++) {
                 AIPlayer parent = SelectIndividualRankBased();
-                DNA newDNA = parent.DNA.GetMutated(Simulation.MutationRate);
-                AIPlayer toAdd = new AIPlayer(newDNA, parent, null, Simulation.NeuralNetworkMaker);
+                Chromosome newChromosome = parent.Chromosome.GetMutated(Simulation.MutationRate);
+                AIPlayer toAdd = new AIPlayer(newChromosome, parent, null, Simulation.NeuralNetworkMaker);
                 newlyBred.Add(toAdd);
             }
             for (int i = 0; i < crossovers; i++) {
                 AIPlayer parent1 = SelectIndividualRankBased();
                 AIPlayer parent2 = SelectIndividualRankBased();
                 CrossoverMethod crossoverMethod = Simulation.RandomCrossoverMethod();
-                DNA crossedDNA = crossoverMethod.Cross(parent1.DNA, parent2.DNA);
-                AIPlayer toAdd = new AIPlayer(crossedDNA, parent1, parent2, Simulation.NeuralNetworkMaker);
+                Chromosome crossedChromosome = crossoverMethod.Cross(parent1.Chromosome, parent2.Chromosome);
+                AIPlayer toAdd = new AIPlayer(crossedChromosome, parent1, parent2, Simulation.NeuralNetworkMaker);
                 newlyBred.Add(toAdd);
             }
             for (int i = 0; i < crossoverMutations; i++) {
                 AIPlayer parent1 = SelectIndividualRankBased();
                 AIPlayer parent2 = SelectIndividualRankBased();
                 CrossoverMethod crossoverMethod = Simulation.RandomCrossoverMethod();
-                DNA crossedDNA = crossoverMethod.Cross(parent1.DNA, parent2.DNA);
-                DNA crossedAndMutatedDNA = crossedDNA.GetMutated(Simulation.MutationRate);
-                AIPlayer toAdd = new AIPlayer(crossedAndMutatedDNA, parent1, parent2, Simulation.NeuralNetworkMaker);
+                Chromosome crossedChromosome = crossoverMethod.Cross(parent1.Chromosome, parent2.Chromosome);
+                Chromosome crossedAndMutatedChromosome = crossedChromosome.GetMutated(Simulation.MutationRate);
+                AIPlayer toAdd = new AIPlayer(crossedAndMutatedChromosome, parent1, parent2, Simulation.NeuralNetworkMaker);
                 newlyBred.Add(toAdd);
             }
 
@@ -110,10 +110,10 @@ namespace Genetics {
             individuals.Add(cloneIndividual);
             int cloneSize = (int)(cloneRate * Simulation.PopulationSize);
             for (int i = 1; i < cloneSize; i++) {
-                DNA cloneDNA = cloneIndividual.DNA.Clone();
+                Chromosome clonedChromosome = cloneIndividual.Chromosome.Clone();
                 if (mutateRate > 0.0)
-                    cloneDNA = cloneDNA.GetMutated(mutateRate);
-                cloneIndividual = new AIPlayer(cloneDNA, Simulation.NeuralNetworkMaker);
+                    clonedChromosome = clonedChromosome.GetMutated(mutateRate);
+                cloneIndividual = new AIPlayer(clonedChromosome, Simulation.NeuralNetworkMaker);
                 cloneIndividual.CalcFitness(Simulation.Game);
                 individuals.Add(cloneIndividual);
             }

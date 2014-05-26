@@ -6,7 +6,7 @@ using ArtificialNeuralNetwork;
 
 namespace Genetics {
   public interface NNMaker {
-    int DNALength();
-    NeuralNetwork MakeNeuralNetwork(DNA dna);
+    int ChromosomeLength();
+    NeuralNetwork MakeNeuralNetwork(Chromosome chromosome);
   }
 }

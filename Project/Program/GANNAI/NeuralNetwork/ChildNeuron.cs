@@ -11,8 +11,8 @@ namespace ArtificialNeuralNetwork {
     public class ChildNeuron : Neuron {
         public double Bias { get; private set; }
 
-        public ChildNeuron(double threshold) {
-            this.Bias = threshold;
+        public ChildNeuron(double bias) {
+            this.Bias = bias;
         }
 
         public ChildNeuron() { }
