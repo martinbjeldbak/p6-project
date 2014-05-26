@@ -1,22 +1,21 @@
 \subsection{Diversity measures}
 \label{sec:diversitymeasures}
-It is often argued that the weakness of GAs is the fall in diversity over generations, often resulting in premature convergence~\cite{diaz2007empirical, 1266373,Zitzler00comparisonof}. Here, we summarise key points regarding genotypic and phenotypic diversity measures. %Afterwards, we present our own proposal for a diversity measure (\dia), and we clearly define what diversity means with this method.
+It is often argued that the weakness of GAs is the fall in diversity over generations, often resulting in premature convergence~\cite{diaz2007empirical, 1266373,Zitzler00comparisonof}. Therefore, it is important to measure diversity and be able to act accordingly to maintain a desired diversity.
+% Here, we summarise key points regarding genotypic and phenotypic diversity measures. %Afterwards, we present our own proposal for a diversity measure (\dia), and we clearly define what diversity means with this method.
 
 \subsubsection{Genotypic diversity measures}
-The genotypic diversity of a set of individuals is determined by how different their genetic structures are. To measure this type of diversity, methods to compute the distance between any two individuals' encoded bit strings are often used as diversity measures.
+To measure genotypic diversity, methods to compute the distance between any two individuals' encoded bit strings are often used as diversity measures. The diversity between a set of bit strings can then be expressed as the average distance between any two bit strings. Summation can also be used instead of averaging, which is merely a convenient optimization.
 
-The diversity between a set of bit strings can then be expressed as the average distance between any two bit strings. Summation can also be used instead of averaging, which is merely a convenient optimization.
-
-Two common methods exist to measure genotypic diversity. The \emph{Hamming distance} between two bit strings $A$ and $B$ of equal length is the number of indexes $i$, such that $A[i] \neq B[i]$. The \emph{Levenshtein distance} between these two bit strings is the number of bits that must be inserted, deleted, or substituted to change $A$ into $B$.
-
-As shown in \cref{fig:entire-eqnetwork}, two networks of different genotypes may have the exact same behaviour. One can argue that the two genotypes shown in \cref{fig:entire-eqnetwork} are in fact not that different, since only two bits are different in each substring. The Levenshtein distance measure catches this intuition better than Hamming distance. For example, the distance between between the bit strings
+Genotypic diversity can be measured using methods such as \emph{Hamming distance} and \emph{Levenshtein distance}. Hamming distance between two bit strings $A$ and $B$ of equal length is the number of indices $i$, such that $A[i] \neq B[i]$. The Levenshtein between these two bit strings is the number of bits that must be inserted, deleted, or substituted to change $A$ into $B$. To compare these two measures consider the following example 
+%As shown in \cref{fig:entire-eqnetwork}, two networks of different genotypes may have the exact same behaviour. One can argue that the two genotypes shown in \cref{fig:entire-eqnetwork} are in fact not that different, since only two bits are different in each substring.
+%To show that Levenshtein distance catches the intuition of  better than Hamming distance. For example, the distance between between the bit strings
 %
 \begin{align}
   &01010101\label{eq:bit1} \\
   &10101010\label{eq:bit2}
 \end{align}
 %
-is 8 when using Hamming distance, and 2 when using Levenshtein distance, because transforming~\ref{eq:bit1} into~\ref{eq:bit2} is done by deleting the first bit and prepending a $0$, totalling 2 operations~\cite{1250187}.
+where the difference is 8 when using Hamming distance, because all eight bits differ, and 2 when using Levenshtein distance, because transforming~(\ref{eq:bit1}) into~(\ref{eq:bit2}) is done by deleting the first bit and prepending a $0$, totalling 2 operations~\cite{1250187}.
 
 If we define \indset{} to be a set of neural networks, the complexity of calculating $h_{ij}$, where $h_{ij}$ is the Hamming distance between two neural networks $\ind_i, \ind_j \in \indset$, is \bigO{\bitstringl}, linear in the length of an encoded network's bit string $l$. The complexity of computing Hamming distance for all $\ind \in \indset$ is thus \bigO{\indsetl^2 \cdot \bitstringl}. 
 
