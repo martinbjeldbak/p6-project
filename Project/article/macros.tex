@@ -34,11 +34,8 @@
 \newcommand{\nninset}{\ensuremath{I}} % set of input neuraons
 \newcommand{\nninsetl}{\ensuremath{\card{\nninset}}}
 
-\newcommand{\bucketset}{\ensuremath{S}} % set of species
-\newcommand{\bucketsetl}{\ensuremath{\card{\bucketset}}}
-\newcommand{\species}{\ensuremath{\bucketset}} % set of species (S)
-\newcommand{\speciesi}[2]{\ensuremath{\species_{#1}\left(#2\right)}} % set of species
-\newcommand{\speciesiq}[2]{\ensuremath{#1\left(#2\right)}} % set of species
+\newcommand{\species}[2]{\ensuremath{S_{#1}\left(#2\right)}} % species S_1(r)
+\newcommand{\speciesi}[2]{\species{#1}{#2}} 
 
 \newcommand{\nemptyspeciesset}{\ensuremath{Q}}
 \newcommand{\nemptyspeciessetl}{\ensuremath{\card{\nemptyspeciesset}}}
