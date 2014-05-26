@@ -2,8 +2,6 @@
 %Many methods have been proposed to overcome the problem of gradually decreasing diversity through generations. 
 Methods to overcome decreasing diversity in a population include inserting random immigrants (randomly initialized individuals)~\cite{Cobb93geneticalgorithms}, using complex population structures to lower the gene flow, and the use of special selection procedures~\cite{ursem2002diversity, DeJong:1975:ABC:907087}, known as crowding. How a particular crowding method works is commonly described by a replacement rule.
 
-The replacement rule determines which individuals of the $i$th generation \generation{i}, and their offspring \offspring{i} are selected to form the next generation \generation{i+1}.
-
 \subsubsection{Greedy}
 Common descriptions of GAs that do not try to account for premature convergence,
 construct generation \generation{i} from the $n$ most fit individuals from $\generation{i-1} \cup \offspring{i-1}$, where $n$ is a fixed population size. We will refer to this as the \emph{Greedy replacement rule}~\cite{masterThesisGANN}.
