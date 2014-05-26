@@ -29,9 +29,9 @@ namespace Genetics.DiversityMeasures {
             int hammingTotal = 0;
             for (int i = 0; i < size; i++)
                 for (int p = i + 1; p < size; p++)
-                    hammingTotal += SingleHammingDistance(individuals.Get(i).DNA.Bitstring, individuals.Get(p).DNA.Bitstring);
+                    hammingTotal += SingleHammingDistance(individuals.Get(i).Chromosome.Bitstring, individuals.Get(p).Chromosome.Bitstring);
             //calculate average between any two strings, and normalize to lie in range 0.0-1.0
-            int maxVal = individuals.Get(0).DNA.Bitstring.Length;
+            int maxVal = individuals.Get(0).Chromosome.Bitstring.Length;
             return (hammingTotal / (double)(size * (size - 1) / 2)) / maxVal;
         }
 

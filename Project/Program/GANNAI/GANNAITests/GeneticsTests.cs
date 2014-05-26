@@ -9,11 +9,11 @@ namespace GANNAITests {
     [TestFixture()]
     public class GeneticsTests {
       [Test()]
-      public void TestDNA() {
-        DNA a = new DNA(1000);
-        DNA b = new DNA(1000);
+      public void TestChromosome() {
+        Chromosome a = new Chromosome(1000);
+        Chromosome b = new Chromosome(1000);
         SinglePointCrossover spc = new SinglePointCrossover();
-        DNA c = spc.Cross(a, b);
+        Chromosome c = spc.Cross(a, b);
         for (int i = 0; i < c.Length; i++) {
           Assert.IsTrue(c.GetValue(i) == a.GetValue(i) || c.GetValue(i) == b.GetValue(i));
         }

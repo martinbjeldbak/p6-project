@@ -11,12 +11,12 @@ namespace Genetics.DiversityMeasures {
         #region IDiversityMeasure implementation
 
         public double MeasureDiversity(Utility.SortList<AIPlayer> individuals) {
-            int maxDist = individuals.Get(0).DNA.Length;
+            int maxDist = individuals.Get(0).Chromosome.Length;
             int count = individuals.Count;
             double sum = 0;
             for (int i = 0; i < count; i++) {
                 for (int p = i + 1; p < count; p++)
-                    sum += LevenshteinDistance(individuals.Get(i).DNA.Bitstring, individuals.Get(p).DNA.Bitstring);
+                    sum += LevenshteinDistance(individuals.Get(i).Chromosome.Bitstring, individuals.Get(p).Chromosome.Bitstring);
             }
             //calculate average distance between any two strings, and normalize to lie in range 0.0-1.0
             return (sum / (count * (count - 1) / 2)) / maxDist;

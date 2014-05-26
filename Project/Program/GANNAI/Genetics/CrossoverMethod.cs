@@ -5,6 +5,6 @@ using System.Text;
 
 namespace Genetics {
   public abstract class CrossoverMethod {
-    public abstract DNA Cross(DNA dna1, DNA dna2);
+    public abstract Chromosome Cross(Chromosome chromosome1, Chromosome chromosome2);
   }
 }

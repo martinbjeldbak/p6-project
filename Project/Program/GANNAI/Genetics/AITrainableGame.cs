@@ -32,7 +32,7 @@ namespace Genetics {
     int BitsPerWeight();
 
       /// <summary>
-      /// The number of bits used to encode the threshold of hidden and output neurons
+      /// The number of bits used to encode the bias of hidden and output neurons
       /// </summary>
       /// <returns></returns>
     int BitsPerBias();
