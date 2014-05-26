@@ -27,7 +27,7 @@ Phenotypic diversity measures include computing the standard deviation of fitnes
 
 One advantage of fitness-based diversity measures is that no extra computations are associated with calculating the diversity, because the fitness values have already been calculated by the GA to assess how fit each individual is~\cite{Nguyen:2006:ASPGP}.
 
-Taking the precomputation of fitness values into account gives these diversity measures an advantage when it comes to complexity. To calculate the number of distinct individuals, we can use a hash table. If we assume it unlikely to have a clash between hash values and choose to ignore this, we can achieve a complexity linear in the size of the population, or \bigO{\indsetl}, for fitness-based diversity measures.
+Taking the precomputation of fitness values into account gives these diversity measures an advantage when it comes to complexity. To calculate the number of distinct individuals, we can use a hash table. If we assume it unlikely to have a clash between hash values and choose to ignore this, we can achieve a complexity of \bigO{\indsetl}, linear in the size of the population.
 
 \subsubsection{Other measurements}
 Some diversity measures exist that are neither genotypic nor phenotypic. For instance the \emph{Ancestral ID} method, which assigns a unique ID to each individual in the initial population. Every mutated individual receives a new unique ID while every child gets the ID of one of its parents. The diversity is then based on the uniqueness of IDs in a population~\cite{1250187}.
