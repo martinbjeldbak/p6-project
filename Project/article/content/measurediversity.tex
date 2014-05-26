@@ -17,9 +17,9 @@ Genotypic diversity can be measured using methods such as \emph{Hamming distance
 %
 where the difference is 8 when using Hamming distance, because all eight bits differ, and 2 when using Levenshtein distance, because transforming~(\ref{eq:bit1}) into~(\ref{eq:bit2}) is done by deleting the first bit and prepending a $0$, totalling 2 operations~\cite{1250187}.
 
-If we define \indset{} to be a set of neural networks, the complexity of calculating $h_{ij}$, where $h_{ij}$ is the Hamming distance between two neural networks $\ind_i, \ind_j \in \indset$, is \bigO{\bitstringl}, linear in the length of an encoded network's bit string $l$. The complexity of computing Hamming distance for all $\ind \in \indset$ is thus \bigO{\indsetl^2 \cdot \bitstringl}. 
+If we define \indset{} to be a set of neural networks, the complexity of calculating $h_{ij}$, where $h_{ij}$ is the Hamming distance between all pairs of neural networks $\ind_i, \ind_j \in \indset$, is \bigO{\bitstringl}, linear in the length of an encoded network's bit string $l$. The complexity of computing Hamming distance for all $\ind \in \indset$ is thus \bigO{\indsetl^2 \cdot \bitstringl}. 
 
-The complexity of calculating $v_{ij}$, where $v_{ij}$ is the Levenshtein distance between two neural networks $\ind_i, \ind_j \in \indset$ is \bigO{\bitstringl^2}\cite{Freeman:2006:CLN:1220835.1220895}. Therefore, computing the Levenshtein distance between all individuals in \indset{} yields the complexity \bigO{\indsetl^2 \cdot \bitstringl^2}.
+The complexity of calculating $v_{ij}$, where $v_{ij}$ is the Levenshtein distance between all pairs of neural networks $\ind_i, \ind_j \in \indset$ is \bigO{\bitstringl^2}\cite{Freeman:2006:CLN:1220835.1220895}. Therefore, computing the Levenshtein distance between all individuals in \indset{} yields the complexity \bigO{\indsetl^2 \cdot \bitstringl^2}.
 
 \subsubsection{Phenotypic diversity measures}
 %A \emph{phenotypic diversity} measure is concerned with the individuals' behavioural differences, and can be calculated based on their fitness values. 
