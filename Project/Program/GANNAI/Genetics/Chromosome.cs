@@ -143,7 +143,7 @@ namespace Genetics {
             throw new Exception("Error when calculating double from bit string. To was greater than Chromosome length: " + Length);
         
         //find out how many bits are used in the increasing sequence of powers of two
-        int aggregateBits = from == to ? 1 : from - to; //If length is only 1 bit, that bit will be used for both negation and aggregation
+        int aggregateBits = from == to ? 1 : to - from; //If length is only 1 bit, that bit will be used for both negation and aggregation
         double maxVal = Math.Pow(2, aggregateBits) - 1;
         int result = 0;
         for (int i = 0; i < aggregateBits; i++) //sum power of 2's from aggregate bits
