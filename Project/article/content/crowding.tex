@@ -17,12 +17,12 @@ construct generation \generation{i} from the $n$ most fit individuals from $\gen
 %To avoid that these $2+y$ similar individuals are all selected for the next generation $G_{i+1}$, the probabilistic crowding %replacement rule can be used to select only $y$ of these individuals to survive, in an attempt to maintain a higher diversity.
 
 \subsubsection{Ancestor Elitism}
-The Ancestor Elitism replacement rule is similar to $\left(\mu + \lambda\right)$ and generation gap algorithms, but we developed it independently of these algorithms~\cite{Luke2013Metaheuristics}.
+The Ancestor Elitism replacement rule is similar to $\left(\mu + \lambda\right)$ and generation gap algorithms~\cite{Luke2013Metaheuristics}, but we developed it independently of these algorithms.
 
 Generation \generation{i+1} is made from generation \generation{i} as follows: every individual from \generation{i} is put into \generation{i+1}. Any offspring individual in \offspring{i} who only has a single parent (made from mutation) and is more fit than its parent, will replace that parent in \generation{i+1}. Any individual in \offspring{i} who has two parents (made from crossover) and is more fit than both of its parents, will replace both parents in \generation{i+1} by itself and a random immigrant. Finally, the \perc{50} least fit individuals in \generation{i+1} are replaced by random immigrants.
 
 \subsubsection{Single Parent Elitism}
-Single Parent Elitism is similar to Restricted Tournament Selection, but we developed it independently of that method~\cite{Luke2013Metaheuristics}.
+Single Parent Elitism is similar to Restricted Tournament Selection~\cite{Luke2013Metaheuristics}, but we developed it independently of that method.
 
 \generation{i+1} is made from \generation{i} as follows: every individual from \generation{i} is put into \generation{i+1}. Any individual in \offspring{i} who only has a single parent (made from mutation) and is more fit than its parent, will replace that parent in \generation{i+1}. Any individual in \offspring{i} who has two parents (made from crossover), and is more fit than a randomly chosen parent, will replace its parent in \generation{i+1} by itself.
 
