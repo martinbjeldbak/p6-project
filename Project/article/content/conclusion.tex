@@ -6,9 +6,7 @@ Here, we have shown how two individuals of different genotypes can have the exac
 We have performed and compared a number of experiments to test our own diversity measure, which we call \di{} (\dia{}).
 For each diversity measure, we performed a test using each of the four replacement rules: the Greedy, Ancestor Elitism, Single Parent Elitism, and Mass Extinction Explore Exploit replacement rules. These experiments indicate that fitness-based diversity measures are unpredictable.
 
-When it comes to \dia{}, which is a phenotypic measure, and Hamming distance, which is a genotypic measure, we observe something interesting. It as if these two measures follow each other in a manner.
-This only holds for tests performed in a dynamic environment though. 
-In real world applications, like those investigated in the dynamic tests, there might be some connection between Hamming distance and \dia{}.
+When it comes to \dia{}, which is a phenotypic measure, and Hamming distance, which is a genotypic measure, we observe something interesting. For all the dynamic experiments, we see that the slopes of each replacement rule looks similar. In real world applications, like those investigated in the dynamic tests, there might be some connection between Hamming distance and \dia{}.
 
 From tests performed in a static environment, we saw that even a slight mutation among chromosomes of identical individuals caused a major peak in \dia{}, but only a small change in Hamming distance.
 We think it makes sense that even a small change in an individual's genotype can cause a significant change in its behaviour. Consider for instance changing just a single bit of a chromosome. This bit could be a sign bit that causes a significant change to the neural network's behaviour, or it could cause no change at all.
