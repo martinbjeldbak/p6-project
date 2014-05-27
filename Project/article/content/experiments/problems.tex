@@ -5,7 +5,7 @@ We hereby explain the three discrete problems we perform our experiments on. The
 \subsubsection{XOR}
 We use a neural network to approximate the XOR operator between two 8-bit strings. To evaluate the fitness of an individual solving this problem, we calculate the XOR of \num{1000} random two 8-bit strings. For each instance, we determine how many bits the individual calculates correctly. The fitness is then defined as the average number of bits correctly calculated. For the 8-bit XOR problem, any fitness value will thus be a real number in the range $[0, 8]$. The XOR between two bits of random values has equal probability of yielding the value 0 or 1. Therefore, randomly guessing a solution to the XOR between two bit strings of length 8 is expected to yield a fitness of 4.
 
-The network has 16 input neurons, 16 hidden neurons, 8 output neurons, 2 bits per weight, and 1 bit per bias for each hidden and output neuron. We represent the two 8-bit strings as being side by side. So, any output neuron $i$ represents the XOR between the two input neurons $i$ and $i + 8$. 
+The network has 16 input neurons, 16 hidden neurons, 8 output neurons, 3 bits per weight, and 1 bit per bias for each hidden and output neuron. We represent the two 8-bit strings as being side by side. So, any output neuron $i$ represents the XOR between the two input neurons $i$ and $i + 8$. 
 
 We have used as few neurons and bits to represent weights and biases as possible, while still being able to guarantee that the maximum fitness value of 8 is achievable.
 The same random seed is always used for generating the 1000 problem instances.

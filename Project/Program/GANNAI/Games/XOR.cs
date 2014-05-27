@@ -15,7 +15,7 @@ namespace Games {
       /// Initialiases a problem instance of finding the XOR between 2 strings of x bits
       /// </summary>
       /// <param name="bits"></param>
-    public XOR(int bits = 1) {
+    public XOR(int bits = 8) {
         this.bits = bits;
     }
 
