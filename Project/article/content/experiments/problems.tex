@@ -3,7 +3,7 @@
 We hereby explain the three discrete problems we perform our experiments on. The first problem of approximating the XOR function is interesting, since it is the simplest boolean function that is not linearly separable. This fact has made it quite popular in neural network research communities~\cite{masterThesisGANN}. Next is the classification of leaves from a dataset in the UCI Machine Learning Repository, which is interesting because it is radically different from the XOR problem. XOR is a simple and well defined function, whereas classifying leaves is more complex and depends on observations in nature, which may contain noise. Finally, the Snake game differs in that it is an agent decision problem, where each decision changes the information available to the agent.
 
 \subsubsection{XOR}
-We use a neural network to approximate the XOR operator between two 8-bit strings. To evaluate the fitness of an individual solving this problem, we calculate the XOR of \num{1000} random two 8-bit strings. For each instance, we determine how many bits the individual calculates correctly. The fitness is then defined as the average number of bits correctly calculated. For the 8-bit XOR problem, any fitness value will thus be a real number in the range $[0, 8]$. The XOR between two bits of random values has equal probability of yielding the value 0 or 1. Therefore, randomly guessing a solution to the XOR between two bit strings of length 8 is expected to yield a fitness of 4.
+We use a neural network to approximate the XOR operator between two 8-bit strings. To evaluate the fitness of an individual solving this problem, we calculate the XOR of \num{1000} random two 8-bit strings. For each instance, we determine how many bits the individual calculates correctly. The fitness is defined as the average number of bits correctly calculated for each pair of strings. For the 8-bit XOR problem, any fitness value will thus be a real number in the range $[0, 8]$. The XOR between two bits of random values has equal probability of yielding the value 0 or 1. Therefore, randomly guessing a solution to the XOR between two 8-bit strings is expected to yield a fitness of 4 in the average case.
 
 The network has 16 input neurons, 16 hidden neurons, 8 output neurons, 3 bits per weight, and 1 bit per bias for each hidden and output neuron. We represent the two 8-bit strings as being side by side. So, any output neuron $i$ represents the XOR between the two input neurons $i$ and $i + 8$. 
 
@@ -14,18 +14,18 @@ The same random seed is always used for generating the 1000 problem instances.
 This problem requires classifying instances from the Leaf data set from the UCI Learning Repository~\cite{Bache+Lichman:2013, leafdataset}. The individuals are given 16 properties about a leaf and have to decide between 40 types of leaves. Fitness is evaluated based on how many instances out of the entire data set the neural network correctly classifies. The implementation consists of 16 input neurons, 10 hidden and 40 output neurons. The output neuron with the highest value decides the classification. Each weight is encoded by 9 bits and neurons have no bias.
 
 \subsubsection{Snake}
-Snake is a game found on old Nokia cell phones, where the player controls a snake around a grid to pick up pieces of food.
+Snake is a game found on old Nokia cell phones, where you control a snake around a grid to pick up pieces of food.
 Every time a piece of food is collected, both the length of the snake and your score increases by 1.
 You lose if the snake head hits its body or one of the edges of the grid.
 At all times, the grid contains only a single piece of food.
-The game becomes harder as the length of the snake increases, and, as the snake is constantly moving, the challenge in not trapping oneself gets tougher.
+The game becomes harder as the length of the snake increases and, as the snake is constantly moving, the challenge in not trapping oneself gets tougher.
 
 We use a neural network to play a game of Snake in a $10 \times 10$ grid with an initial snake length of 5 units.
 We have defined the fitness of a neural network to be 
 \[
   \rho + \frac{\rho}{s/1000}
 \]
-where $\rho$ is the amount of collected food, and $s$ is the total number of steps the snake has been alive. The game is constrained such that the snake can only change its direction \SI{90}{\degree} per step. The neural network has 6 input neurons, each receiving information about the game's state. The first two inputs are relative to the snake's head. So, if the food is vertically and horizontally aligned with the head, then these two input values are 0. The other 4 inputs correspond to each of the perpendicular moves and are boolean values denoting whether the game will end upon moving a direction, as shown by
+where $\rho$ is the amount of collected food, and $s$ is the total number of steps the snake has been alive. The game is constrained such that the snake can only change its direction \SI{90}{\degree} per step. The neural network has 6 input neurons, each receiving information about the game's state, as shown by
 \begin{enumerate}
   \item \set{-1, 0, 1} food is left of, verti.\ aligned, or right of
   \item \set{-1, 0, 1} food is above, hori.\ aligned, or below
@@ -34,6 +34,6 @@ where $\rho$ is the amount of collected food, and $s$ is the total number of ste
   \item \set{0, 1} death upon moving right
   \item \set{0, 1} death upon moving left 
 \end{enumerate}
-The neural network has 4 output neurons, one for each perpendicular direction. The neuron with the highest value determines which direction the snake moves.
+where the first two inputs are relative to the snake's head, giving information of the whereabouts of the food in the grid. The neural network has 4 output neurons, one for each direction. The neuron with the highest value determines which direction the snake moves.
 The neural network uses 5 hidden neurons, 9 bits per weight and neurons have no bias.
 For every game of Snake, we always use the same random seed to decide the positions where pieces of food will spawn.
