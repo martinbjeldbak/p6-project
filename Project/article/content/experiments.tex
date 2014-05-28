@@ -6,7 +6,7 @@ For the three maximization problems introduced in \cref{sec:problems}, we create
 
 In the second environment, which we refer to as the dynamic environment, the GA runs for a number of iterations on each of the three problems. 
 For each problem, we perform an experiment using each of the four replacement rules introduced in \cref{sec:replacementrules}.
-During all of the experiments, we measure the diversity using \dia{} as well as each of the diversity measures described in \cref{sec:diversitymeasures}.
+During all of the experiments, we measure the diversity using \dia{} as well as each of the diversity measures described in \cref{sec:diversitymeasures}, except Levenshtein because it is too computationally expensive.
 
 By these experiments we can conclude whether the diversities returned by \dia{} better match the expected trait differences of the problems under study, compared to the other diversity measures.
 
@@ -15,7 +15,7 @@ For each neural network, any weight and bias is encoded with a fixed number of b
 
 We limit the weights between neurons and biases of any neuron to lie in the range $[-5,5]$.
 This is because we use the sigmoid activation function, for which the value $f(x)$ changes only a little when $5 \leq x \leq -5$. If a weight or bias is encoded by the $u$ bits $b_u b_{u-1} \cdots b_1$, we decode its real value $w$ using the formula
-
+%
 \begin{equation*}\label{eq:weightdecoding}
   w =
   \begin{cases}
@@ -23,7 +23,7 @@ This is because we use the sigmoid activation function, for which the value $f(x
     5b_1                                                        & \text{if } u = 1
   \end{cases}
 \end{equation*}
-
+%
 For the case where $u \geq 2$, the first $u-1$ bits represent an increasing sequence of powers of two. The last bit $b_u$ negates the entire value if set (by the factor $1-2b_u$). The value is finally normalized to the range $[-5, 5]$ (by the factor $\frac{5}{2^u-1}$).
 The number of bits $u$ used to encode a weight or bias is dependent on the problem in question.
 
