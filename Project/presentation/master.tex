@@ -20,7 +20,7 @@
   Kent~Munthe~Caspersen\\
   Martin~Bjeldbak~Madsen
 }
-\institute[CS] {%
+\institute{%
   Aalborg University\\
   Department of Computer Science
 }
@@ -28,21 +28,10 @@
 
 \begin{document}
 
+{%
+  \setbeamertemplate{headline}{}
 \frame{\titlepage}
-
-\AtBeginSection[]
-{
-   \begin{frame}
-       \frametitle{Overview}
-       \tableofcontents[currentsection,hideothersubsections]
-   \end{frame}
 }
-
-\begin{frame}
-  \frametitle{Overview}
-  \tableofcontents[hideothersubsections]
-\end{frame}
-
 
 \input{elias/master.tex}
 \input{kent/master.tex}

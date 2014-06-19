@@ -22,6 +22,14 @@
   \end{beamercolorbox}
 }
 
+% Display a slide before the current section with overview inf
+\AtBeginSection[]
+{
+   \begin{frame}
+       \frametitle{Overview}
+       \tableofcontents[currentsection,hideothersubsections]
+   \end{frame}
+}
 \useinnertheme{default}
 \usefonttheme{serif}
 
