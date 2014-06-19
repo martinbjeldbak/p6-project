@@ -1,0 +1,50 @@
+\documentclass{beamer}
+\synctex=1
+
+\usetheme{cameron}
+
+\usepackage[activate={true,nocompatibility},final,tracking=true,kerning=true,spacing=true,factor=1100,stretch=10,shrink=10,verbose=silent]{microtype}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8x]{inputenc}
+\usepackage{graphicx}
+
+\usepackage[nodayofweek]{datetime} % For proper ISO 8601 date and time formatting
+
+\usepackage{booktabs}
+
+\title{Trait-based Diversity Measurement in Genetic Algorithms using Artificial Neural Networks}
+
+\author{%
+  Elias~Khazen~Obeid\\
+  Kent~Munthe~Caspersen\\
+  Martin~Bjeldbak~Madsen
+}
+\institute[CS] {%
+  Aalborg University\\
+  Department of Computer Science
+}
+\date{\formatdate{23}{6}{2014}}
+
+\begin{document}
+
+\frame{\titlepage}
+
+\AtBeginSection[]
+{
+   \begin{frame}
+       \frametitle{Overview}
+       \tableofcontents[currentsection,hideothersubsections]
+   \end{frame}
+}
+
+\begin{frame}
+  \frametitle{Overview}
+  \tableofcontents[hideothersubsections]
+\end{frame}
+
+
+\input{elias/master.tex}
+\input{kent/master.tex}
+\input{martin/master.tex}
+\end{document}
