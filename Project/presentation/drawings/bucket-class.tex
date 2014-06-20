@@ -5,13 +5,13 @@
       circle, draw, minimum size=0.75cm
     },
     bucket/.style={%
-      rectangle,draw=black!50,fill=black!20,
-      minimum size=5mm,inner sep=0mm
+      rectangle,draw=black!50,fill=black!10,
+      minimum size=5mm,inner sep=0.5mm
     },
   ]
 
   \node[neuron] (o) {$o$};
-  \node[bucket] (b2) [below of=o, node distance=2cm] {$2<o<4$};
+  \node[bucket] (b2) [below of=o, node distance=2cm] {$2 < o < 4$};
   \node[bucket] (b1) [below left of=o, node distance=2.5cm] {$o\leq2$};
   \node[bucket] (b3) [below right of=o, node distance=2.5cm] {$o\geq4$};
 
@@ -22,12 +22,7 @@
 
   \path[->,thick]
   (o) edge [bend right] (b1)
-  edge (b2)
-  edge [bend left] (b3);
-
-  %\path[->,thick,font=\scriptsize]
-  %(o) edge [bend right] node[above] {$o<2$} ++(-2,-1)
-  %    edge node[above] {$2<o<4$} ++(0,-1)
-  %    edge [bend left] node[above] {$o>4$} ++(2,-1);
+      edge (b2)
+      edge [bend left] (b3);
 
 \end{tikzpicture}
