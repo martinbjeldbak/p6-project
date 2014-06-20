@@ -12,6 +12,12 @@
 
 \setbeamertemplate{footline}
 {%
+  \ifnum\c@framenumber=1%% % if title page
+  \else% show page slide number
+    \begin{beamercolorbox}[wd=0.95\paperwidth,right,dp=2ex]{page number}
+      \insertframenumber/\inserttotalframenumber
+    \end{beamercolorbox}
+  \fi%
   \begin{beamercolorbox}[colsep=1.25pt]{lower separation line foot}
   \end{beamercolorbox}
 }
