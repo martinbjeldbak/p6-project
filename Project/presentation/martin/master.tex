@@ -17,12 +17,63 @@
   \end{itemize}
 \end{frame}
 
-\begin{frame}{Static Results}
+\subsection{Static Experiments}
+
+\begin{frame}{Initial Similarity Results}
+  \begin{itemize}
+    \item \textcolor{blue}{Fitness-based}, \textcolor{red}{Hamming Distance}, \textcolor{green}{NNTD}
+  \end{itemize}
+
+  \begin{columns}
+    \column{0.5\linewidth}
+    \begin{figure}[t!]
+      \centering
+      \resizebox{\linewidth} {!} {%
+        \input{drawings/initial-similarity-xor}
+      }
+    \end{figure}
+    \column{0.5\linewidth}
+    \begin{figure}
+      \centering
+      \resizebox{\linewidth} {!} {%
+        \input{drawings/initial-similarity-snake}
+      }
+    \end{figure}
+  \end{columns}
   
 \end{frame}
 
-\begin{frame}{Dynamic Results}
-  
+
+\begin{frame}{Initial Mutation Results}
+  \begin{itemize}
+    \item NNTD jumps and levels out the fastest
+    \item Fitness-based, Hamming distance gradually climb
+    \item \textcolor{blue}{Fitness-based}, \textcolor{red}{Hamming Distance}, \textcolor{green}{NNTD}
+  \end{itemize}
+
+  \begin{columns}
+    \column{0.5\linewidth}
+    \begin{figure}[t!]
+      \centering
+      \resizebox{\linewidth} {!} {%
+        \input{drawings/initial-mutation-xor}
+      }
+    \end{figure}
+    \column{0.5\linewidth}
+    \begin{figure}
+      \centering
+      \resizebox{\linewidth} {!} {%
+        \input{drawings/initial-mutation-snake}
+      }
+    \end{figure}
+  \end{columns}
+\end{frame}
+
+
+\subsection{Dynamic Experiments}
+
+\begin{frame}{Results}
+
 \end{frame}
 
 \section{Conclusion}
@@ -42,6 +93,7 @@
     \item Comparison to other diversity measures
     \item Determining random inputs % their range and size
     \item Understanding the difference between Hamming distance and NNTD
+    \item Other data structures
     \item Different bucket classification algorithms
   \end{itemize}
 \end{frame}
