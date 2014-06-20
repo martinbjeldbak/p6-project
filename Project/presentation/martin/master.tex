@@ -1,20 +1,148 @@
-
 \section{Experiments}
-
-\subsection{Static Experiments}
-\begin{frame}{Initial Mutation}
-  Sup dude
+\begin{frame}{Static \& Dynamic Experiments}
+  \begin{itemize}
+    \item Diversity measures
+      \begin{itemize}
+        \item NNTD ($100 \cdot 100 \cdot t$ for snake)
+        \item Levenschtein distance ($450^2 \cdot 100^2 = 2$ billion for snake)
+        \item Hamming distance ($450 \cdot 100^2 = 4.5$ million for snake) % normalized average between all pairs of individuals
+        \item Fitness-based (free) % percent of unique fitness values
+      \end{itemize}
+    \item Evaluation environments
+      \begin{itemize}
+        \item Static
+        \item Dynamic
+      \end{itemize}
+    \item Why did we choose this setup
+    \item What are they good for?
+  \end{itemize}
 \end{frame}
 
-\begin{frame}{Initial Similarity}
-  Hej med dig
+%\subsection{Static Experiments}
+
+\begin{frame}{Initial Similarity Results}
+  \begin{itemize}
+    \item The measures behave as expected
+    \item \textcolor{blue}{Fitness-based}, \textcolor{red}{Hamming Distance}, \textcolor{green}{NNTD}
+  \end{itemize}
+
+  \begin{columns}
+    \column{0.5\linewidth}
+    \begin{figure}[t!]
+      \centering
+      \resizebox{\linewidth} {!} {%
+        \input{drawings/initial-similarity-snake}
+      }
+    \end{figure}
+    \column{0.5\linewidth}
+    \begin{figure}
+      \centering
+      \resizebox{\linewidth} {!} {%
+        \input{drawings/initial-similarity-xor}
+      }
+    \end{figure}
+  \end{columns}
+
 \end{frame}
 
-\subsection{Dynamic Experiments}
 
-\begin{frame}{Leaf}
- Good results 
+\begin{frame}{Initial Mutation Results}
+  \begin{itemize}
+    \item NNTD jumps and levels out the fastest
+    \item Fitness-based, Hamming distance gradually climb
+    \item \textcolor{blue}{Fitness-based}, \textcolor{red}{Hamming Distance}, \textcolor{green}{NNTD}
+  \end{itemize}
+
+  \begin{columns}
+    \column{0.5\linewidth}
+    \begin{figure}
+      \centering
+      \inputresize{drawings/initial-mutation-snake}
+    \end{figure}
+    \column{0.5\linewidth}
+    \begin{figure}
+      \centering
+      \inputresize{drawings/initial-mutation-xor}
+    \end{figure}
+  \end{columns}
+\end{frame}
+
+
+%\subsection{Dynamic Experiments}
+
+\begin{frame}[t]{Dynamic Results, 8-bit XOR}
+  \begin{itemize}
+    \item \textcolor{black}{Greedy}, \textcolor{blue}{Ancestor Elitism}, \textcolor{red}{Single Parent Elitism}, \textcolor{green}{MEEE}
+  \end{itemize}
+
+  \begin{columns}[T]
+    \column{0.5\linewidth}
+    \begin{figure}
+      \centering
+      \batchmode
+      \inputresizeto{0.6\linewidth}{drawings/nntd-dynamic-xor}
+      \scrollmode
+    \end{figure}
+    \vfill
+    \begin{figure}
+      \centering
+      \batchmode
+      \inputresizeto{0.6\linewidth}{drawings/fitness-dynamic-xor}
+      \scrollmode
+    \end{figure}
+    \column{0.5\linewidth}
+    \begin{figure}
+      \centering
+      \batchmode
+      \inputresizeto{0.6\linewidth}{drawings/hamming-dynamic-xor}
+      \scrollmode
+    \end{figure}
+    \begin{figure}
+      \centering
+      \batchmode
+      \inputresizeto{0.6\linewidth}{drawings/max-fitness-dynamic-xor}
+      \scrollmode
+    \end{figure}
+
+  \end{columns}
+
 \end{frame}
 
 \section{Conclusion}
+\begin{frame}{Conclusion}
+  \begin{itemize}
+    \item NNTD outperforms a genetic and a fitness-based measure
+    \item The phenotypic fitness-based measure is unreliable
+    \item The genotypic Hamming distance does not take traits into account
+    \item Hamming distance seems oddly similar to NNTD
+    \item Many, many factors and variables influence results
+  \end{itemize}
+\end{frame}
+
 \section{Future Work}
+\begin{frame}{Future Work}
+  \begin{itemize}
+    \item Comparison to other diversity measures
+    \item Determining random inputs % their range and size
+    \item Understanding the difference between Hamming distance and NNTD
+    \item Other data structures
+    \item Different bucket classification algorithms
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Bucket classification}
+  \begin{columns}
+    \column{0.5\paperwidth}
+    \begin{itemize}
+      \item NNTD classifies output neurons based on boolean output
+      \item It's possible to classify by a singular output's range instead
+      \item Such a method would expand range of problems
+    \end{itemize}
+
+    \column{0.5\paperwidth}
+    \begin{figure}[htbp]
+      \centering
+      \input{drawings/bucket-class}
+    \end{figure}
+  \end{columns}
+\end{frame}

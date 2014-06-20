@@ -1,0 +1,15 @@
+\begin{tikzpicture}
+  \begin{axis}[
+      dynamic,
+      title=Fitness-based,
+    ]
+    \addplot[mark=*, smooth, color=black]
+    table[x index=0, y index=1] {data/replacementrule_game/greedy_xor.csv};
+    \addplot[mark=square*, smooth, color=blue]
+    table[x index=0, y index=1] {data/replacementrule_game/aerr_xor.csv};
+    \addplot[mark=triangle*, smooth, color=red]
+    table[x index=0, y index=1] {data/replacementrule_game/sperr_xor.csv};
+    \addplot[mark=diamond*, smooth, color=green]
+    table[x index=0, y index=1] {data/replacementrule_game/eerr_xor.csv};
+  \end{axis}
+\end{tikzpicture}
