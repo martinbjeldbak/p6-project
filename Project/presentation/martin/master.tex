@@ -6,6 +6,7 @@
         \item NNTD ($100 \cdot 100 \cdot t$ for snake)
         \item Levenschtein distance ($450^2 \cdot 100^2 = 2$ billion for snake)
         \item Hamming distance ($450 \cdot 100^2 = 4.5$ million for snake) % normalized average between all pairs of individuals
+        \item Fitness-based (free) % percent of unique fitness values
       \end{itemize}
     \item Evaluation environments
       \begin{itemize}
@@ -17,10 +18,11 @@
   \end{itemize}
 \end{frame}
 
-\subsection{Static Experiments}
+%\subsection{Static Experiments}
 
 \begin{frame}{Initial Similarity Results}
   \begin{itemize}
+    \item The measures behave as expected
     \item \textcolor{blue}{Fitness-based}, \textcolor{red}{Hamming Distance}, \textcolor{green}{NNTD}
   \end{itemize}
 
@@ -29,18 +31,18 @@
     \begin{figure}[t!]
       \centering
       \resizebox{\linewidth} {!} {%
-        \input{drawings/initial-similarity-xor}
+        \input{drawings/initial-similarity-snake}
       }
     \end{figure}
     \column{0.5\linewidth}
     \begin{figure}
       \centering
       \resizebox{\linewidth} {!} {%
-        \input{drawings/initial-similarity-snake}
+        \input{drawings/initial-similarity-xor}
       }
     \end{figure}
   \end{columns}
-  
+
 \end{frame}
 
 
@@ -53,36 +55,66 @@
 
   \begin{columns}
     \column{0.5\linewidth}
-    \begin{figure}[t!]
+    \begin{figure}
       \centering
-      \resizebox{\linewidth} {!} {%
-        \input{drawings/initial-mutation-xor}
-      }
+      \inputresize{drawings/initial-mutation-snake}
     \end{figure}
     \column{0.5\linewidth}
     \begin{figure}
       \centering
-      \resizebox{\linewidth} {!} {%
-        \input{drawings/initial-mutation-snake}
-      }
+      \inputresize{drawings/initial-mutation-xor}
     \end{figure}
   \end{columns}
 \end{frame}
 
 
-\subsection{Dynamic Experiments}
+%\subsection{Dynamic Experiments}
 
-\begin{frame}{Results}
+\begin{frame}[t]{Dynamic Results, 8-bit XOR}
+  \begin{itemize}
+    \item \textcolor{black}{Greedy}, \textcolor{blue}{Ancestor Elitism}, \textcolor{red}{Single Parent Elitism}, \textcolor{green}{MEEE}
+  \end{itemize}
+
+  \begin{columns}[T]
+    \column{0.5\linewidth}
+    \begin{figure}
+      \centering
+      \batchmode
+      \inputresizeto{0.6\linewidth}{drawings/nntd-dynamic-xor}
+      \scrollmode
+    \end{figure}
+    \vfill
+    \begin{figure}
+      \centering
+      \batchmode
+      \inputresizeto{0.6\linewidth}{drawings/fitness-dynamic-xor}
+      \scrollmode
+    \end{figure}
+    \column{0.5\linewidth}
+    \begin{figure}
+      \centering
+      \batchmode
+      \inputresizeto{0.6\linewidth}{drawings/hamming-dynamic-xor}
+      \scrollmode
+    \end{figure}
+    \begin{figure}
+      \centering
+      \batchmode
+      \inputresizeto{0.6\linewidth}{drawings/max-fitness-dynamic-xor}
+      \scrollmode
+    \end{figure}
+
+  \end{columns}
 
 \end{frame}
 
 \section{Conclusion}
 \begin{frame}{Conclusion}
   \begin{itemize}
-    \item What can we say from our experiments?
-      % NNTD outperforms a genetic and a fitness-based measure
-      % The phenotypic fitness-based measure of ave unreliable
-      % Genotypic 
+    \item NNTD outperforms a genetic and a fitness-based measure
+    \item The phenotypic fitness-based measure is unreliable
+    \item The genotypic Hamming distance does not take traits into account
+    \item Hamming distance seems oddly similar to NNTD
     \item Many, many factors and variables influence results
   \end{itemize}
 \end{frame}
