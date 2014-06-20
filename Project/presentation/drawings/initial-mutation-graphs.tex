@@ -1,0 +1,54 @@
+\begin{figure*}
+  \centering
+  \begin{subfigure}[b]{0.33\textwidth}
+    \begin{tikzpicture}
+      \begin{axis}[
+          initial-mut-root,
+          initial-mut,
+          legend to name=initMutMeasures,
+          title=Leaf,
+        ]
+        \addplot[mark=*, color=blue] % Fitness-based
+        table[y index=1, x index=0] {data/initial_mutation_leaf.csv};
+        \addplot[mark=square*, color=red] % Hamming
+        table[y index=2, x index=0] {data/initial_mutation_leaf.csv};
+        \addplot[mark=triangle*, color=green] % NNTD
+        table[y index=3, x index=0] {data/initial_mutation_leaf.csv};
+      \end{axis}
+    \end{tikzpicture}
+  \end{subfigure}%
+  ~
+  \begin{subfigure}[b]{0.33\textwidth}
+    \begin{tikzpicture}
+      \begin{axis}[
+          initial-mut, 
+          title  = Snake,
+        ]
+        \addplot[mark=*, color=blue]
+        table[y index=1, x index=0] {data/initial_mutation_snake.csv};
+        \addplot[mark=square*, color=red]
+        table[y index=2, x index=0] {data/initial_mutation_snake.csv};
+        \addplot[mark=triangle*, color=green]
+        table[y index=3, x index=0] {data/initial_mutation_snake.csv};
+      \end{axis}
+    \end{tikzpicture}
+  \end{subfigure}%
+  ~
+  \begin{subfigure}[b]{0.33\textwidth}
+    \begin{tikzpicture}
+      \begin{axis}[
+          initial-mut, 
+          title  = 8-bit XOR,
+        ]
+        \addplot[mark=*, color=blue]
+        table[y index=1, x index=0] {data/initial_mutation_xor.csv};
+        \addplot[mark=square*, color=red]
+        table[y index=2, x index=0] {data/initial_mutation_xor.csv};
+        \addplot[mark=triangle*, color=green]
+        table[y index=3, x index=0] {data/initial_mutation_xor.csv};
+      \end{axis}
+    \end{tikzpicture}
+  \end{subfigure}
+  \ref{initMutMeasures}
+  \caption{Average diversity for each diversity measure on each data set over intervals of initial mutation. Each point represents the average of \num{100} runs.}\label{fig:initial-mutation}
+\end{figure*}

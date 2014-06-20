@@ -1,0 +1,54 @@
+\begin{figure*}
+  \centering
+  \begin{subfigure}[b]{0.33\textwidth}
+    \begin{tikzpicture}
+      \begin{axis}[
+          initial-sim-root,
+          initial-sim,
+          legend to name=initSimMeasures,
+          title=Leaf,
+        ]
+        \addplot[mark=*, color=blue]
+        table[y index=1, x index=0] {data/initial_similarity_leaf.csv};
+        \addplot[mark=square*, color=red] % Hamming
+        table[y index=2, x index=0] {data/initial_similarity_leaf.csv};
+        \addplot[mark=triangle*, color=green]
+        table[y index=3, x index=0] {data/initial_similarity_leaf.csv};
+      \end{axis}
+    \end{tikzpicture}
+  \end{subfigure}%
+  ~
+  \begin{subfigure}[b]{0.33\textwidth}
+    \begin{tikzpicture}
+      \begin{axis}[
+          initial-sim,
+          title  = Snake,
+        ]
+        \addplot[mark=*, color=blue]
+        table[y index=1, x index=0] {data/initial_similarity_snake.csv};
+        \addplot[mark=square*, color=red] % Hamming
+        table[y index=2, x index=0] {data/initial_similarity_snake.csv};
+        \addplot[mark=triangle*, color=green]
+        table[y index=3, x index=0] {data/initial_similarity_snake.csv};
+      \end{axis}
+    \end{tikzpicture}
+  \end{subfigure}%
+  ~
+  \begin{subfigure}[b]{0.33\textwidth}
+    \begin{tikzpicture}
+      \begin{axis}[
+          initial-sim,
+          title  = 8-bit XOR,
+        ]
+        \addplot[mark=*, color=blue]
+        table[y index=1, x index=0] {data/initial_similarity_snake.csv};
+        \addplot[mark=square*, color=red] % Hamming
+        table[y index=2, x index=0] {data/initial_similarity_xor.csv};
+        \addplot[mark=triangle*, color=green]
+        table[y index=3, x index=0] {data/initial_similarity_xor.csv};
+      \end{axis}
+    \end{tikzpicture}
+  \end{subfigure}
+  \ref{initSimMeasures}
+  \caption{Average diversity for each diversity measure on each data set over intervals of initial similarity. Each point represents the average of \num{100} runs.}\label{fig:initial-similarity}
+\end{figure*}

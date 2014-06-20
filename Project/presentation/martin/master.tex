@@ -1,20 +1,64 @@
-
 \section{Experiments}
-
-\subsection{Static Experiments}
-\begin{frame}{Initial Mutation}
-  Sup dude
+\begin{frame}{Static \& Dynamic Experiments}
+  \begin{itemize}
+    \item Diversity measures
+      \begin{itemize}
+        \item NNTD ($100 \cdot 100 \cdot t$ for snake)
+        \item Levenschtein distance ($450^2 \cdot 100^2 = 2$ billion for snake)
+        \item Hamming distance ($450 \cdot 100^2 = 4.5$ million for snake) % normalized average between all pairs of individuals
+      \end{itemize}
+    \item Evaluation environments
+      \begin{itemize}
+        \item Static
+        \item Dynamic
+      \end{itemize}
+    \item Why did we choose this setup
+    \item What are they good for?
+  \end{itemize}
 \end{frame}
 
-\begin{frame}{Initial Similarity}
-  Hej med dig
+\begin{frame}{Static Results}
+  
 \end{frame}
 
-\subsection{Dynamic Experiments}
-
-\begin{frame}{Leaf}
- Good results 
+\begin{frame}{Dynamic Results}
+  
 \end{frame}
 
 \section{Conclusion}
+\begin{frame}{Conclusion}
+  \begin{itemize}
+    \item What can we say from our experiments?
+      % NNTD outperforms a genetic and a fitness-based measure
+      % The phenotypic fitness-based measure of ave unreliable
+      % Genotypic 
+    \item Many, many factors and variables influence results
+  \end{itemize}
+\end{frame}
+
 \section{Future Work}
+\begin{frame}{Future Work}
+  \begin{itemize}
+    \item Comparison to other diversity measures
+    \item Determining random inputs % their range and size
+    \item Understanding the difference between Hamming distance and NNTD
+    \item Different bucket classification algorithms
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Bucket classification}
+  \begin{columns}
+    \column{0.5\paperwidth}
+    \begin{itemize}
+      \item NNTD classifies output neurons based on boolean output
+      \item It's possible to classify by a singular output's range instead
+      \item Such a method would expand range of problems
+    \end{itemize}
+
+    \column{0.5\paperwidth}
+    \begin{figure}[htbp]
+      \centering
+      \input{drawings/bucket-class}
+    \end{figure}
+  \end{columns}
+\end{frame}
