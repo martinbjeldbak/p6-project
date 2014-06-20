@@ -1,0 +1,16 @@
+\begin{tikzpicture}
+  \begin{axis}[
+      initial-mut-root,
+      initial-mut,
+      legend to name=initMutMeasures,
+      title=Leaf,
+      xmin=0, xmax=0.25,
+    ]
+    \addplot[mark=*, color=blue] % Fitness-based
+    table[y index=1, x index=0] {data/initial_mutation_leaf.csv};
+    \addplot[mark=square*, color=red] % Hamming
+    table[y index=2, x index=0] {data/initial_mutation_leaf.csv};
+    \addplot[mark=triangle*, color=green] % NNTD
+    table[y index=3, x index=0] {data/initial_mutation_leaf.csv};
+  \end{axis}
+\end{tikzpicture}

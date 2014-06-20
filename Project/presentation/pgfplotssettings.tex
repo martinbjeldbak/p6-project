@@ -1,0 +1,76 @@
+\usepackage{siunitx,pgfplots}
+\sisetup{%
+  locale=UK,
+  zero-decimal-to-integer % do not show .0 on whole numbers
+}
+
+\pgfplotsset{%
+  compat=newest,
+    %grid=major,
+    %grid style={dashed,gray!30},
+    %scale only axis,
+  table/col sep=comma,
+  width=\linewidth,
+  mark end/.style={%
+    % From: https://tex.stackexchange.com/questions/116690/pgfplots-marks-mandatory-for-1st-and-last-point
+    scatter,
+    scatter src=x,
+    scatter/@pre marker code/.code={%
+      \pgfmathtruncatemacro\usemark{%
+        (\coordindex==(1))
+      }
+      \ifnum\usemark=0
+      \pgfplotsset{mark=none}
+      \fi
+    },
+    scatter/@post marker code/.code={}
+  },
+  x-tick-siunitx/.style={%
+    xticklabel = \pgfmathparse{\tick*1}\num{\pgfmathresult},
+  },
+  y-tick-siunitx/.style={%
+    yticklabel = \pgfmathparse{\tick*1}\num{\pgfmathresult},
+  },
+  y-div/.style={%
+    x-tick-siunitx,
+    y-tick-siunitx,
+    ylabel = Diversity,
+  },
+  initial-mut/.style={%
+    y-div,
+    xlabel = {Initial Mutation},
+  },
+  initial-sim/.style={%
+    y-div,
+    xlabel = {Initial Similarity},
+  },
+  initial-mut-sim-root/.style={%
+    legend columns=-1,
+    legend entries={Fitness-based, Hammming distance, \dia{}},
+  },
+  initial-sim-root/.style={%
+    initial-mut-sim-root,
+  },
+  initial-mut-root/.style={%
+    initial-mut-sim-root,
+  },
+  dynamic-root/.style={%
+    legend columns=-1,
+    legend entries={Greedy, Ancestor Elitism, Single Parent Elitism, MEEE},
+  },
+  dynamic/.style={%
+    mark end,
+    y-div,
+    xlabel = Generation,
+    each nth point=5,
+  },
+  fitness/.style={%
+    mark end,
+    x-tick-siunitx,
+    y-tick-siunitx,
+    ylabel = Max fitness,
+    xlabel = Generation,
+    title  = Fitness,
+    each nth point=5,
+  },
+}
