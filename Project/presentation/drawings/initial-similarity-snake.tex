@@ -1,0 +1,13 @@
+\begin{tikzpicture}
+  \begin{axis}[
+      initial-sim,
+      title  = Snake,
+    ]
+    \addplot[mark=*, color=blue]
+    table[y index=1, x index=0] {data/initial_similarity_snake.csv};
+    \addplot[mark=square*, color=red] % Hamming
+    table[y index=2, x index=0] {data/initial_similarity_snake.csv};
+    \addplot[mark=triangle*, color=green]
+    table[y index=3, x index=0] {data/initial_similarity_snake.csv};
+  \end{axis}
+\end{tikzpicture}

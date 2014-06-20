@@ -1,7 +1,7 @@
-Project/article/**/*.log
-Project/article/**/*.aux
-Project/article/**/*.pdf
-Project/article/**/*.out
-Project/article/*.synctex.gz
+Project/**/*.log
+Project/**/*.aux
+Project/**/*.pdf
+Project/**/*.out
+Project/**/*.synctex.gz
 DBS/*.synctex.gz
 *.bak
