@@ -19,18 +19,26 @@
 \pagestyle{empty}
 \maketitle
 \thispagestyle{empty}
+\input{macros}
 
 The fixed versions of the errors we have found are in the slides.
 
-\section*{Bucket definition function}
-The bucket definition function in equation (3) on page 5 allows an individual to belong to multiple species. This is possible if the bit string of its species can be broken down into another species, e.g., every individual in species \texttt{11} will also belong to species \texttt{01} and \texttt{10}. The function does not take the other bits of the species into account. We propose the following similar function definition instead
+\section*{Distribution of individuals into species}
+The formula for distributing neural networks into species (equation (3) on page 5) allows an individual to belong to multiple species.
+As an example, consider a neural network $\ind$ with two output neurons $\nnout_1$ and $\nnout_2$, where $\nnout_1 = \nnout_2$ on some input $\ran$.
+The binary representation of $1$ is \texttt{01}, which means that $\ind \in \speciesi{1}{\ran}$ if for any $j$, $\nnout_1 \geq \nnout_j$. This is indeed satisfied since all output neurons have the same value.
+The binary representation of $3$ is \texttt{11}, which means that $\ind \in \speciesi{3}{\ran}$ if for any $j$, $\nnout_1 \geq \nnout_j \wedge \nnout_2 \geq \nnout_j$. This is indeed satisfied since all output neurons have the same value. We propose the following definition that corrects the above problem:
+
+If $b_{m}b_{m-1}\dots b_1$ is the binary representation of a number $i$, we define the species \speciesi{i}{\ran} to contain any individual $\ind \in \indset$, that given $\ran$ as input satisfies
 \begin{equation*}
-  \forall j \in \left\{m, m-1,\dots,1\right\}\left(b_j \implies \left(o_j = h\right) \land \neg b_j \implies\left(o_j < h\right)\right),
+  \forall j \in \left\{1, 2,\dots,m\right\}\left(b_j \rightarrow \left(\nnout_j = h\right) \land \neg b_j \rightarrow \left(\nnout_j < h\right)\right),
 \end{equation*}
-where $h = \max\left\{o_1, o_2, \dots, o_b\right\}$, $m$ is the amount of bits in any species' bit string (constant for all species), $b_j$ is the resulting species' bit string with index $j$, and $o_j$ is the value of output neuron $j$ in the given network.
+where $\nnout_k \in \nnoutset$ is the value of the $k$th output neuron of neural network \ind, and $h = \max\left\{\nnout_1, \nnout_2, \dots, \nnout_m\right\}$.
 
 \section*{Initial similarity for 8-bit XOR}
-The fitness-based line of the last plot in figure 3 of page 9 is accidentally the same as the fitness-based line of the snake data set. This happened due to a typo in the way the plots are made. The 8-bit XOR plot should instead be as shown in figure~\ref{fig:initial-similarity-xor}.
+The fitness-based plot for 8-bit XOR in figure 3 of page 9 is accidentally the same as the fitness-based plot for Snake. 
+%This happened due to a typo in the way the plots are made. - I don't think we have to excuse why this happened
+The 8-bit XOR plot should instead be as shown in figure~\ref{fig:initial-similarity-xor}.
 
 \begin{figure}[htbp]
   \centering
