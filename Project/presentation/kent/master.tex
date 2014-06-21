@@ -42,7 +42,18 @@ Find the combination of traits that forms the most fit individual.
 \begin{frame}{NNTD}
 \begin{center}
   Input: A set of neural networks.\\
-  Output: A diversity measurement based on difference in \emph{traits}.
+  Output: A diversity measurement based on difference in \emph{traits}\\
+  \vspace{30pt}
+  Method:
+  \begin{itemize}
+  \item Calculate a large amount of random inputs
+  \item For each input:
+  \begin{itemize}
+	  \item Distribute the neural networks into a number of species based on their output on that input.
+	  \item Calculate a diversity measure based on the size of each species.
+  \end{itemize}
+  \item Calculate the average diversity for all random inputs.
+  \end{itemize}
 \end{center}
 \end{frame}
 
@@ -174,4 +185,16 @@ where $h = \max\set{\nnout_1, \nnout_2, \cdots, \nnout_b}$
 \end{center}
 \end{frame}
 
+\begin{frame}{Why are we concerned with only the highest valued output neurons?}
+\begin{center}
+  \begin{figure}[p]
+  \includegraphics[width=0.8\textwidth]{images/whyhighestvalue.png}
+  \end{figure}
+\begin{itemize}
+	\item Classification problems
+	\item Decision problems
+	\item $\cdots$
+\end{itemize}
+\end{center}
+\end{frame}
 
