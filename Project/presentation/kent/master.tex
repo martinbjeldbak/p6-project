@@ -160,7 +160,7 @@ We say that $f \in \speciesi{15}{\ran}$, because binary $\texttt{1111}$ is $15$ 
 \begin{center}
 If $b_{m}b_{m-1}\dots b_1$ is the binary representation of a number $i$, we define the species \speciesi{i}{\ran} to contain any neural network $\ind \in \indset$, that given $\ran$ as input satisfies
 \begin{equation}
-  \forall j \in \set{m, m-1, \dots, 1} \left(b_j \rightarrow (\nnout_j = h) \wedge \neg b_j \rightarrow (\nnout_j < h)\right)
+  \forall j \in \set{1, 2, \dots, m} \left(b_j \rightarrow (\nnout_j = h) \wedge \neg b_j \rightarrow (\nnout_j < h)\right)
 \end{equation}
 where $h = \max\set{\nnout_1, \nnout_2, \cdots, \nnout_b}$
 \end{center}
