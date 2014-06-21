@@ -31,6 +31,15 @@ Find the combination of traits that forms the most fit individual.
   \end{center}
 \end{frame}
 
+\begin{frame}{Traits}
+\begin{center}
+  When do two neural networks have different traits in general?
+  \begin{itemize}
+	\item Two neural networks have different traits if they for some input produce a different output.
+  \end{itemize}
+  \end{center}
+\end{frame}
+
 \begin{frame}{NNTD}
 \begin{center}
   Input: A set of neural networks.\\
@@ -92,11 +101,15 @@ The average Simpson's Diversity Index for all random inputs.
 
 \begin{frame}{Simpson's Diversity Index}
 \begin{center}
+$r = (2.3, 3.4, -1.4, 3.2)$
   \begin{figure}[p]
   \includegraphics[width=0.4\textwidth]{images/speciessize.png}
   \end{figure}
-  \begin{equation}\label{eq:nntd}
-  D_r = 1 - \frac{\sum_{q \in \nemptyspeciesf{r}}\left(\sizeof{q}\left(\sizeof{q} - 1\right)\right)}{\indsetl\left(\indsetl - 1\right)}
+\begin{equation}
+D_r = 1 - \frac{\sum_{q \in \nemptyspeciesf{r}}\left(\sizeof{q}\left(\sizeof{q} - 1\right)\right)}{\indsetl\left(\indsetl - 1\right)}
+\end{equation}
+\begin{equation}\label{eq:nntd}
+D_r = 1 - \frac{(2(2-1))+(1(1-1))}{3(3-1)} = \frac{2}{3}
 \end{equation}
 \end{center}
 \end{frame}
