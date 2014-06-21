@@ -1,6 +1,21 @@
 
 \section{Introduction}
 
+\begin{frame}{Genetic Algorithms using Neural Networks}
+
+  \begin{itemize}
+    \item Measuring diversity?
+    \item Motivation?
+    \item How did we end up here?
+  \end{itemize}
+%  introduction of some sort
+%  what did we work with (briefly)
+%  why did we do it? (motivation)
+%  how did we end up working with diversity?
+\end{frame}
+
+\subsection{Motivation}
+
 \begin{frame}{Motivation}
   \begin{figure}
     \centering
@@ -10,14 +25,14 @@
   \end{figure}
 \end{frame}
 
-\begin{frame}{Motivation}
-  \begin{figure}
-    \centering
-    \includegraphics[width=250px]{elias/images/swarm.png}
-    \caption{\url{youtube.com/watch?v=Iv_Fy6Urik4}}
+%\begin{frame}{Motivation}
+%  \begin{figure}
+%    \centering
+%    \includegraphics[width=250px]{elias/images/swarm.png}
+%    \caption{\url{youtube.com/watch?v=Iv_Fy6Urik4}}
     %by Ding Nicolas
-  \end{figure}
-\end{frame}
+%  \end{figure}
+%\end{frame}
 
 \begin{frame}{Motivation}
   \begin{figure}
@@ -29,23 +44,55 @@
 
 \subsection{Structuring Candidate Solutions}
 
-\begin{frame}{Genetic Algorithms using Neural Networks}
-  picture of use of neural networks
-
-  bit strings as chromosomes to be manipulated
+\begin{frame}{Structuring Candidate Solutions}
+  \begin{center}
+    \input{elias/images/neuralnetwork}
+  \end{center}
+%  picture of use of neural networks
 \end{frame}
 
-\section{Existing methods}
+\begin{frame}{Representing Candidate Solutions}
+  \begin{itemize}
+    \item Static network structure
+    \item Weights as bit strings representing the network
+    \item Straightforward manipulation
+  \end{itemize}
+%  bit strings as chromosomes to be manipulated
+\end{frame}
+
+\begin{frame}{Assessing Candidate Solutions}
+  \begin{itemize}
+    \item How good is a candidate solution?
+    \item Which conditions are important?
+  \end{itemize}
+%  fitness functions and importance
+\end{frame}
+
+\subsection{Existing methods}
 
 \begin{frame}{Hamming distance}
-  illustration of the workings of hamming distance
+  \input{elias/images/eqnetworks.tex}
+%  illustration of the workings of hamming distance
 \end{frame}
 
 \begin{frame}{Fitness-based}
-  illustration of the workings of fitness-based
+  \begin{figure}
+    \centering
+    \includegraphics[height=150px]{elias/images/elevation.png}
+    \caption{\url{en.wikipedia.org/wiki/rosenbrock_function}}
+  \end{figure}
 \end{frame}
 
 \begin{frame}{What do they miss?}
-  weaknesses and such
+  \begin{itemize}
+    \item Suitable assessment of each network
+    \item What about the actual behaviour?
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{What are they good for?}
+  \begin{itemize}
+    \item Cheap evaluation
+  \end{itemize}
 \end{frame}
 
