@@ -1,0 +1,14 @@
+\begin{tikzpicture}
+  \begin{axis}[
+      initial-mut, 
+      title  = 8-bit XOR,
+      xmin=0, xmax=0.5,
+    ]
+    \addplot[mark=*, color=blue]
+    table[y index=1, x index=0] {data/initial_mutation_xor.csv};
+    \addplot[mark=square*, color=red]
+    table[y index=2, x index=0] {data/initial_mutation_xor.csv};
+    \addplot[mark=triangle*, color=green]
+    table[y index=3, x index=0] {data/initial_mutation_xor.csv};
+  \end{axis}
+\end{tikzpicture}

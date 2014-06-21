@@ -1,0 +1,42 @@
+\documentclass{memoir}
+\usepackage[T1]{fontenc}
+\usepackage[utf8x]{inputenc}
+\usepackage{amsmath}
+\usepackage[nodayofweek]{datetime} % For proper ISO 8601 date and time formatting
+\input{pgfplotssettings}
+
+\title{Errata\\
+\Large Trait-based Diversity Measurement in Genetic Algorithms using Artificial Neural Networks}
+
+\author{Elias~Khazen~Obeid \and
+        Kent~Munthe~Caspersen \and
+      Martin~Bjeldbak~Madsen\\
+    \scshape Aalborg University, Denmark}
+
+\date{Updated \formatdate{20}{6}{2014}}
+
+\begin{document}
+\pagestyle{empty}
+\maketitle
+\thispagestyle{empty}
+
+The fixed versions of the errors we have found are in the slides.
+
+\section*{Bucket definition function}
+The bucket definition function in equation (3) on page 5 allows an individual to belong to multiple species. This is possible if the bit string of its species can be broken down into another species, e.g., every individual in species \texttt{11} will also belong to species \texttt{01} and \texttt{10}. The function does not take the other bits of the species into account. We propose the following similar function definition instead
+\begin{equation*}
+  \forall j \in \left\{m, m-1,\dots,1\right\}\left(b_j \implies \left(o_j = h\right) \land \neg b_j \implies\left(o_j < h\right)\right),
+\end{equation*}
+where $h = \max\left\{o_1, o_2, \dots, o_b\right\}$, $m$ is the amount of bits in any species' bit string (constant for all species), $b_j$ is the resulting species' bit string with index $j$, and $o_j$ is the value of output neuron $j$ in the given network.
+
+\section*{Initial similarity for 8-bit XOR}
+The fitness-based line of the last plot in figure 3 of page 9 is accidentally the same as the fitness-based line of the snake data set. This happened due to a typo in the way the plots are made. The 8-bit XOR plot should instead be as shown in figure~\ref{fig:initial-similarity-xor}.
+
+\begin{figure}[htbp]
+  \centering
+  \resizebox{0.5\linewidth}{!}{%
+  \input{initial-similarity-xor}
+}
+  \caption{The fixed plot of initial similarity belonging to the 8-bit XOR problem}\label{fig:initial-similarity-xor}
+\end{figure}
+\end{document}

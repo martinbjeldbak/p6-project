@@ -1,4 +1,4 @@
-\documentclass{beamer}
+\documentclass[xcolor=pdftex]{beamer}
 \synctex=1
 
 \usetheme{bjeldbak}
@@ -7,12 +7,12 @@
 
 \usepackage[T1]{fontenc}
 \usepackage[utf8x]{inputenc}
-\usepackage{graphicx}
+\usepackage{tikz,graphicx}
 
 \usepackage[nodayofweek]{datetime} % For proper ISO 8601 date and time formatting
 
-\usepackage{booktabs}
 \input{macros}
+\input{pgfplotssettings}
 
 \title{Trait-based Diversity Measurement in Genetic Algorithms using Artificial Neural Networks}
 
@@ -21,31 +21,26 @@
   Kent~Munthe~Caspersen\\
   Martin~Bjeldbak~Madsen
 }
-\institute[CS] {%
-  Aalborg University\\
-  Department of Computer Science
+\institute{%
+  Department of Computer Science\\
+  Aalborg University
 }
 \date{\formatdate{23}{6}{2014}}
 
 \begin{document}
 
+{%
+  \setbeamertemplate{headline}{}
 \frame{\titlepage}
-
-\AtBeginSection[]
-{
-   \begin{frame}
-       \frametitle{Overview}
-       \tableofcontents[currentsection,hideothersubsections]
-   \end{frame}
 }
-
-\begin{frame}
-  \frametitle{Overview}
-  \tableofcontents[hideothersubsections]
-\end{frame}
-
 
 \input{elias/master.tex}
 \input{kent/master.tex}
 \input{martin/master.tex}
+
+\begin{frame}[plain,c]
+  \begin{center}
+    \Huge Thank you!
+  \end{center}
+\end{frame}
 \end{document}

@@ -22,6 +22,14 @@
   \end{beamercolorbox}
 }
 
+% Display a slide before the current section with overview inf
+\AtBeginSection[]
+{%
+   \begin{frame}
+       \frametitle{Overview}
+       \tableofcontents[currentsection,hideothersubsections]
+   \end{frame}
+}
 \useinnertheme{default}
 \usefonttheme{serif}
 
@@ -43,8 +51,4 @@
 \setbeamercolor{palette tertiary}{fg=black,bg=black!10} 
 \setbeamercolor{palette quaternary}{fg=black,bg=black!10} 
 
-\renewcommand{\(}{\begin{columns}}
-\renewcommand{\)}{\end{columns}}
-\newcommand{\<}[1]{\begin{column}{#1}}
-\renewcommand{\>}{\end{column}}
 \mode<all>
