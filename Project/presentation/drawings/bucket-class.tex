@@ -13,8 +13,8 @@
     },
   ]
 
-  \node[neuron] (o) {$y_1$};
-  \node[invis] (o2) [below of=o, node distance=1.5cm] {$o$};
+  \node[neuron] (o) {};
+  \node[invis] (o2) [below of=o, node distance=1.5cm] {$o_1$};
 
   \draw[->,thick] (o) -- (o2);
 
@@ -26,7 +26,7 @@
   \draw[->,thick] ++(1,1) -- (o); 
   \draw[->,thick] ++(1,1) -- (o) node[above=0.75cm] {\dots};
 
-  \path[->,thick]
+  \path[->,thick,gray,opacity=0.9]
   (o2) edge [bend right] (b1)
        edge (b2)
        edge [bend left] (b3);
