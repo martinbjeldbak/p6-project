@@ -25,6 +25,8 @@
   \begin{itemize}
 	\item Two neural networks have different traits if they for some input produce a different output.
   \end{itemize}
+      \vspace{30pt}
+  Easy to measure!
 \end{frame}
 
 \begin{frame}{Traits}
@@ -33,10 +35,9 @@
 	\item Two neural networks have different traits if they for some input produce a different output.
   \end{itemize}
     \vspace{30pt}
-  Problem:
+  Problem: We cannot try all possible inputs.
   \begin{itemize}
-	\item We cannot try all possible inputs.
-	\item Different outputs may behave the same.
+    \item Solution?
   \end{itemize}
 \end{frame}
 
@@ -51,24 +52,8 @@ Observation:
 \begin{itemize}
 	\item Classification problems
 	\item Decision problems
-	\item $\cdots$
 \end{itemize}
-\end{frame}
-
-\begin{frame}{Traits}
-Observation:
-\begin{itemize}
-\item Some neural networks produce different outputs, but behave the same!
-\end{itemize}
-  \begin{figure}[p]
-  \includegraphics[width=0.8\textwidth]{images/whyhighestvalue.png}
-  \end{figure}
-\begin{itemize}
-	\item Classification problems
-	\item Decision problems
-	\item $\cdots$
-\end{itemize}
-Let us only be concerned with the highest valued output neurons.
+How will this affect the design of NNTD?
 \end{frame}
 
 \begin{frame}{NNTD}
