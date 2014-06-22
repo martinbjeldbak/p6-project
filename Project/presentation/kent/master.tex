@@ -1,5 +1,5 @@
 \section{NNTD}
-\begin{frame}{Motivation}
+\begin{frame}{Idea}
 \begin{center}
   What difference could be nice to measure about two AI-players in the cell phone game Snake?
   \begin{itemize}
@@ -11,14 +11,40 @@
   \end{center}
 \end{frame}
 
-
 \begin{frame}{Problem}
 \begin{center}
 	Can we measure the traits of a neural network in general?
 	\begin{itemize}
 	\item Application dependent
-	\item Some neural networks produce different outputs, but behave the same!
 	\end{itemize}
+\end{center}
+\end{frame}
+
+\begin{frame}{Traits}
+  Solution: break down traits further
+  \begin{itemize}
+	\item Two neural networks have different traits if they for some input produce a different output.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Traits}
+  Solution: break down traits further
+  \begin{itemize}
+	\item Two neural networks have different traits if they for some input produce a different output.
+  \end{itemize}
+    \vspace{30pt}
+  Problem:
+  \begin{itemize}
+	\item We cannot try all possible inputs.
+	\item Different outputs may behave the same.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Traits}
+Observation:
+\begin{itemize}
+\item Some neural networks produce different outputs, but behave the same!
+\end{itemize}
   \begin{figure}[p]
   \includegraphics[width=0.8\textwidth]{images/whyhighestvalue.png}
   \end{figure}
@@ -27,52 +53,22 @@
 	\item Decision problems
 	\item $\cdots$
 \end{itemize}
-\end{center}
 \end{frame}
 
 \begin{frame}{Traits}
-
-  Solution: break down traits further
-  \begin{itemize}
-	\item Two neural networks have different traits if they for some input produce a different output.
-  \end{itemize}
-
-\end{frame}
-
-\begin{frame}{Traits}
-
-  Solution: break down traits further
-  \begin{itemize}
-	\item Two neural networks have different traits if they for some input produce a different output.
-  \end{itemize}
-    \vspace{30pt}
-  Problem:
-  \begin{itemize}
-	\item We cannot try all possible inputs.
-	\item Different outputs may behave the same.
-  \end{itemize}
-
-\end{frame}
-
-\begin{frame}{Traits}
-
-  Solution: break down traits further
-  \begin{itemize}
-	\item Two neural networks have different traits if they for some input produce a different output.
-  \end{itemize}
-    \vspace{30pt}
-  Problem:
-  \begin{itemize}
-	\item We cannot try all possible inputs.
-	 \begin{itemize}
-	  \item Try $1000$ random inputs and see what happens
-	    \end{itemize}
-	\item Different outputs may behave the same.
-		  \begin{itemize}
-	       \item Let us only be concerned with the highest valued output neurons.
-	    \end{itemize}
-  \end{itemize}
-
+Observation:
+\begin{itemize}
+\item Some neural networks produce different outputs, but behave the same!
+\end{itemize}
+  \begin{figure}[p]
+  \includegraphics[width=0.8\textwidth]{images/whyhighestvalue.png}
+  \end{figure}
+\begin{itemize}
+	\item Classification problems
+	\item Decision problems
+	\item $\cdots$
+\end{itemize}
+Let us only be concerned with the highest valued output neurons.
 \end{frame}
 
 \begin{frame}{NNTD}
