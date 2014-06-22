@@ -1,21 +1,86 @@
 \section{Experiments}
 \begin{frame}{Static \& Dynamic Experiments}
+  \only<1,4>{%
+    \begin{itemize}
+      \item Diversity measures
+        \begin{itemize}
+          \item Fitness-based ($100$ for snake) % percent of unique fitness values
+          \item NNTD ($100 \cdot 100 \cdot t$ for snake)
+          \item Hamming distance ($450 \cdot 100^2 = 4.5$ million for snake) % normalized average between all pairs of individuals
+          \item Levenschtein distance ($450^2 \cdot 100^2 = 2$ billion for snake)
+        \end{itemize}
+      \item Evaluation environments
+        \begin{itemize}
+          \item Static \only<4>{\checkmark}
+          \item Dynamic
+        \end{itemize}
+      \item Why did we choose this setup
+      \item What are they good for?
+    \end{itemize}
+  }
+  \only<2>{%
+    \frametitle{Initial Similarity Example}
+    \begin{itemize}
+      \item Population of five individuals
+    \end{itemize}
+    \vfill
+    \begin{columns}
+      \column{0.5\linewidth}
+      \[\perc{40} \left\{
+        \begin{array}{lr}
+          \textcolor{teal}{\texttt{01010101}}\\
+          \textcolor{teal}{\texttt{01010101}}\\
+          \texttt{11000101}\\
+          \texttt{01101010}\\
+          \texttt{10101111}
+        \end{array}
+        \right.
+      \]
+      \column{0.5\linewidth}
+      \[\left.
+        \begin{array}{lr}
+          \textcolor{teal}{\texttt{01010101}}\\
+          \textcolor{teal}{\texttt{01010101}}\\
+          \textcolor{teal}{\texttt{01010101}}\\
+          \texttt{11000010}\\
+          \texttt{10001000}
+        \end{array}
+      \right\} \perc{60}
+    \]
+  \end{columns}
+}
+\only<3>{%
+  \frametitle{Initial Mutation Example}
   \begin{itemize}
-    \item Diversity measures
-      \begin{itemize}
-        \item NNTD ($100 \cdot 100 \cdot t$ for snake)
-        \item Levenschtein distance ($450^2 \cdot 100^2 = 2$ billion for snake)
-        \item Hamming distance ($450 \cdot 100^2 = 4.5$ million for snake) % normalized average between all pairs of individuals
-        \item Fitness-based (free) % percent of unique fitness values
-      \end{itemize}
-    \item Evaluation environments
-      \begin{itemize}
-        \item Static
-        \item Dynamic
-      \end{itemize}
-    \item Why did we choose this setup
-    \item What are they good for?
+    \item Again a population size of five
+    \item Initial bitstring of \texttt{01010101}
   \end{itemize}
+  \vfill
+  \begin{columns}
+    \column{0.5\linewidth}
+    \[\perc{5}\left\{
+      \begin{array}{lr}
+        \texttt{010101\tte{1}\tte{1}}\\
+        \texttt{01010101}\\
+        \texttt{01010101}\\
+        \texttt{\tte{1}1010101}\\
+        \texttt{01010101}
+      \end{array}
+    \right.
+    \]
+    \column{0.5\linewidth}
+    \[\left.
+      \begin{array}{lr}
+        \texttt{01010101}\\
+        \texttt{\tte{1}\tte{0}01010\tte{0}}\\
+        \texttt{0\tte{0}01\tte{1}10\tte{0}}\\
+        \texttt{0101010\tte{0}}\\
+        \texttt{010101\tte{1}1}
+      \end{array}
+    \right\}\perc{20}
+    \]
+  \end{columns}
+}
 \end{frame}
 
 %\subsection{Static Experiments}
@@ -103,7 +168,6 @@
       \inputresizeto{0.6\linewidth}{drawings/max-fitness-dynamic-xor}
       \scrollmode
     \end{figure}
-
   \end{columns}
 
 \end{frame}
@@ -116,12 +180,14 @@
     \item The genotypic Hamming distance does not take traits into account
     \item Hamming distance seems oddly similar to NNTD
     \item Many, many factors and variables influence results
+    \item Maximum diversity is not always desirable
   \end{itemize}
 \end{frame}
 
 \section{Future Work}
 \begin{frame}{Future Work}
   \begin{itemize}
+    \item Experiment, experiments, experiments
     \item Comparison to other diversity measures
     \item Determining random inputs % their range and size
     \item Understanding the difference between Hamming distance and NNTD
@@ -136,7 +202,7 @@
     \begin{itemize}
       \item NNTD classifies output neurons based on boolean output
       \item It's possible to classify by a singular output's range instead
-      \item Such a method would expand range of problems
+      \item Such a method would expand the problem domain
     \end{itemize}
 
     \column{0.5\paperwidth}
