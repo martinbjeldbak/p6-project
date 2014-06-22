@@ -76,7 +76,7 @@ How will this affect the design of NNTD?
 
 \begin{frame}{NNTD}
 \begin{center}
-Calculate a large amount of random inputs (m-tuples) for the neural network architecture used
+Calculate a large amount of random inputs (n-tuples) for the neural network architecture used
  \begin{figure}[p]
   \includegraphics[width=0.7\textwidth]{images/neuralnetwork.png}
   \end{figure}
@@ -109,31 +109,41 @@ For each input:
 
 \begin{frame}{Distribution of neural networks into species}
 \begin{center}
-Given neural network $f$ and input $\ran = (0.04, 0.83, 0.83, 0.57)$
+Given neural network $\ind_1$ and input $\ran = (0.04, 0.83, 0.83, 0.57)$
   \begin{figure}[p]
   \includegraphics[width=0.75\textwidth]{images/nntdexample1.png}
   \end{figure}
-We say that $f \in \speciesi{1}{\ran}$, because binary $\texttt{0001}$ is $1$ in decimal.
+We say that $ind_1 \in \speciesi{1}{\ran}$, because binary $\texttt{0001}$ is $1$ in decimal.
 \end{center}
 \end{frame}
 
 \begin{frame}{Distribution of neural networks into species}
 \begin{center}
-Given neural network $f$ and input $\ran = (34, -5.7, 0, -4)$
+Given neural network $\ind_2$ and input $\ran = (0.04, 0.83, 0.83, 0.57)$
   \begin{figure}[p]
   \includegraphics[width=0.75\textwidth]{images/nntdexample2.png}
   \end{figure}
-We say that $f \in \speciesi{10}{\ran}$, because binary $\texttt{1010}$ is $10$ in decimal.
+We say that $ind_2 \in \speciesi{3}{\ran}$, because binary $\texttt{0011}$ is $3$ in decimal.
 \end{center}
 \end{frame}
 
 \begin{frame}{Distribution of neural networks into species}
 \begin{center}
-Given neural network $f$ and input $\ran = (1, -1, 0, -1)$
+Given neural network $\ind_3$ and input $\ran = (0.04, 0.83, 0.83, 0.57)$
   \begin{figure}[p]
   \includegraphics[width=0.75\textwidth]{images/nntdexample3.png}
   \end{figure}
-We say that $f \in \speciesi{15}{\ran}$, because binary $\texttt{1111}$ is $15$ in decimal.
+We say that $ind_3 \in \speciesi{3}{\ran}$, because binary $\texttt{0011}$ is $3$ in decimal.
+\end{center}
+\end{frame}
+
+\begin{frame}{Distribution of neural networks into species}
+\begin{center}
+Given neural network $\ind_4$ and input $\ran = (0.04, 0.83, 0.83, 0.57)$
+  \begin{figure}[p]
+  \includegraphics[width=0.75\textwidth]{images/nntdexample4.png}
+  \end{figure}
+We say that $\ind_4 \in \speciesi{15}{\ran}$, because binary $\texttt{1111}$ is $15$ in decimal.
 \end{center}
 \end{frame}
 
@@ -161,7 +171,7 @@ For each input:
 
 \begin{frame}{Simpson's Diversity Index}
 \begin{center}
-$r = (2.3, 3.4, -1.4, 3.2)$
+$\ran = (0.04, 0.83, 0.83, 0.57)$
   \begin{figure}[p]
   \includegraphics[width=0.4\textwidth]{images/speciessize.png}
   \end{figure}
@@ -170,27 +180,27 @@ $r = (2.3, 3.4, -1.4, 3.2)$
 
 \begin{frame}{Simpson's Diversity Index}
 \begin{center}
-$r = (2.3, 3.4, -1.4, 3.2)$
+$\ran = (0.04, 0.83, 0.83, 0.57)$
   \begin{figure}[p]
   \includegraphics[width=0.4\textwidth]{images/speciessize.png}
   \end{figure}
 \begin{equation}
-D_r = 1 - \frac{\sum_{q \in \nemptyspeciesf{r}}\left(\sizeof{q}\left(\sizeof{q} - 1\right)\right)}{\indsetl\left(\indsetl - 1\right)}
+D_\ran = 1 - \frac{\sum_{q \in \nemptyspeciesf{r}}\left(\sizeof{q}\left(\sizeof{q} - 1\right)\right)}{\indsetl\left(\indsetl - 1\right)}
 \end{equation}
 \end{center}
 \end{frame}
 
 \begin{frame}{Simpson's Diversity Index}
 \begin{center}
-$r = (2.3, 3.4, -1.4, 3.2)$
+$\ran = (0.04, 0.83, 0.83, 0.57)$
   \begin{figure}[p]
   \includegraphics[width=0.4\textwidth]{images/speciessize.png}
   \end{figure}
 \begin{equation}
-D_r = 1 - \frac{\sum_{q \in \nemptyspeciesf{r}}\left(\sizeof{q}\left(\sizeof{q} - 1\right)\right)}{\indsetl\left(\indsetl - 1\right)}
+D_\ran = 1 - \frac{\sum_{q \in \nemptyspeciesf{r}}\left(\sizeof{q}\left(\sizeof{q} - 1\right)\right)}{\indsetl\left(\indsetl - 1\right)}
 \end{equation}
 \begin{equation}\label{eq:nntd}
-D_r = 1 - \frac{(2(2-1))+(1(1-1))}{3(3-1)} = \frac{2}{3}
+D_\ran = 1 - \frac{1(1-1)+2(2-1)+1(1-1)}{4(4-1)} = \frac{1}{6}
 \end{equation}
 \end{center}
 \end{frame}
