@@ -1,21 +1,86 @@
 \section{Experiments}
 \begin{frame}{Static \& Dynamic Experiments}
+  \only<1,4>{%
+    \begin{itemize}
+      \item Diversity measures
+        \begin{itemize}
+          \item NNTD ($100 \cdot 100 \cdot t$ for snake)
+          \item Levenschtein distance ($450^2 \cdot 100^2 = 2$ billion for snake)
+          \item Hamming distance ($450 \cdot 100^2 = 4.5$ million for snake) % normalized average between all pairs of individuals
+          \item Fitness-based (free) % percent of unique fitness values
+        \end{itemize}
+      \item Evaluation environments
+        \begin{itemize}
+          \item Static \only<4>{\checkmark}
+          \item Dynamic
+        \end{itemize}
+      \item Why did we choose this setup
+      \item What are they good for?
+    \end{itemize}
+  }
+  \only<2>{%
+    \frametitle{Initial Similarity Example}
+    \begin{itemize}
+      \item Population of five individuals
+    \end{itemize}
+    \vfill
+    \begin{columns}
+      \column{0.5\linewidth}
+      \[\perc{40} \left\{
+        \begin{array}{lr}
+          \textcolor{teal}{\texttt{01010101}}\\
+          \textcolor{teal}{\texttt{01010101}}\\
+          \texttt{11000101}\\
+          \texttt{01101010}\\
+          \texttt{10101111}
+        \end{array}
+        \right.
+      \]
+      \column{0.5\linewidth}
+      \[\left.
+        \begin{array}{lr}
+          \textcolor{teal}{\texttt{01010101}}\\
+          \textcolor{teal}{\texttt{01010101}}\\
+          \textcolor{teal}{\texttt{01010101}}\\
+          \texttt{11000010}\\
+          \texttt{10001000}
+        \end{array}
+      \right\} \perc{60}
+    \]
+  \end{columns}
+}
+\only<3>{%
+  \frametitle{Initial Mutation Example}
   \begin{itemize}
-    \item Diversity measures
-      \begin{itemize}
-        \item NNTD ($100 \cdot 100 \cdot t$ for snake)
-        \item Levenschtein distance ($450^2 \cdot 100^2 = 2$ billion for snake)
-        \item Hamming distance ($450 \cdot 100^2 = 4.5$ million for snake) % normalized average between all pairs of individuals
-        \item Fitness-based (free) % percent of unique fitness values
-      \end{itemize}
-    \item Evaluation environments
-      \begin{itemize}
-        \item Static
-        \item Dynamic
-      \end{itemize}
-    \item Why did we choose this setup
-    \item What are they good for?
+    \item Again a population size of five
+    \item Initial bitstring of \texttt{01010101}
   \end{itemize}
+  \vfill
+  \begin{columns}
+    \column{0.5\linewidth}
+    \[\perc{5}\left\{
+      \begin{array}{lr}
+        \texttt{010101\tte{1}\tte{1}}\\
+        \texttt{01010101}\\
+        \texttt{01010101}\\
+        \texttt{\tte{1}1010101}\\
+        \texttt{01010101}
+      \end{array}
+    \right.
+    \]
+    \column{0.5\linewidth}
+    \[\left.
+      \begin{array}{lr}
+        \texttt{01010101}\\
+        \texttt{\tte{1}\tte{0}01010\tte{0}}\\
+        \texttt{0\tte{0}01\tte{1}10\tte{0}}\\
+        \texttt{0101010\tte{0}}\\
+        \texttt{010101\tte{1}1}
+      \end{array}
+    \right\}\perc{20}
+    \]
+  \end{columns}
+}
 \end{frame}
 
 %\subsection{Static Experiments}
@@ -75,36 +140,35 @@
     \item \textcolor{black}{Greedy}, \textcolor{blue}{Ancestor Elitism}, \textcolor{red}{Single Parent Elitism}, \textcolor{green}{MEEE}
   \end{itemize}
 
-  \begin{columns}[T]
-    \column{0.5\linewidth}
-    \begin{figure}
-      \centering
-      \batchmode
-      \inputresizeto{0.6\linewidth}{drawings/nntd-dynamic-xor}
-      \scrollmode
-    \end{figure}
-    \vfill
-    \begin{figure}
-      \centering
-      \batchmode
-      \inputresizeto{0.6\linewidth}{drawings/fitness-dynamic-xor}
-      \scrollmode
-    \end{figure}
-    \column{0.5\linewidth}
-    \begin{figure}
-      \centering
-      \batchmode
-      \inputresizeto{0.6\linewidth}{drawings/hamming-dynamic-xor}
-      \scrollmode
-    \end{figure}
-    \begin{figure}
-      \centering
-      \batchmode
-      \inputresizeto{0.6\linewidth}{drawings/max-fitness-dynamic-xor}
-      \scrollmode
-    \end{figure}
-
-  \end{columns}
+  %\begin{columns}[T]
+  %  \column{0.5\linewidth}
+  %  \begin{figure}
+  %    \centering
+  %    \batchmode
+  %    \inputresizeto{0.6\linewidth}{drawings/nntd-dynamic-xor}
+  %    \scrollmode
+  %  \end{figure}
+  %  \vfill
+  %  \begin{figure}
+  %    \centering
+  %    \batchmode
+  %    \inputresizeto{0.6\linewidth}{drawings/fitness-dynamic-xor}
+  %    \scrollmode
+  %  \end{figure}
+  %  \column{0.5\linewidth}
+  %  \begin{figure}
+  %    \centering
+  %    \batchmode
+  %    \inputresizeto{0.6\linewidth}{drawings/hamming-dynamic-xor}
+  %    \scrollmode
+  %  \end{figure}
+  %  \begin{figure}
+  %    \centering
+  %    \batchmode
+  %    \inputresizeto{0.6\linewidth}{drawings/max-fitness-dynamic-xor}
+  %    \scrollmode
+  %  \end{figure}
+  %\end{columns}
 
 \end{frame}
 
