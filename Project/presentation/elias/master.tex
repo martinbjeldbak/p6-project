@@ -1,8 +1,13 @@
 
-\section{Motivation }
+\section{Introduction}
 
 \begin{frame}{Genetic Algorithms using Neural Networks}
 
+  \begin{itemize}
+    \item Population with individuals
+    \item Individuals are candidate solutions
+    \item Neural networks as candidate solutions
+  \end{itemize}
   \begin{itemize}
     \item Motivation?
     \item Measuring diversity?
@@ -39,7 +44,7 @@
   \end{figure}
 \end{frame}
 
-\section{Candidate Solutions}
+%\section{Candidate Solutions}
 
 \begin{frame}{Structuring Candidate Solutions}
   \begin{center}
@@ -51,7 +56,7 @@
 \begin{frame}{Representing Candidate Solutions}
   \begin{itemize}
     \item Static network structure
-    \item Weights represent the network
+    \item Weights represent the network as bit strings
     \item Straightforward manipulation
   \end{itemize}
 %  bit strings as chromosomes to be manipulated
@@ -59,20 +64,35 @@
 
 \begin{frame}{Assessing Candidate Solutions}
   \begin{itemize}
-    \item How good is a candidate solution?
+    \item How good is a candidate solution? How fit is it?
     \item Which conditions are important to observe?
+    \item Defining a fitness function
   \end{itemize}
 %  fitness functions and importance
 \end{frame}
 
-%\subsection{Existing Diversity Measures}
+\section{Existing Diversity Measures}
 
-\begin{frame}{Hamming and Levenschtein distance}
+\begin{frame}{Existing Diversity Measures}
+  \begin{itemize}
+    \item Genotypic diversity measure (genetic make-up)
+    \item Phenotypic diversity measure (behaviour/fitness)
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Genotypic measures}
   \input{elias/images/eqnetworks.tex}
+
+  \begin{itemize}
+    \item Hamming distance of 6
+    \item Levenschtein distance of 6
+    \item Genotypically diverse
+    \item Always produce the same output
+  \end{itemize}
 %  illustration of the workings of hamming distance
 \end{frame}
 
-\begin{frame}{Fitness-based}
+\begin{frame}{Fitness-based phenotypic measure}
   \begin{figure}
     \centering
     \includegraphics[height=150px]{elias/images/elevation.png}
