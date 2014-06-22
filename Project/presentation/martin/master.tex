@@ -7,8 +7,9 @@
           \item NNTD ($100 \cdot 1000 \cdot t$ for snake)
           \item Fitness-based ($100$ for snake) % percent of unique fitness values
           \item Hamming distance ($450 \cdot 100^2 = 4.5$ million for snake) % normalized average between all pairs of individuals
-          \item Levenschtein distance ($450^2 \cdot 100^2 = 2$ billion for snake)
+          \item Levenshtein distance ($450^2 \cdot 100^2 = 2$ billion for snake)
         \end{itemize}
+      \item Replacement rules
       \item Evaluation environments
         \begin{itemize}
           \item Static \only<4>{\checkmark}
@@ -22,11 +23,13 @@
     \frametitle{Initial Similarity Example}
     \begin{itemize}
       \item Population of five individuals
+      \item Initially random
     \end{itemize}
     \vfill
     \begin{columns}
       \column{0.5\linewidth}
-      \[\perc{40} \left\{
+      \[
+        \perc{40} \left\{
         \begin{array}{lr}
           \textcolor{teal}{\texttt{01010101}}\\
           \textcolor{teal}{\texttt{01010101}}\\
@@ -37,7 +40,8 @@
         \right.
       \]
       \column{0.5\linewidth}
-      \[\left.
+      \[
+        \left.
         \begin{array}{lr}
           \textcolor{teal}{\texttt{01010101}}\\
           \textcolor{teal}{\texttt{01010101}}\\
@@ -58,7 +62,8 @@
   \vfill
   \begin{columns}
     \column{0.5\linewidth}
-    \[\perc{5}\left\{
+    \[
+      \perc{5}\left\{
       \begin{array}{lr}
         \texttt{010101\tte{1}\tte{1}}\\
         \texttt{01010101}\\
@@ -69,21 +74,20 @@
     \right.
     \]
     \column{0.5\linewidth}
-    \[\left.
+    \[
+      \left.
       \begin{array}{lr}
         \texttt{01010101}\\
         \texttt{\tte{1}\tte{0}01010\tte{0}}\\
         \texttt{0\tte{0}01\tte{1}10\tte{0}}\\
         \texttt{0101010\tte{0}}\\
-        \texttt{010101\tte{1}1}
+        \texttt{010101\tte{0}1}
       \end{array}
     \right\}\perc{20}
     \]
   \end{columns}
 }
 \end{frame}
-
-%\subsection{Static Experiments}
 
 \begin{frame}{Initial Similarity Results}
   \begin{itemize}
@@ -93,7 +97,7 @@
 
   \begin{columns}
     \column{0.5\linewidth}
-    \begin{figure}[t!]
+    \begin{figure}
       \centering
       \resizebox{\linewidth} {!} {%
         \input{drawings/initial-similarity-snake}
@@ -177,7 +181,6 @@
   \begin{itemize}
     \item NNTD outperforms a genetic and a fitness-based measure
     \item The phenotypic fitness-based measure is unreliable
-    \item The genotypic Hamming distance does not take traits into account
     \item Hamming distance seems oddly similar to NNTD
     \item Many, many factors and variables influence results
     \item Maximum diversity is not always desirable
@@ -190,7 +193,6 @@
     \item Comparison to other diversity measures
     \item Determining random inputs % their range and size
     \item Understanding the difference between Hamming distance and NNTD
-    \item Other data structures
     \item Different species classification algorithms
   \end{itemize}
 \end{frame}
@@ -201,7 +203,7 @@
     \begin{itemize}
       \item NNTD classifies output neurons based on boolean output
       \item It's possible to classify by a singular output's range instead
-      \item Such a method would expand the problem domain
+      \item Such a method would expand the problem domain and data structures
     \end{itemize}
 
     \column{0.5\paperwidth}
