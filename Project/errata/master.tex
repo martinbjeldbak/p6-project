@@ -3,6 +3,8 @@
 \usepackage[utf8x]{inputenc}
 \usepackage{amsmath}
 \usepackage[nodayofweek]{datetime} % For proper ISO 8601 date and time formatting
+\usepackage[activate={true,nocompatibility},final,tracking=true,kerning=true,spacing=true,factor=1100,stretch=10,shrink=10]{microtype}
+
 \input{pgfplotssettings}
 
 \title{Errata\\
@@ -10,10 +12,10 @@
 
 \author{Elias~Khazen~Obeid \and
         Kent~Munthe~Caspersen \and
-      Martin~Bjeldbak~Madsen\\
+        Martin~Bjeldbak~Madsen\\
     \scshape Aalborg University, Denmark}
 
-\date{Updated \formatdate{20}{6}{2014}}
+\date{Updated \formatdate{22}{6}{2014}}
 
 \begin{document}
 \pagestyle{empty}
@@ -21,7 +23,7 @@
 \thispagestyle{empty}
 \input{macros}
 
-The fixed versions of the errors we have found are in the slides.
+The fixed versions of the errors we have found below are present in the slides for the exam.
 
 \section*{Distribution of individuals into species}
 The formula for distributing neural networks into species (equation (3) on page 5) allows an individual to belong to multiple species.
@@ -49,5 +51,5 @@ The 8-bit XOR plot should instead be as shown in figure~\ref{fig:initial-similar
 \end{figure}
 
 \section*{Fitness plots}
-NNTD was used as the diversity measure for the Mass Extinction Explore Exploit replacement rule (MEEE) in the all the graphs of figures 5, 6, and 7.
+NNTD was used as the diversity measure for the Mass Extinction Explore Exploit (MEEE) replacement rule in the all the graphs of figures 5, 6, and 7.
 \end{document}
